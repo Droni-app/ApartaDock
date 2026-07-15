@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "Monorepo con backend AdonisJS y frontend Vue + Vite",
+  "packageManager": "npm@11.12.1",
   "scripts": {
-    "dev": "concurrently -n backend,frontend -c blue,green \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev": "turbo run dev",
     "dev:backend": "npm run dev --workspace backend",
     "dev:frontend": "npm run dev --workspace frontend",
     "build": "npm run build --workspace backend && npm run build --workspace frontend",
@@ -16,6 +17,6 @@
     "apps/*"
   ],
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "turbo": "^2.10.5"
   }
 }
