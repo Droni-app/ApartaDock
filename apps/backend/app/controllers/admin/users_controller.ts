@@ -40,7 +40,10 @@ export default class UsersController {
    * Show individual record
    */
   async show({ params }: HttpContext) {
-    const user = await User.findOrFail(params.id)
+    const user = await User.query()
+      .preload('enrollments', (enrollmentsQuery) => {
+        enrollmentsQuery.preload('unit')
+      }).where('id', params.id).firstOrFail()
     return user
   }
 
