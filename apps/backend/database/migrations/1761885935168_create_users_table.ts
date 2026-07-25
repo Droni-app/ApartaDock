@@ -9,7 +9,10 @@ export default class extends BaseSchema {
       table.string('full_name').nullable()
       table.string('email', 254).notNullable().unique()
       table.string('password').notNullable()
-
+      table.enu('document_type', ['CC', 'CE', 'TI', 'PP']).defaultTo('CC').notNullable()
+      table.string('document', 20).nullable()
+      table.string('role', 10).defaultTo('user').notNullable()
+      table.string('phone', 10).nullable()
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
     })
