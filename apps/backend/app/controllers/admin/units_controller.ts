@@ -9,7 +9,7 @@ export default class UnitsController {
     const page = Number(request.input('page', 1))
     const limit = Number(request.input('limit', 20))
 
-    const units = await Unit.query().orderBy('id', 'desc').paginate(page, limit)
+    const units = await Unit.query().orderBy('updated_at', 'desc').paginate(page, limit)
     return serialize(units)
   }
 

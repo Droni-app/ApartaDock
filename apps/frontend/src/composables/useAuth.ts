@@ -1,39 +1,18 @@
 import { ref } from 'vue'
-
-export interface AuthUser {
-  id: number
-  fullName: string | null
-  email: string
-  documentType: string
-  document: string | null
-  role: string
-  phone: string | null
-  createdAt: string
-  updatedAt: string | null
-}
+import { AxiosError } from 'axios'
+import { api } from '../services/api'
+import type { ApiErrorResponse, ApiWrappedResponse } from '../types/api'
+import type { AuthResponse, AuthUser } from '../types/auth'
 
 interface LoginPayload {
   email: string
   password: string
 }
 
-interface AuthResponse {
-  user: AuthUser
-  token: string
-}
-
-interface ApiWrappedResponse<T> {
-  data: T
-}
-
 const TOKEN_KEY = 'apartacho_token'
 const USER_KEY = 'apartacho_user'
 
 const user = ref<AuthUser | null>(readUser())
-
-function getApiBaseUrl() {
-  return import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3333/api/v1'
-}
 
 function readUser(): AuthUser | null {
   if (typeof window === 'undefined') {
@@ -123,24 +102,15 @@ function saveSession(data: AuthResponse) {
 }
 
 async function request(path: string, payload: LoginPayload) {
-  const response = await fetch(`${getApiBaseUrl()}${path}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify(payload),
-  })
-
-  const body = await response.json().catch(() => ({}))
-
-  if (!response.ok) {
-    const message =
-      body?.errors?.[0]?.message ?? body?.message ?? 'No se pudo completar la solicitud.'
+  try {
+    const response = await api.post(path, payload)
+    return normalizeAuthResponse(response.data)
+  } catch (error) {
+    const axiosError = error as AxiosError<ApiErrorResponse>
+    const body = axiosError.response?.data
+    const message = body?.errors?.[0]?.message ?? body?.message ?? 'No se pudo completar la solicitud.'
     throw new Error(message)
   }
-
-  return normalizeAuthResponse(body)
 }
 
 export function hasToken() {
