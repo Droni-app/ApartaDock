@@ -1,41 +1,3 @@
-<script setup lang="ts">
-import { useRouter } from 'vue-router'
-import { DuiButton, DuiNavbar } from '@dronico/droni-kit'
-import { useAuth } from '../composables/useAuth'
-
-const router = useRouter()
-const { logout } = useAuth()
-
-function signOut() {
-  logout()
-  router.push('/auth/login')
-}
-/*
-Menu principal
-
-Gestion:
-- Unidades
-- Estado de cuenta
-- Reservas
-- Vehiculos
-- Autorizaciones
-
-Comunicacion:
-- Administracion
-- Documentos
-- Notificaciones
-
-Participacion:
-- Asambleas
-- Encuestas
-
-Social:
-- Noticias y eventos
-- Clasificados
-
-*/
-</script>
-
 <template>
   <header class="z-10 sticky top-0 bg-slate-100 shadow-sm">
     <DuiNavbar :items="[
@@ -93,7 +55,7 @@ Social:
       </template>
 
       <template #actions>
-        <DuiButton to="/admin" size="sm" color="primary" variant="outline">
+        <DuiButton v-if="isAdmin" to="/admin" size="sm" color="primary" variant="outline">
           <i class="mdi mdi-cog-outline mr-1"></i>
           Administrar
         </DuiButton>
@@ -104,3 +66,18 @@ Social:
     </DuiNavbar>
   </header>
 </template>
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { DuiButton, DuiNavbar } from '@dronico/droni-kit'
+import { computed } from 'vue'
+import { getAuthUser, useAuth } from '../composables/useAuth'
+
+const router = useRouter()
+const { logout } = useAuth()
+const isAdmin = computed(() => getAuthUser()?.role === 'admin')
+
+function signOut() {
+  logout()
+  router.push('/auth/login')
+}
+</script>

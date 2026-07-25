@@ -22,7 +22,7 @@ async function submit() {
 
   try {
     await auth.login(form)
-    const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/units'
+    const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/'
     await router.push(redirect)
   } catch (error) {
     errorMessage.value = error instanceof Error ? error.message : 'Credenciales invalidas.'

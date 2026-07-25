@@ -151,6 +151,10 @@ export function getToken() {
   return readToken()
 }
 
+export function getAuthUser() {
+  return user.value ?? readUser()
+}
+
 export function useAuth() {
   async function login(payload: LoginPayload) {
     const data = await request('/auth/login', payload)
