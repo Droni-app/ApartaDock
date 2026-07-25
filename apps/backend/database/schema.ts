@@ -98,30 +98,30 @@ export class ParkingRequestSchema extends BaseModel {
 }
 
 export class UnitSchema extends BaseModel {
-  static $columns = ['apto', 'area', 'block', 'coefficient', 'createdAt', 'floor', 'id', 'name', 'notes', 'status', 'tower', 'updatedAt'] as const
+  static $columns = ['apto', 'buildArea', 'coefficient', 'createdAt', 'floor', 'id', 'name', 'privateArea', 'status', 'tower', 'typology', 'updatedAt'] as const
   $columns = UnitSchema.$columns
   @column()
-  declare apto: string
+  declare apto: number
   @column()
-  declare area: string | null
-  @column()
-  declare block: string | null
+  declare buildArea: string | null
   @column()
   declare coefficient: string | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
   @column()
-  declare floor: number | null
+  declare floor: number
   @column({ isPrimary: true })
   declare id: number
   @column()
   declare name: string
   @column()
-  declare notes: string | null
+  declare privateArea: string | null
   @column()
   declare status: string
   @column()
-  declare tower: string
+  declare tower: number
+  @column()
+  declare typology: boolean
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }

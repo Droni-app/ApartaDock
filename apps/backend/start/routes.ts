@@ -10,6 +10,8 @@
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 import { controllers } from '#generated/controllers'
+import UsersController from '#controllers/admin/users_controller'
+import UnitsController from '#controllers/admin/units_controller'
 
 router.get('/', () => {
   return { hello: 'world' }
@@ -30,3 +32,12 @@ router
   .prefix('account')
   .as('profile')
   .use(middleware.auth())
+
+router
+  .group(() => {
+    router.resource('users', UsersController).apiOnly()
+    router.resource('units', UnitsController).only(['index', 'show', 'update']).apiOnly()
+  })
+  .prefix('admin')
+  .as('admin')
+  .use([middleware.auth(), middleware.admin()])

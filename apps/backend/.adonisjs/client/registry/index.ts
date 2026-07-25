@@ -24,6 +24,54 @@ const routes = {
     tokens: [{"old":"/account/logout","type":0,"val":"account","end":""},{"old":"/account/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['profile.access_tokens.destroy']['types'],
   },
+  'admin.users.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/users',
+    tokens: [{"old":"/admin/users","type":0,"val":"admin","end":""},{"old":"/admin/users","type":0,"val":"users","end":""}],
+    types: placeholder as Registry['admin.users.index']['types'],
+  },
+  'admin.users.store': {
+    methods: ["POST"],
+    pattern: '/admin/users',
+    tokens: [{"old":"/admin/users","type":0,"val":"admin","end":""},{"old":"/admin/users","type":0,"val":"users","end":""}],
+    types: placeholder as Registry['admin.users.store']['types'],
+  },
+  'admin.users.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/users/:id',
+    tokens: [{"old":"/admin/users/:id","type":0,"val":"admin","end":""},{"old":"/admin/users/:id","type":0,"val":"users","end":""},{"old":"/admin/users/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin.users.show']['types'],
+  },
+  'admin.users.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/admin/users/:id',
+    tokens: [{"old":"/admin/users/:id","type":0,"val":"admin","end":""},{"old":"/admin/users/:id","type":0,"val":"users","end":""},{"old":"/admin/users/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin.users.update']['types'],
+  },
+  'admin.users.destroy': {
+    methods: ["DELETE"],
+    pattern: '/admin/users/:id',
+    tokens: [{"old":"/admin/users/:id","type":0,"val":"admin","end":""},{"old":"/admin/users/:id","type":0,"val":"users","end":""},{"old":"/admin/users/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin.users.destroy']['types'],
+  },
+  'admin.units.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/units',
+    tokens: [{"old":"/admin/units","type":0,"val":"admin","end":""},{"old":"/admin/units","type":0,"val":"units","end":""}],
+    types: placeholder as Registry['admin.units.index']['types'],
+  },
+  'admin.units.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/units/:id',
+    tokens: [{"old":"/admin/units/:id","type":0,"val":"admin","end":""},{"old":"/admin/units/:id","type":0,"val":"units","end":""},{"old":"/admin/units/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin.units.show']['types'],
+  },
+  'admin.units.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/admin/units/:id',
+    tokens: [{"old":"/admin/units/:id","type":0,"val":"admin","end":""},{"old":"/admin/units/:id","type":0,"val":"units","end":""},{"old":"/admin/units/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin.units.update']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

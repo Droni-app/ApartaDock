@@ -15,4 +15,18 @@ export interface ApiDefinition {
       destroy: typeof routes['profile.access_tokens.destroy']
     }
   }
+  admin: {
+    users: {
+      index: typeof routes['admin.users.index']
+      store: typeof routes['admin.users.store']
+      show: typeof routes['admin.users.show']
+      update: typeof routes['admin.users.update']
+      destroy: typeof routes['admin.users.destroy']
+    }
+    units: {
+      index: typeof routes['admin.units.index']
+      show: typeof routes['admin.units.show']
+      update: typeof routes['admin.units.update']
+    }
+  }
 }
