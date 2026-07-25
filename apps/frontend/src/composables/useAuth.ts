@@ -25,6 +25,10 @@ interface AuthResponse {
   token: string
 }
 
+interface ApiWrappedResponse<T> {
+  data: T
+}
+
 const TOKEN_KEY = 'apartacho_token'
 const USER_KEY = 'apartacho_user'
 
@@ -35,6 +39,10 @@ function getApiBaseUrl() {
 }
 
 function readUser(): AuthUser | null {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
   const stored = localStorage.getItem(USER_KEY)
   if (!stored) {
     return null
@@ -45,6 +53,45 @@ function readUser(): AuthUser | null {
   } catch {
     localStorage.removeItem(USER_KEY)
     return null
+  }
+}
+
+function readToken(): string | null {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  const token = localStorage.getItem(TOKEN_KEY)
+  if (!token || token === 'undefined' || token === 'null') {
+    return null
+  }
+
+  return token
+}
+
+function clearSession() {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  localStorage.removeItem(TOKEN_KEY)
+  localStorage.removeItem(USER_KEY)
+  user.value = null
+}
+
+function normalizeAuthResponse(body: unknown): AuthResponse {
+  const wrapped = body as Partial<ApiWrappedResponse<AuthResponse>>
+  const direct = body as Partial<AuthResponse>
+
+  const payload = wrapped.data ?? direct
+
+  if (!payload?.token || !payload?.user) {
+    throw new Error('Respuesta de autenticacion invalida.')
+  }
+
+  return {
+    token: payload.token,
+    user: payload.user,
   }
 }
 
@@ -72,15 +119,15 @@ async function request(path: string, payload: LoginPayload | SignupPayload) {
     throw new Error(message)
   }
 
-  return body as AuthResponse
+  return normalizeAuthResponse(body)
 }
 
 export function hasToken() {
-  return Boolean(localStorage.getItem(TOKEN_KEY))
+  return Boolean(readToken())
 }
 
 export function getToken() {
-  return localStorage.getItem(TOKEN_KEY)
+  return readToken()
 }
 
 export function useAuth() {
@@ -97,9 +144,7 @@ export function useAuth() {
   }
 
   function logout() {
-    localStorage.removeItem(TOKEN_KEY)
-    localStorage.removeItem(USER_KEY)
-    user.value = null
+    clearSession()
   }
 
   return {
@@ -108,4 +153,8 @@ export function useAuth() {
     signup,
     logout,
   }
+}
+
+if (typeof window !== 'undefined' && !readToken()) {
+  clearSession()
 }
