@@ -82,7 +82,14 @@ Social:
     ]"
     underline-color="primary">
       <template #brand>
-        <span class="font-semibold text-slate-900">Apartacho</span>
+        <RouterLink to="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <img
+            src="/logo.webp"
+            alt="Apartacho logo"
+            class="h-8 w-8 rounded object-contain"
+          />
+          <span class="text-xs leading-tight text-slate-900">Fontibón<br />Reservado</span>
+        </RouterLink>
       </template>
 
       <template #actions>
