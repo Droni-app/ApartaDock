@@ -6,18 +6,18 @@ export default class UsersController {
   /**
    * Display a list of resource
    */
-  async index({ request, serialize }: HttpContext) {
+  async index({ request }: HttpContext) {
     const page = Number(request.input('page', 1))
     const limit = Number(request.input('limit', 20))
 
-    const users = await User.query().orderBy('id', 'desc').paginate(page, limit)
-    return serialize(users)
+    const users = await User.query().orderBy('updated_at', 'desc').paginate(page, limit)
+    return users
   }
 
   /**
    * Handle form submission for the create action
    */
-  async store({ request, response, serialize }: HttpContext) {
+  async store({ request, response }: HttpContext) {
     const payload = await request.validateUsing(createUserValidator)
 
     const emailExists = await User.findBy('email', payload.email)
@@ -33,21 +33,21 @@ export default class UsersController {
     }
 
     const user = await User.create(payload)
-    return response.created(serialize(user))
+    return response.created(user)
   }
 
   /**
    * Show individual record
    */
-  async show({ params, serialize }: HttpContext) {
+  async show({ params }: HttpContext) {
     const user = await User.findOrFail(params.id)
-    return serialize(user)
+    return user
   }
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request, response, serialize }: HttpContext) {
+  async update({ params, request, response }: HttpContext) {
     const user = await User.findOrFail(params.id)
     const payload = await request.validateUsing(updateUserValidator)
 
@@ -76,7 +76,7 @@ export default class UsersController {
     user.merge(payload)
     await user.save()
 
-    return serialize(user)
+    return user
   }
 
   /**
