@@ -1,47 +1,6 @@
 <template>
   <header class="z-10 sticky top-0 bg-slate-100 shadow-sm">
-    <DuiNavbar :items="[
-      {
-        label: 'Gestión',
-        icon: 'mdi mdi-office-building-cog-outline',
-        to: '/management',
-        children: [
-          { label: 'Unidades', to: '/management/units' },
-          { label: 'Estado de cuenta', to: '/management/account-status' },
-          { label: 'Reservas', to: '/management/reservations' },
-          { label: 'Vehículos', to: '/management/vehicles' },
-          { label: 'Autorizaciones', to: '/management/authorizations' },
-        ],
-      },
-      { 
-        label: 'Comunicaciones',
-        icon: 'mdi mdi-message-text',
-        to: '/communications',
-        children: [
-          { label: 'Administración', to: '/communications/administration' },
-          { label: 'Documentos', to: '/communications/documents' },
-          { label: 'Notificaciones', to: '/communications/notifications' },
-        ],
-      },
-      {
-        label: 'Participación',
-        icon: 'mdi mdi-vote-outline',
-        to: '/participation',
-        children: [
-          { label: 'Asambleas', to: '/participation/assemblies' },
-          { label: 'Encuestas', to: '/participation/surveys' },
-        ],
-      },
-      {
-        label: 'Social',
-        icon: 'mdi mdi-account-group',
-        to: '/social',
-        children: [
-          { label: 'Noticias y eventos', to: '/social/news-events' },
-          { label: 'Clasificados', to: '/social/classifieds' },
-        ],
-      },
-    ]"
+    <DuiNavbar :items="navItems"
     underline-color="primary">
       <template #brand>
         <RouterLink to="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
@@ -55,10 +14,6 @@
       </template>
 
       <template #actions>
-        <DuiButton v-if="isAdmin" to="/admin" size="sm" color="primary" variant="outline">
-          <i class="mdi mdi-cog-outline mr-1"></i>
-          Administrar
-        </DuiButton>
         <DuiButton size="sm" color="danger" variant="outline" @click="signOut">
           Cerrar sesion
         </DuiButton>
@@ -75,6 +30,62 @@ import { getAuthUser, useAuth } from '../composables/useAuth'
 const router = useRouter()
 const { logout } = useAuth()
 const isAdmin = computed(() => getAuthUser()?.role === 'admin')
+
+const navItems = computed(() => [
+  {
+    label: 'Gestión',
+    icon: 'mdi mdi-office-building-cog-outline',
+    to: '/management',
+    children: [
+      { label: 'Unidades', to: '/management/units' },
+      { label: 'Estado de cuenta', to: '/management/account-status' },
+      { label: 'Reservas', to: '/management/reservations' },
+      { label: 'Vehículos', to: '/management/vehicles' },
+      { label: 'Autorizaciones', to: '/management/authorizations' },
+    ],
+  },
+  {
+    label: 'Comunicaciones',
+    icon: 'mdi mdi-message-text',
+    to: '/communications',
+    children: [
+      { label: 'Administración', to: '/communications/administration' },
+      { label: 'Documentos', to: '/communications/documents' },
+      { label: 'Notificaciones', to: '/communications/notifications' },
+    ],
+  },
+  {
+    label: 'Participación',
+    icon: 'mdi mdi-vote-outline',
+    to: '/participation',
+    children: [
+      { label: 'Asambleas', to: '/participation/assemblies' },
+      { label: 'Encuestas', to: '/participation/surveys' },
+    ],
+  },
+  {
+    label: 'Social',
+    icon: 'mdi mdi-account-group',
+    to: '/social',
+    children: [
+      { label: 'Noticias y eventos', to: '/social/news-events' },
+      { label: 'Clasificados', to: '/social/classifieds' },
+    ],
+  },
+  ...(isAdmin.value
+    ? [
+        {
+          label: 'Administrar',
+          icon: 'mdi mdi-shield-account-outline',
+          to: '/admin',
+          children: [
+            { label: 'Unidades', to: '/admin/units' },
+            { label: 'Usuarios', to: '/admin/users' },
+          ],
+        },
+      ]
+    : []),
+])
 
 function signOut() {
   logout()
