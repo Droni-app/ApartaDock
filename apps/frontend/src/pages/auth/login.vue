@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { DuiAction, DuiAlert, DuiButton, DuiCard, DuiInput, DuiLabel } from '@dronico/droni-kit'
+import { DuiAlert, DuiButton, DuiCard, DuiInput, DuiLabel } from '@dronico/droni-kit'
 import { useAuth } from '../../composables/useAuth'
 
 const auth = useAuth()
@@ -34,33 +34,30 @@ async function submit() {
 
 <template>
   <main class="min-h-screen bg-slate-100 p-4 grid place-items-center">
-    <DuiCard class="w-full max-w-md" size="l" title="Iniciar sesion" subtitle="Accede para administrar tu conjunto residencial.">
-      <form class="space-y-4" @submit.prevent="submit">
-        <DuiLabel title="Correo" required>
-          <DuiInput v-model="form.email" type="email" size="lg" block />
-        </DuiLabel>
+    <section class="w-full max-w-md">
+      <div class="mb-5 flex justify-center">
+        <img src="/logo.webp" alt="Fontibon Reservado" class="h-20 w-20 rounded-xl object-contain shadow-sm" />
+      </div>
 
-        <DuiLabel title="Contrasena" required>
-          <DuiInput v-model="form.password" type="password" size="lg" block />
-        </DuiLabel>
+      <DuiCard class="w-full" size="l" title="Iniciar sesion" subtitle="Accede para administrar tu conjunto residencial.">
+        <form class="space-y-4" @submit.prevent="submit">
+          <DuiLabel title="Correo" required>
+            <DuiInput v-model="form.email" type="email" size="lg" block />
+          </DuiLabel>
 
-        <DuiAlert v-if="errorMessage" color="danger" variant="outline">
-          {{ errorMessage }}
-        </DuiAlert>
+          <DuiLabel title="Contrasena" required>
+            <DuiInput v-model="form.password" type="password" size="lg" block />
+          </DuiLabel>
 
-        <DuiButton type="submit" :loading="loading" color="primary" block size="lg">
-          Entrar
-        </DuiButton>
-      </form>
+          <DuiAlert v-if="errorMessage" color="danger" variant="outline">
+            {{ errorMessage }}
+          </DuiAlert>
 
-      <template #footer>
-        <div class="flex items-center justify-between gap-3">
-          <span class="text-sm text-slate-600">No tienes cuenta?</span>
-          <DuiAction to="/auth/register" color="secondary" variant="ghost">
-            Registrate aqui
-          </DuiAction>
-        </div>
-      </template>
-    </DuiCard>
+          <DuiButton type="submit" :loading="loading" color="primary" block size="lg">
+            Entrar
+          </DuiButton>
+        </form>
+      </DuiCard>
+    </section>
   </main>
 </template>

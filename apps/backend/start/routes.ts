@@ -17,7 +17,6 @@ router.get('/', () => {
 
 router
   .group(() => {
-    router.post('signup', [controllers.Auth, 'signup'])
     router.post('login', [controllers.Auth, 'login'])
   })
   .prefix('auth')

@@ -1,23 +1,20 @@
 import { ref } from 'vue'
 
-export type DocumentType = 'CC' | 'CE' | 'TI' | 'PP'
-
 export interface AuthUser {
   id: number
   fullName: string | null
   email: string
+  documentType: string
+  document: string | null
+  role: string
+  phone: string | null
+  createdAt: string
+  updatedAt: string | null
 }
 
 interface LoginPayload {
   email: string
   password: string
-}
-
-interface SignupPayload extends LoginPayload {
-  fullName: string | null
-  documentType: DocumentType
-  document: string
-  passwordConfirmation: string
 }
 
 interface AuthResponse {
@@ -49,7 +46,7 @@ function readUser(): AuthUser | null {
   }
 
   try {
-    return JSON.parse(stored) as AuthUser
+    return normalizeUser(JSON.parse(stored))
   } catch {
     localStorage.removeItem(USER_KEY)
     return null
@@ -79,6 +76,30 @@ function clearSession() {
   user.value = null
 }
 
+function normalizeUser(raw: unknown): AuthUser {
+  if (!raw || typeof raw !== 'object') {
+    throw new Error('Respuesta de usuario invalida.')
+  }
+
+  const candidate = raw as Record<string, unknown>
+
+  if (
+    typeof candidate.id !== 'number' ||
+    typeof candidate.email !== 'string' ||
+    (candidate.fullName !== null && typeof candidate.fullName !== 'string') ||
+    typeof candidate.documentType !== 'string' ||
+    (candidate.document !== null && typeof candidate.document !== 'string') ||
+    typeof candidate.role !== 'string' ||
+    (candidate.phone !== null && typeof candidate.phone !== 'string') ||
+    typeof candidate.createdAt !== 'string' ||
+    (candidate.updatedAt !== null && typeof candidate.updatedAt !== 'string')
+  ) {
+    throw new Error('Respuesta de usuario invalida.')
+  }
+
+  return candidate as unknown as AuthUser
+}
+
 function normalizeAuthResponse(body: unknown): AuthResponse {
   const wrapped = body as Partial<ApiWrappedResponse<AuthResponse>>
   const direct = body as Partial<AuthResponse>
@@ -91,7 +112,7 @@ function normalizeAuthResponse(body: unknown): AuthResponse {
 
   return {
     token: payload.token,
-    user: payload.user,
+    user: normalizeUser(payload.user),
   }
 }
 
@@ -101,7 +122,7 @@ function saveSession(data: AuthResponse) {
   user.value = data.user
 }
 
-async function request(path: string, payload: LoginPayload | SignupPayload) {
+async function request(path: string, payload: LoginPayload) {
   const response = await fetch(`${getApiBaseUrl()}${path}`, {
     method: 'POST',
     headers: {
@@ -137,12 +158,6 @@ export function useAuth() {
     return data
   }
 
-  async function signup(payload: SignupPayload) {
-    const data = await request('/auth/signup', payload)
-    saveSession(data)
-    return data
-  }
-
   function logout() {
     clearSession()
   }
@@ -150,7 +165,6 @@ export function useAuth() {
   return {
     user,
     login,
-    signup,
     logout,
   }
 }

@@ -6,12 +6,6 @@ import type { ApiDefinition } from './tree.d.ts'
 const placeholder: any = {}
 
 const routes = {
-  'auth.auth.signup': {
-    methods: ["POST"],
-    pattern: '/auth/signup',
-    tokens: [{"old":"/auth/signup","type":0,"val":"auth","end":""},{"old":"/auth/signup","type":0,"val":"signup","end":""}],
-    types: placeholder as Registry['auth.auth.signup']['types'],
-  },
   'auth.auth.login': {
     methods: ["POST"],
     pattern: '/auth/login',

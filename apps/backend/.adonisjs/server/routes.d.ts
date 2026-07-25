@@ -4,7 +4,6 @@ type ParamValue = string | number | bigint | boolean
 
 export type ScannedRoutes = {
   ALL: {
-    'auth.auth.signup': { paramsTuple?: []; params?: {} }
     'auth.auth.login': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
@@ -16,7 +15,6 @@ export type ScannedRoutes = {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
   }
   POST: {
-    'auth.auth.signup': { paramsTuple?: []; params?: {} }
     'auth.auth.login': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
   }
