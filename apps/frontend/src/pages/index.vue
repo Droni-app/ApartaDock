@@ -1,16 +1,10 @@
-<script setup lang="ts">
-import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
-
-onMounted(() => {
-  router.replace('/units')
-})
-</script>
 
 <template>
-  <div class="min-h-screen grid place-items-center bg-slate-100 text-slate-700">
-    Redirigiendo...
-  </div>
+  <DuiCard class="mx-auto mt-10" title="Bienvenido a Apartacho" subtitle="La plataforma de administracion de conjuntos residenciales.">
+    Bienvenido a Apartacho, la plataforma de administracion de conjuntos residenciales. Inicia sesion o crea una cuenta para acceder a las funcionalidades de la aplicacion.
+  </DuiCard>
 </template>
+<script setup lang="ts">
+import { DuiCard } from '@dronico/droni-kit'
+</script>

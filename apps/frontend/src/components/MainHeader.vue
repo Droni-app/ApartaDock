@@ -1,30 +1,86 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { DuiButton, DuiNavbar } from '@dronico/droni-kit'
 import { useAuth } from '../composables/useAuth'
 
 const router = useRouter()
-const { user, logout } = useAuth()
-
-const items = computed(() => {
-  const userId = user.value?.id
-
-  return [
-    { label: 'Unidades', to: '/units' },
-    { label: 'Vehiculos', to: userId ? `/users/${userId}/vehicles` : '/units' },
-  ]
-})
+const { logout } = useAuth()
 
 function signOut() {
   logout()
   router.push('/auth/login')
 }
+/*
+Menu principal
+
+Gestion:
+- Unidades
+- Estado de cuenta
+- Reservas
+- Vehiculos
+- Autorizaciones
+
+Comunicacion:
+- Administracion
+- Documentos
+- Notificaciones
+
+Participacion:
+- Asambleas
+- Encuestas
+
+Social:
+- Noticias y eventos
+- Clasificados
+
+*/
 </script>
 
 <template>
-  <header>
-    <DuiNavbar :items="items" underline-color="primary">
+  <header class="z-10 sticky top-0 bg-slate-100 shadow-sm">
+    <DuiNavbar :items="[
+      {
+        label: 'Gestión',
+        icon: 'mdi mdi-office-building-cog-outline',
+        to: '/management',
+        children: [
+          { label: 'Unidades', to: '/management/units' },
+          { label: 'Estado de cuenta', to: '/management/account-status' },
+          { label: 'Reservas', to: '/management/reservations' },
+          { label: 'Vehículos', to: '/management/vehicles' },
+          { label: 'Autorizaciones', to: '/management/authorizations' },
+        ],
+      },
+      { 
+        label: 'Comunicaciones',
+        icon: 'mdi mdi-message-text',
+        to: '/communications',
+        children: [
+          { label: 'Administración', to: '/communications/administration' },
+          { label: 'Documentos', to: '/communications/documents' },
+          { label: 'Notificaciones', to: '/communications/notifications' },
+        ],
+      },
+      {
+        label: 'Participación',
+        icon: 'mdi mdi-vote-outline',
+        to: '/participation',
+        children: [
+          { label: 'Asambleas', to: '/participation/assemblies' },
+          { label: 'Encuestas', to: '/participation/surveys' },
+        ],
+      },
+      {
+        label: 'Social',
+        icon: 'mdi mdi-account-group',
+        to: '/social',
+        children: [
+          { label: 'Noticias y eventos', to: '/social/news-events' },
+          { label: 'Clasificados', to: '/social/classifieds' },
+        ],
+      },
+    ]"
+    underline-color="primary">
       <template #brand>
         <span class="font-semibold text-slate-900">Apartacho</span>
       </template>
