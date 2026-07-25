@@ -93,6 +93,10 @@ Social:
       </template>
 
       <template #actions>
+        <DuiButton to="/admin" size="sm" color="primary" variant="outline">
+          <i class="mdi mdi-cog-outline mr-1"></i>
+          Administrar
+        </DuiButton>
         <DuiButton size="sm" color="danger" variant="outline" @click="signOut">
           Cerrar sesion
         </DuiButton>
