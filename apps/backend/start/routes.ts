@@ -17,20 +17,17 @@ router.get('/', () => {
 
 router
   .group(() => {
-    router
-      .group(() => {
-        router.post('signup', [controllers.Auth, 'signup'])
-        router.post('login', [controllers.Auth, 'login'])
-      })
-      .prefix('auth')
-      .as('auth')
-
-    router
-      .group(() => {
-        router.get('profile', [controllers.Profile, 'show'])
-        router.post('logout', [controllers.AccessTokens, 'destroy'])
-      })
-      .prefix('account')
-      .as('profile')
-      .use(middleware.auth())
+    router.post('signup', [controllers.Auth, 'signup'])
+    router.post('login', [controllers.Auth, 'login'])
   })
+  .prefix('auth')
+  .as('auth')
+
+router
+  .group(() => {
+    router.get('profile', [controllers.Profile, 'show'])
+    router.post('logout', [controllers.AccessTokens, 'destroy'])
+  })
+  .prefix('account')
+  .as('profile')
+  .use(middleware.auth())
