@@ -12,7 +12,9 @@
     "@dronico/droni-kit": "^1.19.0",
     "@tailwindcss/vite": "^4.3.3",
     "tailwindcss": "^4.3.3",
-    "vue": "^3.5.39"
+    "vite-plugin-pages": "^0.33.3",
+    "vue": "^3.5.39",
+    "vue-router": "^5.2.0"
   },
   "devDependencies": {
     "@types/node": "^24.13.2",

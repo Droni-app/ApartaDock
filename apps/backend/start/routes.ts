@@ -19,8 +19,8 @@ router
   .group(() => {
     router
       .group(() => {
-        router.post('signup', [controllers.NewAccount, 'store'])
-        router.post('login', [controllers.AccessTokens, 'store'])
+        router.post('signup', [controllers.Auth, 'signup'])
+        router.post('login', [controllers.Auth, 'login'])
       })
       .prefix('auth')
       .as('auth')
@@ -34,4 +34,3 @@ router
       .as('profile')
       .use(middleware.auth())
   })
-  .prefix('/api/v1')
