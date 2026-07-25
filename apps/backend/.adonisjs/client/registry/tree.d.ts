@@ -28,5 +28,12 @@ export interface ApiDefinition {
       show: typeof routes['admin.units.show']
       update: typeof routes['admin.units.update']
     }
+    enrollments: {
+      index: typeof routes['admin.enrollments.index']
+      store: typeof routes['admin.enrollments.store']
+      show: typeof routes['admin.enrollments.show']
+      update: typeof routes['admin.enrollments.update']
+      destroy: typeof routes['admin.enrollments.destroy']
+    }
   }
 }

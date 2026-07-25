@@ -72,6 +72,36 @@ const routes = {
     tokens: [{"old":"/admin/units/:id","type":0,"val":"admin","end":""},{"old":"/admin/units/:id","type":0,"val":"units","end":""},{"old":"/admin/units/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['admin.units.update']['types'],
   },
+  'admin.enrollments.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/enrollments',
+    tokens: [{"old":"/admin/enrollments","type":0,"val":"admin","end":""},{"old":"/admin/enrollments","type":0,"val":"enrollments","end":""}],
+    types: placeholder as Registry['admin.enrollments.index']['types'],
+  },
+  'admin.enrollments.store': {
+    methods: ["POST"],
+    pattern: '/admin/enrollments',
+    tokens: [{"old":"/admin/enrollments","type":0,"val":"admin","end":""},{"old":"/admin/enrollments","type":0,"val":"enrollments","end":""}],
+    types: placeholder as Registry['admin.enrollments.store']['types'],
+  },
+  'admin.enrollments.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/enrollments/:id',
+    tokens: [{"old":"/admin/enrollments/:id","type":0,"val":"admin","end":""},{"old":"/admin/enrollments/:id","type":0,"val":"enrollments","end":""},{"old":"/admin/enrollments/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin.enrollments.show']['types'],
+  },
+  'admin.enrollments.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/admin/enrollments/:id',
+    tokens: [{"old":"/admin/enrollments/:id","type":0,"val":"admin","end":""},{"old":"/admin/enrollments/:id","type":0,"val":"enrollments","end":""},{"old":"/admin/enrollments/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin.enrollments.update']['types'],
+  },
+  'admin.enrollments.destroy': {
+    methods: ["DELETE"],
+    pattern: '/admin/enrollments/:id',
+    tokens: [{"old":"/admin/enrollments/:id","type":0,"val":"admin","end":""},{"old":"/admin/enrollments/:id","type":0,"val":"enrollments","end":""},{"old":"/admin/enrollments/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin.enrollments.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

@@ -139,4 +139,64 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'admin.enrollments.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/admin/enrollments'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'admin.enrollments.store': {
+    methods: ["POST"]
+    pattern: '/admin/enrollments'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'admin.enrollments.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/admin/enrollments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'admin.enrollments.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/admin/enrollments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'admin.enrollments.destroy': {
+    methods: ["DELETE"]
+    pattern: '/admin/enrollments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }

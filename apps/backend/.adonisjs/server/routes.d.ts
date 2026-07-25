@@ -15,6 +15,11 @@ export type ScannedRoutes = {
     'admin.units.index': { paramsTuple?: []; params?: {} }
     'admin.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.enrollments.index': { paramsTuple?: []; params?: {} }
+    'admin.enrollments.store': { paramsTuple?: []; params?: {} }
+    'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.enrollments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -22,6 +27,8 @@ export type ScannedRoutes = {
     'admin.users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.index': { paramsTuple?: []; params?: {} }
     'admin.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.enrollments.index': { paramsTuple?: []; params?: {} }
+    'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -29,22 +36,28 @@ export type ScannedRoutes = {
     'admin.users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.index': { paramsTuple?: []; params?: {} }
     'admin.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.enrollments.index': { paramsTuple?: []; params?: {} }
+    'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
     'admin.users.store': { paramsTuple?: []; params?: {} }
+    'admin.enrollments.store': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'admin.users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PATCH: {
     'admin.users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'admin.users.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.enrollments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {
