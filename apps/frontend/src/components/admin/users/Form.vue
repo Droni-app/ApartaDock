@@ -1,12 +1,12 @@
 <template>
-  <form class="space-y-4" @submit.prevent="handleSubmit">
+  <form class="space-y-4" autocomplete="off" @submit.prevent="handleSubmit">
     <template v-if="mode === 'create'">
       <DuiLabel title="Nombre completo">
-        <DuiInput v-model="form.fullName" size="lg" block />
+        <DuiInput v-model="form.fullName" size="lg" block autocomplete="off" />
       </DuiLabel>
 
       <DuiLabel title="Correo" required>
-        <DuiInput v-model="form.email" type="email" size="lg" block />
+        <DuiInput v-model="form.email" type="email" size="lg" block autocomplete="off" />
       </DuiLabel>
 
       <div class="grid grid-cols-2 gap-3">
@@ -14,12 +14,12 @@
           <DuiSelect v-model="form.documentType" :options="documentTypeOptions" size="lg" />
         </DuiLabel>
         <DuiLabel title="Documento">
-          <DuiInput v-model="form.document" size="lg" block />
+          <DuiInput v-model="form.document" size="lg" block autocomplete="off" />
         </DuiLabel>
       </div>
 
       <DuiLabel title="Telefono">
-        <DuiInput v-model="form.phone" size="lg" block />
+        <DuiInput v-model="form.phone" size="lg" block autocomplete="off" />
       </DuiLabel>
 
       <DuiLabel title="Rol" required>
@@ -27,7 +27,7 @@
       </DuiLabel>
 
       <DuiLabel title="Contrasena" required help-text="Minimo 8 caracteres.">
-        <DuiInput v-model="form.password" type="password" size="lg" block />
+        <DuiInput v-model="form.password" type="password" size="lg" block autocomplete="new-password" />
       </DuiLabel>
     </template>
 
@@ -42,7 +42,7 @@
       </DuiLabel>
 
       <DuiLabel title="Nueva contrasena" help-text="Dejar en blanco para mantener la actual. Minimo 8 caracteres.">
-        <DuiInput v-model="form.password" type="password" size="lg" block />
+        <DuiInput v-model="form.password" type="password" size="lg" block autocomplete="new-password" />
       </DuiLabel>
     </template>
 

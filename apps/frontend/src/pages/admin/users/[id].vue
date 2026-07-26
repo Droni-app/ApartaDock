@@ -49,6 +49,10 @@
       </dl>
     </DuiCard>
 
+    <div v-if="user" class="mt-6">
+      <UserEnrollments :user-id="user.id" :enrollments="user.enrollments ?? []" />
+    </div>
+
     <Drawer v-model="showEditDrawer" title="Editar usuario">
       <UserForm
         mode="edit"
@@ -72,6 +76,7 @@ import type { ApiErrorResponse } from '../../../types/api'
 import type { User } from '../../../types/users'
 import Drawer from '../../../components/admin/Drawer.vue'
 import UserForm from '../../../components/admin/users/Form.vue'
+import UserEnrollments from '../../../components/admin/users/Enrollments.vue'
 
 const route = useRoute()
 const userId = route.params.id as string

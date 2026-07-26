@@ -7,13 +7,29 @@
   <DuiAlert v-if="error" color="danger" variant="outline">
     {{ error }}
   </DuiAlert>
+  <form class="mb-4 flex max-w-sm gap-2" @submit.prevent="handleSearch">
+    <DuiInput
+      v-model="search"
+      placeholder="Buscar por nombre..."
+      block
+    />
+    <DuiButton type="submit" variant="outline" color="neutral" class="w-13">
+      <i class="mdi mdi-magnify"></i>
+    </DuiButton>
+  </form>
   <DuiTable
     :loading="loading"
     :columns="columns"
     :rows="tableRows"
     :pagination="tablePagination"
     @paginate="handlePageChange"
-  />
+  >
+    <template #actions="row">
+      <DuiButton size="sm" variant="outline" :to="`/admin/units/${row.id}`">
+        Ver
+      </DuiButton>
+    </template>
+  </DuiTable>
  </div>
 
       
@@ -22,7 +38,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { AxiosError } from 'axios'
-import { DuiAlert, DuiTable } from '@dronico/droni-kit'
+import { DuiAlert, DuiButton, DuiInput, DuiTable } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
 import type { ApiErrorResponse, PaginatedResponse } from '../../../types/api'
 import type { Unit } from '../../../types/units'
@@ -34,6 +50,7 @@ const total = ref(0)
 const currentPage = ref(1)
 const perPage = ref(20)
 const lastPage = ref(1)
+const search = ref('')
 
 const columns = [
   { name: 'name', label: 'Nombre' },
@@ -45,6 +62,7 @@ const columns = [
   { name: 'privateArea', label: 'Area privada' },
   { name: 'coefficient', label: 'Coeficiente' },
   { name: 'status', label: 'Estado' },
+  { name: 'actions', label: '' },
 ]
 
 const totalItems = computed(() => total.value || units.value.length)
@@ -71,6 +89,7 @@ async function fetchUnits(page = currentPage.value) {
       params: {
         page,
         limit: perPage.value,
+        q: search.value || undefined,
       },
     })
     const payload = response.data
@@ -98,6 +117,10 @@ async function fetchUnits(page = currentPage.value) {
 
 function handlePageChange(page: number) {
   fetchUnits(page)
+}
+
+function handleSearch() {
+  fetchUnits(1)
 }
 
 onMounted(fetchUnits)

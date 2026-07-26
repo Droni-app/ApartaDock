@@ -42,13 +42,12 @@ export default class UnitSeeder extends BaseSeeder {
 
           totalPrivateArea += selectedRule.privateArea
 
-          const floorLabel = String(floor).padStart(2, '0')
           const aptoLabel = String(apto).padStart(2, '0')
 
           units.push({
-            name: `${tower}${floorLabel}${aptoLabel}`,
+            name: `${tower}${floor}${aptoLabel}`,
             tower: tower,
-            apto: Number(`${floorLabel}${aptoLabel}`),
+            apto: Number(`${floor}${aptoLabel}`),
             floor,
             buildArea: selectedRule.buildArea.toFixed(2),
             privateArea: selectedRule.privateArea.toFixed(2),

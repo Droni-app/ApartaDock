@@ -1,3 +1,5 @@
+import type { Enrollment } from './enrollments'
+
 export interface User {
   id: number
   fullName: string | null
@@ -6,4 +8,5 @@ export interface User {
   documentType: string
   phone: string | null
   role: string
+  enrollments?: Enrollment[]
 }

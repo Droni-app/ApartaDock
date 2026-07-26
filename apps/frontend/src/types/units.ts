@@ -1,3 +1,5 @@
+import type { Enrollment } from './enrollments'
+
 export interface Unit {
   id: number
   name: string
@@ -9,4 +11,5 @@ export interface Unit {
   privateArea: string | null
   coefficient: string | null
   status: string
+  enrollments: Enrollment[]
 }

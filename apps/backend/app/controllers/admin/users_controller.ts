@@ -9,8 +9,19 @@ export default class UsersController {
   async index({ request }: HttpContext) {
     const page = Number(request.input('page', 1))
     const limit = Number(request.input('limit', 20))
+    const search = request.input('q', '')
 
-    const users = await User.query().orderBy('updated_at', 'desc').paginate(page, limit)
+    const query = User.query().orderBy('updated_at', 'desc')
+
+    if (search) {
+      query.where((builder) => {
+        builder.whereILike('fullName', `%${search}%`)
+          .orWhereILike('email', `%${search}%`)
+          .orWhereILike('document', `%${search}%`)
+      })
+    }
+
+    const users = await query.paginate(page, limit)
     return users
   }
 

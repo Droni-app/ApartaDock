@@ -16,6 +16,16 @@
   <DuiAlert v-if="error" color="danger" variant="outline">
     {{ error }}
   </DuiAlert>
+  <form class="mb-4 flex max-w-sm gap-2" @submit.prevent="handleSearch">
+    <DuiInput
+      v-model="search"
+      placeholder="Buscar por nombre, documento o correo..."
+      block
+    />
+    <DuiButton type="submit" variant="outline" color="neutral" class="w-13">
+      <i class="mdi mdi-magnify"></i>
+    </DuiButton>
+  </form>
   <DuiTable
     :loading="loading"
     :columns="columns"
@@ -45,7 +55,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { AxiosError } from 'axios'
-import { DuiAlert, DuiButton, DuiTable } from '@dronico/droni-kit'
+import { DuiAlert, DuiButton, DuiInput, DuiTable } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
 import type { ApiErrorResponse, PaginatedResponse } from '../../../types/api'
 import type { User } from '../../../types/users'
@@ -59,6 +69,7 @@ const total = ref(0)
 const currentPage = ref(1)
 const perPage = ref(20)
 const lastPage = ref(1)
+const search = ref('')
 
 const showCreateDrawer = ref(false)
 const creating = ref(false)
@@ -98,6 +109,7 @@ async function fetchUsers(page = currentPage.value) {
       params: {
         page,
         limit: perPage.value,
+        q: search.value || undefined,
       },
     })
     const payload = response.data
@@ -145,6 +157,10 @@ async function handleCreate(payload: Record<string, unknown>) {
 
 function handlePageChange(page: number) {
   fetchUsers(page)
+}
+
+function handleSearch() {
+  fetchUsers(1)
 }
 
 onMounted(fetchUsers)
