@@ -94,6 +94,7 @@ const navItems = computed(() => [
           children: [
             { label: 'Unidades', to: '/admin/units' },
             { label: 'Usuarios', to: '/admin/users' },
+            { label: 'Imports', to: '/admin/imports' },
           ],
         },
       ]
