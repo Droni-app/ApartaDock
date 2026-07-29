@@ -307,6 +307,66 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'board.minutes.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/board/minutes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'board.minutes.store': {
+    methods: ["POST"]
+    pattern: '/board/minutes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'board.minutes.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/board/minutes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'board.minutes.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/board/minutes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'board.minutes.destroy': {
+    methods: ["DELETE"]
+    pattern: '/board/minutes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'user.enrollments.index': {
     methods: ["GET","HEAD"]
     pattern: '/user/enrollments'

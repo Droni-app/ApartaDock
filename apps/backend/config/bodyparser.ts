@@ -33,6 +33,12 @@ const bodyParserConfig = defineConfig({
     convertEmptyStringsToNull: true,
 
     /**
+     * Maximum accepted payload size for JSON requests. Raised from the
+     * 1mb default to support long rich-text content (e.g. minutes).
+     */
+    limit: '10mb',
+
+    /**
      * Content types handled by the JSON parser.
      */
     types: [

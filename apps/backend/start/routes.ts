@@ -16,6 +16,7 @@ import EnrollmentsController from '#controllers/admin/enrollments_controller'
 import ImportsController from '#controllers/admin/imports_controller'
 import LogsController from '#controllers/admin/logs_controller'
 import BoardParkingRequestsController from '#controllers/board/parking_requests_controller'
+import BoardMinutesController from '#controllers/board/minutes_controller'
 import UserEnrollmentsController from '#controllers/user/enrollments_controller'
 import UserVehiclesController from '#controllers/user/vehicles_controller'
 
@@ -58,6 +59,7 @@ router
     router.get('parking-requests/dashboard', [BoardParkingRequestsController, 'dashboard'])
     router.post('parking-requests/reject-by-debt', [BoardParkingRequestsController, 'rejectByDebt'])
     router.resource('parking-requests', BoardParkingRequestsController).only(['index', 'show', 'update']).apiOnly()
+    router.resource('minutes', BoardMinutesController).apiOnly()
   })
   .prefix('board')
   .as('board')

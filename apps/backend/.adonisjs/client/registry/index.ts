@@ -156,6 +156,36 @@ const routes = {
     tokens: [{"old":"/board/parking-requests/:id","type":0,"val":"board","end":""},{"old":"/board/parking-requests/:id","type":0,"val":"parking-requests","end":""},{"old":"/board/parking-requests/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['board.parking_requests.update']['types'],
   },
+  'board.minutes.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/board/minutes',
+    tokens: [{"old":"/board/minutes","type":0,"val":"board","end":""},{"old":"/board/minutes","type":0,"val":"minutes","end":""}],
+    types: placeholder as Registry['board.minutes.index']['types'],
+  },
+  'board.minutes.store': {
+    methods: ["POST"],
+    pattern: '/board/minutes',
+    tokens: [{"old":"/board/minutes","type":0,"val":"board","end":""},{"old":"/board/minutes","type":0,"val":"minutes","end":""}],
+    types: placeholder as Registry['board.minutes.store']['types'],
+  },
+  'board.minutes.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/board/minutes/:id',
+    tokens: [{"old":"/board/minutes/:id","type":0,"val":"board","end":""},{"old":"/board/minutes/:id","type":0,"val":"minutes","end":""},{"old":"/board/minutes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['board.minutes.show']['types'],
+  },
+  'board.minutes.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/board/minutes/:id',
+    tokens: [{"old":"/board/minutes/:id","type":0,"val":"board","end":""},{"old":"/board/minutes/:id","type":0,"val":"minutes","end":""},{"old":"/board/minutes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['board.minutes.update']['types'],
+  },
+  'board.minutes.destroy': {
+    methods: ["DELETE"],
+    pattern: '/board/minutes/:id',
+    tokens: [{"old":"/board/minutes/:id","type":0,"val":"board","end":""},{"old":"/board/minutes/:id","type":0,"val":"minutes","end":""},{"old":"/board/minutes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['board.minutes.destroy']['types'],
+  },
   'user.enrollments.index': {
     methods: ["GET","HEAD"],
     pattern: '/user/enrollments',

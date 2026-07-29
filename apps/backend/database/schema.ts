@@ -85,6 +85,29 @@ export class LogSchema extends BaseModel {
   declare userId: number
 }
 
+export class MinuteSchema extends BaseModel {
+  static $columns = ['active', 'content', 'createdAt', 'description', 'document', 'id', 'name', 'updatedAt', 'userId'] as const
+  $columns = MinuteSchema.$columns
+  @column()
+  declare active: boolean | null
+  @column()
+  declare content: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare description: string | null
+  @column()
+  declare document: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare name: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+}
+
 export class ParkingRequestSchema extends BaseModel {
   static $columns = ['authorization', 'createdAt', 'id', 'insurancePolicy', 'notes', 'period', 'periodYear', 'status', 'technicalReview', 'unitId', 'updatedAt', 'userId', 'vehicleId'] as const
   $columns = ParkingRequestSchema.$columns
