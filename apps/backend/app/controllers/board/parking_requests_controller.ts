@@ -55,6 +55,7 @@ export default class ParkingRequestsController {
       .preload('user')
       .preload('unit')
       .preload('vehicle')
+      .orderBy('status', 'desc')
       .orderBy('updated_at', 'desc')
 
     if (unitName) {

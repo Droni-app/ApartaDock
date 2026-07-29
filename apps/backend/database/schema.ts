@@ -100,7 +100,7 @@ export class ParkingRequestSchema extends BaseModel {
 }
 
 export class UnitSchema extends BaseModel {
-  static $columns = ['apto', 'buildArea', 'coefficient', 'createdAt', 'floor', 'id', 'name', 'privateArea', 'status', 'tower', 'typology', 'updatedAt'] as const
+  static $columns = ['apto', 'buildArea', 'coefficient', 'createdAt', 'debt', 'floor', 'id', 'name', 'privateArea', 'status', 'tower', 'typology', 'updatedAt'] as const
   $columns = UnitSchema.$columns
   @column()
   declare apto: number
@@ -110,6 +110,8 @@ export class UnitSchema extends BaseModel {
   declare coefficient: string | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
+  @column()
+  declare debt: number
   @column()
   declare floor: number
   @column({ isPrimary: true })
