@@ -11,6 +11,8 @@
       </DuiButton>
     </div>
 
+    <DummyPageInfo />
+
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
       <button
         v-for="folder in folders"
@@ -49,6 +51,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { DuiButton, DuiCard, DuiTable } from '@dronico/droni-kit'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const folders = [
   { label: 'Reglamento', icon: 'mdi-gavel', count: 3 },

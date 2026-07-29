@@ -5,6 +5,8 @@
       <p class="text-sm text-gray-500">Conéctate con tus vecinos: noticias, eventos y clasificados.</p>
     </div>
 
+    <DummyPageInfo />
+
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
       <StatTile icon="mdi-newspaper-variant-outline" label="Publicaciones esta semana" value="8" color="primary" />
       <StatTile icon="mdi-account-heart-outline" label="Vecinos activos" value="142" color="success" />
@@ -60,6 +62,7 @@
 <script setup lang="ts">
 import { DuiCard } from '@dronico/droni-kit'
 import StatTile from '../../components/StatTile.vue'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const feed = [
   {

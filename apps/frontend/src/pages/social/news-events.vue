@@ -11,6 +11,8 @@
       </DuiButton>
     </div>
 
+    <DummyPageInfo />
+
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
       <div class="space-y-4 lg:col-span-2">
         <DuiCard v-for="post in news" :key="post.title" :image="post.image">
@@ -48,6 +50,7 @@
 
 <script setup lang="ts">
 import { DuiBadge, DuiButton, DuiCard } from '@dronico/droni-kit'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const news = [
   {

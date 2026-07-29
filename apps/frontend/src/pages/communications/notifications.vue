@@ -11,6 +11,8 @@
       </DuiButton>
     </div>
 
+    <DummyPageInfo />
+
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
       <DuiCard class="lg:col-span-2" title="Recientes">
         <ul class="divide-y divide-gray-100">
@@ -43,6 +45,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { DuiButton, DuiCard, DuiSwitch } from '@dronico/droni-kit'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 type NotificationType = 'payment' | 'package' | 'maintenance' | 'security' | 'general'
 

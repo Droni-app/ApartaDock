@@ -10,6 +10,9 @@
         Usuarios
       </DuiButton>
     </div>
+
+    <DummyPageInfo />
+
     <DuiCard title="Administracion" subtitle="Estamos trabajando en este modulo.">
       Estamos trabajando en este modulo.
     </DuiCard>
@@ -18,4 +21,5 @@
 
 <script setup lang="ts">
 import { DuiButton, DuiCard } from '@dronico/droni-kit'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 </script>

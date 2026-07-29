@@ -5,6 +5,8 @@
       <p class="text-sm text-gray-500">Administra tus unidades, cartera, reservas, vehículos y autorizaciones.</p>
     </div>
 
+    <DummyPageInfo />
+
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
       <StatTile icon="mdi-home-city-outline" label="Mis unidades" value="2" hint="Torre 3 - Apto 101 y 305" color="primary" />
       <StatTile icon="mdi-currency-usd" label="Saldo pendiente" value="$186.400" hint="Vence en 8 días" color="danger" />
@@ -53,6 +55,7 @@
 <script setup lang="ts">
 import { DuiBadge, DuiCard } from '@dronico/droni-kit'
 import StatTile from '../../components/StatTile.vue'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const quickLinks = [
   { to: '/management/units', icon: 'mdi-home-city-outline', title: 'Unidades', description: 'Tus unidades y su información.' },

@@ -5,6 +5,8 @@
       <p class="text-sm text-gray-500">Haz parte de las decisiones del conjunto: asambleas y encuestas.</p>
     </div>
 
+    <DummyPageInfo />
+
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
       <StatTile icon="mdi-poll" label="Encuestas activas" value="2" color="primary" />
       <StatTile icon="mdi-account-check-outline" label="Participación promedio" value="68%" hint="Últimos 3 meses" color="success" />
@@ -55,6 +57,7 @@
 <script setup lang="ts">
 import { DuiBadge, DuiCard } from '@dronico/droni-kit'
 import StatTile from '../../components/StatTile.vue'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const activity = [
   { icon: 'mdi-vote-outline', title: 'Votaste en la encuesta "Horario de zonas comunes"', date: '20 jul 2026' },

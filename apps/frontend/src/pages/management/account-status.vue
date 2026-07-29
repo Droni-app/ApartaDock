@@ -11,6 +11,8 @@
       </DuiButton>
     </div>
 
+    <DummyPageInfo />
+
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
       <StatTile icon="mdi-currency-usd" label="Saldo actual" value="$186.400" hint="Incluye intereses" color="danger" />
       <StatTile icon="mdi-calendar-alert-outline" label="Próximo vencimiento" value="5 ago" hint="Cuota de agosto" color="warning" />
@@ -52,6 +54,7 @@
 import { Line } from 'vue-chartjs'
 import { DuiBadge, DuiButton, DuiCard, DuiTable } from '@dronico/droni-kit'
 import StatTile from '../../components/StatTile.vue'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 import { baseChartOptions, CATEGORICAL_COLORS } from '../../utils/charts'
 
 const columns = [

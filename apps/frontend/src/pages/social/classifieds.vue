@@ -17,6 +17,8 @@
       </div>
     </div>
 
+    <DummyPageInfo />
+
     <DuiTabs v-model="activeCategory" :tabs="categoryTabs" />
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -38,6 +40,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { DuiBadge, DuiButton, DuiCard, DuiTabs } from '@dronico/droni-kit'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 type Category = 'Venta' | 'Servicios' | 'Empleos' | 'Mascotas'
 

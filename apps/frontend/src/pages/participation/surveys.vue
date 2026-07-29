@@ -11,6 +11,8 @@
       </DuiButton>
     </div>
 
+    <DummyPageInfo />
+
     <DuiCard>
       <div class="flex items-center justify-between">
         <DuiBadge color="primary" variant="soft">Encuesta activa</DuiBadge>
@@ -63,6 +65,7 @@ import { computed, ref } from 'vue'
 import { Bar } from 'vue-chartjs'
 import { DuiBadge, DuiButton, DuiCard, DuiTabs } from '@dronico/droni-kit'
 import { baseChartOptions, CATEGORICAL_COLORS } from '../../utils/charts'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const selectedOption = ref<string | null>(null)
 

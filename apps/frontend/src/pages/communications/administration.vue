@@ -11,6 +11,8 @@
       </DuiButton>
     </div>
 
+    <DummyPageInfo />
+
     <DuiCard title="Comunicados enviados por mes" subtitle="Últimos 6 meses, por categoría">
       <div class="h-72">
         <Bar :data="chartData" :options="chartOptions" />
@@ -49,6 +51,7 @@ import { computed, ref } from 'vue'
 import { Bar } from 'vue-chartjs'
 import { DuiBadge, DuiButton, DuiCard, DuiTabs } from '@dronico/droni-kit'
 import { baseChartOptions, CATEGORICAL_COLORS } from '../../utils/charts'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 type Category = 'Comunicados' | 'Circulares' | 'Actas'
 

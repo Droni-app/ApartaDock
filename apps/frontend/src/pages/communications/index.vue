@@ -13,6 +13,8 @@
       </DuiBadge>
     </div>
 
+    <DummyPageInfo />
+
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
       <StatTile icon="mdi-bullhorn-outline" label="Comunicados este mes" value="12" hint="+3 vs. mes anterior" color="primary" />
       <StatTile icon="mdi-email-open-outline" label="Tasa de lectura" value="86%" hint="Promedio del conjunto" color="success" />
@@ -62,6 +64,7 @@
 <script setup lang="ts">
 import { DuiBadge, DuiCard } from '@dronico/droni-kit'
 import StatTile from '../../components/StatTile.vue'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const quickLinks = [
   {

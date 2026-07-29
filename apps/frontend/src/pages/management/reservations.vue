@@ -11,6 +11,8 @@
       </DuiButton>
     </div>
 
+    <DummyPageInfo />
+
     <DuiTabs v-model="activeTab" :tabs="tabs" />
 
     <div v-if="activeTab === 'spaces'" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -48,6 +50,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { DuiBadge, DuiButton, DuiCard, DuiTable, DuiTabs } from '@dronico/droni-kit'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const tabs = [
   { label: 'Espacios disponibles', value: 'spaces' },

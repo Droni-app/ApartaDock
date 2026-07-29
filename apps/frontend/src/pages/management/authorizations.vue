@@ -17,6 +17,8 @@
       </div>
     </div>
 
+    <DummyPageInfo />
+
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
       <StatTile icon="mdi-badge-account-outline" label="Autorizaciones activas" value="4" color="primary" />
       <StatTile icon="mdi-clock-alert-outline" label="Pendientes" value="1" color="warning" />
@@ -51,6 +53,7 @@
 <script setup lang="ts">
 import { DuiBadge, DuiButton, DuiCard, DuiTable } from '@dronico/droni-kit'
 import StatTile from '../../components/StatTile.vue'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const columns = [
   { name: 'visitor', label: 'Visitante' },

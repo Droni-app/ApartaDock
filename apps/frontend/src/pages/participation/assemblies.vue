@@ -11,6 +11,8 @@
       </DuiButton>
     </div>
 
+    <DummyPageInfo />
+
     <DuiCard>
       <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
@@ -61,6 +63,7 @@
 import { Doughnut } from 'vue-chartjs'
 import { DuiAccordion, DuiBadge, DuiButton, DuiCard } from '@dronico/droni-kit'
 import { CATEGORICAL_COLORS } from '../../utils/charts'
+import DummyPageInfo from '../../components/DummyPageInfo.vue'
 
 const agendaItems = [
   {
