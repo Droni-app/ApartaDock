@@ -2,7 +2,43 @@ import type { HttpContext } from '@adonisjs/core/http'
 import ParkingRequest from '#models/parking_request'
 import { updateParkingRequestValidator } from '#validators/board/parking_request_validator'
 
+interface StatusCountRow {
+  status: string
+  total: number | string
+}
+
+interface VehicleTypeCountRow {
+  vehicleType: string | null
+  total: number | string
+}
+
 export default class ParkingRequestsController {
+  /**
+   * Display a general Dashboard with statistics and recent parking requests
+   */
+  async dashboard({}: HttpContext) {
+    const [byStatus, byVehicleType] = (await Promise.all([
+      ParkingRequest.query().pojo().select('status').count('* as total').groupBy('status'),
+      ParkingRequest.query()
+        .pojo()
+        .leftJoin('vehicles', 'vehicles.id', 'parking_requests.vehicle_id')
+        .select('vehicles.vehicle_type as vehicleType')
+        .where('parking_requests.status', 'approved')
+        .count('* as total')
+        .groupBy('vehicles.vehicle_type'),
+    ])) as [StatusCountRow[], VehicleTypeCountRow[]]
+
+    return {
+      byStatus: byStatus.map((row) => ({
+        status: row.status,
+        total: Number(row.total),
+      })),
+      byVehicleTypeApproved: byVehicleType.map((row) => ({
+        vehicleType: row.vehicleType ?? null,
+        total: Number(row.total),
+      })),
+    }
+  }
   /**
    * Display a list of resource
    */

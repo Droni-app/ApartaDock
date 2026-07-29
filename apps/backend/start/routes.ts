@@ -49,6 +49,7 @@ router
 
 router
   .group(() => {
+    router.get('parking-requests/dashboard', [BoardParkingRequestsController, 'dashboard'])
     router.resource('parking-requests', BoardParkingRequestsController).only(['index', 'show', 'update']).apiOnly()
   })
   .prefix('board')

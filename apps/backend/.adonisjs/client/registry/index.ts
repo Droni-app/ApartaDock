@@ -108,6 +108,12 @@ const routes = {
     tokens: [{"old":"/admin/imports/parking-requests","type":0,"val":"admin","end":""},{"old":"/admin/imports/parking-requests","type":0,"val":"imports","end":""},{"old":"/admin/imports/parking-requests","type":0,"val":"parking-requests","end":""}],
     types: placeholder as Registry['admin.imports.parking_requests']['types'],
   },
+  'board.parking_requests.dashboard': {
+    methods: ["GET","HEAD"],
+    pattern: '/board/parking-requests/dashboard',
+    tokens: [{"old":"/board/parking-requests/dashboard","type":0,"val":"board","end":""},{"old":"/board/parking-requests/dashboard","type":0,"val":"parking-requests","end":""},{"old":"/board/parking-requests/dashboard","type":0,"val":"dashboard","end":""}],
+    types: placeholder as Registry['board.parking_requests.dashboard']['types'],
+  },
   'board.parking_requests.index': {
     methods: ["GET","HEAD"],
     pattern: '/board/parking-requests',

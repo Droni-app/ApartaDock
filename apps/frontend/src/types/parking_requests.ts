@@ -23,3 +23,18 @@ export interface ParkingRequest {
   unit?: Unit | null
   vehicle?: Vehicle | null
 }
+
+export interface ParkingRequestStatusCount {
+  status: string
+  total: number
+}
+
+export interface ParkingRequestVehicleTypeCount {
+  vehicleType: string | null
+  total: number
+}
+
+export interface ParkingRequestDashboard {
+  byStatus: ParkingRequestStatusCount[]
+  byVehicleTypeApproved: ParkingRequestVehicleTypeCount[]
+}
