@@ -22,6 +22,7 @@ export type ScannedRoutes = {
     'admin.enrollments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.imports.parking_requests': { paramsTuple?: []; params?: {} }
     'admin.imports.units': { paramsTuple?: []; params?: {} }
+    'admin.logs.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.dashboard': { paramsTuple?: []; params?: {} }
     'board.parking_requests.reject_by_debt': { paramsTuple?: []; params?: {} }
     'board.parking_requests.index': { paramsTuple?: []; params?: {} }
@@ -36,6 +37,7 @@ export type ScannedRoutes = {
     'admin.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.index': { paramsTuple?: []; params?: {} }
     'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.logs.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.dashboard': { paramsTuple?: []; params?: {} }
     'board.parking_requests.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -48,6 +50,7 @@ export type ScannedRoutes = {
     'admin.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.index': { paramsTuple?: []; params?: {} }
     'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.logs.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.dashboard': { paramsTuple?: []; params?: {} }
     'board.parking_requests.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

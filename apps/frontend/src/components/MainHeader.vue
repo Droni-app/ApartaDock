@@ -95,6 +95,7 @@ const navItems = computed(() => [
             { label: 'Unidades', to: '/admin/units' },
             { label: 'Usuarios', to: '/admin/users' },
             { label: 'Imports', to: '/admin/imports' },
+            { label: 'Logs', to: '/admin/logs' },
           ],
         },
       ]

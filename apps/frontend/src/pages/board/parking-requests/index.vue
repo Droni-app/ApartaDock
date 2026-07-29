@@ -112,6 +112,10 @@ function statusLabel(status: string) {
   return statusOptions.find((option) => option.value === status)?.label ?? status
 }
 
+function vehicleTypeLabel(vehicleType: string) {
+  return vehicleTypeOptions.find((option) => option.value === vehicleType)?.label ?? vehicleType
+}
+
 function formatCurrency(value: number) {
   return `$${value.toLocaleString('es-CO')}`
 }
@@ -134,6 +138,7 @@ const columns = [
   { name: 'debt', label: 'Cartera' },
   { name: 'userName', label: 'Usuario' },
   { name: 'vehiclePlate', label: 'Vehiculo' },
+  { name: 'vehicleTypeLabel', label: 'Tipo' },
   { name: 'period', label: 'Periodo' },
   { name: 'status', label: 'Estado' },
   { name: 'actions', label: '' },
@@ -152,6 +157,7 @@ const tableRows = computed(() =>
     debt: parkingRequest.unit?.debt ?? 0,
     userName: parkingRequest.user?.fullName || parkingRequest.user?.email || '-',
     vehiclePlate: parkingRequest.vehicle?.plate ?? '-',
+    vehicleTypeLabel: parkingRequest.vehicle ? vehicleTypeLabel(parkingRequest.vehicle.vehicleType) : '-',
     period: `${parkingRequest.period.toUpperCase()} ${parkingRequest.periodYear}`,
   }))
 )

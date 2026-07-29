@@ -223,6 +223,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'admin.logs.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/admin/logs'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'board.parking_requests.dashboard': {
     methods: ["GET","HEAD"]
     pattern: '/board/parking-requests/dashboard'

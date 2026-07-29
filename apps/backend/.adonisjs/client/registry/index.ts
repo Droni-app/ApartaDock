@@ -114,6 +114,12 @@ const routes = {
     tokens: [{"old":"/admin/imports/units","type":0,"val":"admin","end":""},{"old":"/admin/imports/units","type":0,"val":"imports","end":""},{"old":"/admin/imports/units","type":0,"val":"units","end":""}],
     types: placeholder as Registry['admin.imports.units']['types'],
   },
+  'admin.logs.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/admin/logs',
+    tokens: [{"old":"/admin/logs","type":0,"val":"admin","end":""},{"old":"/admin/logs","type":0,"val":"logs","end":""}],
+    types: placeholder as Registry['admin.logs.index']['types'],
+  },
   'board.parking_requests.dashboard': {
     methods: ["GET","HEAD"],
     pattern: '/board/parking-requests/dashboard',

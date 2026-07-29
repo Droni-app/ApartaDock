@@ -39,6 +39,9 @@ export interface ApiDefinition {
       parkingRequests: typeof routes['admin.imports.parking_requests']
       units: typeof routes['admin.imports.units']
     }
+    logs: {
+      index: typeof routes['admin.logs.index']
+    }
   }
   board: {
     parkingRequests: {
