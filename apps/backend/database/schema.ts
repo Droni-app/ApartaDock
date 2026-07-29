@@ -123,7 +123,7 @@ export class UnitSchema extends BaseModel {
   @column()
   declare tower: number
   @column()
-  declare typology: boolean
+  declare typology: number
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }

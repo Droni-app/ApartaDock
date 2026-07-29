@@ -1,10 +1,9 @@
 import vine from '@vinejs/vine'
 
 /**
- * Shared rules for email and password.
+ * Shared rule for email.
  */
 const email = () => vine.string().email().maxLength(254)
-const password = () => vine.string().minLength(8).maxLength(32)
 
 /**
  * Validator to use before validating user credentials
