@@ -42,6 +42,7 @@ router
     router.resource('units', UnitsController).only(['index', 'show', 'update']).apiOnly()
     router.resource('enrollments', EnrollmentsController).apiOnly()
     router.post('imports/parking-requests', [ImportsController, 'parking_requests'])
+    router.post('imports/units', [ImportsController, 'units'])
   })
   .prefix('admin')
   .as('admin')
@@ -50,6 +51,7 @@ router
 router
   .group(() => {
     router.get('parking-requests/dashboard', [BoardParkingRequestsController, 'dashboard'])
+    router.post('parking-requests/reject-by-debt', [BoardParkingRequestsController, 'rejectByDebt'])
     router.resource('parking-requests', BoardParkingRequestsController).only(['index', 'show', 'update']).apiOnly()
   })
   .prefix('board')

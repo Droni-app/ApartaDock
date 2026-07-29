@@ -50,13 +50,12 @@ export default class ParkingRequestsController {
     const userEmail = request.input('user_email', '')
     const vehiclePlate = request.input('vehicle_plate', '')
     const status = request.input('status', '')
+    const duplicatesOnly = ['true', '1'].includes(String(request.input('duplicates', '')).toLowerCase())
 
     const query = ParkingRequest.query()
       .preload('user')
       .preload('unit')
       .preload('vehicle')
-      .orderBy('status', 'desc')
-      .orderBy('updated_at', 'desc')
 
     if (unitName) {
       query.whereHas('unit', (unitQuery) => unitQuery.whereILike('name', `%${unitName}%`))
@@ -75,11 +74,48 @@ export default class ParkingRequestsController {
     }
 
     if (status) {
-      query.where('status', status)
+      query.where('parking_requests.status', status)
+    }
+
+    if (duplicatesOnly) {
+      query.whereIn('unitId', (subQuery) => {
+        subQuery
+          .from('parking_requests')
+          .select('unit_id')
+          .groupBy('unit_id')
+          .havingRaw('count(*) > 1')
+      })
+      query.join('units', 'units.id', 'parking_requests.unit_id').select('parking_requests.*').orderBy('units.name', 'asc')
+    } else {
+      query.orderBy('parking_requests.status', 'desc').orderBy('parking_requests.updated_at', 'desc')
     }
 
     const parkingRequests = await query.paginate(page, limit)
     return parkingRequests
+  }
+
+  /**
+   * Automatically reject parking requests whose unit debt is above the threshold
+   */
+  async rejectByDebt({ request }: HttpContext) {
+    const threshold = Number(request.input('debt_threshold', 150000))
+
+    const parkingRequests = await ParkingRequest.query()
+      .whereHas('unit', (unitQuery) => unitQuery.where('debt', '>', threshold))
+      .whereNot('status', 'rejected')
+
+    const note = `Rechazada automaticamente por cartera mayor a $${threshold.toLocaleString('es-CO')}`
+
+    for (const parkingRequest of parkingRequests) {
+      parkingRequest.status = 'rejected'
+      parkingRequest.notes = parkingRequest.notes ? `${parkingRequest.notes}\n${note}` : note
+      await parkingRequest.save()
+    }
+
+    return {
+      threshold,
+      updated: parkingRequests.length,
+    }
   }
 
   /**

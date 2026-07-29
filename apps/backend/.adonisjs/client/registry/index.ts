@@ -108,11 +108,23 @@ const routes = {
     tokens: [{"old":"/admin/imports/parking-requests","type":0,"val":"admin","end":""},{"old":"/admin/imports/parking-requests","type":0,"val":"imports","end":""},{"old":"/admin/imports/parking-requests","type":0,"val":"parking-requests","end":""}],
     types: placeholder as Registry['admin.imports.parking_requests']['types'],
   },
+  'admin.imports.units': {
+    methods: ["POST"],
+    pattern: '/admin/imports/units',
+    tokens: [{"old":"/admin/imports/units","type":0,"val":"admin","end":""},{"old":"/admin/imports/units","type":0,"val":"imports","end":""},{"old":"/admin/imports/units","type":0,"val":"units","end":""}],
+    types: placeholder as Registry['admin.imports.units']['types'],
+  },
   'board.parking_requests.dashboard': {
     methods: ["GET","HEAD"],
     pattern: '/board/parking-requests/dashboard',
     tokens: [{"old":"/board/parking-requests/dashboard","type":0,"val":"board","end":""},{"old":"/board/parking-requests/dashboard","type":0,"val":"parking-requests","end":""},{"old":"/board/parking-requests/dashboard","type":0,"val":"dashboard","end":""}],
     types: placeholder as Registry['board.parking_requests.dashboard']['types'],
+  },
+  'board.parking_requests.reject_by_debt': {
+    methods: ["POST"],
+    pattern: '/board/parking-requests/reject-by-debt',
+    tokens: [{"old":"/board/parking-requests/reject-by-debt","type":0,"val":"board","end":""},{"old":"/board/parking-requests/reject-by-debt","type":0,"val":"parking-requests","end":""},{"old":"/board/parking-requests/reject-by-debt","type":0,"val":"reject-by-debt","end":""}],
+    types: placeholder as Registry['board.parking_requests.reject_by_debt']['types'],
   },
   'board.parking_requests.index': {
     methods: ["GET","HEAD"],

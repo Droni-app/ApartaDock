@@ -13,3 +13,15 @@ export interface ParkingRequestImportResult {
   enrollments: { created: number; updated: number }
   errors: ImportError[]
 }
+
+export interface UnitDetailsImportResult {
+  total: number
+  processed: number
+  units: { updated: number }
+  errors: ImportError[]
+}
+
+export interface RejectByDebtResult {
+  threshold: number
+  updated: number
+}

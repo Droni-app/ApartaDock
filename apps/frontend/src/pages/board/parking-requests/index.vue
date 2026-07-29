@@ -28,6 +28,10 @@
       <DuiSelect v-model="filters.status" :options="statusOptions" block />
     </DuiLabel>
 
+    <div class="col-span-full flex items-center gap-4">
+      <DuiCheckbox v-model="filters.duplicates" label="Mostrar solo duplicados (misma unidad)" />
+    </div>
+
     <div class="col-span-full flex gap-2">
       <DuiButton type="submit" color="primary">
         <i class="mdi mdi-magnify mr-1"></i>
@@ -46,6 +50,9 @@
     :pagination="tablePagination"
     @paginate="handlePageChange"
   >
+    <template #debt="row">
+      <span :class="row.debt > 0 ? 'text-red-600' : 'text-slate-900'">{{ formatCurrency(row.debt) }}</span>
+    </template>
     <template #status="row">
       <DuiBadge :color="statusColor(row.status)" variant="soft">{{ statusLabel(row.status) }}</DuiBadge>
     </template>
@@ -61,7 +68,7 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from 'vue'
 import { AxiosError } from 'axios'
-import { DuiAlert, DuiBadge, DuiButton, DuiInput, DuiLabel, DuiSelect, DuiTable } from '@dronico/droni-kit'
+import { DuiAlert, DuiBadge, DuiButton, DuiCheckbox, DuiInput, DuiLabel, DuiSelect, DuiTable } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
 import type { ApiErrorResponse, PaginatedResponse } from '../../../types/api'
 import type { ParkingRequest } from '../../../types/parking_requests'
@@ -81,6 +88,7 @@ const filters = reactive({
   vehiclePlate: '',
   vehicleType: '',
   status: '',
+  duplicates: false,
 })
 
 const vehicleTypeOptions = [
@@ -104,6 +112,10 @@ function statusLabel(status: string) {
   return statusOptions.find((option) => option.value === status)?.label ?? status
 }
 
+function formatCurrency(value: number) {
+  return `$${value.toLocaleString('es-CO')}`
+}
+
 function statusColor(status: string) {
   switch (status) {
     case 'approved':
@@ -119,6 +131,7 @@ function statusColor(status: string) {
 
 const columns = [
   { name: 'unitName', label: 'Unidad' },
+  { name: 'debt', label: 'Cartera' },
   { name: 'userName', label: 'Usuario' },
   { name: 'vehiclePlate', label: 'Vehiculo' },
   { name: 'period', label: 'Periodo' },
@@ -136,6 +149,7 @@ const tableRows = computed(() =>
   parkingRequests.value.map((parkingRequest) => ({
     ...parkingRequest,
     unitName: parkingRequest.unit?.name ?? '-',
+    debt: parkingRequest.unit?.debt ?? 0,
     userName: parkingRequest.user?.fullName || parkingRequest.user?.email || '-',
     vehiclePlate: parkingRequest.vehicle?.plate ?? '-',
     period: `${parkingRequest.period.toUpperCase()} ${parkingRequest.periodYear}`,
@@ -156,6 +170,7 @@ async function fetchParkingRequests(page = currentPage.value) {
         vehicle_plate: filters.vehiclePlate || undefined,
         vehicle_type: filters.vehicleType || undefined,
         status: filters.status || undefined,
+        duplicates: filters.duplicates || undefined,
       },
     })
     const payload = response.data
@@ -195,6 +210,7 @@ function handleClear() {
   filters.vehiclePlate = ''
   filters.vehicleType = ''
   filters.status = ''
+  filters.duplicates = false
   fetchParkingRequests(1)
 }
 

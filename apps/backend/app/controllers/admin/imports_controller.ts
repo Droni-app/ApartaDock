@@ -8,6 +8,12 @@ import Vehicle from '#models/vehicle'
 import ParkingRequest from '#models/parking_request'
 import Enrollment from '#models/enrollment'
 
+interface UnitDetailsImportRow {
+  name: number | string
+  debt: number | string
+  notes: string | null
+}
+
 interface ParkingRequestImportRow {
   created_at: string
   user_name: string
@@ -236,6 +242,74 @@ export default class ImportsController {
       vehicles: { created: vehiclesCreated, updated: vehiclesUpdated },
       parkingRequests: { created: parkingRequestsCreated },
       enrollments: { created: enrollmentsCreated, updated: enrollmentsUpdated },
+      errors,
+    })
+  }
+
+  /**
+   * Import unit debt and notes from json file
+   */
+  async units({ request, response }: HttpContext) {
+    const file = request.file('file', { extnames: ['json'] })
+
+    if (!file) {
+      return response.badRequest({ message: 'Debes adjuntar un archivo json en el campo "file".' })
+    }
+
+    if (!file.isValid) {
+      return response.badRequest({ message: 'Archivo invalido.', errors: file.errors })
+    }
+
+    let rows: UnitDetailsImportRow[]
+    try {
+      const raw = await readFile(file.tmpPath!, 'utf-8')
+      rows = JSON.parse(raw)
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      return response.badRequest({ message: 'No se pudo leer el archivo json.', error: message })
+    }
+
+    let updated = 0
+    const errors: Array<{ index: number; row: string; message: string }> = []
+
+    for (const [index, row] of rows.entries()) {
+      const unitName = String(row.name ?? '').trim()
+      const rowLabel = unitName || `#${index}`
+
+      try {
+        if (!unitName) {
+          throw new Error('name vacio')
+        }
+
+        const unit = await Unit.findBy('name', unitName)
+        if (!unit) {
+          throw new Error(`Unidad no encontrada: ${unitName}`)
+        }
+
+        const debt = Number(row.debt ?? 0)
+        if (Number.isNaN(debt)) {
+          throw new Error(`debt invalido: ${row.debt}`)
+        }
+
+        const notes = String(row.notes ?? '').trim()
+
+        unit.debt = debt
+        if (notes) {
+          unit.notes = unit.notes ? `${unit.notes}\n${notes}` : notes
+        }
+
+        await unit.save()
+        updated += 1
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error)
+        errors.push({ index, row: rowLabel, message })
+      }
+    }
+
+    return response.ok({
+      total: rows.length,
+      processed: rows.length - errors.length,
+      units: { updated },
       errors,
     })
   }

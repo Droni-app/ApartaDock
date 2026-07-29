@@ -114,6 +114,22 @@
             <dt class="text-xs uppercase text-gray-500">Es propietario</dt>
             <dd class="text-slate-900">{{ parkingRequest.vehicle.isOwner ? 'Si' : 'No' }}</dd>
           </div>
+          <div>
+            <dt class="text-xs uppercase text-gray-500">Tarjeta de propiedad</dt>
+            <dd class="text-slate-900">
+              <a
+                v-if="parkingRequest.vehicle.ownerCard"
+                class="text-primary-600 inline-flex items-center gap-1 hover:underline"
+                :href="parkingRequest.vehicle.ownerCard"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver tarjeta
+                <i class="mdi mdi-open-in-new text-sm"></i>
+              </a>
+              <span v-else>-</span>
+            </dd>
+          </div>
         </dl>
         <p v-else class="text-sm text-gray-500">Esta solicitud no tiene un vehiculo asociado.</p>
       </DuiCard>

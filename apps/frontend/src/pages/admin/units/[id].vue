@@ -54,6 +54,14 @@
           <dt class="text-xs uppercase text-gray-500">Estado</dt>
           <dd class="text-slate-900">{{ unit.status }}</dd>
         </div>
+        <div>
+          <dt class="text-xs uppercase text-gray-500">Deuda</dt>
+          <dd :class="unit.debt > 0 ? 'text-red-600' : 'text-slate-900'">{{ formatCurrency(unit.debt) }}</dd>
+        </div>
+        <div class="sm:col-span-2">
+          <dt class="text-xs uppercase text-gray-500">Notas</dt>
+          <dd class="whitespace-pre-line text-slate-900">{{ unit.notes || '-' }}</dd>
+        </div>
       </dl>
     </DuiCard>
 
@@ -79,6 +87,10 @@ const unitId = route.params.id as string
 const unit = ref<Unit | null>(null)
 const loading = ref(false)
 const error = ref('')
+
+function formatCurrency(value: number) {
+  return `$${value.toLocaleString('es-CO')}`
+}
 
 async function fetchUnit() {
   loading.value = true

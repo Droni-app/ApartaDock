@@ -211,9 +211,33 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'admin.imports.units': {
+    methods: ["POST"]
+    pattern: '/admin/imports/units'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'board.parking_requests.dashboard': {
     methods: ["GET","HEAD"]
     pattern: '/board/parking-requests/dashboard'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'board.parking_requests.reject_by_debt': {
+    methods: ["POST"]
+    pattern: '/board/parking-requests/reject-by-debt'
     types: {
       body: {}
       paramsTuple: []

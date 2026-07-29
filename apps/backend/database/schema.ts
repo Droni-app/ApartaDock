@@ -100,7 +100,7 @@ export class ParkingRequestSchema extends BaseModel {
 }
 
 export class UnitSchema extends BaseModel {
-  static $columns = ['apto', 'buildArea', 'coefficient', 'createdAt', 'debt', 'floor', 'id', 'name', 'privateArea', 'status', 'tower', 'typology', 'updatedAt'] as const
+  static $columns = ['apto', 'buildArea', 'coefficient', 'createdAt', 'debt', 'floor', 'id', 'name', 'notes', 'privateArea', 'status', 'tower', 'typology', 'updatedAt'] as const
   $columns = UnitSchema.$columns
   @column()
   declare apto: number
@@ -118,6 +118,8 @@ export class UnitSchema extends BaseModel {
   declare id: number
   @column()
   declare name: string
+  @column()
+  declare notes: string | null
   @column()
   declare privateArea: string | null
   @column()
