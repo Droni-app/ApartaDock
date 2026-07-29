@@ -3,6 +3,7 @@ import type { NextFn } from '@adonisjs/core/types/http'
 import Log from '#models/log'
 
 const LOGGED_METHODS = ['POST', 'PUT', 'PATCH', 'DELETE']
+const SENSITIVE_KEY_PATTERN = /password|token|secret/i
 
 export default class RequestLogMiddleware {
   async handle(ctx: HttpContext, next: NextFn) {
@@ -20,8 +21,10 @@ export default class RequestLogMiddleware {
 
     try {
       const payload: Record<string, unknown> = { ...request.body() }
-      if ('password' in payload) {
-        payload.password = '[REDACTED]'
+      for (const key of Object.keys(payload)) {
+        if (SENSITIVE_KEY_PATTERN.test(key)) {
+          payload[key] = '[REDACTED]'
+        }
       }
 
       await Log.create({

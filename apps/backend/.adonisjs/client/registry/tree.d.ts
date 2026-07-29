@@ -10,6 +10,7 @@ export interface ApiDefinition {
   profile: {
     profile: {
       show: typeof routes['profile.profile.show']
+      updatePassword: typeof routes['profile.profile.update_password']
     }
     accessTokens: {
       destroy: typeof routes['profile.access_tokens.destroy']

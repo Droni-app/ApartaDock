@@ -6,6 +6,7 @@ export type ScannedRoutes = {
   ALL: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'profile.profile.update_password': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
     'admin.users.index': { paramsTuple?: []; params?: {} }
     'admin.users.store': { paramsTuple?: []; params?: {} }
@@ -65,6 +66,7 @@ export type ScannedRoutes = {
     'board.parking_requests.reject_by_debt': { paramsTuple?: []; params?: {} }
   }
   PUT: {
+    'profile.profile.update_password': { paramsTuple?: []; params?: {} }
     'admin.users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

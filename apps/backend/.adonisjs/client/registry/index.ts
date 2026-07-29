@@ -18,6 +18,12 @@ const routes = {
     tokens: [{"old":"/account/profile","type":0,"val":"account","end":""},{"old":"/account/profile","type":0,"val":"profile","end":""}],
     types: placeholder as Registry['profile.profile.show']['types'],
   },
+  'profile.profile.update_password': {
+    methods: ["PUT"],
+    pattern: '/account/profile/password',
+    tokens: [{"old":"/account/profile/password","type":0,"val":"account","end":""},{"old":"/account/profile/password","type":0,"val":"profile","end":""},{"old":"/account/profile/password","type":0,"val":"password","end":""}],
+    types: placeholder as Registry['profile.profile.update_password']['types'],
+  },
   'profile.access_tokens.destroy': {
     methods: ["POST"],
     pattern: '/account/logout',

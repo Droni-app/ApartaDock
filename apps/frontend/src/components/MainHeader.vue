@@ -14,6 +14,10 @@
       </template>
 
       <template #actions>
+        <DuiButton size="sm" color="neutral" variant="outline" to="/profile">
+          <i class="mdi mdi-account-circle-outline mr-1"></i>
+          Mi perfil
+        </DuiButton>
         <DuiButton size="sm" color="danger" variant="outline" @click="signOut">
           Cerrar sesion
         </DuiButton>
