@@ -13,6 +13,8 @@ import { controllers } from '#generated/controllers'
 import UsersController from '#controllers/admin/users_controller'
 import UnitsController from '#controllers/admin/units_controller'
 import EnrollmentsController from '#controllers/admin/enrollments_controller'
+import ImportsController from '#controllers/admin/imports_controller'
+import BoardParkingRequestsController from '#controllers/board/parking_requests_controller'
 
 router.get('/', () => {
   return { hello: 'world' }
@@ -39,7 +41,16 @@ router
     router.resource('users', UsersController).apiOnly()
     router.resource('units', UnitsController).only(['index', 'show', 'update']).apiOnly()
     router.resource('enrollments', EnrollmentsController).apiOnly()
+    router.post('imports/parking-requests', [ImportsController, 'parking_requests'])
   })
   .prefix('admin')
   .as('admin')
   .use([middleware.auth(), middleware.admin()])
+
+router
+  .group(() => {
+    router.resource('parking-requests', BoardParkingRequestsController).only(['index', 'show', 'update']).apiOnly()
+  })
+  .prefix('board')
+  .as('board')
+  .use([middleware.auth(), middleware.board()])

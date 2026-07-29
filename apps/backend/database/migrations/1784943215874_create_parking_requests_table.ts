@@ -13,6 +13,7 @@ export default class extends BaseSchema {
       table.integer('period_year').notNullable()
       table.string('insurance_policy').nullable()
       table.string('technical_review').nullable()
+      table.string('authorization').nullable()
       table
         .enu('status', ['pending', 'approved', 'rejected', 'cancelled'])
         .notNullable()

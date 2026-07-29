@@ -69,8 +69,10 @@ export class EnrollmentSchema extends BaseModel {
 }
 
 export class ParkingRequestSchema extends BaseModel {
-  static $columns = ['createdAt', 'id', 'insurancePolicy', 'notes', 'period', 'periodYear', 'status', 'technicalReview', 'unitId', 'updatedAt', 'userId', 'vehicleId'] as const
+  static $columns = ['authorization', 'createdAt', 'id', 'insurancePolicy', 'notes', 'period', 'periodYear', 'status', 'technicalReview', 'unitId', 'updatedAt', 'userId', 'vehicleId'] as const
   $columns = ParkingRequestSchema.$columns
+  @column()
+  declare authorization: string | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
   @column({ isPrimary: true })
@@ -152,7 +154,7 @@ export class UserSchema extends BaseModel {
 }
 
 export class VehicleSchema extends BaseModel {
-  static $columns = ['brand', 'color', 'createdAt', 'driverLicense', 'id', 'model', 'ownerCard', 'plate', 'userId', 'vehicleType', 'year'] as const
+  static $columns = ['brand', 'color', 'createdAt', 'driverLicense', 'id', 'isOwner', 'model', 'ownerCard', 'ownerDocument', 'ownerName', 'plate', 'userId', 'vehicleType', 'year'] as const
   $columns = VehicleSchema.$columns
   @column()
   declare brand: string | null
@@ -161,15 +163,21 @@ export class VehicleSchema extends BaseModel {
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
   @column()
-  declare driverLicense: string
+  declare driverLicense: string | null
   @column({ isPrimary: true })
   declare id: number
+  @column()
+  declare isOwner: boolean | null
   @column()
   declare model: string | null
   @column()
   declare ownerCard: string
   @column()
-  declare plate: string
+  declare ownerDocument: string
+  @column()
+  declare ownerName: string
+  @column()
+  declare plate: string | null
   @column()
   declare userId: number
   @column()

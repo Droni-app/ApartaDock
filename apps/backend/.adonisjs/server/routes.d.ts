@@ -20,6 +20,10 @@ export type ScannedRoutes = {
     'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin.imports.parking_requests': { paramsTuple?: []; params?: {} }
+    'board.parking_requests.index': { paramsTuple?: []; params?: {} }
+    'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'board.parking_requests.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -29,6 +33,8 @@ export type ScannedRoutes = {
     'admin.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.index': { paramsTuple?: []; params?: {} }
     'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'board.parking_requests.index': { paramsTuple?: []; params?: {} }
+    'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -38,22 +44,27 @@ export type ScannedRoutes = {
     'admin.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.index': { paramsTuple?: []; params?: {} }
     'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'board.parking_requests.index': { paramsTuple?: []; params?: {} }
+    'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
     'admin.users.store': { paramsTuple?: []; params?: {} }
     'admin.enrollments.store': { paramsTuple?: []; params?: {} }
+    'admin.imports.parking_requests': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'admin.users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'board.parking_requests.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PATCH: {
     'admin.users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'board.parking_requests.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'admin.users.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

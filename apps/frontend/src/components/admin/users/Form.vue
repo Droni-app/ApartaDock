@@ -96,6 +96,7 @@ const documentTypeOptions = [
 const roleOptions = [
   { value: 'user', label: 'Usuario' },
   { value: 'admin', label: 'Administrador' },
+  { value: 'board', label: 'Consejo' },
 ]
 
 const form = reactive({

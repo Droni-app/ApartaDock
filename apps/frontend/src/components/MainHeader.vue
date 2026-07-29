@@ -30,6 +30,7 @@ import { getAuthUser, useAuth } from '../composables/useAuth'
 const router = useRouter()
 const { logout } = useAuth()
 const isAdmin = computed(() => getAuthUser()?.role === 'admin')
+const isBoard = computed(() => ['board', 'admin'].includes(getAuthUser()?.role ?? ''))
 
 const navItems = computed(() => [
   {
@@ -72,6 +73,18 @@ const navItems = computed(() => [
       { label: 'Clasificados', to: '/social/classifieds' },
     ],
   },
+  ...(isBoard.value
+    ? [
+        {
+          label: 'Consejo',
+          icon: 'mdi mdi-account-tie-outline',
+          to: '/board',
+          children: [
+            { label: 'Solicitudes de parqueo', to: '/board/parking-requests' },
+          ],
+        },
+      ]
+    : []),
   ...(isAdmin.value
     ? [
         {

@@ -35,5 +35,15 @@ export interface ApiDefinition {
       update: typeof routes['admin.enrollments.update']
       destroy: typeof routes['admin.enrollments.destroy']
     }
+    imports: {
+      parkingRequests: typeof routes['admin.imports.parking_requests']
+    }
+  }
+  board: {
+    parkingRequests: {
+      index: typeof routes['board.parking_requests.index']
+      show: typeof routes['board.parking_requests.show']
+      update: typeof routes['board.parking_requests.update']
+    }
   }
 }

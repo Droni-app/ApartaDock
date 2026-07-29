@@ -7,9 +7,13 @@ export const controllers = {
   AccessTokens: () => import('#controllers/access_tokens_controller'),
   admin: {
     Enrollments: () => import('#controllers/admin/enrollments_controller'),
+    Imports: () => import('#controllers/admin/imports_controller'),
     Units: () => import('#controllers/admin/units_controller'),
     Users: () => import('#controllers/admin/users_controller'),
   },
   Auth: () => import('#controllers/auth_controller'),
+  board: {
+    ParkingRequests: () => import('#controllers/board/parking_requests_controller'),
+  },
   Profile: () => import('#controllers/profile_controller'),
 }
