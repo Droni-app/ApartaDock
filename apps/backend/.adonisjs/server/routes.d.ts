@@ -29,6 +29,13 @@ export type ScannedRoutes = {
     'board.parking_requests.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.parking_requests.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.enrollments.index': { paramsTuple?: []; params?: {} }
+    'user.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.vehicles.index': { paramsTuple?: []; params?: {} }
+    'user.vehicles.store': { paramsTuple?: []; params?: {} }
+    'user.vehicles.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.vehicles.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.vehicles.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -42,6 +49,10 @@ export type ScannedRoutes = {
     'board.parking_requests.dashboard': { paramsTuple?: []; params?: {} }
     'board.parking_requests.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.enrollments.index': { paramsTuple?: []; params?: {} }
+    'user.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.vehicles.index': { paramsTuple?: []; params?: {} }
+    'user.vehicles.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -55,6 +66,10 @@ export type ScannedRoutes = {
     'board.parking_requests.dashboard': { paramsTuple?: []; params?: {} }
     'board.parking_requests.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.enrollments.index': { paramsTuple?: []; params?: {} }
+    'user.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.vehicles.index': { paramsTuple?: []; params?: {} }
+    'user.vehicles.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
@@ -64,6 +79,7 @@ export type ScannedRoutes = {
     'admin.imports.parking_requests': { paramsTuple?: []; params?: {} }
     'admin.imports.units': { paramsTuple?: []; params?: {} }
     'board.parking_requests.reject_by_debt': { paramsTuple?: []; params?: {} }
+    'user.vehicles.store': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'profile.profile.update_password': { paramsTuple?: []; params?: {} }
@@ -71,16 +87,19 @@ export type ScannedRoutes = {
     'admin.units.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.parking_requests.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.vehicles.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PATCH: {
     'admin.users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.parking_requests.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.vehicles.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'admin.users.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.vehicles.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

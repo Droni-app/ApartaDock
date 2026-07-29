@@ -156,6 +156,48 @@ const routes = {
     tokens: [{"old":"/board/parking-requests/:id","type":0,"val":"board","end":""},{"old":"/board/parking-requests/:id","type":0,"val":"parking-requests","end":""},{"old":"/board/parking-requests/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['board.parking_requests.update']['types'],
   },
+  'user.enrollments.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/enrollments',
+    tokens: [{"old":"/user/enrollments","type":0,"val":"user","end":""},{"old":"/user/enrollments","type":0,"val":"enrollments","end":""}],
+    types: placeholder as Registry['user.enrollments.index']['types'],
+  },
+  'user.enrollments.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/enrollments/:id',
+    tokens: [{"old":"/user/enrollments/:id","type":0,"val":"user","end":""},{"old":"/user/enrollments/:id","type":0,"val":"enrollments","end":""},{"old":"/user/enrollments/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.enrollments.show']['types'],
+  },
+  'user.vehicles.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/vehicles',
+    tokens: [{"old":"/user/vehicles","type":0,"val":"user","end":""},{"old":"/user/vehicles","type":0,"val":"vehicles","end":""}],
+    types: placeholder as Registry['user.vehicles.index']['types'],
+  },
+  'user.vehicles.store': {
+    methods: ["POST"],
+    pattern: '/user/vehicles',
+    tokens: [{"old":"/user/vehicles","type":0,"val":"user","end":""},{"old":"/user/vehicles","type":0,"val":"vehicles","end":""}],
+    types: placeholder as Registry['user.vehicles.store']['types'],
+  },
+  'user.vehicles.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/vehicles/:id',
+    tokens: [{"old":"/user/vehicles/:id","type":0,"val":"user","end":""},{"old":"/user/vehicles/:id","type":0,"val":"vehicles","end":""},{"old":"/user/vehicles/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.vehicles.show']['types'],
+  },
+  'user.vehicles.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/user/vehicles/:id',
+    tokens: [{"old":"/user/vehicles/:id","type":0,"val":"user","end":""},{"old":"/user/vehicles/:id","type":0,"val":"vehicles","end":""},{"old":"/user/vehicles/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.vehicles.update']['types'],
+  },
+  'user.vehicles.destroy': {
+    methods: ["DELETE"],
+    pattern: '/user/vehicles/:id',
+    tokens: [{"old":"/user/vehicles/:id","type":0,"val":"user","end":""},{"old":"/user/vehicles/:id","type":0,"val":"vehicles","end":""},{"old":"/user/vehicles/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.vehicles.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

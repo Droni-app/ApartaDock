@@ -307,4 +307,88 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'user.enrollments.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/enrollments'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.enrollments.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/enrollments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.vehicles.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/vehicles'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.vehicles.store': {
+    methods: ["POST"]
+    pattern: '/user/vehicles'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.vehicles.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/vehicles/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.vehicles.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/user/vehicles/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.vehicles.destroy': {
+    methods: ["DELETE"]
+    pattern: '/user/vehicles/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }

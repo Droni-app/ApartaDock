@@ -14,7 +14,7 @@ export default class RequestLogMiddleware {
     }
   }
 
-  private async recordLog({ request, auth, route }: HttpContext) {
+  private async recordLog({ request, auth }: HttpContext) {
     if (!LOGGED_METHODS.includes(request.method()) || !auth.user) {
       return
     }
@@ -29,7 +29,7 @@ export default class RequestLogMiddleware {
 
       await Log.create({
         userId: auth.user.id,
-        endpoint: route?.pattern ?? request.url(),
+        endpoint: request.url(),
         method: request.method(),
         payload: JSON.stringify(payload),
       })

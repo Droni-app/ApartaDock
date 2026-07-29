@@ -53,4 +53,17 @@ export interface ApiDefinition {
       update: typeof routes['board.parking_requests.update']
     }
   }
+  user: {
+    enrollments: {
+      index: typeof routes['user.enrollments.index']
+      show: typeof routes['user.enrollments.show']
+    }
+    vehicles: {
+      index: typeof routes['user.vehicles.index']
+      store: typeof routes['user.vehicles.store']
+      show: typeof routes['user.vehicles.show']
+      update: typeof routes['user.vehicles.update']
+      destroy: typeof routes['user.vehicles.destroy']
+    }
+  }
 }

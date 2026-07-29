@@ -16,6 +16,8 @@ import EnrollmentsController from '#controllers/admin/enrollments_controller'
 import ImportsController from '#controllers/admin/imports_controller'
 import LogsController from '#controllers/admin/logs_controller'
 import BoardParkingRequestsController from '#controllers/board/parking_requests_controller'
+import UserEnrollmentsController from '#controllers/user/enrollments_controller'
+import UserVehiclesController from '#controllers/user/vehicles_controller'
 
 router.get('/', () => {
   return { hello: 'world' }
@@ -60,3 +62,12 @@ router
   .prefix('board')
   .as('board')
   .use([middleware.auth(), middleware.board()])
+
+router
+  .group(() => {
+    router.resource('enrollments', UserEnrollmentsController).only(['index', 'show']).apiOnly()
+    router.resource('vehicles', UserVehiclesController).apiOnly()
+  })
+  .prefix('user')
+  .as('user')
+  .use([middleware.auth()])
