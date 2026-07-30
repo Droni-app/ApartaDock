@@ -87,7 +87,7 @@ export default class ParkingRequestsController {
       })
       query.join('units', 'units.id', 'parking_requests.unit_id').select('parking_requests.*').orderBy('units.name', 'asc')
     } else {
-      query.orderBy('parking_requests.status', 'desc').orderBy('parking_requests.updated_at', 'desc')
+      query.orderBy('parking_requests.status', 'desc').orderBy('parking_requests.updated_at', 'asc')
     }
 
     const parkingRequests = await query.paginate(page, limit)
