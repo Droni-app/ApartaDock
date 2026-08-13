@@ -228,6 +228,42 @@ const routes = {
     tokens: [{"old":"/user/vehicles/:id","type":0,"val":"user","end":""},{"old":"/user/vehicles/:id","type":0,"val":"vehicles","end":""},{"old":"/user/vehicles/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['user.vehicles.destroy']['types'],
   },
+  'user.attachments.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/attachments',
+    tokens: [{"old":"/user/attachments","type":0,"val":"user","end":""},{"old":"/user/attachments","type":0,"val":"attachments","end":""}],
+    types: placeholder as Registry['user.attachments.index']['types'],
+  },
+  'user.attachments.store': {
+    methods: ["POST"],
+    pattern: '/user/attachments',
+    tokens: [{"old":"/user/attachments","type":0,"val":"user","end":""},{"old":"/user/attachments","type":0,"val":"attachments","end":""}],
+    types: placeholder as Registry['user.attachments.store']['types'],
+  },
+  'user.attachments.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/attachments/:id',
+    tokens: [{"old":"/user/attachments/:id","type":0,"val":"user","end":""},{"old":"/user/attachments/:id","type":0,"val":"attachments","end":""},{"old":"/user/attachments/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.attachments.show']['types'],
+  },
+  'user.attachments.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/user/attachments/:id',
+    tokens: [{"old":"/user/attachments/:id","type":0,"val":"user","end":""},{"old":"/user/attachments/:id","type":0,"val":"attachments","end":""},{"old":"/user/attachments/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.attachments.update']['types'],
+  },
+  'user.attachments.destroy': {
+    methods: ["DELETE"],
+    pattern: '/user/attachments/:id',
+    tokens: [{"old":"/user/attachments/:id","type":0,"val":"user","end":""},{"old":"/user/attachments/:id","type":0,"val":"attachments","end":""},{"old":"/user/attachments/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.attachments.destroy']['types'],
+  },
+  'user.attachments.download': {
+    methods: ["POST"],
+    pattern: '/user/attachments/download',
+    tokens: [{"old":"/user/attachments/download","type":0,"val":"user","end":""},{"old":"/user/attachments/download","type":0,"val":"attachments","end":""},{"old":"/user/attachments/download","type":0,"val":"download","end":""}],
+    types: placeholder as Registry['user.attachments.download']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

@@ -19,6 +19,7 @@ export const controllers = {
   },
   Profile: () => import('#controllers/profile_controller'),
   user: {
+    Attachments: () => import('#controllers/user/attachments_controller'),
     Enrollments: () => import('#controllers/user/enrollments_controller'),
     Vehicles: () => import('#controllers/user/vehicles_controller'),
   },

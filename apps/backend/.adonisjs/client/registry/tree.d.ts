@@ -72,5 +72,13 @@ export interface ApiDefinition {
       update: typeof routes['user.vehicles.update']
       destroy: typeof routes['user.vehicles.destroy']
     }
+    attachments: {
+      index: typeof routes['user.attachments.index']
+      store: typeof routes['user.attachments.store']
+      show: typeof routes['user.attachments.show']
+      update: typeof routes['user.attachments.update']
+      destroy: typeof routes['user.attachments.destroy']
+      download: typeof routes['user.attachments.download']
+    }
   }
 }

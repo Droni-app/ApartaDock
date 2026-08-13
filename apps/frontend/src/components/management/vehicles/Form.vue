@@ -44,12 +44,13 @@
     </DuiLabel>
 
     <DuiLabel title="Tarjeta de propiedad" required help-text="Enlace a una foto o PDF de la tarjeta de propiedad.">
-      <DuiInput v-model="form.ownerCard" size="lg" block placeholder="https://..." />
+      <AttachmentUrlInput v-model="form.ownerCard" placeholder="https://..." />
     </DuiLabel>
 
     <DuiAlert v-if="errorMessage" color="danger" variant="outline">
       {{ errorMessage }}
     </DuiAlert>
+    {{  form.ownerCard }}
 
     <div class="flex justify-end gap-2 pt-2">
       <DuiButton type="button" variant="outline" color="neutral" :disabled="loading" @click="emit('cancel')">
@@ -67,6 +68,7 @@ import { reactive, watch } from 'vue'
 import { DuiAlert, DuiButton, DuiInput, DuiLabel, DuiSelect, DuiSwitch } from '@dronico/droni-kit'
 import { getAuthUser } from '../../../composables/useAuth'
 import type { Vehicle } from '../../../types/vehicles'
+import AttachmentUrlInput from '../../AttachmentUrlInput.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -120,7 +122,7 @@ watch(
     form.color = vehicle?.color ?? ''
     form.year = vehicle?.year ?? new Date().getFullYear()
     form.driverLicense = vehicle?.driverLicense ?? ''
-    form.isOwner = vehicle?.isOwner ?? true
+    form.isOwner = Boolean(vehicle?.isOwner ?? true)
     form.ownerName = vehicle?.ownerName ?? ''
     form.ownerDocument = vehicle?.ownerDocument ?? ''
     form.ownerCard = vehicle?.ownerCard ?? ''

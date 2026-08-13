@@ -451,4 +451,76 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'user.attachments.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/attachments'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.attachments.store': {
+    methods: ["POST"]
+    pattern: '/user/attachments'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.attachments.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/attachments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.attachments.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/user/attachments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.attachments.destroy': {
+    methods: ["DELETE"]
+    pattern: '/user/attachments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'user.attachments.download': {
+    methods: ["POST"]
+    pattern: '/user/attachments/download'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }

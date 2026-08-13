@@ -19,6 +19,7 @@ import BoardParkingRequestsController from '#controllers/board/parking_requests_
 import BoardMinutesController from '#controllers/board/minutes_controller'
 import UserEnrollmentsController from '#controllers/user/enrollments_controller'
 import UserVehiclesController from '#controllers/user/vehicles_controller'
+import UserAttachmentsController from '#controllers/user/attachments_controller'
 
 router.get('/', () => {
   return { hello: 'world' }
@@ -69,6 +70,8 @@ router
   .group(() => {
     router.resource('enrollments', UserEnrollmentsController).only(['index', 'show']).apiOnly()
     router.resource('vehicles', UserVehiclesController).apiOnly()
+    router.resource('attachments', UserAttachmentsController).apiOnly()
+    router.post('attachments/download', [UserAttachmentsController, 'download']).as('attachments.download')
   })
   .prefix('user')
   .as('user')
