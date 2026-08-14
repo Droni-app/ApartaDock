@@ -117,17 +117,10 @@
           <div>
             <dt class="text-xs uppercase text-gray-500">Tarjeta de propiedad</dt>
             <dd class="text-slate-900">
-              <a
+              <AttachmentOpen
                 v-if="parkingRequest.vehicle.ownerCard"
-                class="text-primary-600 inline-flex items-center gap-1 hover:underline"
-                :href="parkingRequest.vehicle.ownerCard"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ver tarjeta
-                <i class="mdi mdi-open-in-new text-sm"></i>
-              </a>
-              <span v-else>-</span>
+                :attachment="parkingRequest.vehicle.ownerCard"
+                class="inline-block" />
             </dd>
           </div>
         </dl>
@@ -157,6 +150,7 @@ import type { ApiErrorResponse } from '../../../types/api'
 import type { ParkingRequest } from '../../../types/parking_requests'
 import Drawer from '../../../components/admin/Drawer.vue'
 import ParkingRequestForm from '../../../components/board/parking-requests/Form.vue'
+import AttachmentOpen from '../../../components/AttachmentOpen.vue'
 
 const route = useRoute()
 const parkingRequestId = route.params.id as string
