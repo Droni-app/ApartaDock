@@ -50,7 +50,6 @@
     <DuiAlert v-if="errorMessage" color="danger" variant="outline">
       {{ errorMessage }}
     </DuiAlert>
-    {{  form.ownerCard }}
 
     <div class="flex justify-end gap-2 pt-2">
       <DuiButton type="button" variant="outline" color="neutral" :disabled="loading" @click="emit('cancel')">

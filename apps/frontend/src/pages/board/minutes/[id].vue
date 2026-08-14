@@ -49,17 +49,7 @@
         <div class="sm:col-span-2">
           <dt class="text-xs uppercase text-gray-500">Documento</dt>
           <dd class="text-slate-900">
-            <a
-              v-if="minute.document"
-              class="text-primary-600 inline-flex items-center gap-1 hover:underline"
-              :href="minute.document"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver documento
-              <i class="mdi mdi-open-in-new text-sm"></i>
-            </a>
-            <span v-else>-</span>
+            <AttachmentOpen v-if="minute.document" :attachment="minute.document" class="inline-block" />
           </dd>
         </div>
         <div class="sm:col-span-2">
@@ -99,6 +89,7 @@ import type { Minute } from '../../../types/minutes'
 import { sanitizeHtml } from '../../../utils/sanitizeHtml'
 import Drawer from '../../../components/admin/Drawer.vue'
 import MinuteForm from '../../../components/board/minutes/Form.vue'
+import AttachmentOpen from '../../../components/AttachmentOpen.vue'
 
 const route = useRoute()
 const minuteId = route.params.id as string

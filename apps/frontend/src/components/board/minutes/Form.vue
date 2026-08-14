@@ -9,7 +9,7 @@
     </DuiLabel>
 
     <DuiLabel title="Documento" help-text="Enlace al documento (PDF, foto, etc.).">
-      <DuiInput v-model="form.document" size="lg" block placeholder="https://..." />
+      <AttachmentUrlInput v-model="form.document" placeholder="https://..." />
     </DuiLabel>
 
     <WysiwygEditor v-model="form.content" />
@@ -36,6 +36,7 @@ import { reactive, watch } from 'vue'
 import { DuiAlert, DuiButton, DuiInput, DuiLabel, DuiSwitch } from '@dronico/droni-kit'
 import type { Minute } from '../../../types/minutes'
 import WysiwygEditor from '../../WysiwygEditor.vue'
+import AttachmentUrlInput from '../../AttachmentUrlInput.vue'
 
 const props = withDefaults(
   defineProps<{
