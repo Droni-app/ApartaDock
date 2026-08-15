@@ -2,7 +2,7 @@
  <div>
   <div class="mb-4 flex items-center justify-between">
     <div>
-      <h1 class="text-2xl">Minutas</h1>
+      <h1 class="text-2xl">Actas</h1>
       <small class="text-gray-500 block">
         Actas y minutas del consejo de administracion.
       </small>

@@ -4,9 +4,9 @@
       <div>
         <DuiButton variant="ghost" color="neutral" size="sm" to="/board/minutes">
           <i class="mdi mdi-arrow-left mr-1"></i>
-          Minutas
+          Actas
         </DuiButton>
-        <h1 class="mt-2 text-2xl">Detalle de minuta</h1>
+        <h1 class="mt-2 text-2xl">{{ minute?.name || 'Detalle de acta' }}</h1>
       </div>
       <DuiButton v-if="minute && canEdit" color="primary" @click="showDrawer = true">
         <i class="mdi mdi-pencil-outline mr-1"></i>
