@@ -51,6 +51,31 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class DocumentSchema extends BaseModel {
+  static $columns = ['active', 'category', 'content', 'createdAt', 'document', 'id', 'name', 'picture', 'updatedAt', 'userId'] as const
+  $columns = DocumentSchema.$columns
+  @column()
+  declare active: boolean | null
+  @column()
+  declare category: string | null
+  @column()
+  declare content: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare document: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare name: string
+  @column()
+  declare picture: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+}
+
 export class EnrollmentSchema extends BaseModel {
   static $columns = ['createdAt', 'id', 'role', 'unitId', 'updatedAt', 'userId'] as const
   $columns = EnrollmentSchema.$columns

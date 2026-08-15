@@ -367,6 +367,66 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'board.documents.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/board/documents'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'board.documents.store': {
+    methods: ["POST"]
+    pattern: '/board/documents'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'board.documents.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/board/documents/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'board.documents.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/board/documents/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'board.documents.destroy': {
+    methods: ["DELETE"]
+    pattern: '/board/documents/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'user.enrollments.index': {
     methods: ["GET","HEAD"]
     pattern: '/user/enrollments'

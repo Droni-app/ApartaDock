@@ -186,6 +186,36 @@ const routes = {
     tokens: [{"old":"/board/minutes/:id","type":0,"val":"board","end":""},{"old":"/board/minutes/:id","type":0,"val":"minutes","end":""},{"old":"/board/minutes/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['board.minutes.destroy']['types'],
   },
+  'board.documents.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/board/documents',
+    tokens: [{"old":"/board/documents","type":0,"val":"board","end":""},{"old":"/board/documents","type":0,"val":"documents","end":""}],
+    types: placeholder as Registry['board.documents.index']['types'],
+  },
+  'board.documents.store': {
+    methods: ["POST"],
+    pattern: '/board/documents',
+    tokens: [{"old":"/board/documents","type":0,"val":"board","end":""},{"old":"/board/documents","type":0,"val":"documents","end":""}],
+    types: placeholder as Registry['board.documents.store']['types'],
+  },
+  'board.documents.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/board/documents/:id',
+    tokens: [{"old":"/board/documents/:id","type":0,"val":"board","end":""},{"old":"/board/documents/:id","type":0,"val":"documents","end":""},{"old":"/board/documents/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['board.documents.show']['types'],
+  },
+  'board.documents.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/board/documents/:id',
+    tokens: [{"old":"/board/documents/:id","type":0,"val":"board","end":""},{"old":"/board/documents/:id","type":0,"val":"documents","end":""},{"old":"/board/documents/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['board.documents.update']['types'],
+  },
+  'board.documents.destroy': {
+    methods: ["DELETE"],
+    pattern: '/board/documents/:id',
+    tokens: [{"old":"/board/documents/:id","type":0,"val":"board","end":""},{"old":"/board/documents/:id","type":0,"val":"documents","end":""},{"old":"/board/documents/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['board.documents.destroy']['types'],
+  },
   'user.enrollments.index': {
     methods: ["GET","HEAD"],
     pattern: '/user/enrollments',

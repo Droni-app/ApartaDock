@@ -59,6 +59,13 @@ export interface ApiDefinition {
       update: typeof routes['board.minutes.update']
       destroy: typeof routes['board.minutes.destroy']
     }
+    documents: {
+      index: typeof routes['board.documents.index']
+      store: typeof routes['board.documents.store']
+      show: typeof routes['board.documents.show']
+      update: typeof routes['board.documents.update']
+      destroy: typeof routes['board.documents.destroy']
+    }
   }
   user: {
     enrollments: {

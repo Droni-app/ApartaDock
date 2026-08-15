@@ -17,6 +17,7 @@ import ImportsController from '#controllers/admin/imports_controller'
 import LogsController from '#controllers/admin/logs_controller'
 import BoardParkingRequestsController from '#controllers/board/parking_requests_controller'
 import BoardMinutesController from '#controllers/board/minutes_controller'
+import BoardDocumentsController from '#controllers/board/documents_controller'
 import UserEnrollmentsController from '#controllers/user/enrollments_controller'
 import UserVehiclesController from '#controllers/user/vehicles_controller'
 import UserAttachmentsController from '#controllers/user/attachments_controller'
@@ -61,6 +62,7 @@ router
     router.post('parking-requests/reject-by-debt', [BoardParkingRequestsController, 'rejectByDebt'])
     router.resource('parking-requests', BoardParkingRequestsController).only(['index', 'show', 'update']).apiOnly()
     router.resource('minutes', BoardMinutesController).apiOnly()
+    router.resource('documents', BoardDocumentsController).apiOnly()
   })
   .prefix('board')
   .as('board')
