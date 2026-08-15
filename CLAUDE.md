@@ -1,4 +1,4 @@
-# Apartacho
+# ApartaDock
 
 Plataforma de administración de conjuntos residenciales. Monorepo (npm workspaces + Turborepo) con dos apps:
 
@@ -40,7 +40,7 @@ En el frontend, `apps/frontend/src/router/index.ts` hace el guard de rutas (`bef
 ## Frontend (`apps/frontend`)
 
 - Enrutamiento por archivos con `vite-plugin-pages` (`routes` importadas desde `~pages` en `src/router/index.ts`), estructura de carpetas en `src/pages` refleja las rutas (`pages/admin/users/index.vue` → `/admin/users`, etc.).
-- Sesión y usuario actual: `src/composables/useAuth.ts` (localStorage `apartacho_token` / `apartacho_user`, `ref` reactivo `user`, helpers `getAuthUser()` / `hasToken()` para código fuera de componentes).
+- Sesión y usuario actual: `src/composables/useAuth.ts` (localStorage `apartadock_token` / `apartadock_user`, `ref` reactivo `user`, helpers `getAuthUser()` / `hasToken()` para código fuera de componentes).
 - Cliente HTTP: `src/services/api.ts` (Axios, `baseURL` desde `VITE_API_BASE_URL`, inyecta `Authorization: Bearer` desde el token guardado).
 - UI kit: `@dronico/droni-kit` (`DuiButton`, `DuiCard`, `DuiAlert`, `DuiBadge`, `DuiTable`, `DuiSkeleton`, `DuiNavbar`, etc. — ver `node_modules/@dronico/droni-kit/dist/index.d.ts` para el catálogo completo y props).
 - Componentes propios reutilizables en `src/components`: `StatTile.vue` (tarjeta de métrica con icono/color), `DummyPageInfo.vue` (aviso de "esta página usa datos ficticios, aún no conectada"), `MainHeader.vue` (navbar con items condicionados por rol vía `isAdmin`/`isBoard`), `WysiwygEditor.vue`, `AttachmentOpen.vue` / `AttachmentUrlInput.vue`.
@@ -48,7 +48,7 @@ En el frontend, `apps/frontend/src/router/index.ts` hace el guard de rutas (`bef
 - Patrón habitual para vistas con datos remotos: `ref` de `loading`/`error`/dato, `onMounted` dispara el fetch, `extractErrorMessage` local desestructura `AxiosError<ApiErrorResponse>` (ver `components/board/parking-requests/Dashboard.vue` como referencia completa, incluye gráficos con `vue-chartjs` + `utils/charts.ts`).
 - Estilo: Tailwind v4 (`@import "tailwindcss"` en `src/style.css`, sin config extra), utilidades directas en templates, sin CSS-in-JS.
 
-## Estado del producto (ver `docs/funcionalidades-apartacho.md` para el detalle completo)
+## Estado del producto (ver `docs/funcionalidades-apartadock.md` para el detalle completo)
 
 Módulos con datos reales conectados al backend: administración de usuarios, administración de unidades, auditoría/logs, solicitudes de parqueo (consejo), minutas/actas (consejo), gestión de vehículos (residente).
 

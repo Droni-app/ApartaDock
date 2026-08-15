@@ -1,5 +1,5 @@
 {
-  "name": "apartacho",
+  "name": "apartadock",
   "version": "1.0.0",
   "private": true,
   "description": "Monorepo con backend AdonisJS y frontend Vue + Vite",

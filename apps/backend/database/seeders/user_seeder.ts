@@ -6,7 +6,7 @@ export default class UserSeeder extends BaseSeeder {
     await User.updateOrCreateMany('email', [
       {
         fullName: 'Administrador General',
-        email: 'admin@apartacho.com',
+        email: 'admin@apartadock.com',
         password: 'Admin1234!',
         documentType: 'CC',
         document: '1000000001',
@@ -15,7 +15,7 @@ export default class UserSeeder extends BaseSeeder {
       },
       {
         fullName: 'Residente Demo',
-        email: 'residente@apartacho.com',
+        email: 'residente@apartadock.com',
         password: 'User1234!',
         documentType: 'CC',
         document: '1000000002',
@@ -24,7 +24,7 @@ export default class UserSeeder extends BaseSeeder {
       },
       {
         fullName: 'Operador Demo',
-        email: 'operador@apartacho.com',
+        email: 'operador@apartadock.com',
         password: 'User1234!',
         documentType: 'CE',
         document: 'X100000003',

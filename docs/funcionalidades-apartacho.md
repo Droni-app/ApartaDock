@@ -1,4 +1,4 @@
-# Funcionalidades de Apartacho
+# Funcionalidades de ApartaDock
 
 Este documento consolida las funcionalidades que ofrece el software de administración de conjuntos a partir del análisis del frontend actual, diferenciando entre:
 
@@ -10,7 +10,7 @@ Este documento consolida las funcionalidades que ofrece el software de administr
 
 ## 1. Visión general del sistema
 
-Apartacho es una plataforma para la administración de conjuntos residenciales, con roles diferenciados para:
+ApartaDock es una plataforma para la administración de conjuntos residenciales, con roles diferenciados para:
 
 - Usuarios / residentes
 - Consejo de administración
@@ -333,6 +333,6 @@ Los siguientes módulos están presentados como experiencia visual y funcionalid
 
 ## 7. Conclusión
 
-Apartacho ya cuenta con una base funcional sólida para la operación administrativa y operativa clave del conjunto, especialmente para la gestión interna del administrador y del consejo. Sin embargo, varias áreas de la experiencia de usuario están aún en etapa de prototipo, con datos ficticios y navegación orientada a producto futuro.
+ApartaDock ya cuenta con una base funcional sólida para la operación administrativa y operativa clave del conjunto, especialmente para la gestión interna del administrador y del consejo. Sin embargo, varias áreas de la experiencia de usuario están aún en etapa de prototipo, con datos ficticios y navegación orientada a producto futuro.
 
 En pocas palabras: el sistema ya funciona como herramienta de administración interna, pero aún está en fase de expansión hacia un ecosistema completo de convivencia residencial.

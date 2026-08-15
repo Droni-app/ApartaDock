@@ -9,8 +9,8 @@ interface LoginPayload {
   password: string
 }
 
-const TOKEN_KEY = 'apartacho_token'
-const USER_KEY = 'apartacho_user'
+const TOKEN_KEY = 'apartadock_token'
+const USER_KEY = 'apartadock_user'
 
 const user = ref<AuthUser | null>(readUser())
 
