@@ -2,7 +2,7 @@
   <div class="space-y-2">
     <DuiFile
       v-model="props.modelValue"
-      accept="image/*"
+      :accept="props.accept"
       @open-browser="openBrowseModal"
       @upload-file="triggerUpload"
       @open-file="openFile"
@@ -61,8 +61,10 @@ import type { Attachment } from '../types/attachments'
 const props = withDefaults(
   defineProps<{
     modelValue: string
+    accept?: string
   }>(),
-  {}
+  {
+  }
 )
 
 const emit = defineEmits<{
