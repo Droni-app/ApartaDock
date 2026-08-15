@@ -65,7 +65,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { DuiBadge, DuiButton, DuiCard } from '@dronico/droni-kit'
+import { DuiBadge, DuiCard } from '@dronico/droni-kit'
 import WelcomeBanner from '../components/dashboard/WelcomeBanner.vue'
 import RoleDashboard from '../components/dashboard/RoleDashboard.vue'
 import { useAuth } from '../composables/useAuth'
