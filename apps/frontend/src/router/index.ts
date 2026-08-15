@@ -14,6 +14,7 @@ router.beforeEach((to) => {
   const isPublic = publicPaths.has(to.path)
   const isAdminRoute = to.path === '/admin' || to.path.startsWith('/admin/')
   const isBoardRoute = to.path === '/board' || to.path.startsWith('/board/')
+  const isSecurityRoute = to.path === '/security' || to.path.startsWith('/security/')
 
   if (!isAuthenticated && !isPublic) {
     return { path: '/auth/login', query: { redirect: to.fullPath } }
@@ -31,6 +32,14 @@ router.beforeEach((to) => {
     const currentUser = getAuthUser()
 
     if (!['board', 'admin'].includes(currentUser?.role ?? '')) {
+      return { path: '/units' }
+    }
+  }
+
+  if (isAuthenticated && isSecurityRoute) {
+    const currentUser = getAuthUser()
+    
+    if (!['security', 'admin'].includes(currentUser?.role ?? '')) {
       return { path: '/units' }
     }
   }

@@ -1,10 +1,106 @@
 
-
 <template>
-  <DuiCard class="mx-auto mt-10" title="Bienvenido a Apartacho" subtitle="La plataforma de administracion de conjuntos residenciales.">
-    Bienvenido a Apartacho, la plataforma de administracion de conjuntos residenciales. Inicia sesion o crea una cuenta para acceder a las funcionalidades de la aplicacion.
-  </DuiCard>
+  <div v-if="user" class="space-y-6">
+    <WelcomeBanner :user="user" />
+    <div class="mx-auto mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <DuiCard class="lg:col-span-2">
+        <div class="grid grid-cols-1 items-center gap-6 sm:grid-cols-2">
+          <div>
+            <p class="text-sm font-medium text-blue-600">Bienvenido a ApartaDock</p>
+            <h1 class="mt-1 text-3xl font-semibold text-slate-900">Fontibón Reservado</h1>
+            <p class="mt-3 text-gray-500">
+              La plataforma para administrar tu conjunto residencial: cartera, reservas, vehículos, autorizaciones y la
+              gestión del consejo y la administración, todo en un solo lugar.
+            </p>
+          </div>
+
+          <svg viewBox="0 0 400 300" class="w-full" role="img" aria-label="Ilustracion de un conjunto residencial">
+            <rect width="400" height="300" rx="16" fill="#eff6ff" />
+            <circle cx="330" cy="60" r="28" fill="#fcd34d" />
+            <rect x="0" y="240" width="400" height="60" fill="#dbeafe" />
+            <rect x="40" y="120" width="140" height="120" rx="6" fill="#cbd5e1" />
+            <rect x="60" y="140" width="20" height="20" rx="2" fill="#2563eb" />
+            <rect x="100" y="140" width="20" height="20" rx="2" fill="#2563eb" />
+            <rect x="140" y="140" width="20" height="20" rx="2" fill="#2563eb" />
+            <rect x="60" y="175" width="20" height="20" rx="2" fill="#2563eb" />
+            <rect x="100" y="175" width="20" height="20" rx="2" fill="#2563eb" />
+            <rect x="140" y="175" width="20" height="20" rx="2" fill="#2563eb" />
+            <rect x="95" y="210" width="30" height="30" fill="#1e3a8a" />
+            <rect x="190" y="80" width="110" height="160" rx="6" fill="#94a3b8" />
+            <rect x="205" y="100" width="18" height="18" rx="2" fill="#eff6ff" />
+            <rect x="238" y="100" width="18" height="18" rx="2" fill="#eff6ff" />
+            <rect x="271" y="100" width="18" height="18" rx="2" fill="#eff6ff" />
+            <rect x="205" y="130" width="18" height="18" rx="2" fill="#eff6ff" />
+            <rect x="238" y="130" width="18" height="18" rx="2" fill="#eff6ff" />
+            <rect x="271" y="130" width="18" height="18" rx="2" fill="#eff6ff" />
+            <rect x="205" y="160" width="18" height="18" rx="2" fill="#eff6ff" />
+            <rect x="238" y="160" width="18" height="18" rx="2" fill="#eff6ff" />
+            <rect x="271" y="160" width="18" height="18" rx="2" fill="#eff6ff" />
+            <rect x="236" y="200" width="28" height="40" fill="#1e293b" />
+            <circle cx="330" cy="255" r="18" fill="#16a34a" />
+            <rect x="326" y="255" width="8" height="30" fill="#78350f" />
+          </svg>
+        </div>
+      </DuiCard>
+
+      <DuiCard title="Novedades del conjunto" subtitle="Últimas actualizaciones y avisos">
+        <ul class="divide-y divide-gray-100">
+          <li v-for="item in news" :key="item.title" class="flex items-start gap-3 py-3 first:pt-0 last:pb-0">
+            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+              <i :class="`mdi ${item.icon}`"></i>
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center justify-between gap-2">
+                <p class="font-medium text-slate-900">{{ item.title }}</p>
+                <DuiBadge size="xs" :color="item.badgeColor" variant="soft">{{ item.date }}</DuiBadge>
+              </div>
+              <p class="text-sm text-gray-500">{{ item.description }}</p>
+            </div>
+          </li>
+        </ul>
+      </DuiCard>
+    </div>
+
+    <RoleDashboard :role="user.role" />
+  </div>
 </template>
 <script setup lang="ts">
-import { DuiCard } from '@dronico/droni-kit'
+import { DuiBadge, DuiButton, DuiCard } from '@dronico/droni-kit'
+import WelcomeBanner from '../components/dashboard/WelcomeBanner.vue'
+import RoleDashboard from '../components/dashboard/RoleDashboard.vue'
+import { useAuth } from '../composables/useAuth'
+
+const { user } = useAuth()
+
+// TODO: reemplazar por novedades reales del conjunto cuando exista el modulo de comunicaciones.
+const news = [
+  {
+    icon: 'mdi-elevator',
+    title: 'Mantenimiento de ascensores',
+    description: 'Torre 2 fuera de servicio el 18 de agosto de 8:00 a.m. a 12:00 m.',
+    date: '18 ago',
+    badgeColor: 'warning' as const,
+  },
+  {
+    icon: 'mdi-account-group-outline',
+    title: 'Asamblea general ordinaria',
+    description: 'Convocatoria para el 30 de agosto a las 6:00 p.m. en el salón comunal.',
+    date: '30 ago',
+    badgeColor: 'primary' as const,
+  },
+  {
+    icon: 'mdi-water-off-outline',
+    title: 'Corte programado de agua',
+    description: 'Domingo 17 de agosto de 7:00 a.m. a 10:00 a.m. por mantenimiento de tanques.',
+    date: '17 ago',
+    badgeColor: 'danger' as const,
+  },
+  {
+    icon: 'mdi-car-outline',
+    title: 'Nueva zona de parqueo para visitantes',
+    description: 'Ya está disponible en el sótano 2, ingresando por la porteria principal.',
+    date: 'Hoy',
+    badgeColor: 'success' as const,
+  },
+]
 </script>

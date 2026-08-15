@@ -35,6 +35,7 @@ const router = useRouter()
 const { logout } = useAuth()
 const isAdmin = computed(() => getAuthUser()?.role === 'admin')
 const isBoard = computed(() => ['board', 'admin'].includes(getAuthUser()?.role ?? ''))
+const isSecurity = computed(() => ['security', 'admin'].includes(getAuthUser()?.role ?? ''))
 
 const navItems = computed(() => [
   {
@@ -101,6 +102,20 @@ const navItems = computed(() => [
             { label: 'Usuarios', to: '/admin/users' },
             { label: 'Imports', to: '/admin/imports' },
             { label: 'Records', to: '/admin/records' },
+          ],
+        },
+      ]
+    : []),
+  ...(isSecurity.value
+    ? [
+        {
+          label: 'Seguridad',
+          icon: 'mdi mdi-shield-lock-outline',
+          to: '/security',
+          children: [
+            { label: 'Visitantes', to: '/security/visitors' },
+            { label: 'Vehículos', to: '/security/vehicles' },
+            { label: 'Paquetes', to: '/security/packages' },
           ],
         },
       ]
