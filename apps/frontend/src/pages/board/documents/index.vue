@@ -13,23 +13,44 @@
       {{ requestError }}
     </DuiAlert>
     <DuiTable :columns="[
-      { label: 'Documento', name: 'name' },
-      { label: 'Tipo', name: 'type' },
-      { label: 'Creado el', name: 'createdAt' },
-      { label: 'Acciones', name: 'actions' }
+      { label: 'Nombre', name: 'name' },
+      { label: 'Documento', name: 'document' },
+      { label: 'Autor', name: 'author' },
+      { label: 'Fechas', name: 'timestamps' },
+      { label: '', name: 'actions' }
     ]" :rows="documents"
       :loading="loading">
+      <template #name="{ name, category }">
+        <strong>{{ name }}</strong><br>
+        <DuiBadge color="primary">
+          {{ category ?? 'Sin categoría' }}
+        </DuiBadge>
+      </template>
+      <template #document="{ document }">
+        <AttachmentOpen :attachment="document" />
+      </template>
+      <template #author="{ user }">
+        {{ user.fullName }}<br>
+        <small>{{ user.email }}</small>
+      </template>
+      <template #timestamps="{ createdAt, updatedAt }">
+        <small>
+          <i class="mdi mdi-calendar-blank-outline"></i> {{ createdAt }}<br>
+          <i class="mdi mdi-calendar-blank-outline"></i> {{ updatedAt }}<br>
+        </small>
+      </template>
     </DuiTable>
   </div>
 </template>
 <script setup lang="ts">
-import { DuiAlert, DuiButton, DuiTable, DuiDrawer } from '@dronico/droni-kit'
+import { DuiAlert, DuiButton, DuiTable, DuiDrawer, DuiBadge } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
 import { ref, onMounted } from 'vue'
 import type { Ref } from 'vue'
 import type { PaginatedResponse } from '../../../types/api'
 import type { Document } from '../../../types/document'
 import Form from '../../../components/board/documents/Form.vue'
+import AttachmentOpen from '../../../components/AttachmentOpen.vue'
 
 const loading = ref(false)
 const requestError: Ref<string | null> = ref(null)
