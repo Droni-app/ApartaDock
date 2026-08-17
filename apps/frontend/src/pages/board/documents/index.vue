@@ -1,10 +1,15 @@
 <template>
   <div class="flex flex-col gap-4">
     <div class="flex items-center justify-between">
-      <h1 class="text-2xl">Documents</h1>
-      <DuiButton @click="createModal = true" color="primary">
-        <i class="mdi mdi-plus"></i> Nuevo Documento
-      </DuiButton>
+      <UiTitlePage
+        title="Documentos"
+        description="Lista de documentos disponibles en el tablero"
+      >
+        <DuiButton @click="createModal = true" color="primary">
+          <i class="mdi mdi-plus"></i> Nuevo Documento
+        </DuiButton>
+      </UiTitlePage>
+      
       <DuiDrawer v-model="createModal">
         <!-- Create Document Form goes here -->
         <Form v-model="newDocument" :request-error="requestError"/>
@@ -59,6 +64,7 @@ import Form from '../../../components/board/documents/Form.vue'
 import AttachmentOpen from '../../../components/AttachmentOpen.vue'
 import { RouterLink } from 'vue-router'
 import { formatDate } from '../../../utils/helpers'
+import UiTitlePage from '../../../components/Ui/TitlePage.vue'
 
 const loading = ref(false)
 const requestError: Ref<string | null> = ref(null)

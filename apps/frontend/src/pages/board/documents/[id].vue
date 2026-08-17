@@ -1,7 +1,9 @@
 <template>
   <div v-if="document" class="container mx-auto">
-    <h1 class="text-2xl">{{ document.name }}</h1>
-    <hr>
+    <UiPageTitle
+      :title="document.name"
+      :description="`Creado por ${document.user?.fullName} en ${document.category ?? 'Sin categoría'}`"
+    />
     <DuiCard class="my-8" size="s">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div>
@@ -54,6 +56,7 @@ import { useRoute } from 'vue-router'
 import { DuiCard, DuiBadge } from '@dronico/droni-kit'
 import { formatDate } from '../../../utils/helpers'
 import AttachmentOpen from '../../../components/AttachmentOpen.vue'
+import UiPageTitle from '../../../components/Ui/TitlePage.vue'
 
 const route = useRoute()
 
