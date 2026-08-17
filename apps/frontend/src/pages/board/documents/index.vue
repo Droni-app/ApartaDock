@@ -16,12 +16,13 @@
       { label: 'Nombre', name: 'name' },
       { label: 'Documento', name: 'document' },
       { label: 'Autor', name: 'author' },
-      { label: 'Fechas', name: 'timestamps' },
-      { label: '', name: 'actions' }
+      { label: 'Fechas', name: 'timestamps' }
     ]" :rows="documents"
       :loading="loading">
       <template #name="{ name, category }">
-        <strong>{{ name }}</strong><br>
+        <RouterLink to="/" class="block">
+          <strong>{{ name }}</strong>
+        </RouterLink>
         <DuiBadge color="primary">
           {{ category ?? 'Sin categoría' }}
         </DuiBadge>
@@ -35,8 +36,8 @@
       </template>
       <template #timestamps="{ createdAt, updatedAt }">
         <small>
-          <i class="mdi mdi-calendar-blank-outline"></i> {{ createdAt }}<br>
-          <i class="mdi mdi-calendar-blank-outline"></i> {{ updatedAt }}<br>
+          Creado: {{ formatDate(createdAt) }}<br>
+          Actualizado: {{ formatDate(updatedAt) }}<br>
         </small>
       </template>
     </DuiTable>
@@ -46,11 +47,13 @@
 import { DuiAlert, DuiButton, DuiTable, DuiDrawer, DuiBadge } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
 import { ref, onMounted } from 'vue'
+
 import type { Ref } from 'vue'
 import type { PaginatedResponse } from '../../../types/api'
 import type { Document } from '../../../types/document'
 import Form from '../../../components/board/documents/Form.vue'
 import AttachmentOpen from '../../../components/AttachmentOpen.vue'
+import { RouterLink } from 'vue-router'
 
 const loading = ref(false)
 const requestError: Ref<string | null> = ref(null)
@@ -69,6 +72,18 @@ const newDocument: Ref<Document> = ref({
   createdAt: '',
   updatedAt: ''
 })
+
+function formatDate(dateString: string) {
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true
+  }
+  return new Date(dateString).toLocaleDateString(undefined, options)
+}
 
 function fetchDocuments() {
   loading.value = true
