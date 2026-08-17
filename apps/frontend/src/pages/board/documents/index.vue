@@ -2,11 +2,15 @@
   <div class="flex flex-col gap-4">
     <div class="flex items-center justify-between">
       <h1 class="text-2xl">Documents</h1>
-      <DuiButton @click="createModal = true" color="primary">Create Document</DuiButton>
+      <DuiButton @click="createModal = true" color="primary">
+        <i class="mdi mdi-plus"></i> Nuevo Documento
+      </DuiButton>
       <DuiDrawer v-model="createModal">
         <!-- Create Document Form goes here -->
         <Form v-model="newDocument" :request-error="requestError"/>
-        <DuiButton color="primary" @click="storeDocument">Guardar</DuiButton>
+        <template #actions>
+          <DuiButton color="primary" @click="storeDocument">Guardar</DuiButton>
+        </template>
       </DuiDrawer>
     </div>
     <DuiAlert v-if="requestError" color="danger" class="mb-4">
@@ -19,8 +23,8 @@
       { label: 'Fechas', name: 'timestamps' }
     ]" :rows="documents"
       :loading="loading">
-      <template #name="{ name, category }">
-        <RouterLink to="/" class="block">
+      <template #name="{ id, name, category }">
+        <RouterLink :to="`/board/documents/${id}`" class="block">
           <strong>{{ name }}</strong>
         </RouterLink>
         <DuiBadge color="primary">
@@ -54,6 +58,7 @@ import type { Document } from '../../../types/document'
 import Form from '../../../components/board/documents/Form.vue'
 import AttachmentOpen from '../../../components/AttachmentOpen.vue'
 import { RouterLink } from 'vue-router'
+import { formatDate } from '../../../utils/helpers'
 
 const loading = ref(false)
 const requestError: Ref<string | null> = ref(null)
@@ -72,18 +77,6 @@ const newDocument: Ref<Document> = ref({
   createdAt: '',
   updatedAt: ''
 })
-
-function formatDate(dateString: string) {
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true
-  }
-  return new Date(dateString).toLocaleDateString(undefined, options)
-}
 
 function fetchDocuments() {
   loading.value = true
