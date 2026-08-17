@@ -1,23 +1,21 @@
 <template>
   <div class="flex flex-col gap-4">
-    <div class="flex items-center justify-between">
-      <UiTitlePage
-        title="Documentos"
-        description="Lista de documentos disponibles en el tablero"
-      >
-        <DuiButton @click="createModal = true" color="primary">
-          <i class="mdi mdi-plus"></i> Nuevo Documento
-        </DuiButton>
-      </UiTitlePage>
-      
-      <DuiDrawer v-model="createModal">
-        <!-- Create Document Form goes here -->
-        <Form v-model="newDocument" :request-error="requestError"/>
-        <template #actions>
-          <DuiButton color="primary" @click="storeDocument">Guardar</DuiButton>
-        </template>
-      </DuiDrawer>
-    </div>
+    <UiTitlePage
+      title="Documentos"
+      description="Lista de documentos disponibles en el tablero"
+    >
+      <DuiButton @click="createModal = true" color="primary">
+        <i class="mdi mdi-plus"></i> Nuevo Documento
+      </DuiButton>
+    </UiTitlePage>
+    
+    <DuiDrawer v-model="createModal">
+      <!-- Create Document Form goes here -->
+      <Form v-model="newDocument" :request-error="requestError"/>
+      <template #actions>
+        <DuiButton color="primary" @click="storeDocument">Guardar</DuiButton>
+      </template>
+    </DuiDrawer>
     <DuiAlert v-if="requestError" color="danger" class="mb-4">
       {{ requestError }}
     </DuiAlert>
