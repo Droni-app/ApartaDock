@@ -5,10 +5,8 @@
       <DuiButton @click="createModal = true" color="primary">Create Document</DuiButton>
       <DuiDrawer v-model="createModal">
         <!-- Create Document Form goes here -->
-        <Form v-model="newDocument" mode="create" />
-        <pre>
-          {{ newDocument }}
-        </pre>
+        <Form v-model="newDocument" :request-error="requestError"/>
+        <DuiButton color="primary" @click="storeDocument">Guardar</DuiButton>
       </DuiDrawer>
     </div>
     <DuiAlert v-if="requestError" color="danger" class="mb-4">
@@ -69,4 +67,30 @@ function fetchDocuments() {
 onMounted(() => {
   fetchDocuments()
 })
+
+function storeDocument() {
+  console.log('Storing document:', newDocument.value)
+  api.post('/board/documents', newDocument.value)
+    .then(response => {
+      documents.value.push(response.data)
+      createModal.value = false
+      // Reset newDocument
+      newDocument.value = {
+        id: 0,
+        userId: 0,
+        name: '',
+        category: '',
+        picture: '',
+        document: '',
+        content: '',
+        active: true,
+        createdAt: '',
+        updatedAt: ''
+      }
+    })
+    .catch(error => {
+      console.error('Error creating document:', error)
+      requestError.value = 'Failed to create document.'
+    })
+}
 </script>

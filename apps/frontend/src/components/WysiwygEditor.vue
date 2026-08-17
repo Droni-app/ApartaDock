@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 
-const props = withDefaults(defineProps<{ modelValue: string }>(), { modelValue: '' })
+const props = withDefaults(defineProps<{ modelValue: string | null }>(), { modelValue: '' })
 const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 
 const editorRef = ref<HTMLDivElement | null>(null)

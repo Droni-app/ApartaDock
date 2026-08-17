@@ -4,11 +4,11 @@ export interface Document {
   id: number
   userId: number
   name: string
-  category: string | null
-  picture: string | null
-  document: string | null
-  content: string | null
-  active: boolean | null
+  category: string
+  picture: string
+  document: string
+  content: string
+  active: boolean
   createdAt: string | null
   updatedAt: string | null
   user?: User | null

@@ -60,10 +60,12 @@ import type { Attachment } from '../types/attachments'
 
 const props = withDefaults(
   defineProps<{
-    modelValue: string
+    modelValue: string | null
     accept?: string
   }>(),
   {
+    modelValue: null,
+    accept: 'image/*,application/pdf',
   }
 )
 
