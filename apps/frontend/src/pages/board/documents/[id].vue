@@ -9,9 +9,14 @@
       </DuiButton>
     </UiPageTitle>
     <DuiDrawer v-model="editModal">
-      <!-- Create Document Form goes here -->
       <Form v-model="document" :request-error="requestError"/>
       <template #actions>
+        <DuiConfirmation
+          label="Eliminar"
+          check-label="Confirmar eliminación"
+          confirm-label="Eliminar"
+          @confirmed="deleteDocument"
+        />
         <DuiButton color="primary" @click="updateDocument">Guardar</DuiButton>
       </template>
     </DuiDrawer>
@@ -56,10 +61,6 @@
     <DuiCard>
       <div v-html="document.content"></div>
     </DuiCard>
-    <DuiButton color="danger" size="sm">
-      <i class="mdi mdi-trash-can-outline"></i>
-      Eliminar
-    </DuiButton>
   </div>
   
 </template>
@@ -67,14 +68,15 @@
 import { api } from '../../../services/api'
 import { ref, onMounted, type Ref } from 'vue'
 import type { Document } from '../../../types/document' 
-import { useRoute } from 'vue-router'
-import { DuiCard, DuiBadge, DuiButton, DuiDrawer } from '@dronico/droni-kit'
+import { useRoute, useRouter } from 'vue-router'
+import { DuiCard, DuiBadge, DuiButton, DuiDrawer, DuiConfirmation } from '@dronico/droni-kit'
 import { formatDate } from '../../../utils/helpers'
 import AttachmentOpen from '../../../components/AttachmentOpen.vue'
 import UiPageTitle from '../../../components/Ui/TitlePage.vue'
 import Form from '../../../components/board/documents/Form.vue'
 
 const route = useRoute()
+const router = useRouter()
 
 const document = ref<Document | null>(null)
 const editModal = ref(false)
@@ -86,11 +88,21 @@ onMounted(async () => {
 })
 
 function updateDocument() {
-  console.log('Storing document:', document.value)
   api.put(`/board/documents/${document.value!.id}`, document.value)
     .then(response => {
       editModal.value = false
       document.value = response.data
+    })
+    .catch(error => {
+      console.error('Error creating document:', error)
+      requestError.value = 'Failed to create document.'
+    })
+}
+
+function deleteDocument() {
+  api.delete(`/board/documents/${document.value!.id}`)
+    .then(_res => {
+      router.push('/board/documents')
     })
     .catch(error => {
       console.error('Error creating document:', error)
