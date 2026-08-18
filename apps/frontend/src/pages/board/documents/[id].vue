@@ -11,9 +11,6 @@
       </UiPageTitle>
       <DuiDrawer v-model="editModal">
         <Form v-model="document" />
-        <pre>
-          {{ document }}
-        </pre>
         <template #actions>
           <DuiConfirmation
             label="Eliminar"

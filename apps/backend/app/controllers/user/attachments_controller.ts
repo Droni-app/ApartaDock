@@ -8,9 +8,11 @@ export default class AttachmentsController {
   async index({ auth, request }: HttpContext) {
     const page = request.input('page', 1)
     const perPage = request.input('per_page', 10)
+    const visibility = request.input('visibility', 'private')
     const attachments = await Attachment.query()
       .where('user_id', auth.user!.id)
       .orderBy('created_at', 'desc')
+      .where('path', 'like', `${visibility}/%`)
       .paginate(page, perPage)
     return attachments
   }
@@ -18,10 +20,12 @@ export default class AttachmentsController {
     const data = await request.validateUsing(storeAttachmentValidator)
 
     // Generar ruta única por usuario y mantenerla consistente con la que luego se consulta
-    const path = `${auth.user!.id}/${data.file.size}-${string.slug(data.file.clientName)}`
+    const path = `${data.visibility ?? 'private'}/${auth.user!.id}/${data.file.size}-${string.slug(data.file.clientName)}`
 
     // store file
-    await data.file.moveToDisk(path)
+    await data.file.moveToDisk(path, {
+      visibility: data.visibility ?? 'private',
+    })
 
     const attachment = await Attachment.create({
       userId: auth.user!.id,

@@ -1,5 +1,6 @@
 <template>
   <div class="space-y-2">
+    {{ props.visibility }}
     <DuiFile
       v-model="props.modelValue"
       :accept="props.accept"
@@ -11,7 +12,11 @@
       {{ actionError }}
     </DuiAlert>
 
-    <DuiModal v-model="showBrowseModal" title="Mis archivos" size="lg" scrollable>
+    <DuiModal
+      v-model="showBrowseModal"
+      :title="`Mis archivos (${props.visibility})`"
+      size="lg"
+      scrollable>
       <DuiAlert v-if="listError" color="danger" variant="outline" class="mb-3">
         {{ listError }}
       </DuiAlert>
@@ -62,10 +67,12 @@ const props = withDefaults(
   defineProps<{
     modelValue: string | null
     accept?: string
+    visibility?: 'private' | 'public'
   }>(),
   {
     modelValue: null,
     accept: 'image/*,application/pdf',
+    visibility: 'private',
   }
 )
 
@@ -118,7 +125,11 @@ async function fetchAttachments(page = 1) {
 
   try {
     const response = await api.get<PaginatedResponse<Attachment>>('/user/attachments', {
-      params: { page, per_page: perPage.value },
+      params: {
+        page,
+        per_page: perPage.value,
+        visibility: props.visibility ?? 'private'
+      },
     })
     const payload = response.data
     const records = Array.isArray(payload.data) ? payload.data : []
@@ -142,8 +153,7 @@ function openBrowseModal() {
 }
 
 function selectAttachment(attachment: Attachment) {
-  const url = attachment.path
-  console.log('selectAttachment called with url:', url)
+  const url = props.visibility === 'public' ? attachment.url : attachment.path
   emit('update:modelValue', url)
   showBrowseModal.value = false
 }
@@ -162,6 +172,7 @@ function triggerUpload(e: File) {
     const formData = new FormData()
     formData.append('file', file)
     formData.append('name', file.name)
+    formData.append('visibility', props.visibility ?? 'private')
 
     api.post('/user/attachments', formData, {
       headers: { 'Content-Type': 'multipart/form-data' },

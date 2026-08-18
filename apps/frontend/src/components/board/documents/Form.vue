@@ -19,7 +19,7 @@
       />
     </DuiLabel>
     <DuiLabel title="Imagen asociada" help-text="Enlace a una foto o PDF de la tarjeta de propiedad.">
-      <AttachmentUrlInput v-model="props.modelValue.picture" accept="image/*" />
+      <AttachmentUrlInput v-model="props.modelValue.picture" accept="image/*" visibility="public" />
     </DuiLabel>
     <DuiLabel title="Documento" required help-text="Enlace al documento (PDF, foto, etc.).">
       <AttachmentUrlInput v-model="props.modelValue.document" accept="image/*,application/pdf" />

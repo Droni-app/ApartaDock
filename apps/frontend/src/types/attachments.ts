@@ -6,4 +6,5 @@ export interface Attachment {
   size: number
   mime: string
   createdAt: string | null
+  url: string
 }
