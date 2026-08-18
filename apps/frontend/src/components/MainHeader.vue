@@ -1,5 +1,5 @@
 <template>
-  <header class="z-10 sticky top-0 bg-slate-100 shadow-sm">
+  <header class="z-1 sticky top-0 bg-slate-100 shadow-sm">
     <DuiNavbar :items="navItems"
     underline-color="primary">
       <template #brand>

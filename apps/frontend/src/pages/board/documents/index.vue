@@ -11,14 +11,11 @@
     
     <DuiDrawer v-model="createModal">
       <!-- Create Document Form goes here -->
-      <Form v-model="newDocument" :request-error="requestError"/>
+      <Form v-model="newDocument" />
       <template #actions>
         <DuiButton color="primary" @click="storeDocument">Guardar</DuiButton>
       </template>
     </DuiDrawer>
-    <DuiAlert v-if="requestError" color="danger" class="mb-4">
-      {{ requestError }}
-    </DuiAlert>
     <DuiTable :columns="[
       { label: 'Nombre', name: 'name' },
       { label: 'Documento', name: 'document' },
@@ -51,7 +48,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { DuiAlert, DuiButton, DuiTable, DuiDrawer, DuiBadge } from '@dronico/droni-kit'
+import { DuiButton, DuiTable, DuiDrawer, DuiBadge, useToast } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
 import { ref, onMounted } from 'vue'
 
@@ -64,8 +61,8 @@ import { RouterLink } from 'vue-router'
 import { formatDate } from '../../../utils/helpers'
 import UiTitlePage from '../../../components/Ui/TitlePage.vue'
 
+const toast = useToast()
 const loading = ref(false)
-const requestError: Ref<string | null> = ref(null)
 const documents: Ref<Document[]> = ref([])
 const createModal = ref(false)
 
@@ -88,9 +85,12 @@ function fetchDocuments() {
     .then(response => {
       documents.value = response.data.data
     })
-    .catch(error => {
-      console.error('Error fetching documents:', error)
-      requestError.value = 'Failed to load documents.'
+    .catch(_error => {
+      toast.add({
+        color: 'danger',
+        title: 'Error',
+        message: 'Error al cargar documentos'
+      })
     })
     .finally(() => {
       loading.value = false
@@ -102,7 +102,6 @@ onMounted(() => {
 })
 
 function storeDocument() {
-  console.log('Storing document:', newDocument.value)
   api.post('/board/documents', newDocument.value)
     .then(response => {
       documents.value.push(response.data)
@@ -120,10 +119,18 @@ function storeDocument() {
         createdAt: '',
         updatedAt: ''
       }
+      toast.add({
+        color: 'success',
+        message: 'Documento creado exitosamente.'
+      })
+      fetchDocuments()
     })
-    .catch(error => {
-      console.error('Error creating document:', error)
-      requestError.value = 'Failed to create document.'
+    .catch(_error => {
+      toast.add({
+        color: 'danger',
+        title: 'Error',
+        message: 'Error al crear el documento.'
+      })
     })
 }
 </script>

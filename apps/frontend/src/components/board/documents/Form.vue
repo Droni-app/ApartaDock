@@ -1,8 +1,5 @@
 <template>
   <div v-if="props.modelValue" class="flex flex-col gap-3">
-    <DuiAlert v-if="requestError" color="danger" class="mb-4">
-      {{ requestError }}
-    </DuiAlert>
     <DuiLabel title="Nombre del documento" required>
       <DuiInput v-model="props.modelValue.name" label="Nombre del documento" placeholder="Ingresa el nombre del documento" />
     </DuiLabel>
@@ -32,18 +29,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import { DuiInput, DuiLabel, DuiSelect, DuiSwitch, DuiAlert } from '@dronico/droni-kit'
+import { DuiInput, DuiLabel, DuiSelect, DuiSwitch } from '@dronico/droni-kit'
 import type { Document } from '../../../types/document'
 import AttachmentUrlInput from '../../AttachmentUrlInput.vue'
 import WysiwygEditor from '../../WysiwygEditor.vue'
 
 const props = withDefaults(
   defineProps<{
-    modelValue: Document,
-    requestError?: string | null
+    modelValue: Document
   }>(),
-  {
-  }
+  {}
 )
 
 </script>
