@@ -15,8 +15,7 @@
 
       <template #actions>
         <DuiButton size="sm" color="neutral" variant="outline" @click="toggleTheme">
-          <i :class="isDark ? 'mdi mdi-weather-sunny mr-1' : 'mdi mdi-weather-night mr-1'"></i>
-          {{ isDark ? 'Modo claro' : 'Modo oscuro' }}
+          <i :class="isDark ? 'mdi mdi-weather-sunny' : 'mdi mdi-weather-night'"></i>
         </DuiButton>
         <DuiButton size="sm" color="neutral" variant="outline" to="/profile">
           <i class="mdi mdi-account-circle-outline mr-1"></i>

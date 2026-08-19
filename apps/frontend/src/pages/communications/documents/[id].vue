@@ -58,8 +58,6 @@
             alt="Imagen del documento"
             class="w-full h-auto mb-4 rounded-md shadow p-4" />
           </div>
-          
-
           <article class="prose lg:prose-xl" v-html="document.content"></article>
         </div>
       </DuiCard>
