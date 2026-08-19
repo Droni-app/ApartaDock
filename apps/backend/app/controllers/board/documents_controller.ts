@@ -12,8 +12,16 @@ export default class DocumentsController {
   async index({ request }: HttpContext) {
     const page = Number(request.input('page', 1))
     const limit = Number(request.input('limit', 20))
+    const q = request.input('q', '')
+    const category = request.input('category', '')
 
     const documents = await Document.query()
+      .if(q, (query) => {
+        query.where('name', 'like', `%${q}%`)
+      })
+      .if(category, (query) => {
+        query.where('category', category)
+      })
       .preload('user')
       .orderBy('created_at', 'desc')
       .paginate(page, limit)

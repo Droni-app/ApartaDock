@@ -32,6 +32,7 @@ router
   .as('profile')
   .use(middleware.auth())
 
+// Admin routes
 router
   .group(() => {
     router.resource('users', controllers.admin.Users).apiOnly()
@@ -45,6 +46,7 @@ router
   .as('admin')
   .use([middleware.auth(), middleware.admin()])
 
+// Board routes
 router
   .group(() => {
     router.get('parking-requests/dashboard', [controllers.board.ParkingRequests, 'dashboard'])
@@ -62,14 +64,16 @@ router
   .as('board')
   .use([middleware.auth(), middleware.board()])
 
+// User routes
 router
   .group(() => {
-    router.resource('enrollments', controllers.user.Enrollments).only(['index', 'show']).apiOnly()
+    router.resource('enrollments', controllers.user.Enrollments).only(['index', 'show'])
     router.resource('vehicles', controllers.user.Vehicles).apiOnly()
     router.resource('attachments', controllers.user.Attachments).apiOnly()
     router
       .post('attachments/download', [controllers.user.Attachments, 'download'])
       .as('attachments.download')
+    router.resource('documents', controllers.user.Documents).only(['index', 'show'])
   })
   .prefix('user')
   .as('user')
