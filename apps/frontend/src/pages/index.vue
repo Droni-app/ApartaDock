@@ -85,7 +85,8 @@ function fetchDocuments() {
   loading.value = true
   api.get<PaginatedResponse<Document>>('/user/documents', {
       params: {
-        category: 'Comunicaciones'
+        category: 'Comunicaciones',
+        perPage: 5
       }
     })
     .then(response => {
