@@ -158,9 +158,6 @@ function selectAttachment(attachment: Attachment) {
 }
 
 function triggerUpload(e: File) {
-  console.log('triggerUpload called with event:', e)
-  console.log('triggerUpload called')
-  console.log('Event target:', e.size)
   // upload file multapart form data
   if (!e) {
     actionError.value = 'No se seleccionó ningún archivo.'
@@ -177,7 +174,6 @@ function triggerUpload(e: File) {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
       .then((response) => {
-        console.log('File uploaded successfully:', response.data)
         fetchAttachments(currentPage.value)
         emit('update:modelValue', props.visibility === 'public' ? response.data.url : response.data.path)
       })
@@ -190,7 +186,6 @@ function triggerUpload(e: File) {
 }
 
 function openFile(path:string) {
-  console.log('openFile called with path:', path)
   // if  path starts with http or https, open in new tab
   if (path.startsWith('http://') || path.startsWith('https://')) {
     window.open(path, '_blank')
