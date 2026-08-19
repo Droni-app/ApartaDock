@@ -19,10 +19,10 @@
         </DuiButton>
         <DuiButton size="sm" color="neutral" variant="outline" to="/profile">
           <i class="mdi mdi-account-circle-outline mr-1"></i>
-          Mi perfil
+          Perfil
         </DuiButton>
         <DuiButton size="sm" color="danger" variant="outline" @click="signOut">
-          Cerrar sesion
+          <i class="mdi mdi-logout"></i>
         </DuiButton>
       </template>
     </DuiNavbar>
