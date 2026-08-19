@@ -14,53 +14,53 @@
       {{ error }}
     </DuiAlert>
 
-    <p v-if="loading" class="text-gray-500">Cargando...</p>
+    <p v-if="loading" class="text-gray-500 dark:text-slate-400">Cargando...</p>
 
     <DuiCard v-else-if="unit" title="Informacion de la unidad">
       <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
-          <dt class="text-xs uppercase text-gray-500">Nombre</dt>
-          <dd class="text-slate-900">{{ unit.name }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Nombre</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ unit.name }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Torre</dt>
-          <dd class="text-slate-900">{{ unit.tower }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Torre</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ unit.tower }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Apto</dt>
-          <dd class="text-slate-900">{{ unit.apto }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Apto</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ unit.apto }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Piso</dt>
-          <dd class="text-slate-900">{{ unit.floor }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Piso</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ unit.floor }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Tipologia</dt>
-          <dd class="text-slate-900">{{ unit.typology }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Tipologia</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ unit.typology }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Area construida</dt>
-          <dd class="text-slate-900">{{ unit.buildArea ?? '-' }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Area construida</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ unit.buildArea ?? '-' }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Area privada</dt>
-          <dd class="text-slate-900">{{ unit.privateArea ?? '-' }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Area privada</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ unit.privateArea ?? '-' }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Coeficiente</dt>
-          <dd class="text-slate-900">{{ unit.coefficient ?? '-' }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Coeficiente</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ unit.coefficient ?? '-' }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Estado</dt>
-          <dd class="text-slate-900">{{ unit.status }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Estado</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ unit.status }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Deuda</dt>
-          <dd :class="unit.debt > 0 ? 'text-red-600' : 'text-slate-900'">{{ formatCurrency(unit.debt) }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Deuda</dt>
+          <dd :class="unit.debt > 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'">{{ formatCurrency(unit.debt) }}</dd>
         </div>
         <div class="sm:col-span-2">
-          <dt class="text-xs uppercase text-gray-500">Notas</dt>
-          <dd class="whitespace-pre-line text-slate-900">{{ unit.notes || '-' }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Notas</dt>
+          <dd class="whitespace-pre-line text-slate-900 dark:text-slate-100">{{ unit.notes || '-' }}</dd>
         </div>
       </dl>
     </DuiCard>

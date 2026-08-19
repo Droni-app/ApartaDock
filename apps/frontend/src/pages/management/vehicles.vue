@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Vehículos</h1>
-        <p class="text-sm text-gray-500">Vehículos registrados a tu nombre.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Vehículos</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Vehículos registrados a tu nombre.</p>
       </div>
       <div class="flex gap-2">
         <DuiButton variant="outline" color="neutral" to="/management">
@@ -21,9 +21,9 @@
       {{ error }}
     </DuiAlert>
 
-    <p v-if="loading" class="text-gray-500">Cargando...</p>
+    <p v-if="loading" class="text-gray-500 dark:text-slate-400">Cargando...</p>
 
-    <p v-else-if="!vehicles.length" class="text-sm text-gray-500">
+    <p v-else-if="!vehicles.length" class="text-sm text-gray-500 dark:text-slate-400">
       No tienes vehículos registrados.
     </p>
 
@@ -34,8 +34,8 @@
             <i :class="`mdi ${vehicleTypeIcon(vehicle.vehicleType)} text-3xl`"></i>
           </div>
           <div class="flex-1">
-            <p class="text-lg font-semibold tracking-wide text-slate-900">{{ vehicle.plate ?? 'Sin placa' }}</p>
-            <p class="text-sm text-gray-500">
+            <p class="text-lg font-semibold tracking-wide text-slate-900 dark:text-slate-100">{{ vehicle.plate ?? 'Sin placa' }}</p>
+            <p class="text-sm text-gray-500 dark:text-slate-400">
               {{ vehicleTypeLabel(vehicle.vehicleType) }}
               <span v-if="vehicle.brand || vehicle.model"> - {{ vehicle.brand }} {{ vehicle.model }}</span>
               <span v-if="vehicle.color"> - {{ vehicle.color }}</span>
@@ -48,12 +48,12 @@
 
         <dl class="mt-4 grid grid-cols-2 gap-3 border-t border-gray-100 pt-4 text-sm">
           <div>
-            <dt class="text-xs uppercase text-gray-400">Propietario</dt>
-            <dd class="text-slate-900">{{ vehicle.ownerName }}</dd>
+            <dt class="text-xs uppercase text-gray-400 dark:text-slate-500">Propietario</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ vehicle.ownerName }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-400">Año</dt>
-            <dd class="text-slate-900">{{ vehicle.year }}</dd>
+            <dt class="text-xs uppercase text-gray-400 dark:text-slate-500">Año</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ vehicle.year }}</dd>
           </div>
         </dl>
 

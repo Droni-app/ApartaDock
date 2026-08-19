@@ -39,39 +39,51 @@
       </div>
     </DuiCard>
 
-    <DuiTable :columns="[
-      { label: 'Nombre', name: 'name' },
-      { label: 'Documento', name: 'document' },
-      { label: 'Autor', name: 'author' },
-      { label: 'Fechas', name: 'timestamps' }
-    ]" :rows="documents"
-      :loading="loading">
-      <template #name="{ id, name, category }">
-        <RouterLink :to="`/communications/documents/${id}`" class="block">
-          <strong>{{ name }}</strong>
+    <div v-if="loading" class="py-8 text-center text-gray-500 dark:text-slate-400">
+      Cargando documentos...
+    </div>
+
+    <div v-else-if="!documents.length" class="py-8 text-center text-gray-500 dark:text-slate-400">
+      No se encontraron documentos con los filtros aplicados.
+    </div>
+
+    <div v-else class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <DuiCard v-for="item in documents" :key="item.id" class="h-full">
+        <RouterLink :to="`/communications/documents/${item.id}`" class="block">
+          <img
+            v-if="item.picture"
+            :src="item.picture"
+            :alt="`Imagen de ${item.name}`"
+            class="mb-4 h-44 w-full rounded-lg object-cover"
+          />
+
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">{{ item.name }}</h3>
+              <DuiBadge color="primary">
+                {{ item.category ?? 'Sin categoría' }}
+              </DuiBadge>
+            </div>
+
+            <p class="text-sm text-gray-600 dark:text-slate-300">
+              {{ item.user?.fullName ?? 'Autor no disponible' }}
+              <span v-if="item.user?.email" class="block text-xs text-gray-500 dark:text-slate-400">{{ item.user.email }}</span>
+            </p>
+
+            <div class="text-xs text-gray-500 dark:text-slate-400">
+              <p>Creado: {{ renderDate(item.createdAt) }}</p>
+              <p>Actualizado: {{ renderDate(item.updatedAt) }}</p>
+            </div>
+
+            <AttachmentOpen :attachment="item.document" />
+          </div>
         </RouterLink>
-        <DuiBadge color="primary">
-          {{ category ?? 'Sin categoría' }}
-        </DuiBadge>
-      </template>
-      <template #document="{ document }">
-        <AttachmentOpen :attachment="document" />
-      </template>
-      <template #author="{ user }">
-        {{ user.fullName }}<br>
-        <small>{{ user.email }}</small>
-      </template>
-      <template #timestamps="{ createdAt, updatedAt }">
-        <small>
-          Creado: {{ formatDate(createdAt) }}<br>
-          Actualizado: {{ formatDate(updatedAt) }}<br>
-        </small>
-      </template>
-    </DuiTable>
+      </DuiCard>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-import { DuiTable, DuiBadge, DuiCard, DuiInput, DuiButton, DuiSelect, useToast } from '@dronico/droni-kit'
+import { DuiBadge, DuiCard, DuiInput, DuiButton, DuiSelect, useToast } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
 import { ref, onMounted } from 'vue'
 
@@ -110,6 +122,14 @@ function fetchDocuments() {
     .finally(() => {
       loading.value = false
     })
+}
+
+function renderDate(value: string | null) {
+  if (!value) {
+    return 'N/D'
+  }
+
+  return formatDate(value)
 }
 
 onMounted(() => {

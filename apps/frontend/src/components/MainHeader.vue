@@ -1,5 +1,5 @@
 <template>
-  <header class="z-1 sticky top-0 bg-slate-100 shadow-sm">
+  <header class="z-1 sticky top-0 bg-slate-100 dark:bg-slate-950 shadow-sm transition-colors dark:bg-slate-950">
     <DuiNavbar :items="navItems"
     underline-color="primary">
       <template #brand>
@@ -9,11 +9,15 @@
             alt="ApartaDock logo"
             class="h-8 w-8 rounded object-contain"
           />
-          <span class="text-xs leading-tight text-slate-900">Fontibón<br />Reservado</span>
+          <span class="text-xs leading-tight text-slate-900 dark:text-slate-100">Fontibón<br />Reservado</span>
         </RouterLink>
       </template>
 
       <template #actions>
+        <DuiButton size="sm" color="neutral" variant="outline" @click="toggleTheme">
+          <i :class="isDark ? 'mdi mdi-weather-sunny mr-1' : 'mdi mdi-weather-night mr-1'"></i>
+          {{ isDark ? 'Modo claro' : 'Modo oscuro' }}
+        </DuiButton>
         <DuiButton size="sm" color="neutral" variant="outline" to="/profile">
           <i class="mdi mdi-account-circle-outline mr-1"></i>
           Mi perfil
@@ -30,9 +34,11 @@ import { useRouter } from 'vue-router'
 import { DuiButton, DuiNavbar } from '@dronico/droni-kit'
 import { computed } from 'vue'
 import { getAuthUser, useAuth } from '../composables/useAuth'
+import { useTheme } from '../composables/useTheme'
 
 const router = useRouter()
 const { logout } = useAuth()
+const { isDark, toggleTheme } = useTheme()
 const isAdmin = computed(() => getAuthUser()?.role === 'admin')
 const isBoard = computed(() => ['board', 'admin'].includes(getAuthUser()?.role ?? ''))
 const isSecurity = computed(() => ['security', 'admin'].includes(getAuthUser()?.role ?? ''))

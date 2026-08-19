@@ -60,7 +60,7 @@
           </div>
           
 
-          <div v-html="document.content"></div>
+          <article class="prose lg:prose-xl" v-html="document.content"></article>
         </div>
       </DuiCard>
     </div>

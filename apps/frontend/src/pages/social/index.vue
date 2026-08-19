@@ -1,8 +1,8 @@
 <template>
   <div class="space-y-6">
     <div>
-      <h1 class="text-2xl font-semibold text-slate-900">Social</h1>
-      <p class="text-sm text-gray-500">Conéctate con tus vecinos: noticias, eventos y clasificados.</p>
+      <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Social</h1>
+      <p class="text-sm text-gray-500 dark:text-slate-400">Conéctate con tus vecinos: noticias, eventos y clasificados.</p>
     </div>
 
     <DummyPageInfo />
@@ -21,10 +21,10 @@
             <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
               <i class="mdi mdi-newspaper-variant-outline text-xl"></i>
             </div>
-            <p class="mt-3 font-medium text-slate-900">Noticias y eventos</p>
-            <p class="text-sm text-gray-500">Novedades del conjunto y actividades comunitarias.</p>
+            <p class="mt-3 font-medium text-slate-900 dark:text-slate-100">Noticias y eventos</p>
+            <p class="text-sm text-gray-500 dark:text-slate-400">Novedades del conjunto y actividades comunitarias.</p>
           </div>
-          <i class="mdi mdi-chevron-right text-2xl text-gray-400"></i>
+          <i class="mdi mdi-chevron-right text-2xl text-gray-400 dark:text-slate-500"></i>
         </div>
       </DuiCard>
 
@@ -34,10 +34,10 @@
             <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
               <i class="mdi mdi-tag-outline text-xl"></i>
             </div>
-            <p class="mt-3 font-medium text-slate-900">Clasificados</p>
-            <p class="text-sm text-gray-500">Compra, vende y ofrece servicios a tus vecinos.</p>
+            <p class="mt-3 font-medium text-slate-900 dark:text-slate-100">Clasificados</p>
+            <p class="text-sm text-gray-500 dark:text-slate-400">Compra, vende y ofrece servicios a tus vecinos.</p>
           </div>
-          <i class="mdi mdi-chevron-right text-2xl text-gray-400"></i>
+          <i class="mdi mdi-chevron-right text-2xl text-gray-400 dark:text-slate-500"></i>
         </div>
       </DuiCard>
     </div>
@@ -47,11 +47,11 @@
         <li v-for="post in feed" :key="post.title" class="flex items-start gap-3 py-3">
           <img :src="post.avatar" :alt="post.author" class="h-9 w-9 shrink-0 rounded-full object-cover" />
           <div class="min-w-0 flex-1">
-            <p class="text-sm text-slate-900">
+            <p class="text-sm text-slate-900 dark:text-slate-100">
               <span class="font-medium">{{ post.author }}</span> {{ post.action }}
             </p>
-            <p class="truncate text-sm text-gray-500">{{ post.title }}</p>
-            <p class="mt-1 text-xs text-gray-400">{{ post.date }}</p>
+            <p class="truncate text-sm text-gray-500 dark:text-slate-400">{{ post.title }}</p>
+            <p class="mt-1 text-xs text-gray-400 dark:text-slate-500">{{ post.date }}</p>
           </div>
         </li>
       </ul>

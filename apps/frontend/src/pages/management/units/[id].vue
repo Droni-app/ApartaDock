@@ -6,7 +6,7 @@
           <i class="mdi mdi-arrow-left mr-1"></i>
           Mis unidades
         </DuiButton>
-        <h1 class="mt-2 text-2xl font-semibold text-slate-900">Detalle de unidad</h1>
+        <h1 class="mt-2 text-2xl font-semibold text-slate-900 dark:text-slate-100">Detalle de unidad</h1>
       </div>
     </div>
 
@@ -14,78 +14,78 @@
       {{ error }}
     </DuiAlert>
 
-    <p v-if="loading" class="text-gray-500">Cargando...</p>
+    <p v-if="loading" class="text-gray-500 dark:text-slate-400">Cargando...</p>
 
     <div v-else-if="enrollment" class="space-y-6">
       <DuiCard title="Informacion de la unidad">
         <div class="mb-4 flex items-center justify-between">
-          <p class="text-lg font-semibold text-slate-900">Unidad {{ enrollment.unit?.name ?? '-' }}</p>
+          <p class="text-lg font-semibold text-slate-900 dark:text-slate-100">Unidad {{ enrollment.unit?.name ?? '-' }}</p>
           <DuiBadge :color="roleColor(enrollment.role)" variant="soft">{{ roleLabel(enrollment.role) }}</DuiBadge>
         </div>
 
         <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <dt class="text-xs uppercase text-gray-500">Torre</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.tower ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Torre</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.tower ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Piso</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.floor ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Piso</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.floor ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Apto</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.apto ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Apto</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.apto ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Área privada</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.privateArea ?? '-' }} m²</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Área privada</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.privateArea ?? '-' }} m²</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Área construida</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.buildArea ?? '-' }} m²</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Área construida</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.buildArea ?? '-' }} m²</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Coeficiente</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.coefficient ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Coeficiente</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.coefficient ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Estado</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.status ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Estado</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.status ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Cartera</dt>
-            <dd :class="(enrollment.unit?.debt ?? 0) > 0 ? 'text-red-600' : 'text-slate-900'">
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Cartera</dt>
+            <dd :class="(enrollment.unit?.debt ?? 0) > 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'">
               {{ formatCurrency(enrollment.unit?.debt ?? 0) }}
             </dd>
           </div>
           <div class="sm:col-span-2 lg:col-span-3">
-            <dt class="text-xs uppercase text-gray-500">Notas</dt>
-            <dd class="whitespace-pre-line text-slate-900">{{ enrollment.unit?.notes || '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Notas</dt>
+            <dd class="whitespace-pre-line text-slate-900 dark:text-slate-100">{{ enrollment.unit?.notes || '-' }}</dd>
           </div>
         </dl>
       </DuiCard>
 
       <DuiCard title="Solicitudes de parqueo" subtitle="Solicitudes asociadas a esta unidad">
-        <p v-if="!enrollment.parkingRequests.length" class="text-sm text-gray-500">
+        <p v-if="!enrollment.parkingRequests.length" class="text-sm text-gray-500 dark:text-slate-400">
           No tienes solicitudes de parqueo registradas para esta unidad.
         </p>
-        <ul v-else class="divide-y divide-gray-200 rounded-lg border border-gray-200">
+        <ul v-else class="divide-y divide-gray-200 dark:divide-slate-700 rounded-lg border border-gray-200 dark:border-slate-700">
           <li v-for="parkingRequest in enrollment.parkingRequests" :key="parkingRequest.id" class="p-4">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <div>
-                <p class="font-medium text-slate-900">
+                <p class="font-medium text-slate-900 dark:text-slate-100">
                   {{ parkingRequest.period.toUpperCase() }} {{ parkingRequest.periodYear }}
-                  <span v-if="parkingRequest.vehicle" class="text-gray-500">
+                  <span v-if="parkingRequest.vehicle" class="text-gray-500 dark:text-slate-400">
                     - {{ vehicleTypeLabel(parkingRequest.vehicle.vehicleType) }} {{ parkingRequest.vehicle.plate }}
                   </span>
                 </p>
-                <p class="text-sm text-gray-500">{{ formatDate(parkingRequest.createdAt) }}</p>
+                <p class="text-sm text-gray-500 dark:text-slate-400">{{ formatDate(parkingRequest.createdAt) }}</p>
               </div>
               <DuiBadge :color="statusColor(parkingRequest.status)" variant="soft">
                 {{ statusLabel(parkingRequest.status) }}
               </DuiBadge>
             </div>
-            <p v-if="parkingRequest.notes" class="mt-2 whitespace-pre-line text-sm text-gray-600">
+            <p v-if="parkingRequest.notes" class="mt-2 whitespace-pre-line text-sm text-gray-600 dark:text-slate-300">
               {{ parkingRequest.notes }}
             </p>
           </li>

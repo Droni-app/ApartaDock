@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Autorizaciones</h1>
-        <p class="text-sm text-gray-500">Gestiona el ingreso de visitantes y domicilios a tu unidad.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Autorizaciones</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Gestiona el ingreso de visitantes y domicilios a tu unidad.</p>
       </div>
       <div class="flex gap-2">
         <DuiButton variant="outline" color="neutral" to="/management">
@@ -30,12 +30,12 @@
       <DuiTable :columns="columns" :rows="authorizations">
         <template #visitor="row">
           <div class="flex items-center gap-2">
-            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-500">
+            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-950 text-slate-500">
               <i class="mdi mdi-account-outline"></i>
             </div>
             <div>
-              <p class="text-slate-900">{{ row.visitor }}</p>
-              <p class="text-xs text-gray-400">{{ row.document }}</p>
+              <p class="text-slate-900 dark:text-slate-100">{{ row.visitor }}</p>
+              <p class="text-xs text-gray-400 dark:text-slate-500">{{ row.document }}</p>
             </div>
           </div>
         </template>

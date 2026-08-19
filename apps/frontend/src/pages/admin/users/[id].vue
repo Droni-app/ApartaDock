@@ -18,33 +18,33 @@
       {{ error }}
     </DuiAlert>
 
-    <p v-if="loading" class="text-gray-500">Cargando...</p>
+    <p v-if="loading" class="text-gray-500 dark:text-slate-400">Cargando...</p>
 
     <DuiCard v-else-if="user" title="Informacion del usuario">
       <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
-          <dt class="text-xs uppercase text-gray-500">Nombre</dt>
-          <dd class="text-slate-900">{{ user.fullName ?? '-' }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Nombre</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ user.fullName ?? '-' }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Correo</dt>
-          <dd class="text-slate-900">{{ user.email }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Correo</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ user.email }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Tipo de documento</dt>
-          <dd class="text-slate-900">{{ user.documentType }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Tipo de documento</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ user.documentType }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Documento</dt>
-          <dd class="text-slate-900">{{ user.document ?? '-' }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Documento</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ user.document ?? '-' }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Telefono</dt>
-          <dd class="text-slate-900">{{ user.phone ?? '-' }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Telefono</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ user.phone ?? '-' }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500">Rol</dt>
-          <dd class="text-slate-900">{{ user.role }}</dd>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Rol</dt>
+          <dd class="text-slate-900 dark:text-slate-100">{{ user.role }}</dd>
         </div>
       </dl>
     </DuiCard>

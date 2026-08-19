@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Noticias y eventos</h1>
-        <p class="text-sm text-gray-500">Lo que está pasando en el conjunto residencial.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Noticias y eventos</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Lo que está pasando en el conjunto residencial.</p>
       </div>
       <DuiButton variant="outline" color="neutral" to="/social">
         <i class="mdi mdi-arrow-left mr-1"></i>
@@ -18,11 +18,11 @@
         <DuiCard v-for="post in news" :key="post.title" :image="post.image">
           <div class="flex items-center gap-2">
             <DuiBadge size="sm" color="primary" variant="soft">{{ post.category }}</DuiBadge>
-            <span class="text-xs text-gray-400">{{ post.date }}</span>
+            <span class="text-xs text-gray-400 dark:text-slate-500">{{ post.date }}</span>
           </div>
-          <p class="mt-2 text-lg font-medium text-slate-900">{{ post.title }}</p>
-          <p class="text-sm text-gray-500">{{ post.excerpt }}</p>
-          <div class="mt-3 flex items-center gap-4 text-sm text-gray-400">
+          <p class="mt-2 text-lg font-medium text-slate-900 dark:text-slate-100">{{ post.title }}</p>
+          <p class="text-sm text-gray-500 dark:text-slate-400">{{ post.excerpt }}</p>
+          <div class="mt-3 flex items-center gap-4 text-sm text-gray-400 dark:text-slate-500">
             <span><i class="mdi mdi-heart-outline mr-1"></i>{{ post.likes }}</span>
             <span><i class="mdi mdi-comment-outline mr-1"></i>{{ post.comments }}</span>
             <span class="ml-auto">{{ post.author }}</span>
@@ -38,8 +38,8 @@
               <span class="text-lg font-semibold leading-none">{{ event.day }}</span>
             </div>
             <div class="min-w-0">
-              <p class="font-medium text-slate-900">{{ event.title }}</p>
-              <p class="text-sm text-gray-500">{{ event.time }} - {{ event.location }}</p>
+              <p class="font-medium text-slate-900 dark:text-slate-100">{{ event.title }}</p>
+              <p class="text-sm text-gray-500 dark:text-slate-400">{{ event.time }} - {{ event.location }}</p>
             </div>
           </li>
         </ul>

@@ -6,13 +6,13 @@
     <Transition name="drawer-panel">
       <aside
         v-if="modelValue"
-        class="fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col bg-white shadow-xl"
+        class="fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col bg-white dark:bg-slate-900 shadow-xl"
       >
-        <div class="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-          <h2 class="text-lg font-semibold text-slate-900">{{ title }}</h2>
+        <div class="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 px-6 py-4">
+          <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">{{ title }}</h2>
           <button
             type="button"
-            class="text-gray-400 transition-colors hover:text-gray-600"
+            class="text-gray-400 dark:text-slate-500 transition-colors hover:text-gray-600 dark:text-slate-300"
             @click="close"
           >
             <i class="mdi mdi-close text-xl"></i>

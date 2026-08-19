@@ -1,8 +1,8 @@
 <template>
   <div class="space-y-6">
     <div>
-      <h1 class="text-2xl font-semibold text-slate-900">Participación</h1>
-      <p class="text-sm text-gray-500">Haz parte de las decisiones del conjunto: asambleas y encuestas.</p>
+      <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Participación</h1>
+      <p class="text-sm text-gray-500 dark:text-slate-400">Haz parte de las decisiones del conjunto: asambleas y encuestas.</p>
     </div>
 
     <DummyPageInfo />
@@ -19,10 +19,10 @@
         <div class="flex items-center justify-between">
           <div>
             <DuiBadge color="primary" variant="soft" size="sm">Encuesta activa</DuiBadge>
-            <p class="mt-2 font-medium text-slate-900">¿Apoyas la nueva zona de parqueo para bicicletas?</p>
-            <p class="text-sm text-gray-500">62% de participación - cierra en 4 días</p>
+            <p class="mt-2 font-medium text-slate-900 dark:text-slate-100">¿Apoyas la nueva zona de parqueo para bicicletas?</p>
+            <p class="text-sm text-gray-500 dark:text-slate-400">62% de participación - cierra en 4 días</p>
           </div>
-          <i class="mdi mdi-chevron-right text-2xl text-gray-400"></i>
+          <i class="mdi mdi-chevron-right text-2xl text-gray-400 dark:text-slate-500"></i>
         </div>
       </DuiCard>
 
@@ -30,10 +30,10 @@
         <div class="flex items-center justify-between">
           <div>
             <DuiBadge color="secondary" variant="soft" size="sm">Próxima asamblea</DuiBadge>
-            <p class="mt-2 font-medium text-slate-900">Asamblea ordinaria anual 2026</p>
-            <p class="text-sm text-gray-500">15 de agosto - 6:00 p.m. - Salón comunal</p>
+            <p class="mt-2 font-medium text-slate-900 dark:text-slate-100">Asamblea ordinaria anual 2026</p>
+            <p class="text-sm text-gray-500 dark:text-slate-400">15 de agosto - 6:00 p.m. - Salón comunal</p>
           </div>
-          <i class="mdi mdi-chevron-right text-2xl text-gray-400"></i>
+          <i class="mdi mdi-chevron-right text-2xl text-gray-400 dark:text-slate-500"></i>
         </div>
       </DuiCard>
     </div>
@@ -41,12 +41,12 @@
     <DuiCard title="Actividad reciente">
       <ul class="divide-y divide-gray-100">
         <li v-for="item in activity" :key="item.title" class="flex items-start gap-3 py-3">
-          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-950 text-slate-600">
             <i :class="`mdi ${item.icon}`"></i>
           </div>
           <div class="min-w-0 flex-1">
-            <p class="text-slate-900">{{ item.title }}</p>
-            <p class="text-xs text-gray-400">{{ item.date }}</p>
+            <p class="text-slate-900 dark:text-slate-100">{{ item.title }}</p>
+            <p class="text-xs text-gray-400 dark:text-slate-500">{{ item.date }}</p>
           </div>
         </li>
       </ul>

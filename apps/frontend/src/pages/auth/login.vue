@@ -33,7 +33,7 @@ async function submit() {
 </script>
 
 <template>
-  <main class="min-h-screen bg-slate-100 p-4 grid place-items-center">
+  <main class="min-h-screen bg-slate-100 dark:bg-slate-950 p-4 grid place-items-center">
     <section class="w-full max-w-md">
       <div class="mb-5 flex justify-center">
         <img src="/logo.webp" alt="Fontibon Reservado" class="h-20 w-20 rounded-xl object-contain shadow-sm" />

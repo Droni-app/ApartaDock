@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Encuestas</h1>
-        <p class="text-sm text-gray-500">Participa en las decisiones del conjunto residencial.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Encuestas</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Participa en las decisiones del conjunto residencial.</p>
       </div>
       <DuiButton variant="outline" color="neutral" to="/participation">
         <i class="mdi mdi-arrow-left mr-1"></i>
@@ -16,9 +16,9 @@
     <DuiCard>
       <div class="flex items-center justify-between">
         <DuiBadge color="primary" variant="soft">Encuesta activa</DuiBadge>
-        <span class="text-sm text-gray-400">Cierra en 4 días</span>
+        <span class="text-sm text-gray-400 dark:text-slate-500">Cierra en 4 días</span>
       </div>
-      <p class="mt-3 text-lg font-medium text-slate-900">
+      <p class="mt-3 text-lg font-medium text-slate-900 dark:text-slate-100">
         ¿Apoyas la construcción de una nueva zona de parqueo para bicicletas?
       </p>
 
@@ -27,13 +27,13 @@
           v-for="option in activeSurveyOptions"
           :key="option.label"
           type="button"
-          class="w-full rounded-lg border border-gray-200 p-3 text-left transition-colors hover:border-blue-400 hover:bg-blue-50/50"
+          class="w-full rounded-lg border border-gray-200 dark:border-slate-700 p-3 text-left transition-colors hover:border-blue-400 hover:bg-blue-50/50"
           :class="{ 'border-blue-500 bg-blue-50/60': selectedOption === option.label }"
           @click="selectedOption = option.label"
         >
           <div class="flex items-center justify-between text-sm">
-            <span class="font-medium text-slate-900">{{ option.label }}</span>
-            <span class="text-gray-500">{{ option.percentage }}%</span>
+            <span class="font-medium text-slate-900 dark:text-slate-100">{{ option.label }}</span>
+            <span class="text-gray-500 dark:text-slate-400">{{ option.percentage }}%</span>
           </div>
           <div class="mt-2 h-2 overflow-hidden rounded-full bg-gray-100">
             <div class="h-full rounded-full bg-blue-500" :style="{ width: `${option.percentage}%` }"></div>
@@ -42,7 +42,7 @@
       </div>
 
       <div class="mt-4 flex items-center justify-between">
-        <p class="text-sm text-gray-500">
+        <p class="text-sm text-gray-500 dark:text-slate-400">
           <i class="mdi mdi-account-multiple-outline mr-1"></i>
           62% de participación - 186 de 300 unidades
         </p>
@@ -55,7 +55,7 @@
       <div class="h-64">
         <Bar :data="closedSurveyChart.data" :options="chartOptions" />
       </div>
-      <p class="mt-3 text-center text-sm text-gray-500">{{ closedSurveyChart.summary }}</p>
+      <p class="mt-3 text-center text-sm text-gray-500 dark:text-slate-400">{{ closedSurveyChart.summary }}</p>
     </DuiCard>
   </div>
 </template>

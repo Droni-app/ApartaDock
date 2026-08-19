@@ -20,7 +20,7 @@
         {{ listError }}
       </DuiAlert>
 
-      <p v-if="!loading && !attachments.length" class="text-sm text-gray-500">
+      <p v-if="!loading && !attachments.length" class="text-sm text-gray-500 dark:text-slate-400">
         No tienes archivos cargados todavia.
       </p>
 
@@ -34,8 +34,8 @@
       >
         <template #name="row">
           <div class="flex items-center gap-2">
-            <i :class="`mdi ${iconForMime(row.mime)} text-lg text-gray-400`"></i>
-            <span class="text-slate-900">{{ row.name }}</span>
+            <i :class="`mdi ${iconForMime(row.mime)} text-lg text-gray-400 dark:text-slate-500`"></i>
+            <span class="text-slate-900 dark:text-slate-100">{{ row.name }}</span>
           </div>
         </template>
         <template #size="row">

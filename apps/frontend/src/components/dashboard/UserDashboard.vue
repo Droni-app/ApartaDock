@@ -14,7 +14,7 @@
     </div>
 
     <div>
-      <h2 class="mb-3 text-lg font-semibold text-slate-900">Accesos rápidos</h2>
+      <h2 class="mb-3 text-lg font-semibold text-slate-900 dark:text-slate-100">Accesos rápidos</h2>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
         <DuiCard v-for="link in quickLinks" :key="link.to" :to="link.to" class="transition-shadow hover:shadow-md">
           <div class="flex flex-col items-start gap-3">
@@ -22,8 +22,8 @@
               <i :class="`mdi ${link.icon} text-xl`"></i>
             </div>
             <div>
-              <p class="font-medium text-slate-900">{{ link.title }}</p>
-              <p class="text-sm text-gray-500">{{ link.description }}</p>
+              <p class="font-medium text-slate-900 dark:text-slate-100">{{ link.title }}</p>
+              <p class="text-sm text-gray-500 dark:text-slate-400">{{ link.description }}</p>
             </div>
           </div>
         </DuiCard>

@@ -3,7 +3,7 @@
   <div class="mb-4 flex items-center justify-between">
     <div>
       <h1 class="text-2xl">Usuarios</h1>
-      <small class="text-gray-500 block">
+      <small class="text-gray-500 dark:text-slate-400 block">
         Lista de usuarios registrados en el sistema.
       </small>
     </div>

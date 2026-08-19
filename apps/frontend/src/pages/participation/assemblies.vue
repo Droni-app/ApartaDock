@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Asambleas</h1>
-        <p class="text-sm text-gray-500">Convocatorias, orden del día y resultados de asambleas.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Asambleas</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Convocatorias, orden del día y resultados de asambleas.</p>
       </div>
       <DuiButton variant="outline" color="neutral" to="/participation">
         <i class="mdi mdi-arrow-left mr-1"></i>
@@ -17,8 +17,8 @@
       <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <DuiBadge color="secondary" variant="soft" size="sm">Próxima asamblea</DuiBadge>
-          <p class="mt-2 text-lg font-semibold text-slate-900">Asamblea ordinaria anual 2026</p>
-          <p class="text-sm text-gray-500">
+          <p class="mt-2 text-lg font-semibold text-slate-900 dark:text-slate-100">Asamblea ordinaria anual 2026</p>
+          <p class="text-sm text-gray-500 dark:text-slate-400">
             <i class="mdi mdi-calendar-outline mr-1"></i>15 de agosto de 2026, 6:00 p.m.
             <span class="mx-2">·</span>
             <i class="mdi mdi-map-marker-outline mr-1"></i>Salón comunal
@@ -38,18 +38,18 @@
         <div class="h-64">
           <Doughnut :data="quorumData" :options="quorumOptions" />
         </div>
-        <p class="mt-3 text-center text-sm text-gray-500">78% de participación - quórum decisorio alcanzado</p>
+        <p class="mt-3 text-center text-sm text-gray-500 dark:text-slate-400">78% de participación - quórum decisorio alcanzado</p>
       </DuiCard>
 
       <DuiCard title="Historial de asambleas">
         <ul class="divide-y divide-gray-100">
           <li v-for="item in history" :key="item.title" class="flex items-start gap-3 py-3">
-            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-950 text-slate-600">
               <i class="mdi mdi-file-certificate-outline"></i>
             </div>
             <div class="min-w-0 flex-1">
-              <p class="font-medium text-slate-900">{{ item.title }}</p>
-              <p class="text-sm text-gray-500">{{ item.date }} - Quórum {{ item.quorum }}</p>
+              <p class="font-medium text-slate-900 dark:text-slate-100">{{ item.title }}</p>
+              <p class="text-sm text-gray-500 dark:text-slate-400">{{ item.date }} - Quórum {{ item.quorum }}</p>
             </div>
             <DuiBadge color="neutral" variant="soft" size="sm">{{ item.type }}</DuiBadge>
           </li>

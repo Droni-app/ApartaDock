@@ -2,7 +2,7 @@
   <div class="space-y-6">
     <div>
       <h1 class="text-2xl">Imports</h1>
-      <small class="text-gray-500 block">
+      <small class="text-gray-500 dark:text-slate-400 block">
         Importacion de datos masivos desde archivos.
       </small>
     </div>
@@ -10,47 +10,47 @@
     <DuiCard title="Solicitudes de parqueo" subtitle="Importa un archivo JSON con solicitudes de parqueo.">
       <UploadForm endpoint="/admin/imports/parking-requests" @imported="handleParkingRequestsImported" />
 
-      <div v-if="parkingRequestResult" class="mt-6 space-y-4 border-t border-gray-200 pt-4">
+      <div v-if="parkingRequestResult" class="mt-6 space-y-4 border-t border-gray-200 dark:border-slate-700 pt-4">
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <div class="rounded-lg bg-slate-50 p-3 text-center">
-            <p class="text-2xl font-semibold text-slate-900">{{ parkingRequestResult.total }}</p>
-            <p class="text-xs uppercase text-gray-500">Total</p>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
+            <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ parkingRequestResult.total }}</p>
+            <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Total</p>
           </div>
-          <div class="rounded-lg bg-slate-50 p-3 text-center">
-            <p class="text-2xl font-semibold text-slate-900">{{ parkingRequestResult.processed }}</p>
-            <p class="text-xs uppercase text-gray-500">Procesados</p>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
+            <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ parkingRequestResult.processed }}</p>
+            <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Procesados</p>
           </div>
-          <div class="rounded-lg bg-slate-50 p-3 text-center">
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
             <p
               class="text-2xl font-semibold"
-              :class="parkingRequestResult.errors.length ? 'text-red-600' : 'text-slate-900'"
+              :class="parkingRequestResult.errors.length ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'"
             >
               {{ parkingRequestResult.errors.length }}
             </p>
-            <p class="text-xs uppercase text-gray-500">Errores</p>
+            <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Errores</p>
           </div>
-          <div class="rounded-lg bg-slate-50 p-3 text-center">
-            <p class="text-2xl font-semibold text-slate-900">{{ parkingRequestResult.parkingRequests.created }}</p>
-            <p class="text-xs uppercase text-gray-500">Solicitudes creadas</p>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
+            <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ parkingRequestResult.parkingRequests.created }}</p>
+            <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Solicitudes creadas</p>
           </div>
         </div>
 
         <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div>
-            <dt class="text-xs uppercase text-gray-500">Usuarios</dt>
-            <dd class="text-slate-900">
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Usuarios</dt>
+            <dd class="text-slate-900 dark:text-slate-100">
               {{ parkingRequestResult.users.created }} creados, {{ parkingRequestResult.users.updated }} actualizados
             </dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Vehiculos</dt>
-            <dd class="text-slate-900">
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Vehiculos</dt>
+            <dd class="text-slate-900 dark:text-slate-100">
               {{ parkingRequestResult.vehicles.created }} creados, {{ parkingRequestResult.vehicles.updated }} actualizados
             </dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Enrollments</dt>
-            <dd class="text-slate-900">
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Enrollments</dt>
+            <dd class="text-slate-900 dark:text-slate-100">
               {{ parkingRequestResult.enrollments.created }} creados, {{ parkingRequestResult.enrollments.updated }} actualizados
             </dd>
           </div>
@@ -63,25 +63,25 @@
     <DuiCard title="Detalles de unidades" subtitle="Importa deuda y notas de las unidades desde un archivo JSON.">
       <UploadForm endpoint="/admin/imports/units" @imported="handleUnitsImported" />
 
-      <div v-if="unitResult" class="mt-6 space-y-4 border-t border-gray-200 pt-4">
+      <div v-if="unitResult" class="mt-6 space-y-4 border-t border-gray-200 dark:border-slate-700 pt-4">
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <div class="rounded-lg bg-slate-50 p-3 text-center">
-            <p class="text-2xl font-semibold text-slate-900">{{ unitResult.total }}</p>
-            <p class="text-xs uppercase text-gray-500">Total</p>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
+            <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ unitResult.total }}</p>
+            <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Total</p>
           </div>
-          <div class="rounded-lg bg-slate-50 p-3 text-center">
-            <p class="text-2xl font-semibold text-slate-900">{{ unitResult.processed }}</p>
-            <p class="text-xs uppercase text-gray-500">Procesados</p>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
+            <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ unitResult.processed }}</p>
+            <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Procesados</p>
           </div>
-          <div class="rounded-lg bg-slate-50 p-3 text-center">
-            <p class="text-2xl font-semibold" :class="unitResult.errors.length ? 'text-red-600' : 'text-slate-900'">
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
+            <p class="text-2xl font-semibold" :class="unitResult.errors.length ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'">
               {{ unitResult.errors.length }}
             </p>
-            <p class="text-xs uppercase text-gray-500">Errores</p>
+            <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Errores</p>
           </div>
-          <div class="rounded-lg bg-slate-50 p-3 text-center">
-            <p class="text-2xl font-semibold text-slate-900">{{ unitResult.units.updated }}</p>
-            <p class="text-xs uppercase text-gray-500">Unidades actualizadas</p>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
+            <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ unitResult.units.updated }}</p>
+            <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Unidades actualizadas</p>
           </div>
         </div>
 
@@ -107,14 +107,14 @@
         {{ rejectError }}
       </DuiAlert>
 
-      <div v-if="rejectResult" class="mt-6 grid grid-cols-2 gap-3 border-t border-gray-200 pt-4 sm:grid-cols-2">
-        <div class="rounded-lg bg-slate-50 p-3 text-center">
-          <p class="text-2xl font-semibold text-slate-900">{{ formatCurrency(rejectResult.threshold) }}</p>
-          <p class="text-xs uppercase text-gray-500">Umbral aplicado</p>
+      <div v-if="rejectResult" class="mt-6 grid grid-cols-2 gap-3 border-t border-gray-200 dark:border-slate-700 pt-4 sm:grid-cols-2">
+        <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
+          <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ formatCurrency(rejectResult.threshold) }}</p>
+          <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Umbral aplicado</p>
         </div>
-        <div class="rounded-lg bg-slate-50 p-3 text-center">
-          <p class="text-2xl font-semibold text-slate-900">{{ rejectResult.updated }}</p>
-          <p class="text-xs uppercase text-gray-500">Solicitudes rechazadas</p>
+        <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 text-center">
+          <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ rejectResult.updated }}</p>
+          <p class="text-xs uppercase text-gray-500 dark:text-slate-400">Solicitudes rechazadas</p>
         </div>
       </div>
     </DuiCard>

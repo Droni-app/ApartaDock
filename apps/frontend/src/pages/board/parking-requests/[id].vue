@@ -18,17 +18,17 @@
       {{ error }}
     </DuiAlert>
 
-    <p v-if="loading" class="text-gray-500">Cargando...</p>
+    <p v-if="loading" class="text-gray-500 dark:text-slate-400">Cargando...</p>
 
     <div v-else-if="parkingRequest" class="space-y-6">
       <DuiCard title="Solicitud">
         <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <dt class="text-xs uppercase text-gray-500">Periodo</dt>
-            <dd class="text-slate-900">{{ parkingRequest.period.toUpperCase() }} {{ parkingRequest.periodYear }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Periodo</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ parkingRequest.period.toUpperCase() }} {{ parkingRequest.periodYear }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Estado</dt>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Estado</dt>
             <dd>
               <DuiBadge :color="statusColor(parkingRequest.status)" variant="soft">
                 {{ statusLabel(parkingRequest.status) }}
@@ -36,24 +36,24 @@
             </dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Autorizacion</dt>
-            <dd class="text-slate-900 break-words">{{ parkingRequest.authorization ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Autorizacion</dt>
+            <dd class="text-slate-900 dark:text-slate-100 break-words">{{ parkingRequest.authorization ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Poliza de seguro</dt>
-            <dd class="text-slate-900">{{ parkingRequest.insurancePolicy ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Poliza de seguro</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ parkingRequest.insurancePolicy ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Revision tecnico-mecanica</dt>
-            <dd class="text-slate-900">{{ parkingRequest.technicalReview ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Revision tecnico-mecanica</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ parkingRequest.technicalReview ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Creada</dt>
-            <dd class="text-slate-900">{{ formatDate(parkingRequest.createdAt) }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Creada</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ formatDate(parkingRequest.createdAt) }}</dd>
           </div>
           <div class="sm:col-span-2">
-            <dt class="text-xs uppercase text-gray-500">Notas</dt>
-            <dd class="whitespace-pre-line text-slate-900">{{ parkingRequest.notes || '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Notas</dt>
+            <dd class="whitespace-pre-line text-slate-900 dark:text-slate-100">{{ parkingRequest.notes || '-' }}</dd>
           </div>
         </dl>
       </DuiCard>
@@ -61,16 +61,16 @@
       <DuiCard title="Unidad">
         <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <dt class="text-xs uppercase text-gray-500">Nombre</dt>
-            <dd class="text-slate-900">
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Nombre</dt>
+            <dd class="text-slate-900 dark:text-slate-100">
               <RouterLink class="text-primary-600 hover:underline" :to="`/admin/units/${parkingRequest.unit?.id}`">
                 {{ parkingRequest.unit?.name ?? '-' }}
               </RouterLink>
             </dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Estado de la unidad</dt>
-            <dd class="text-slate-900">{{ parkingRequest.unit?.status ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Estado de la unidad</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ parkingRequest.unit?.status ?? '-' }}</dd>
           </div>
         </dl>
       </DuiCard>
@@ -78,20 +78,20 @@
       <DuiCard title="Usuario">
         <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <dt class="text-xs uppercase text-gray-500">Nombre</dt>
-            <dd class="text-slate-900">
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Nombre</dt>
+            <dd class="text-slate-900 dark:text-slate-100">
               <RouterLink class="text-primary-600 hover:underline" :to="`/admin/users/${parkingRequest.user?.id}`">
                 {{ parkingRequest.user?.fullName || parkingRequest.user?.email || '-' }}
               </RouterLink>
             </dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Correo</dt>
-            <dd class="text-slate-900">{{ parkingRequest.user?.email ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Correo</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ parkingRequest.user?.email ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Telefono</dt>
-            <dd class="text-slate-900">{{ parkingRequest.user?.phone ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Telefono</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ parkingRequest.user?.phone ?? '-' }}</dd>
           </div>
         </dl>
       </DuiCard>
@@ -99,24 +99,24 @@
       <DuiCard title="Vehiculo">
         <dl v-if="parkingRequest.vehicle" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <dt class="text-xs uppercase text-gray-500">Placa</dt>
-            <dd class="text-slate-900">{{ parkingRequest.vehicle.plate ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Placa</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ parkingRequest.vehicle.plate ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Tipo</dt>
-            <dd class="text-slate-900">{{ vehicleTypeLabel(parkingRequest.vehicle.vehicleType) }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Tipo</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ vehicleTypeLabel(parkingRequest.vehicle.vehicleType) }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Propietario del vehiculo</dt>
-            <dd class="text-slate-900">{{ parkingRequest.vehicle.ownerName }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Propietario del vehiculo</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ parkingRequest.vehicle.ownerName }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Es propietario</dt>
-            <dd class="text-slate-900">{{ parkingRequest.vehicle.isOwner ? 'Si' : 'No' }}</dd>
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Es propietario</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ parkingRequest.vehicle.isOwner ? 'Si' : 'No' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-500">Tarjeta de propiedad</dt>
-            <dd class="text-slate-900">
+            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Tarjeta de propiedad</dt>
+            <dd class="text-slate-900 dark:text-slate-100">
               <AttachmentOpen
                 v-if="parkingRequest.vehicle.ownerCard"
                 :attachment="parkingRequest.vehicle.ownerCard"
@@ -124,7 +124,7 @@
             </dd>
           </div>
         </dl>
-        <p v-else class="text-sm text-gray-500">Esta solicitud no tiene un vehiculo asociado.</p>
+        <p v-else class="text-sm text-gray-500 dark:text-slate-400">Esta solicitud no tiene un vehiculo asociado.</p>
       </DuiCard>
     </div>
 

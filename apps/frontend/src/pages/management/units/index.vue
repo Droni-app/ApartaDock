@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Mis unidades</h1>
-        <p class="text-sm text-gray-500">Unidades donde figuras como propietario, arrendatario o residente.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Mis unidades</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Unidades donde figuras como propietario, arrendatario o residente.</p>
       </div>
       <DuiButton variant="outline" color="neutral" to="/management">
         <i class="mdi mdi-arrow-left mr-1"></i>
@@ -15,9 +15,9 @@
       {{ error }}
     </DuiAlert>
 
-    <p v-if="loading" class="text-gray-500">Cargando...</p>
+    <p v-if="loading" class="text-gray-500 dark:text-slate-400">Cargando...</p>
 
-    <p v-else-if="!enrollments.length" class="text-sm text-gray-500">
+    <p v-else-if="!enrollments.length" class="text-sm text-gray-500 dark:text-slate-400">
       No tienes unidades asociadas a tu cuenta.
     </p>
 
@@ -29,8 +29,8 @@
               <i class="mdi mdi-door text-2xl"></i>
             </div>
             <div>
-              <p class="text-lg font-semibold text-slate-900">Unidad {{ enrollment.unit?.name ?? '-' }}</p>
-              <p class="text-sm text-gray-500">
+              <p class="text-lg font-semibold text-slate-900 dark:text-slate-100">Unidad {{ enrollment.unit?.name ?? '-' }}</p>
+              <p class="text-sm text-gray-500 dark:text-slate-400">
                 Torre {{ enrollment.unit?.tower ?? '-' }} - Piso {{ enrollment.unit?.floor ?? '-' }}
               </p>
             </div>
@@ -40,27 +40,27 @@
 
         <dl class="mt-4 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
           <div>
-            <dt class="text-xs uppercase text-gray-400">Área privada</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.privateArea ?? '-' }} m²</dd>
+            <dt class="text-xs uppercase text-gray-400 dark:text-slate-500">Área privada</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.privateArea ?? '-' }} m²</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-400">Área construida</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.buildArea ?? '-' }} m²</dd>
+            <dt class="text-xs uppercase text-gray-400 dark:text-slate-500">Área construida</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.buildArea ?? '-' }} m²</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-400">Coeficiente</dt>
-            <dd class="text-slate-900">{{ enrollment.unit?.coefficient ?? '-' }}</dd>
+            <dt class="text-xs uppercase text-gray-400 dark:text-slate-500">Coeficiente</dt>
+            <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.coefficient ?? '-' }}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase text-gray-400">Cartera</dt>
-            <dd :class="(enrollment.unit?.debt ?? 0) > 0 ? 'text-red-600' : 'text-slate-900'">
+            <dt class="text-xs uppercase text-gray-400 dark:text-slate-500">Cartera</dt>
+            <dd :class="(enrollment.unit?.debt ?? 0) > 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'">
               {{ formatCurrency(enrollment.unit?.debt ?? 0) }}
             </dd>
           </div>
         </dl>
 
         <div class="mt-4 flex items-center justify-between border-t border-gray-100 pt-4">
-          <div class="flex items-center gap-2 text-sm text-gray-500">
+          <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-slate-400">
             <i class="mdi mdi-information-outline"></i>
             Estado: {{ enrollment.unit?.status ?? '-' }}
           </div>

@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Administración</h1>
-        <p class="text-sm text-gray-500">Comunicados, circulares y actas publicadas por la administración.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Administración</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Comunicados, circulares y actas publicadas por la administración.</p>
       </div>
       <DuiButton variant="outline" color="neutral" to="/communications">
         <i class="mdi mdi-arrow-left mr-1"></i>
@@ -29,12 +29,12 @@
           </div>
           <div class="min-w-0 flex-1">
             <div class="flex flex-wrap items-center gap-2">
-              <p class="font-medium text-slate-900">{{ item.title }}</p>
+              <p class="font-medium text-slate-900 dark:text-slate-100">{{ item.title }}</p>
               <DuiBadge size="sm" variant="soft" :color="categoryStyles[item.category].badge">{{ item.category }}</DuiBadge>
               <DuiBadge v-if="!item.read" size="sm" color="danger">Nuevo</DuiBadge>
             </div>
-            <p class="mt-1 text-sm text-gray-500">{{ item.excerpt }}</p>
-            <div class="mt-2 flex items-center gap-3 text-xs text-gray-400">
+            <p class="mt-1 text-sm text-gray-500 dark:text-slate-400">{{ item.excerpt }}</p>
+            <div class="mt-2 flex items-center gap-3 text-xs text-gray-400 dark:text-slate-500">
               <span><i class="mdi mdi-calendar-outline mr-1"></i>{{ item.date }}</span>
               <span><i class="mdi mdi-account-outline mr-1"></i>{{ item.author }}</span>
             </div>

@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Notificaciones</h1>
-        <p class="text-sm text-gray-500">Alertas personales sobre tu unidad y el conjunto.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Notificaciones</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Alertas personales sobre tu unidad y el conjunto.</p>
       </div>
       <DuiButton variant="outline" color="neutral" to="/communications">
         <i class="mdi mdi-arrow-left mr-1"></i>
@@ -21,9 +21,9 @@
               <i :class="`mdi ${typeStyles[item.type].icon}`" :style="{ color: typeStyles[item.type].color }"></i>
             </div>
             <div class="min-w-0 flex-1">
-              <p class="font-medium text-slate-900">{{ item.title }}</p>
-              <p class="text-sm text-gray-500">{{ item.description }}</p>
-              <p class="mt-1 text-xs text-gray-400">{{ item.date }}</p>
+              <p class="font-medium text-slate-900 dark:text-slate-100">{{ item.title }}</p>
+              <p class="text-sm text-gray-500 dark:text-slate-400">{{ item.description }}</p>
+              <p class="mt-1 text-xs text-gray-400 dark:text-slate-500">{{ item.date }}</p>
             </div>
             <span v-if="!item.read" class="mt-1 h-2 w-2 shrink-0 rounded-full bg-blue-500"></span>
           </li>
@@ -54,7 +54,7 @@ const typeStyles: Record<NotificationType, { icon: string; bg: string; color: st
   package: { icon: 'mdi-package-variant-closed', bg: 'bg-blue-50', color: '#2a78d6' },
   maintenance: { icon: 'mdi-wrench-outline', bg: 'bg-amber-50', color: '#eda100' },
   security: { icon: 'mdi-shield-alert-outline', bg: 'bg-violet-50', color: '#4a3aa7' },
-  general: { icon: 'mdi-information-outline', bg: 'bg-slate-100', color: '#52514e' },
+  general: { icon: 'mdi-information-outline', bg: 'bg-slate-100 dark:bg-slate-950', color: '#52514e' },
 }
 
 const notifications: Array<{

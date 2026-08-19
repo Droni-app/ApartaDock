@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Estado de cuenta</h1>
-        <p class="text-sm text-gray-500">Unidad 101 - Torre 3</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Estado de cuenta</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Unidad 101 - Torre 3</p>
       </div>
       <DuiButton variant="outline" color="neutral" to="/management">
         <i class="mdi mdi-arrow-left mr-1"></i>
@@ -34,11 +34,11 @@
               :class="`mdi ${row.movementType === 'Pago' ? 'mdi-cash-check' : 'mdi-file-document-outline'} text-lg`"
               :style="{ color: row.movementType === 'Pago' ? '#0ca30c' : '#52514e' }"
             ></i>
-            <span class="text-slate-900">{{ row.concept }}</span>
+            <span class="text-slate-900 dark:text-slate-100">{{ row.concept }}</span>
           </div>
         </template>
         <template #amount="row">
-          <span :class="row.movementType === 'Pago' ? 'text-emerald-600' : 'text-slate-900'">
+          <span :class="row.movementType === 'Pago' ? 'text-emerald-600' : 'text-slate-900 dark:text-slate-100'">
             {{ row.movementType === 'Pago' ? '-' : '' }}{{ row.amount }}
           </span>
         </template>

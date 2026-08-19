@@ -2,9 +2,9 @@
   <DuiCard>
     <div class="flex flex-wrap items-center justify-between gap-4">
       <div>
-        <p class="text-sm text-gray-500">{{ timeGreeting }}</p>
-        <h1 class="text-2xl font-semibold text-slate-900">{{ name }}</h1>
-        <p class="text-sm text-gray-500">{{ roleMeta.greeting }}</p>
+        <p class="text-sm text-gray-500 dark:text-slate-400">{{ timeGreeting }}</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ name }}</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">{{ roleMeta.greeting }}</p>
       </div>
 
       <DuiBadge :color="roleMeta.color" variant="soft" size="lg">

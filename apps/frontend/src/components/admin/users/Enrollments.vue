@@ -1,28 +1,28 @@
 <template>
   <DuiCard>
     <div class="mb-4 flex items-center justify-between">
-      <h2 class="text-lg font-semibold text-slate-900">Unidades inscritas</h2>
+      <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Unidades inscritas</h2>
       <DuiButton size="sm" color="primary" @click="openDrawer">
         <i class="mdi mdi-home-plus-outline mr-1"></i>
         Agregar unidad
       </DuiButton>
     </div>
 
-    <p v-if="!localEnrollments.length" class="text-sm text-gray-500">
+    <p v-if="!localEnrollments.length" class="text-sm text-gray-500 dark:text-slate-400">
       Este usuario no tiene unidades inscritas.
     </p>
 
-    <ul v-else class="divide-y divide-gray-200 rounded-lg border border-gray-200">
+    <ul v-else class="divide-y divide-gray-200 dark:divide-slate-700 rounded-lg border border-gray-200 dark:border-slate-700">
       <li
         v-for="enrollment in localEnrollments"
         :key="enrollment.id"
         class="flex items-center justify-between px-4 py-3"
       >
         <div>
-          <p class="font-medium text-slate-900">
+          <p class="font-medium text-slate-900 dark:text-slate-100">
             {{ enrollment.unit?.name ?? 'Unidad eliminada' }}
           </p>
-          <p v-if="enrollment.unit" class="text-sm text-gray-500">
+          <p v-if="enrollment.unit" class="text-sm text-gray-500 dark:text-slate-400">
             Torre {{ enrollment.unit.tower }} - Apto {{ enrollment.unit.apto }}
           </p>
         </div>
@@ -55,20 +55,20 @@
             {{ searchError }}
           </DuiAlert>
 
-          <p v-if="searching" class="text-sm text-gray-500">Buscando...</p>
-          <p v-else-if="searched && !searchResults.length" class="text-sm text-gray-500">
+          <p v-if="searching" class="text-sm text-gray-500 dark:text-slate-400">Buscando...</p>
+          <p v-else-if="searched && !searchResults.length" class="text-sm text-gray-500 dark:text-slate-400">
             No se encontraron unidades.
           </p>
 
-          <ul v-if="searchResults.length" class="divide-y divide-gray-200 rounded-lg border border-gray-200">
+          <ul v-if="searchResults.length" class="divide-y divide-gray-200 dark:divide-slate-700 rounded-lg border border-gray-200 dark:border-slate-700">
             <li
               v-for="unit in searchResults"
               :key="unit.id"
               class="flex items-center justify-between px-4 py-3"
             >
               <div>
-                <p class="font-medium text-slate-900">{{ unit.name }}</p>
-                <p class="text-sm text-gray-500">Torre {{ unit.tower }} - Apto {{ unit.apto }}</p>
+                <p class="font-medium text-slate-900 dark:text-slate-100">{{ unit.name }}</p>
+                <p class="text-sm text-gray-500 dark:text-slate-400">Torre {{ unit.tower }} - Apto {{ unit.apto }}</p>
               </div>
               <DuiButton size="sm" variant="outline" @click="selectUnit(unit)">
                 Seleccionar
@@ -78,10 +78,10 @@
         </template>
 
         <template v-else>
-          <div class="flex items-center justify-between rounded-lg bg-slate-50 p-4">
+          <div class="flex items-center justify-between rounded-lg bg-slate-50 dark:bg-slate-800/60 p-4">
             <div>
-              <p class="font-medium text-slate-900">{{ selectedUnit.name }}</p>
-              <p class="text-sm text-gray-500">
+              <p class="font-medium text-slate-900 dark:text-slate-100">{{ selectedUnit.name }}</p>
+              <p class="text-sm text-gray-500 dark:text-slate-400">
                 Torre {{ selectedUnit.tower }} - Apto {{ selectedUnit.apto }}
               </p>
             </div>

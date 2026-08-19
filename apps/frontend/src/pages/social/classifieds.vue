@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Clasificados</h1>
-        <p class="text-sm text-gray-500">Compra, vende y ofrece servicios a tus vecinos.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Clasificados</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Compra, vende y ofrece servicios a tus vecinos.</p>
       </div>
       <div class="flex gap-2">
         <DuiButton variant="outline" color="neutral" to="/social">
@@ -24,11 +24,11 @@
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <DuiCard v-for="ad in filteredAds" :key="ad.title" :image="ad.image">
         <div class="flex items-start justify-between gap-2">
-          <p class="font-medium text-slate-900">{{ ad.title }}</p>
+          <p class="font-medium text-slate-900 dark:text-slate-100">{{ ad.title }}</p>
           <DuiBadge size="sm" color="success" variant="soft">{{ ad.price }}</DuiBadge>
         </div>
-        <p class="mt-1 text-sm text-gray-500">{{ ad.description }}</p>
-        <div class="mt-3 flex items-center justify-between border-t border-gray-100 pt-3 text-xs text-gray-400">
+        <p class="mt-1 text-sm text-gray-500 dark:text-slate-400">{{ ad.description }}</p>
+        <div class="mt-3 flex items-center justify-between border-t border-gray-100 pt-3 text-xs text-gray-400 dark:text-slate-500">
           <span><i class="mdi mdi-account-outline mr-1"></i>{{ ad.seller }}</span>
           <span>{{ ad.date }}</span>
         </div>

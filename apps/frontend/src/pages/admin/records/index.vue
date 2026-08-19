@@ -1,7 +1,7 @@
 <template>
  <div>
   <h1 class="text-2xl">Logs</h1>
-  <small class="text-gray-500 mb-4 block">
+  <small class="text-gray-500 dark:text-slate-400 mb-4 block">
     Registro de acciones (POST, PUT, PATCH, DELETE) realizadas en el sistema.
   </small>
 
@@ -42,7 +42,7 @@
       <DuiBadge :color="methodColor(row.method)" variant="soft">{{ row.method }}</DuiBadge>
     </template>
     <template #payload="row">
-      <span class="block max-w-xs truncate text-gray-500" :title="row.payload ?? ''">{{ row.payload ?? '-' }}</span>
+      <span class="block max-w-xs truncate text-gray-500 dark:text-slate-400" :title="row.payload ?? ''">{{ row.payload ?? '-' }}</span>
     </template>
   </DuiTable>
  </div>

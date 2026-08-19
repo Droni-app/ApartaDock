@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Comunicaciones</h1>
-        <p class="text-sm text-gray-500">
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Comunicaciones</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">
           Todo lo que la administración comparte con la comunidad, en un solo lugar.
         </p>
       </div>
@@ -34,8 +34,8 @@
             <i :class="`mdi ${link.icon} text-xl`"></i>
           </div>
           <div>
-            <p class="font-medium text-slate-900">{{ link.title }}</p>
-            <p class="text-sm text-gray-500">{{ link.description }}</p>
+            <p class="font-medium text-slate-900 dark:text-slate-100">{{ link.title }}</p>
+            <p class="text-sm text-gray-500 dark:text-slate-400">{{ link.description }}</p>
           </div>
         </div>
       </DuiCard>
@@ -44,17 +44,17 @@
     <DuiCard title="Últimos comunicados" subtitle="Publicados por la administración">
       <ul class="divide-y divide-gray-100">
         <li v-for="item in recentAnnouncements" :key="item.title" class="flex items-start gap-3 py-3">
-          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-950 text-slate-600">
             <i :class="`mdi ${item.icon}`"></i>
           </div>
           <div class="min-w-0 flex-1">
             <div class="flex flex-wrap items-center gap-2">
-              <p class="font-medium text-slate-900">{{ item.title }}</p>
+              <p class="font-medium text-slate-900 dark:text-slate-100">{{ item.title }}</p>
               <DuiBadge size="sm" :color="item.badgeColor" variant="soft">{{ item.category }}</DuiBadge>
             </div>
-            <p class="truncate text-sm text-gray-500">{{ item.excerpt }}</p>
+            <p class="truncate text-sm text-gray-500 dark:text-slate-400">{{ item.excerpt }}</p>
           </div>
-          <span class="shrink-0 text-xs text-gray-400">{{ item.date }}</span>
+          <span class="shrink-0 text-xs text-gray-400 dark:text-slate-500">{{ item.date }}</span>
         </li>
       </ul>
     </DuiCard>

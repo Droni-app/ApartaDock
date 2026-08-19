@@ -1,7 +1,7 @@
 <template>
  <div>
   <h1 class="text-2xl">Unidades</h1>
-  <small class="text-gray-500 mb-4 block">
+  <small class="text-gray-500 dark:text-slate-400 mb-4 block">
     Lista de unidades registradas en el sistema.
   </small>
   <DuiAlert v-if="error" color="danger" variant="outline">
@@ -25,10 +25,10 @@
     @paginate="handlePageChange"
   >
     <template #debt="row">
-      <span :class="row.debt > 0 ? 'text-red-600' : 'text-slate-900'">{{ formatCurrency(row.debt) }}</span>
+      <span :class="row.debt > 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'">{{ formatCurrency(row.debt) }}</span>
     </template>
     <template #notes="row">
-      <span class="line-clamp-2 max-w-xs text-gray-500">{{ row.notes ?? '-' }}</span>
+      <span class="line-clamp-2 max-w-xs text-gray-500 dark:text-slate-400">{{ row.notes ?? '-' }}</span>
     </template>
     <template #actions="row">
       <DuiButton size="sm" variant="outline" :to="`/admin/units/${row.id}`">

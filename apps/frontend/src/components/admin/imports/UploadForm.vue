@@ -5,7 +5,7 @@
         ref="fileInputRef"
         type="file"
         accept=".json,application/json"
-        class="block w-full cursor-pointer rounded-lg border border-gray-300 text-sm text-slate-700 file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-slate-100 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-200"
+        class="block w-full cursor-pointer rounded-lg border border-gray-300 dark:border-slate-600 text-sm text-slate-700 file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-slate-100 dark:bg-slate-950 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-200"
         @change="handleFileChange"
       />
     </DuiLabel>

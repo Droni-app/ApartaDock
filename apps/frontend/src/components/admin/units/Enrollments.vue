@@ -1,28 +1,28 @@
 <template>
   <DuiCard>
     <div class="mb-4 flex items-center justify-between">
-      <h2 class="text-lg font-semibold text-slate-900">Usuarios inscritos</h2>
+      <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Usuarios inscritos</h2>
       <DuiButton size="sm" color="primary" @click="openDrawer">
         <i class="mdi mdi-account-plus-outline mr-1"></i>
         Agregar usuario
       </DuiButton>
     </div>
 
-    <p v-if="!localEnrollments.length" class="text-sm text-gray-500">
+    <p v-if="!localEnrollments.length" class="text-sm text-gray-500 dark:text-slate-400">
       Esta unidad no tiene usuarios registrados.
     </p>
 
-    <ul v-else class="divide-y divide-gray-200 rounded-lg border border-gray-200">
+    <ul v-else class="divide-y divide-gray-200 dark:divide-slate-700 rounded-lg border border-gray-200 dark:border-slate-700">
       <li
         v-for="enrollment in localEnrollments"
         :key="enrollment.id"
         class="flex items-center justify-between px-4 py-3"
       >
         <div>
-          <p class="font-medium text-slate-900">
+          <p class="font-medium text-slate-900 dark:text-slate-100">
             {{ enrollment.user?.fullName || enrollment.user?.email || 'Usuario eliminado' }}
           </p>
-          <p v-if="enrollment.user?.email" class="text-sm text-gray-500">
+          <p v-if="enrollment.user?.email" class="text-sm text-gray-500 dark:text-slate-400">
             {{ enrollment.user.email }}
           </p>
         </div>
@@ -59,20 +59,20 @@
             {{ searchError }}
           </DuiAlert>
 
-          <p v-if="searching" class="text-sm text-gray-500">Buscando...</p>
-          <p v-else-if="searched && !searchResults.length" class="text-sm text-gray-500">
+          <p v-if="searching" class="text-sm text-gray-500 dark:text-slate-400">Buscando...</p>
+          <p v-else-if="searched && !searchResults.length" class="text-sm text-gray-500 dark:text-slate-400">
             No se encontraron usuarios.
           </p>
 
-          <ul v-if="searchResults.length" class="divide-y divide-gray-200 rounded-lg border border-gray-200">
+          <ul v-if="searchResults.length" class="divide-y divide-gray-200 dark:divide-slate-700 rounded-lg border border-gray-200 dark:border-slate-700">
             <li
               v-for="user in searchResults"
               :key="user.id"
               class="flex items-center justify-between px-4 py-3"
             >
               <div>
-                <p class="font-medium text-slate-900">{{ user.fullName || user.email }}</p>
-                <p class="text-sm text-gray-500">{{ user.email }}</p>
+                <p class="font-medium text-slate-900 dark:text-slate-100">{{ user.fullName || user.email }}</p>
+                <p class="text-sm text-gray-500 dark:text-slate-400">{{ user.email }}</p>
               </div>
               <DuiButton size="sm" variant="outline" @click="selectUser(user)">
                 Seleccionar
@@ -82,12 +82,12 @@
         </template>
 
         <template v-else>
-          <div class="flex items-center justify-between rounded-lg bg-slate-50 p-4">
+          <div class="flex items-center justify-between rounded-lg bg-slate-50 dark:bg-slate-800/60 p-4">
             <div>
-              <p class="font-medium text-slate-900">
+              <p class="font-medium text-slate-900 dark:text-slate-100">
                 {{ selectedUser.fullName || selectedUser.email }}
               </p>
-              <p class="text-sm text-gray-500">{{ selectedUser.email }}</p>
+              <p class="text-sm text-gray-500 dark:text-slate-400">{{ selectedUser.email }}</p>
             </div>
             <DuiButton size="sm" variant="ghost" color="neutral" @click="selectedUser = null">
               Cambiar

@@ -1,12 +1,12 @@
 <template>
-  <div class="rounded-lg border border-gray-300 focus-within:border-blue-400">
-    <div class="flex flex-wrap items-center gap-0.5 border-b border-gray-200 bg-slate-50 p-1">
+  <div class="rounded-lg border border-gray-300 dark:border-slate-600 focus-within:border-blue-400">
+    <div class="flex flex-wrap items-center gap-0.5 border-b border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 p-1">
       <button
         v-for="action in actions"
         :key="action.command"
         type="button"
         tabindex="-1"
-        class="flex h-8 w-8 items-center justify-center rounded text-gray-600 hover:bg-slate-200"
+        class="flex h-8 w-8 items-center justify-center rounded text-gray-600 dark:text-slate-300 hover:bg-slate-200"
         :title="action.title"
         @mousedown.prevent="exec(action.command, action.value)"
       >
@@ -15,7 +15,7 @@
     </div>
     <div
       ref="editorRef"
-      class="min-h-[10rem] max-h-96 overflow-y-auto p-3 text-sm text-slate-900 focus:outline-none [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5"
+      class="min-h-[10rem] max-h-96 overflow-y-auto p-3 text-sm text-slate-900 dark:text-slate-100 focus:outline-none [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5"
       contenteditable="true"
       @input="handleInput"
       @paste="handlePaste"

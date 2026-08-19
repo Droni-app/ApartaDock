@@ -9,7 +9,7 @@
             <p class="text-sm font-medium text-pink-800 text-shadow-2xs text-shadow-white">
               Bienvenido a ApartaDock
             </p>
-            <h1 class="mt-1 text-3xl font-semibold text-slate-900 text-shadow-2xs text-shadow-white">
+            <h1 class="mt-1 text-3xl font-semibold text-slate-900 dark:text-slate-100 text-shadow-2xs text-shadow-white">
               Fontibón Reservado
             </h1>
           </div>
@@ -20,10 +20,10 @@
         <DuiAlert v-for="document in documents" :key="document.id" color="primary">
           <RouterLink
             :to="`/communications/documents/${document.id}`"
-            class="font-medium text-slate-900 hover:underline">
+            class="font-medium text-slate-900 dark:text-slate-100 hover:underline">
             {{ document.name }}
           </RouterLink>
-          <p class="text-sm text-gray-500">{{ document.category }} | {{ formatDate(String(document.createdAt)) }}</p>
+          <p class="text-sm text-gray-500 dark:text-slate-400">{{ document.category }} | {{ formatDate(String(document.createdAt)) }}</p>
         </DuiAlert>
       </DuiCard>
     </div>

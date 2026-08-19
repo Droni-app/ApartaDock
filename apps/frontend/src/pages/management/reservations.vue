@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Reservas</h1>
-        <p class="text-sm text-gray-500">Reserva las zonas comunes del conjunto.</p>
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Reservas</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400">Reserva las zonas comunes del conjunto.</p>
       </div>
       <DuiButton variant="outline" color="neutral" to="/management">
         <i class="mdi mdi-arrow-left mr-1"></i>
@@ -25,9 +25,9 @@
             {{ space.available ? 'Disponible' : 'Ocupado hoy' }}
           </DuiBadge>
         </div>
-        <p class="mt-3 font-medium text-slate-900">{{ space.name }}</p>
-        <p class="text-sm text-gray-500">{{ space.description }}</p>
-        <p class="mt-2 text-xs text-gray-400">
+        <p class="mt-3 font-medium text-slate-900 dark:text-slate-100">{{ space.name }}</p>
+        <p class="text-sm text-gray-500 dark:text-slate-400">{{ space.description }}</p>
+        <p class="mt-2 text-xs text-gray-400 dark:text-slate-500">
           <i class="mdi mdi-clock-outline mr-1"></i>{{ space.hours }}
         </p>
         <DuiButton class="mt-4" size="sm" color="primary" block>Reservar</DuiButton>
