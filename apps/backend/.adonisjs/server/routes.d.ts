@@ -47,6 +47,8 @@ export type ScannedRoutes = {
     'user.attachments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.attachments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.attachments.download': { paramsTuple?: []; params?: {} }
+    'user.documents.index': { paramsTuple?: []; params?: {} }
+    'user.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -68,6 +70,8 @@ export type ScannedRoutes = {
     'user.vehicles.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.attachments.index': { paramsTuple?: []; params?: {} }
     'user.attachments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.documents.index': { paramsTuple?: []; params?: {} }
+    'user.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -89,6 +93,8 @@ export type ScannedRoutes = {
     'user.vehicles.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.attachments.index': { paramsTuple?: []; params?: {} }
     'user.attachments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.documents.index': { paramsTuple?: []; params?: {} }
+    'user.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }

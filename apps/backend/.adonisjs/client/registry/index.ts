@@ -264,6 +264,18 @@ const routes = {
     tokens: [{"old":"/user/attachments/download","type":0,"val":"user","end":""},{"old":"/user/attachments/download","type":0,"val":"attachments","end":""},{"old":"/user/attachments/download","type":0,"val":"download","end":""}],
     types: placeholder as Registry['user.attachments.download']['types'],
   },
+  'user.documents.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/documents',
+    tokens: [{"old":"/user/documents","type":0,"val":"user","end":""},{"old":"/user/documents","type":0,"val":"documents","end":""}],
+    types: placeholder as Registry['user.documents.index']['types'],
+  },
+  'user.documents.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/documents/:id',
+    tokens: [{"old":"/user/documents/:id","type":0,"val":"user","end":""},{"old":"/user/documents/:id","type":0,"val":"documents","end":""},{"old":"/user/documents/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.documents.show']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

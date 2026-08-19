@@ -80,5 +80,9 @@ export interface ApiDefinition {
       destroy: typeof routes['user.attachments.destroy']
       download: typeof routes['user.attachments.download']
     }
+    documents: {
+      index: typeof routes['user.documents.index']
+      show: typeof routes['user.documents.show']
+    }
   }
 }

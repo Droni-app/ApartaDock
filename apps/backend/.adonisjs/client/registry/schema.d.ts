@@ -523,4 +523,28 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/attachments_controller').default['download']>>>
     }
   }
+  'user.documents.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/documents'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/documents_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/documents_controller').default['index']>>>
+    }
+  }
+  'user.documents.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/documents/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/documents_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/documents_controller').default['show']>>>
+    }
+  }
 }
