@@ -1,15 +1,9 @@
 <template>
   <div class="space-y-6">
-    <div class="flex flex-wrap items-center justify-between gap-3">
-      <div>
-        <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Mis unidades</h1>
-        <p class="text-sm text-gray-500 dark:text-slate-400">Unidades donde figuras como propietario, arrendatario o residente.</p>
-      </div>
-      <DuiButton variant="outline" color="neutral" to="/management">
-        <i class="mdi mdi-arrow-left mr-1"></i>
-        Gestión
-      </DuiButton>
-    </div>
+    <UiTitlePage
+      title="Mis unidades"
+      description="Unidades donde figuras como propietario, arrendatario o residente."
+    />
 
     <DuiAlert v-if="error" color="danger" variant="outline">
       {{ error }}
@@ -80,6 +74,7 @@ import { DuiAlert, DuiBadge, DuiButton, DuiCard } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
 import type { ApiErrorResponse } from '../../../types/api'
 import type { Enrollment } from '../../../types/enrollments'
+import UiTitlePage from '../../../components/Ui/TitlePage.vue'
 
 const enrollments = ref<Enrollment[]>([])
 const loading = ref(false)

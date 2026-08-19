@@ -179,7 +179,7 @@ function triggerUpload(e: File) {
       .then((response) => {
         console.log('File uploaded successfully:', response.data)
         fetchAttachments(currentPage.value)
-        emit('update:modelValue', response.data.path)
+        emit('update:modelValue', props.visibility === 'public' ? response.data.url : response.data.path)
       })
       .catch((err) => {
         actionError.value = extractErrorMessage(err, 'Error inesperado al subir el archivo.')

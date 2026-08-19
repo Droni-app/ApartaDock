@@ -3,8 +3,7 @@
     <UiTitlePage
       title="Documentos"
       description="Lista de documentos disponibles."
-    >
-    </UiTitlePage>
+    />
 
     <DuiCard>
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

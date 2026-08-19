@@ -4,8 +4,7 @@
       <UiTitlePage
         :title="document.name"
         :description="`Creado por ${document.user?.fullName} en ${document.category ?? 'Sin categoría'}`"
-      >
-      </UiTitlePage>
+      />
       <DuiCard class="my-8" size="s">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div>

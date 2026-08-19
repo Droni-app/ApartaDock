@@ -1,14 +1,9 @@
 <template>
   <div class="space-y-6">
-    <div class="flex flex-wrap items-center justify-between gap-3">
-      <div>
-        <DuiButton variant="ghost" color="neutral" size="sm" to="/management/units">
-          <i class="mdi mdi-arrow-left mr-1"></i>
-          Mis unidades
-        </DuiButton>
-        <h1 class="mt-2 text-2xl font-semibold text-slate-900 dark:text-slate-100">Detalle de unidad</h1>
-      </div>
-    </div>
+    <UiTitlePage
+      title="Detalle de unidad"
+      description="Unidades donde figuras como propietario, arrendatario o residente."
+    />
 
     <DuiAlert v-if="error" color="danger" variant="outline">
       {{ error }}
@@ -99,10 +94,11 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { AxiosError } from 'axios'
-import { DuiAlert, DuiBadge, DuiButton, DuiCard } from '@dronico/droni-kit'
+import { DuiAlert, DuiBadge, DuiCard } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
 import type { ApiErrorResponse } from '../../../types/api'
 import type { EnrollmentDetail } from '../../../types/enrollments'
+import UiTitlePage from '../../../components/Ui/TitlePage.vue'
 
 const route = useRoute()
 const enrollmentId = route.params.id as string
