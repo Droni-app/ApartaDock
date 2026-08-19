@@ -15,7 +15,8 @@ export default class UsersController {
 
     if (search) {
       query.where((builder) => {
-        builder.whereILike('fullName', `%${search}%`)
+        builder
+          .whereILike('fullName', `%${search}%`)
           .orWhereILike('email', `%${search}%`)
           .orWhereILike('document', `%${search}%`)
       })
@@ -54,7 +55,9 @@ export default class UsersController {
     const user = await User.query()
       .preload('enrollments', (enrollmentsQuery) => {
         enrollmentsQuery.preload('unit')
-      }).where('id', params.id).firstOrFail()
+      })
+      .where('id', params.id)
+      .firstOrFail()
     return user
   }
 

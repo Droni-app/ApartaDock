@@ -86,7 +86,6 @@ const navItems = computed(() => [
           to: '/board',
           children: [
             { label: 'Solicitudes de parqueo', to: '/board/parking-requests' },
-            { label: 'Actas', to: '/board/minutes' },
             { label: 'Documentos', to: '/board/documents' },
           ],
         },

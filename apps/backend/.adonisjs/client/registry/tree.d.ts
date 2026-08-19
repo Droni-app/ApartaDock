@@ -52,13 +52,6 @@ export interface ApiDefinition {
       show: typeof routes['board.parking_requests.show']
       update: typeof routes['board.parking_requests.update']
     }
-    minutes: {
-      index: typeof routes['board.minutes.index']
-      store: typeof routes['board.minutes.store']
-      show: typeof routes['board.minutes.show']
-      update: typeof routes['board.minutes.update']
-      destroy: typeof routes['board.minutes.destroy']
-    }
     documents: {
       index: typeof routes['board.documents.index']
       store: typeof routes['board.documents.store']

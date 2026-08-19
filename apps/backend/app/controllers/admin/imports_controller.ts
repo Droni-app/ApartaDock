@@ -63,11 +63,14 @@ function normalizePlate(raw: string): string {
 }
 
 function mapVehicleType(raw: string): 'car' | 'motorcycle' | 'bicycle' | 'truck' | 'other' {
-  const value = String(raw ?? '').trim().toLowerCase()
+  const value = String(raw ?? '')
+    .trim()
+    .toLowerCase()
   if (value.includes('bicicleta') && value.includes('moto')) return 'other'
   if (value.includes('moto')) return 'motorcycle'
   if (value.includes('bicicleta') || value.includes('bici')) return 'bicycle'
-  if (value.includes('camion') || value.includes('camión') || value.includes('truck')) return 'truck'
+  if (value.includes('camion') || value.includes('camión') || value.includes('truck'))
+    return 'truck'
   if (value.includes('carro') || value.includes('auto') || value.includes('car')) return 'car'
   return 'other'
 }
@@ -129,14 +132,18 @@ export default class ImportsController {
           throw new Error(`Unidad no encontrada: ${unitName}`)
         }
 
-        const unitStatusRaw = String(row.unit_status ?? '').trim().toUpperCase()
+        const unitStatusRaw = String(row.unit_status ?? '')
+          .trim()
+          .toUpperCase()
         const isTenant = unitStatusRaw === 'SI'
         if (unitStatusRaw === 'SI' || unitStatusRaw === 'NO') {
           unit.merge({ status: isTenant ? 'rented' : 'occupied', updatedAt: createdAt })
           await unit.save()
         }
 
-        const email = String(row.user_email ?? '').trim().toLowerCase()
+        const email = String(row.user_email ?? '')
+          .trim()
+          .toLowerCase()
         if (!email) {
           throw new Error('user_email vacio')
         }
@@ -166,7 +173,10 @@ export default class ImportsController {
 
         const plate = normalizePlate(row.vehicle_plate)
         const vehicleType = mapVehicleType(row.vehicle_type)
-        const isOwner = String(row.vehicle_is_owner ?? '').trim().toUpperCase() === 'SI'
+        const isOwner =
+          String(row.vehicle_is_owner ?? '')
+            .trim()
+            .toUpperCase() === 'SI'
         const ownerName = String(row.vehicle_owner_name ?? '').trim() || fullName
         const ownerCard = String(row.vehicle_owner_card ?? '').trim()
         const ownerDocument = user.document ?? `temp_${tower}${apto}`
@@ -214,7 +224,10 @@ export default class ImportsController {
         parkingRequestsCreated += 1
 
         const role = isTenant ? 'tenant' : 'resident'
-        let enrollment = await Enrollment.query().where('userId', user.id).where('unitId', unit.id).first()
+        let enrollment = await Enrollment.query()
+          .where('userId', user.id)
+          .where('unitId', unit.id)
+          .first()
         if (enrollment) {
           enrollment.merge({ role, updatedAt: createdAt })
           await enrollment.save()

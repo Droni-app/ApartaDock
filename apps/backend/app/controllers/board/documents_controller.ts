@@ -1,16 +1,22 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Document from '#models/document'
-import { createDocumentValidator, updateDocumentValidator } from '#validators/board/document_validator'
+import {
+  createDocumentValidator,
+  updateDocumentValidator,
+} from '#validators/board/document_validator'
 
 export default class DocumentsController {
   /**
    * Display a list of resource
    */
-  async index({ request}: HttpContext) {
+  async index({ request }: HttpContext) {
     const page = Number(request.input('page', 1))
     const limit = Number(request.input('limit', 20))
 
-    const documents = await Document.query().preload('user').orderBy('created_at', 'desc').paginate(page, limit)
+    const documents = await Document.query()
+      .preload('user')
+      .orderBy('created_at', 'desc')
+      .paginate(page, limit)
 
     return documents
   }

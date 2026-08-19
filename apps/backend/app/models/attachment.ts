@@ -5,7 +5,6 @@ import User from '#models/user'
 import env from '#start/env'
 
 export default class Attachment extends AttachmentSchema {
-
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
 

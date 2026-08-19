@@ -5,7 +5,6 @@ import { belongsTo } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 
 export default class Enrollment extends EnrollmentSchema {
-
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
 

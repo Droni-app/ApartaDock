@@ -32,7 +32,7 @@ En el frontend, `apps/frontend/src/router/index.ts` hace el guard de rutas (`bef
 
 - AdonisJS 6, autenticación por access tokens (`DbAccessTokensProvider`), guard `api` por defecto (ver `config/auth.ts`).
 - Rutas en `start/routes.ts`, agrupadas por prefijo: `/auth`, `/account` (perfil), `/admin` (+ `admin` middleware), `/board` (+ `board` middleware), `/user` (+ `auth` middleware).
-- Modelos Lucid en `app/models`: `User`, `Unit`, `Enrollment` (vincula usuario↔unidad con `role`: `owner`/`tenant`/`resident`), `Vehicle`, `ParkingRequest`, `Minute`, `Attachment`, `Log`.
+- Modelos Lucid en `app/models`: `User`, `Unit`, `Enrollment` (vincula usuario↔unidad con `role`: `owner`/`tenant`/`resident`), `Vehicle`, `ParkingRequest`, `Attachment`, `Log`.
 - Controladores organizados por rol/ámbito: `app/controllers/admin/*`, `app/controllers/board/*`, `app/controllers/user/*`, más `auth_controller.ts` y `profile_controller.ts`.
 - Los `index` paginados devuelven el objeto de paginación de Lucid tal cual (`{ data, meta: { currentPage, lastPage, perPage, total } }`); los endpoints de usuario (`/user/enrollments`, `/user/vehicles`) devuelven arrays planos, sin paginar.
 - Auditoría: `request_log_middleware.ts` + modelo `Log` alimentan `/admin/records`.

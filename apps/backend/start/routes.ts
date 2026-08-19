@@ -10,17 +10,6 @@
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 import { controllers } from '#generated/controllers'
-import UsersController from '#controllers/admin/users_controller'
-import UnitsController from '#controllers/admin/units_controller'
-import EnrollmentsController from '#controllers/admin/enrollments_controller'
-import ImportsController from '#controllers/admin/imports_controller'
-import LogsController from '#controllers/admin/logs_controller'
-import BoardParkingRequestsController from '#controllers/board/parking_requests_controller'
-import BoardMinutesController from '#controllers/board/minutes_controller'
-import BoardDocumentsController from '#controllers/board/documents_controller'
-import UserEnrollmentsController from '#controllers/user/enrollments_controller'
-import UserVehiclesController from '#controllers/user/vehicles_controller'
-import UserAttachmentsController from '#controllers/user/attachments_controller'
 
 router.get('/', () => {
   return { hello: 'world' }
@@ -45,12 +34,12 @@ router
 
 router
   .group(() => {
-    router.resource('users', UsersController).apiOnly()
-    router.resource('units', UnitsController).only(['index', 'show', 'update']).apiOnly()
-    router.resource('enrollments', EnrollmentsController).apiOnly()
-    router.post('imports/parking-requests', [ImportsController, 'parking_requests'])
-    router.post('imports/units', [ImportsController, 'units'])
-    router.resource('logs', LogsController).only(['index']).apiOnly()
+    router.resource('users', controllers.admin.Users).apiOnly()
+    router.resource('units', controllers.admin.Units).only(['index', 'show', 'update']).apiOnly()
+    router.resource('enrollments', controllers.admin.Enrollments).apiOnly()
+    router.post('imports/parking-requests', [controllers.admin.Imports, 'parking_requests'])
+    router.post('imports/units', [controllers.admin.Imports, 'units'])
+    router.resource('logs', controllers.admin.Logs).only(['index']).apiOnly()
   })
   .prefix('admin')
   .as('admin')
@@ -58,11 +47,16 @@ router
 
 router
   .group(() => {
-    router.get('parking-requests/dashboard', [BoardParkingRequestsController, 'dashboard'])
-    router.post('parking-requests/reject-by-debt', [BoardParkingRequestsController, 'rejectByDebt'])
-    router.resource('parking-requests', BoardParkingRequestsController).only(['index', 'show', 'update']).apiOnly()
-    router.resource('minutes', BoardMinutesController).apiOnly()
-    router.resource('documents', BoardDocumentsController).apiOnly()
+    router.get('parking-requests/dashboard', [controllers.board.ParkingRequests, 'dashboard'])
+    router.post('parking-requests/reject-by-debt', [
+      controllers.board.ParkingRequests,
+      'rejectByDebt',
+    ])
+    router
+      .resource('parking-requests', controllers.board.ParkingRequests)
+      .only(['index', 'show', 'update'])
+      .apiOnly()
+    router.resource('documents', controllers.board.Documents).apiOnly()
   })
   .prefix('board')
   .as('board')
@@ -70,10 +64,12 @@ router
 
 router
   .group(() => {
-    router.resource('enrollments', UserEnrollmentsController).only(['index', 'show']).apiOnly()
-    router.resource('vehicles', UserVehiclesController).apiOnly()
-    router.resource('attachments', UserAttachmentsController).apiOnly()
-    router.post('attachments/download', [UserAttachmentsController, 'download']).as('attachments.download')
+    router.resource('enrollments', controllers.user.Enrollments).only(['index', 'show']).apiOnly()
+    router.resource('vehicles', controllers.user.Vehicles).apiOnly()
+    router.resource('attachments', controllers.user.Attachments).apiOnly()
+    router
+      .post('attachments/download', [controllers.user.Attachments, 'download'])
+      .as('attachments.download')
   })
   .prefix('user')
   .as('user')

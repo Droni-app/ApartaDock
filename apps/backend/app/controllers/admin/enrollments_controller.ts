@@ -1,7 +1,9 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Enrollment from '#models/enrollment'
-import { createEnrollmentValidator, updateEnrollmentValidator } from '#validators/admin/enrollment_validator'
-
+import {
+  createEnrollmentValidator,
+  updateEnrollmentValidator,
+} from '#validators/admin/enrollment_validator'
 
 export default class EnrollmentsController {
   /**

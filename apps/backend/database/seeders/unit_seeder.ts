@@ -32,8 +32,12 @@ export default class UnitSeeder extends BaseSeeder {
     for (let tower = 1; tower <= towers; tower++) {
       for (let floor = 1; floor <= floorsPerTower; floor++) {
         for (let apto = 1; apto <= apartmentsPerFloor; apto++) {
-          const exactFloorRule = typologies.find((rule) => rule.floor === floor && rule.aptos.includes(apto))
-          const genericRule = typologies.find((rule) => rule.floor === null && rule.aptos.includes(apto))
+          const exactFloorRule = typologies.find(
+            (rule) => rule.floor === floor && rule.aptos.includes(apto)
+          )
+          const genericRule = typologies.find(
+            (rule) => rule.floor === null && rule.aptos.includes(apto)
+          )
           const selectedRule = exactFloorRule ?? genericRule
 
           if (!selectedRule) {

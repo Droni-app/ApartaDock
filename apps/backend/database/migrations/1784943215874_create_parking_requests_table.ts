@@ -6,9 +6,27 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('user_id').unsigned().notNullable().references('id').inTable('users').onDelete('CASCADE')
-      table.integer('unit_id').unsigned().notNullable().references('id').inTable('units').onDelete('CASCADE')
-      table.integer('vehicle_id').unsigned().nullable().references('id').inTable('vehicles').onDelete('CASCADE')
+      table
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE')
+      table
+        .integer('unit_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('units')
+        .onDelete('CASCADE')
+      table
+        .integer('vehicle_id')
+        .unsigned()
+        .nullable()
+        .references('id')
+        .inTable('vehicles')
+        .onDelete('CASCADE')
       table.enu('period', ['h1', 'h2']).notNullable()
       table.integer('period_year').notNullable()
       table.string('insurance_policy').nullable()

@@ -15,7 +15,6 @@ export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   board: {
     Documents: () => import('#controllers/board/documents_controller'),
-    Minutes: () => import('#controllers/board/minutes_controller'),
     ParkingRequests: () => import('#controllers/board/parking_requests_controller'),
   },
   Profile: () => import('#controllers/profile_controller'),

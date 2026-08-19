@@ -1,6 +1,5 @@
 <template>
   <div class="space-y-2">
-    {{ props.visibility }}
     <DuiFile
       v-model="props.modelValue"
       :accept="props.accept"

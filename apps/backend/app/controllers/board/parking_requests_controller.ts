@@ -50,12 +50,11 @@ export default class ParkingRequestsController {
     const userEmail = request.input('user_email', '')
     const vehiclePlate = request.input('vehicle_plate', '')
     const status = request.input('status', '')
-    const duplicatesOnly = ['true', '1'].includes(String(request.input('duplicates', '')).toLowerCase())
+    const duplicatesOnly = ['true', '1'].includes(
+      String(request.input('duplicates', '')).toLowerCase()
+    )
 
-    const query = ParkingRequest.query()
-      .preload('user')
-      .preload('unit')
-      .preload('vehicle')
+    const query = ParkingRequest.query().preload('user').preload('unit').preload('vehicle')
 
     if (unitName) {
       query.whereHas('unit', (unitQuery) => unitQuery.whereILike('name', `%${unitName}%`))
@@ -70,7 +69,9 @@ export default class ParkingRequestsController {
     }
 
     if (vehiclePlate) {
-      query.whereHas('vehicle', (vehicleQuery) => vehicleQuery.whereILike('plate', `%${vehiclePlate}%`))
+      query.whereHas('vehicle', (vehicleQuery) =>
+        vehicleQuery.whereILike('plate', `%${vehiclePlate}%`)
+      )
     }
 
     if (status) {
@@ -85,7 +86,10 @@ export default class ParkingRequestsController {
           .groupBy('unit_id')
           .havingRaw('count(*) > 1')
       })
-      query.join('units', 'units.id', 'parking_requests.unit_id').select('parking_requests.*').orderBy('units.name', 'asc')
+      query
+        .join('units', 'units.id', 'parking_requests.unit_id')
+        .select('parking_requests.*')
+        .orderBy('units.name', 'asc')
     } else {
       query.orderBy('parking_requests.updated_at', 'asc')
     }

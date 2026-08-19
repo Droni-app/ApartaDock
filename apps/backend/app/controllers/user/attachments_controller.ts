@@ -32,7 +32,9 @@ export default class AttachmentsController {
       name: data.name ?? data.file.clientName,
       path,
       size: data.file.size,
-      mime: data.file.subtype ? `${data.file.type}/${data.file.subtype}` : data.file.type ?? 'application/octet-stream',
+      mime: data.file.subtype
+        ? `${data.file.type}/${data.file.subtype}`
+        : (data.file.type ?? 'application/octet-stream'),
     })
     return attachment
   }
