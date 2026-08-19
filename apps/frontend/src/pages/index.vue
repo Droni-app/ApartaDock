@@ -43,21 +43,15 @@
         </div>
       </DuiCard>
 
-      <DuiCard title="Novedades del conjunto" subtitle="Últimas actualizaciones y avisos">
-        <ul class="divide-y divide-gray-100">
-          <li v-for="item in news" :key="item.title" class="flex items-start gap-3 py-3 first:pt-0 last:pb-0">
-            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600">
-              <i :class="`mdi ${item.icon}`"></i>
-            </div>
-            <div class="min-w-0 flex-1">
-              <div class="flex items-center justify-between gap-2">
-                <p class="font-medium text-slate-900">{{ item.title }}</p>
-                <DuiBadge size="xs" :color="item.badgeColor" variant="soft">{{ item.date }}</DuiBadge>
-              </div>
-              <p class="text-sm text-gray-500">{{ item.description }}</p>
-            </div>
-          </li>
-        </ul>
+      <DuiCard>
+        <DuiAlert v-for="document in documents" :key="document.id" color="primary">
+          <RouterLink
+            :to="`/communications/documents/${document.id}`"
+            class="font-medium text-slate-900 hover:underline">
+            {{ document.name }}
+          </RouterLink>
+          <p class="text-sm text-gray-500">{{ document.category }} | {{ formatDate(document.createdAt) }}</p>
+        </DuiAlert>
       </DuiCard>
     </div>
 
@@ -65,42 +59,50 @@
   </div>
 </template>
 <script setup lang="ts">
-import { DuiBadge, DuiCard } from '@dronico/droni-kit'
+import { DuiBadge, DuiCard, DuiAlert } from '@dronico/droni-kit'
+import { formatDate } from '../utils/helpers'
+import { ref } from 'vue'
+import { useToast } from '@dronico/droni-kit'
+import type { Ref } from 'vue'
+import type { PaginatedResponse } from '../types/api'
+import type { Document } from '../types/document'
+import { api } from '../services/api'
 import WelcomeBanner from '../components/dashboard/WelcomeBanner.vue'
 import RoleDashboard from '../components/dashboard/RoleDashboard.vue'
 import { useAuth } from '../composables/useAuth'
 
 const { user } = useAuth()
+const toast = useToast()
 
 // TODO: reemplazar por novedades reales del conjunto cuando exista el modulo de comunicaciones.
-const news = [
-  {
-    icon: 'mdi-elevator',
-    title: 'Mantenimiento de ascensores',
-    description: 'Torre 2 fuera de servicio el 18 de agosto de 8:00 a.m. a 12:00 m.',
-    date: '18 ago',
-    badgeColor: 'warning' as const,
-  },
-  {
-    icon: 'mdi-account-group-outline',
-    title: 'Asamblea general ordinaria',
-    description: 'Convocatoria para el 30 de agosto a las 6:00 p.m. en el salón comunal.',
-    date: '30 ago',
-    badgeColor: 'primary' as const,
-  },
-  {
-    icon: 'mdi-water-off-outline',
-    title: 'Corte programado de agua',
-    description: 'Domingo 17 de agosto de 7:00 a.m. a 10:00 a.m. por mantenimiento de tanques.',
-    date: '17 ago',
-    badgeColor: 'danger' as const,
-  },
-  {
-    icon: 'mdi-car-outline',
-    title: 'Nueva zona de parqueo para visitantes',
-    description: 'Ya está disponible en el sótano 2, ingresando por la porteria principal.',
-    date: 'Hoy',
-    badgeColor: 'success' as const,
-  },
-]
+
+
+const documents: Ref<Document[]> = ref([])
+
+const loading = ref(false)
+
+function fetchDocuments() {
+  loading.value = true
+  api.get<PaginatedResponse<Document>>('/user/documents', {
+      params: {
+        category: 'Comunicaciones'
+      }
+    })
+    .then(response => {
+      documents.value = response.data.data
+    })
+    .catch(_error => {
+      toast.add({
+        color: 'danger',
+        title: 'Error',
+        message: 'Error al cargar documentos'
+      })
+    })
+    .finally(() => {
+      loading.value = false
+    })
+}
+//
+
+fetchDocuments()
 </script>
