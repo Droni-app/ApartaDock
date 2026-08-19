@@ -50,7 +50,7 @@
             class="font-medium text-slate-900 hover:underline">
             {{ document.name }}
           </RouterLink>
-          <p class="text-sm text-gray-500">{{ document.category }} | {{ formatDate(document.createdAt) }}</p>
+          <p class="text-sm text-gray-500">{{ document.category }} | {{ formatDate(String(document.createdAt)) }}</p>
         </DuiAlert>
       </DuiCard>
     </div>
@@ -59,7 +59,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { DuiBadge, DuiCard, DuiAlert } from '@dronico/droni-kit'
+import { DuiCard, DuiAlert } from '@dronico/droni-kit'
 import { formatDate } from '../utils/helpers'
 import { ref } from 'vue'
 import { useToast } from '@dronico/droni-kit'
