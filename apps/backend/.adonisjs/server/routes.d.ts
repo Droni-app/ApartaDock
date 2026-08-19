@@ -7,7 +7,7 @@ export type ScannedRoutes = {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'profile.profile.update_password': { paramsTuple?: []; params?: {} }
-    'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
+    'profile.auth.logout': { paramsTuple?: []; params?: {} }
     'admin.users.index': { paramsTuple?: []; params?: {} }
     'admin.users.store': { paramsTuple?: []; params?: {} }
     'admin.users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -92,7 +92,7 @@ export type ScannedRoutes = {
   }
   POST: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
-    'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
+    'profile.auth.logout': { paramsTuple?: []; params?: {} }
     'admin.users.store': { paramsTuple?: []; params?: {} }
     'admin.enrollments.store': { paramsTuple?: []; params?: {} }
     'admin.imports.parking_requests': { paramsTuple?: []; params?: {} }

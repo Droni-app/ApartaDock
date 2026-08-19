@@ -4,7 +4,6 @@
  */
 
 export const controllers = {
-  AccessTokens: () => import('#controllers/access_tokens_controller'),
   admin: {
     Enrollments: () => import('#controllers/admin/enrollments_controller'),
     Imports: () => import('#controllers/admin/imports_controller'),

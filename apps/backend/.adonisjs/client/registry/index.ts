@@ -24,11 +24,11 @@ const routes = {
     tokens: [{"old":"/account/profile/password","type":0,"val":"account","end":""},{"old":"/account/profile/password","type":0,"val":"profile","end":""},{"old":"/account/profile/password","type":0,"val":"password","end":""}],
     types: placeholder as Registry['profile.profile.update_password']['types'],
   },
-  'profile.access_tokens.destroy': {
+  'profile.auth.logout': {
     methods: ["POST"],
     pattern: '/account/logout',
     tokens: [{"old":"/account/logout","type":0,"val":"account","end":""},{"old":"/account/logout","type":0,"val":"logout","end":""}],
-    types: placeholder as Registry['profile.access_tokens.destroy']['types'],
+    types: placeholder as Registry['profile.auth.logout']['types'],
   },
   'admin.users.index': {
     methods: ["GET","HEAD"],

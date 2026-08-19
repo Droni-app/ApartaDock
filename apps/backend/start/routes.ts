@@ -26,7 +26,7 @@ router
   .group(() => {
     router.get('profile', [controllers.Profile, 'show'])
     router.put('profile/password', [controllers.Profile, 'updatePassword'])
-    router.post('logout', [controllers.AccessTokens, 'destroy'])
+    router.post('logout', [controllers.Auth, 'logout'])
   })
   .prefix('account')
   .as('profile')
