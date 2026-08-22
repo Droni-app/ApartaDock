@@ -49,10 +49,7 @@ const navItems = computed(() => [
     to: '/management',
     children: [
       { label: 'Unidades', to: '/management/units' },
-      { label: 'Estado de cuenta', to: '/management/account-status' },
-      { label: 'Reservas', to: '/management/reservations' },
       { label: 'Vehículos', to: '/management/vehicles' },
-      { label: 'Autorizaciones', to: '/management/authorizations' },
     ],
   },
   {
@@ -60,27 +57,7 @@ const navItems = computed(() => [
     icon: 'mdi mdi-message-text',
     to: '/communications',
     children: [
-      { label: 'Administración', to: '/communications/administration' },
       { label: 'Documentos', to: '/communications/documents' },
-      { label: 'Notificaciones', to: '/communications/notifications' },
-    ],
-  },
-  {
-    label: 'Participación',
-    icon: 'mdi mdi-vote-outline',
-    to: '/participation',
-    children: [
-      { label: 'Asambleas', to: '/participation/assemblies' },
-      { label: 'Encuestas', to: '/participation/surveys' },
-    ],
-  },
-  {
-    label: 'Social',
-    icon: 'mdi mdi-account-group',
-    to: '/social',
-    children: [
-      { label: 'Noticias y eventos', to: '/social/news-events' },
-      { label: 'Clasificados', to: '/social/classifieds' },
     ],
   },
   ...(isBoard.value
