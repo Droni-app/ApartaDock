@@ -8,7 +8,7 @@
       <p class="mb-4">
         Selecciona un archivo CSV que contenga los registros de usuarios y unidades que deseas importar. Asegúrate de que el archivo tenga el formato correcto. Puede usar el archivo de ejemplo <a href="/examples/ImportUsers.csv" class="text-blue-500 underline">ImportUsers.csv</a> para guiarte en la estructura del archivo.
       </p>
-      <DuiInput type="file" @change="importUsers" />
+      <DuiInput type="file" @change="importUsers" accept=".csv" />
     </DuiCard>
   </div>
 </template>

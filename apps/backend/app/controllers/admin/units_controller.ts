@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Unit from '#models/unit'
+import mail from '@adonisjs/mail/services/main'
 
 export default class UnitsController {
   /**
@@ -24,6 +25,13 @@ export default class UnitsController {
    * Show individual record
    */
   async show({ params }: HttpContext) {
+    await mail.send((message) => {
+      message
+        .to('dev@droni.co')
+        .from('welcome@example.com')
+        .subject('Welcome to our app!')
+        .htmlView('emails/test_message', { name: 'Gustavo' })
+    })
     const unit = await Unit.query()
       .preload('enrollments', (enrollmentsQuery) => {
         enrollmentsQuery.preload('user')
