@@ -47,12 +47,19 @@ export default class AuthController {
       const signature = resetUrl.split('signature=')[1]
 
       // Send the new password to the user's email
-      mail.send((message) => {
-        message
-          .to(user.email)
-          .subject('Recuperar contraseña')
-          .htmlView('emails/reset_password', { user, signature })
-      })
+      mail
+        .send((message) => {
+          message
+            .to(user.email)
+            .subject('Recuperar contraseña')
+            .htmlView('emails/reset_password', { user, signature })
+        })
+        .then(() => {
+          console.log('Password reset email sent successfully')
+        })
+        .catch((error) => {
+          console.error('Error sending password reset email:', error)
+        })
     }
 
     return {
