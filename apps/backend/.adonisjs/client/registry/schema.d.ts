@@ -11,10 +11,10 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/auth/login'
     types: {
-      body: ExtractBody<InferInput<(typeof import('#validators/user').loginValidator)>>
+      body: ExtractBody<InferInput<(typeof import('#validators/auth_validator').loginValidator)>>
       paramsTuple: []
       params: {}
-      query: ExtractQuery<InferInput<(typeof import('#validators/user').loginValidator)>>
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth_validator').loginValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['login']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['login']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
@@ -33,14 +33,14 @@ export interface Registry {
   }
   'auth.password.update': {
     methods: ["POST"]
-    pattern: '/auth/password/update'
+    pattern: '/auth/password/update/:id'
     types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/auth_validator').updatePasswordValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth_validator').updatePasswordValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['updatePassword']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['updatePassword']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['updatePassword']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'profile.profile.show': {

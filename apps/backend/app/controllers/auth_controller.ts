@@ -1,7 +1,7 @@
 import User from '#models/user'
 import Enrollment from '#models/enrollment'
 import type { HttpContext } from '@adonisjs/core/http'
-import { loginValidator } from '#validators/user'
+import { loginValidator, updatePasswordValidator } from '#validators/auth_validator'
 import mail from '@adonisjs/mail/services/main'
 import { signedUrlFor } from '@adonisjs/core/services/url_builder'
 import { appUrl } from '#config/app'
@@ -37,19 +37,21 @@ export default class AuthController {
     if (user) {
       const resetUrl = signedUrlFor(
         'auth.password.update',
-        { email },
+        { id: user.id },
         {
-          expiresIn: '1 days',
+          expiresIn: '20 minutes',
           prefixUrl: appUrl,
         }
       )
+      // get signatura
+      const signature = resetUrl.split('signature=')[1]
 
       // Send the new password to the user's email
       mail.send((message) => {
         message
           .to(user.email)
           .subject('Recuperar contraseña')
-          .htmlView('emails/reset_password', { user, resetUrl })
+          .htmlView('emails/reset_password', { user, signature })
       })
     }
 
@@ -57,12 +59,13 @@ export default class AuthController {
       message: 'Correo de recuperación de contraseña enviado.',
     }
   }
-  async updatePassword({ request, response, auth }: HttpContext) {
+  async updatePassword({ request, response }: HttpContext) {
     if (!request.hasValidSignature()) {
       return response.badRequest('Invalid or expired link')
     }
-    const user = auth.getUserOrFail()
-    const newPassword = request.input('new_password')
+    const id = request.param('id')
+    const { email, newPassword } = await request.validateUsing(updatePasswordValidator)
+    const user = await User.query().where('id', id).where('email', email).firstOrFail()
     user.password = newPassword
     await user.save()
 

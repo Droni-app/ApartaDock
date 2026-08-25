@@ -15,12 +15,12 @@
             <DuiInput v-model="form.password" type="password" size="lg" block />
           </DuiLabel>
 
-          <DuiButton type="submit" :loading="loading" color="primary" block size="lg" class="mt-4">
+          <DuiButton type="submit" :loading="loading" block size="lg" class="mt-4">
             Entrar
           </DuiButton>
 
           <div class="flex justify-end mt-2">
-            <DuiButton type="button" color="link" size="sm" @click="showCard = 'sendReset'">
+            <DuiButton type="button" size="sm" @click="showCard = 'sendReset'">
               ¿Olvidaste tu contraseña?
             </DuiButton>
           </div>
@@ -33,13 +33,13 @@
             <DuiInput v-model="form.email" type="email" size="lg" block />
           </DuiLabel>
 
-          <DuiButton type="submit" :loading="loading" color="primary" block size="lg" class="mt-4">
+          <DuiButton type="submit" :loading="loading" block size="lg" class="mt-4">
             Enviar correo de recuperación
           </DuiButton>
         </form>
         <div v-else class="text-center">
           <p class="mb-4">Se ha enviado un correo de recuperación a {{ form.email }}. Por favor, revisa tu bandeja de entrada.</p>
-          <DuiButton type="button" color="primary" block size="lg" @click="showCard = 'login'">
+          <DuiButton type="button" block size="lg" @click="showCard = 'login'">
             Volver al inicio de sesión
           </DuiButton>
         </div>

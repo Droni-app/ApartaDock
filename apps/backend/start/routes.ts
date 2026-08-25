@@ -19,7 +19,7 @@ router
   .group(() => {
     router.post('login', [controllers.Auth, 'login'])
     router.post('password/reset', [controllers.Auth, 'resetPassword']).as('password.reset')
-    router.post('password/update', [controllers.Auth, 'updatePassword']).as('password.update')
+    router.post('password/update/:id', [controllers.Auth, 'updatePassword']).as('password.update')
   })
   .prefix('auth')
   .as('auth')

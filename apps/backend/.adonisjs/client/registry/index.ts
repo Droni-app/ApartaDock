@@ -20,8 +20,8 @@ const routes = {
   },
   'auth.password.update': {
     methods: ["POST"],
-    pattern: '/auth/password/update',
-    tokens: [{"old":"/auth/password/update","type":0,"val":"auth","end":""},{"old":"/auth/password/update","type":0,"val":"password","end":""},{"old":"/auth/password/update","type":0,"val":"update","end":""}],
+    pattern: '/auth/password/update/:id',
+    tokens: [{"old":"/auth/password/update/:id","type":0,"val":"auth","end":""},{"old":"/auth/password/update/:id","type":0,"val":"password","end":""},{"old":"/auth/password/update/:id","type":0,"val":"update","end":""},{"old":"/auth/password/update/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['auth.password.update']['types'],
   },
   'profile.profile.show': {
