@@ -35,17 +35,21 @@ export default class AuthController {
     const user = await User.findBy('email', email)
 
     if (user) {
-      const resetUrl = signedUrlFor('auth.password.update', {
-        expiresIn: '1 days',
-        prefixUrl: appUrl,
-      })
+      const resetUrl = signedUrlFor(
+        'auth.password.update',
+        { email },
+        {
+          expiresIn: '1 days',
+          prefixUrl: appUrl,
+        }
+      )
 
       // Send the new password to the user's email
       mail.send((message) => {
         message
           .to(user.email)
           .subject('Recuperar contraseña')
-          .htmlView('emails/test_message', { user, resetUrl })
+          .htmlView('emails/reset_password', { user, resetUrl })
       })
     }
 
@@ -53,7 +57,10 @@ export default class AuthController {
       message: 'Correo de recuperación de contraseña enviado.',
     }
   }
-  async updatePassword({ request, auth }: HttpContext) {
+  async updatePassword({ request, response, auth }: HttpContext) {
+    if (!request.hasValidSignature()) {
+      return response.badRequest('Invalid or expired link')
+    }
     const user = auth.getUserOrFail()
     const newPassword = request.input('new_password')
     user.password = newPassword
