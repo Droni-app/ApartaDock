@@ -259,30 +259,6 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/logs_controller').default['index']>>>
     }
   }
-  'board.parking_requests.dashboard': {
-    methods: ["GET","HEAD"]
-    pattern: '/board/parking-requests/dashboard'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/board/parking_requests_controller').default['dashboard']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/board/parking_requests_controller').default['dashboard']>>>
-    }
-  }
-  'board.parking_requests.reject_by_debt': {
-    methods: ["POST"]
-    pattern: '/board/parking-requests/reject-by-debt'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/board/parking_requests_controller').default['rejectByDebt']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/board/parking_requests_controller').default['rejectByDebt']>>>
-    }
-  }
   'board.parking_requests.index': {
     methods: ["GET","HEAD"]
     pattern: '/board/parking-requests'

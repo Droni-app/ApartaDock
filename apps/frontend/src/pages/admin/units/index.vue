@@ -24,9 +24,6 @@
     :pagination="tablePagination"
     @paginate="handlePageChange"
   >
-    <template #debt="row">
-      <span :class="row.debt > 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'">{{ formatCurrency(row.debt) }}</span>
-    </template>
     <template #notes="row">
       <span class="line-clamp-2 max-w-xs text-gray-500 dark:text-slate-400">{{ row.notes ?? '-' }}</span>
     </template>
@@ -68,14 +65,9 @@ const columns = [
   { name: 'privateArea', label: 'Area privada' },
   { name: 'coefficient', label: 'Coeficiente' },
   { name: 'status', label: 'Estado' },
-  { name: 'debt', label: 'Deuda' },
   { name: 'notes', label: 'Notas' },
   { name: 'actions', label: '' },
 ]
-
-function formatCurrency(value: number) {
-  return `$${value.toLocaleString('es-CO')}`
-}
 
 const totalItems = computed(() => total.value || units.value.length)
 const tablePagination = computed(() => ({

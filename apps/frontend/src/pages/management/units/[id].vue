@@ -47,12 +47,6 @@
             <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Estado</dt>
             <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.status ?? '-' }}</dd>
           </div>
-          <div>
-            <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Cartera</dt>
-            <dd :class="(enrollment.unit?.debt ?? 0) > 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'">
-              {{ formatCurrency(enrollment.unit?.debt ?? 0) }}
-            </dd>
-          </div>
           <div class="sm:col-span-2 lg:col-span-3">
             <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Notas</dt>
             <dd class="whitespace-pre-line text-slate-900 dark:text-slate-100">{{ enrollment.unit?.notes || '-' }}</dd>
@@ -148,9 +142,6 @@ function vehicleTypeLabel(type: string) {
   return vehicleTypeOptions[type] ?? type
 }
 
-function formatCurrency(value: number) {
-  return `$${value.toLocaleString('es-CO')}`
-}
 
 function formatDate(value: string | null) {
   if (!value) {

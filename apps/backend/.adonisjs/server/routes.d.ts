@@ -25,8 +25,6 @@ export type ScannedRoutes = {
     'admin.enrollments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.imports.users': { paramsTuple?: []; params?: {} }
     'admin.logs.index': { paramsTuple?: []; params?: {} }
-    'board.parking_requests.dashboard': { paramsTuple?: []; params?: {} }
-    'board.parking_requests.reject_by_debt': { paramsTuple?: []; params?: {} }
     'board.parking_requests.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.parking_requests.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -60,7 +58,6 @@ export type ScannedRoutes = {
     'admin.enrollments.index': { paramsTuple?: []; params?: {} }
     'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.logs.index': { paramsTuple?: []; params?: {} }
-    'board.parking_requests.dashboard': { paramsTuple?: []; params?: {} }
     'board.parking_requests.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.index': { paramsTuple?: []; params?: {} }
@@ -83,7 +80,6 @@ export type ScannedRoutes = {
     'admin.enrollments.index': { paramsTuple?: []; params?: {} }
     'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.logs.index': { paramsTuple?: []; params?: {} }
-    'board.parking_requests.dashboard': { paramsTuple?: []; params?: {} }
     'board.parking_requests.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.index': { paramsTuple?: []; params?: {} }
@@ -105,7 +101,6 @@ export type ScannedRoutes = {
     'admin.users.store': { paramsTuple?: []; params?: {} }
     'admin.enrollments.store': { paramsTuple?: []; params?: {} }
     'admin.imports.users': { paramsTuple?: []; params?: {} }
-    'board.parking_requests.reject_by_debt': { paramsTuple?: []; params?: {} }
     'board.documents.store': { paramsTuple?: []; params?: {} }
     'user.vehicles.store': { paramsTuple?: []; params?: {} }
     'user.attachments.store': { paramsTuple?: []; params?: {} }

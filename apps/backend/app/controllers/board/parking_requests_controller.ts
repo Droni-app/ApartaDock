@@ -99,30 +99,6 @@ export default class ParkingRequestsController {
   }
 
   /**
-   * Automatically reject parking requests whose unit debt is above the threshold
-   */
-  async rejectByDebt({ request }: HttpContext) {
-    const threshold = Number(request.input('debt_threshold', 150000))
-
-    const parkingRequests = await ParkingRequest.query()
-      .whereHas('unit', (unitQuery) => unitQuery.where('debt', '>', threshold))
-      .whereNot('status', 'rejected')
-
-    const note = `Rechazada automaticamente por cartera mayor a $${threshold.toLocaleString('es-CO')}`
-
-    for (const parkingRequest of parkingRequests) {
-      parkingRequest.status = 'rejected'
-      parkingRequest.notes = parkingRequest.notes ? `${parkingRequest.notes}\n${note}` : note
-      await parkingRequest.save()
-    }
-
-    return {
-      threshold,
-      updated: parkingRequests.length,
-    }
-  }
-
-  /**
    * Show individual record
    */
   async show({ params }: HttpContext) {

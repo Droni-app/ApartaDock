@@ -49,8 +49,6 @@ export interface ApiDefinition {
   }
   board: {
     parkingRequests: {
-      dashboard: typeof routes['board.parking_requests.dashboard']
-      rejectByDebt: typeof routes['board.parking_requests.reject_by_debt']
       index: typeof routes['board.parking_requests.index']
       show: typeof routes['board.parking_requests.show']
       update: typeof routes['board.parking_requests.update']

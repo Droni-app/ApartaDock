@@ -50,11 +50,6 @@ router
 // Board routes
 router
   .group(() => {
-    router.get('parking-requests/dashboard', [controllers.board.ParkingRequests, 'dashboard'])
-    router.post('parking-requests/reject-by-debt', [
-      controllers.board.ParkingRequests,
-      'rejectByDebt',
-    ])
     router
       .resource('parking-requests', controllers.board.ParkingRequests)
       .only(['index', 'show', 'update'])

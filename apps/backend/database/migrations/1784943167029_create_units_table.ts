@@ -18,7 +18,6 @@ export default class extends BaseSchema {
         .enu('status', ['occupied', 'vacant', 'rented', 'maintenance'])
         .notNullable()
         .defaultTo('vacant')
-      table.integer('debt').notNullable().defaultTo(0)
       table.text('notes').nullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')

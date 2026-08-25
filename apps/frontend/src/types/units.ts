@@ -11,7 +11,6 @@ export interface Unit {
   privateArea: string | null
   coefficient: string | null
   status: string
-  debt: number
   notes: string | null
   enrollments: Enrollment[]
 }

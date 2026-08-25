@@ -216,7 +216,6 @@ export class UnitSchema extends BaseModel {
     'buildArea',
     'coefficient',
     'createdAt',
-    'debt',
     'floor',
     'id',
     'name',
@@ -236,8 +235,6 @@ export class UnitSchema extends BaseModel {
   declare coefficient: string | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
-  @column()
-  declare debt: number
   @column()
   declare floor: number
   @column({ isPrimary: true })

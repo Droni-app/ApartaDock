@@ -45,12 +45,6 @@
             <dt class="text-xs uppercase text-gray-400 dark:text-slate-500">Coeficiente</dt>
             <dd class="text-slate-900 dark:text-slate-100">{{ enrollment.unit?.coefficient ?? '-' }}</dd>
           </div>
-          <div>
-            <dt class="text-xs uppercase text-gray-400 dark:text-slate-500">Cartera</dt>
-            <dd :class="(enrollment.unit?.debt ?? 0) > 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'">
-              {{ formatCurrency(enrollment.unit?.debt ?? 0) }}
-            </dd>
-          </div>
         </dl>
 
         <div class="mt-4 flex items-center justify-between border-t border-gray-100 pt-4">
@@ -92,10 +86,6 @@ function roleLabel(role: string) {
 
 function roleColor(role: string) {
   return roleOptions.find((option) => option.value === role)?.color ?? 'neutral'
-}
-
-function formatCurrency(value: number) {
-  return `$${value.toLocaleString('es-CO')}`
 }
 
 async function fetchEnrollments() {

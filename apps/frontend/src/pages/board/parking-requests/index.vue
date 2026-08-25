@@ -48,9 +48,6 @@
     :pagination="tablePagination"
     @paginate="handlePageChange"
   >
-    <template #debt="row">
-      <span :class="row.debt > 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'">{{ formatCurrency(row.debt) }}</span>
-    </template>
     <template #status="row">
       <DuiBadge :color="statusColor(row.status)" variant="soft">{{ statusLabel(row.status) }}</DuiBadge>
     </template>
@@ -113,10 +110,6 @@ function vehicleTypeLabel(vehicleType: string) {
   return vehicleTypeOptions.find((option) => option.value === vehicleType)?.label ?? vehicleType
 }
 
-function formatCurrency(value: number) {
-  return `$${value.toLocaleString('es-CO')}`
-}
-
 function statusColor(status: string) {
   switch (status) {
     case 'approved':
@@ -132,7 +125,6 @@ function statusColor(status: string) {
 
 const columns = [
   { name: 'unitName', label: 'Unidad' },
-  { name: 'debt', label: 'Cartera' },
   { name: 'userName', label: 'Usuario' },
   { name: 'vehiclePlate', label: 'Vehiculo' },
   { name: 'vehicleTypeLabel', label: 'Tipo' },
@@ -151,7 +143,6 @@ const tableRows = computed(() =>
   parkingRequests.value.map((parkingRequest) => ({
     ...parkingRequest,
     unitName: parkingRequest.unit?.name ?? '-',
-    debt: parkingRequest.unit?.debt ?? 0,
     userName: parkingRequest.user?.fullName || parkingRequest.user?.email || '-',
     vehiclePlate: parkingRequest.vehicle?.plate ?? '-',
     vehicleTypeLabel: parkingRequest.vehicle ? vehicleTypeLabel(parkingRequest.vehicle.vehicleType) : '-',
