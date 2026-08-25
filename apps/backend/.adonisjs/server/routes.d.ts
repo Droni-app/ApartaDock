@@ -21,8 +21,7 @@ export type ScannedRoutes = {
     'admin.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'admin.imports.parking_requests': { paramsTuple?: []; params?: {} }
-    'admin.imports.units': { paramsTuple?: []; params?: {} }
+    'admin.imports.users': { paramsTuple?: []; params?: {} }
     'admin.logs.index': { paramsTuple?: []; params?: {} }
     'board.parking_requests.dashboard': { paramsTuple?: []; params?: {} }
     'board.parking_requests.reject_by_debt': { paramsTuple?: []; params?: {} }
@@ -101,8 +100,7 @@ export type ScannedRoutes = {
     'profile.auth.logout': { paramsTuple?: []; params?: {} }
     'admin.users.store': { paramsTuple?: []; params?: {} }
     'admin.enrollments.store': { paramsTuple?: []; params?: {} }
-    'admin.imports.parking_requests': { paramsTuple?: []; params?: {} }
-    'admin.imports.units': { paramsTuple?: []; params?: {} }
+    'admin.imports.users': { paramsTuple?: []; params?: {} }
     'board.parking_requests.reject_by_debt': { paramsTuple?: []; params?: {} }
     'board.documents.store': { paramsTuple?: []; params?: {} }
     'user.vehicles.store': { paramsTuple?: []; params?: {} }

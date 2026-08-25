@@ -211,28 +211,16 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/enrollments_controller').default['destroy']>>>
     }
   }
-  'admin.imports.parking_requests': {
+  'admin.imports.users': {
     methods: ["POST"]
-    pattern: '/admin/imports/parking-requests'
+    pattern: '/admin/imports/users'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/admin/import_validator').usersValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/imports_controller').default['parking_requests']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/imports_controller').default['parking_requests']>>>
-    }
-  }
-  'admin.imports.units': {
-    methods: ["POST"]
-    pattern: '/admin/imports/units'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/imports_controller').default['units']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/imports_controller').default['units']>>>
+      query: ExtractQuery<InferInput<(typeof import('#validators/admin/import_validator').usersValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/imports_controller').default['users']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/imports_controller').default['users']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'admin.logs.index': {

@@ -108,17 +108,11 @@ const routes = {
     tokens: [{"old":"/admin/enrollments/:id","type":0,"val":"admin","end":""},{"old":"/admin/enrollments/:id","type":0,"val":"enrollments","end":""},{"old":"/admin/enrollments/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['admin.enrollments.destroy']['types'],
   },
-  'admin.imports.parking_requests': {
+  'admin.imports.users': {
     methods: ["POST"],
-    pattern: '/admin/imports/parking-requests',
-    tokens: [{"old":"/admin/imports/parking-requests","type":0,"val":"admin","end":""},{"old":"/admin/imports/parking-requests","type":0,"val":"imports","end":""},{"old":"/admin/imports/parking-requests","type":0,"val":"parking-requests","end":""}],
-    types: placeholder as Registry['admin.imports.parking_requests']['types'],
-  },
-  'admin.imports.units': {
-    methods: ["POST"],
-    pattern: '/admin/imports/units',
-    tokens: [{"old":"/admin/imports/units","type":0,"val":"admin","end":""},{"old":"/admin/imports/units","type":0,"val":"imports","end":""},{"old":"/admin/imports/units","type":0,"val":"units","end":""}],
-    types: placeholder as Registry['admin.imports.units']['types'],
+    pattern: '/admin/imports/users',
+    tokens: [{"old":"/admin/imports/users","type":0,"val":"admin","end":""},{"old":"/admin/imports/users","type":0,"val":"imports","end":""},{"old":"/admin/imports/users","type":0,"val":"users","end":""}],
+    types: placeholder as Registry['admin.imports.users']['types'],
   },
   'admin.logs.index': {
     methods: ["GET","HEAD"],

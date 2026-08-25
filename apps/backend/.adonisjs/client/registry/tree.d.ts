@@ -37,8 +37,7 @@ export interface ApiDefinition {
       destroy: typeof routes['admin.enrollments.destroy']
     }
     imports: {
-      parkingRequests: typeof routes['admin.imports.parking_requests']
-      units: typeof routes['admin.imports.units']
+      users: typeof routes['admin.imports.users']
     }
     logs: {
       index: typeof routes['admin.logs.index']
