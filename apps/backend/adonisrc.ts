@@ -108,7 +108,12 @@ export default defineConfig({
   | the production build.
   |
   */
-  metaFiles: [],
+  metaFiles: [
+    {
+      pattern: 'resources/views/**/*.edge',
+      reloadServer: false,
+    },
+  ],
 
   hooks: {
     init: [
