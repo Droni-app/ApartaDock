@@ -46,7 +46,7 @@ const navItems = computed(() => [
   {
     label: 'Gestión',
     icon: 'mdi mdi-office-building-cog-outline',
-    to: '/management',
+    to: '#',
     children: [
       { label: 'Unidades', to: '/management/units' },
       { label: 'Vehículos', to: '/management/vehicles' },
@@ -55,7 +55,7 @@ const navItems = computed(() => [
   {
     label: 'Comunicaciones',
     icon: 'mdi mdi-message-text',
-    to: '/communications',
+    to: '#',
     children: [
       { label: 'Documentos', to: '/communications/documents' },
     ],
@@ -65,7 +65,7 @@ const navItems = computed(() => [
         {
           label: 'Consejo',
           icon: 'mdi mdi-account-tie-outline',
-          to: '/board',
+          to: '#',
           children: [
             { label: 'Solicitudes de parqueo', to: '/board/parking-requests' },
             { label: 'Documentos', to: '/board/documents' },
@@ -78,7 +78,7 @@ const navItems = computed(() => [
         {
           label: 'Administrar',
           icon: 'mdi mdi-shield-account-outline',
-          to: '/admin',
+          to: '#',
           children: [
             { label: 'Unidades', to: '/admin/units' },
             { label: 'Usuarios', to: '/admin/users' },

@@ -27,8 +27,6 @@
         </DuiAlert>
       </DuiCard>
     </div>
-
-    <RoleDashboard :role="user.role" />
   </div>
 </template>
 <script setup lang="ts">
@@ -41,7 +39,6 @@ import type { PaginatedResponse } from '../types/api'
 import type { Document } from '../types/document'
 import { api } from '../services/api'
 import WelcomeBanner from '../components/dashboard/WelcomeBanner.vue'
-import RoleDashboard from '../components/dashboard/RoleDashboard.vue'
 import { useAuth } from '../composables/useAuth'
 import imgHero from '../assets/hero.webp'
 
