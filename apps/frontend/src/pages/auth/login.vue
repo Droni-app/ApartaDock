@@ -1,37 +1,3 @@
-<script setup lang="ts">
-import { reactive, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { DuiAlert, DuiButton, DuiCard, DuiInput, DuiLabel } from '@dronico/droni-kit'
-import { useAuth } from '../../composables/useAuth'
-
-const auth = useAuth()
-const router = useRouter()
-const route = useRoute()
-
-const loading = ref(false)
-const errorMessage = ref('')
-
-const form = reactive({
-  email: '',
-  password: '',
-})
-
-async function submit() {
-  errorMessage.value = ''
-  loading.value = true
-
-  try {
-    await auth.login(form)
-    const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/'
-    await router.push(redirect)
-  } catch (error) {
-    errorMessage.value = error instanceof Error ? error.message : 'Credenciales invalidas.'
-  } finally {
-    loading.value = false
-  }
-}
-</script>
-
 <template>
   <main class="min-h-screen bg-slate-100 dark:bg-slate-950 p-4 grid place-items-center">
     <section class="w-full max-w-md">
@@ -39,8 +5,8 @@ async function submit() {
         <img src="/logo.webp" alt="Fontibon Reservado" class="h-20 w-20 rounded-xl object-contain shadow-sm" />
       </div>
 
-      <DuiCard class="w-full" size="l" title="Iniciar sesion" subtitle="Accede para administrar tu conjunto residencial.">
-        <form class="space-y-4" @submit.prevent="submit">
+      <DuiCard v-if="showCard === 'login'" class="w-full" size="l" title="Iniciar sesion" subtitle="Accede para consultar toda la información sobre tu conjunto residencial.">
+        <form class="space-y-4" @submit.prevent="login">
           <DuiLabel title="Correo" required>
             <DuiInput v-model="form.email" type="email" size="lg" block />
           </DuiLabel>
@@ -49,15 +15,96 @@ async function submit() {
             <DuiInput v-model="form.password" type="password" size="lg" block />
           </DuiLabel>
 
-          <DuiAlert v-if="errorMessage" color="danger" variant="outline">
-            {{ errorMessage }}
-          </DuiAlert>
-
-          <DuiButton type="submit" :loading="loading" color="primary" block size="lg">
+          <DuiButton type="submit" :loading="loading" color="primary" block size="lg" class="mt-4">
             Entrar
           </DuiButton>
+
+          <div class="flex justify-end mt-2">
+            <DuiButton type="button" color="link" size="sm" @click="showCard = 'sendReset'">
+              ¿Olvidaste tu contraseña?
+            </DuiButton>
+          </div>
         </form>
+      </DuiCard>
+
+      <DuiCard v-if="showCard === 'sendReset'"  class="w-full" size="l" title="Recuperar contraseña" subtitle="Si olvidaste tu contraseña, puedes recuperarla aquí.">
+        <form v-if="!resend" class="space-y-4" @submit.prevent="sendReset">
+          <DuiLabel title="Correo" required>
+            <DuiInput v-model="form.email" type="email" size="lg" block />
+          </DuiLabel>
+
+          <DuiButton type="submit" :loading="loading" color="primary" block size="lg" class="mt-4">
+            Enviar correo de recuperación
+          </DuiButton>
+        </form>
+        <div v-else class="text-center">
+          <p class="mb-4">Se ha enviado un correo de recuperación a {{ form.email }}. Por favor, revisa tu bandeja de entrada.</p>
+          <DuiButton type="button" color="primary" block size="lg" @click="showCard = 'login'">
+            Volver al inicio de sesión
+          </DuiButton>
+        </div>
       </DuiCard>
     </section>
   </main>
 </template>
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { DuiButton, DuiCard, DuiInput, DuiLabel, useToast } from '@dronico/droni-kit'
+import { useAuth } from '../../composables/useAuth'
+
+const auth = useAuth()
+const router = useRouter()
+const route = useRoute()
+const toast = useToast()
+
+const loading = ref(false)
+const showCard = ref('login')
+const resend = ref(false)
+
+const form = reactive({
+  email: '',
+  password: '',
+})
+
+async function login() {
+  loading.value = true
+
+  try {
+    await auth.login(form)
+    const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/'
+    await router.push(redirect)
+  } catch (error) {
+    toast.add({
+      color: 'danger',
+      title: 'Error',
+      message: 'Error al iniciar sesión. Por favor, verifica tus credenciales.',
+    })
+  } finally {
+    loading.value = false
+  }
+}
+
+async function sendReset() {
+  loading.value = true
+  console.log('Sending password reset email to:', form.email)
+
+  try {
+    await auth.sendPasswordReset(form.email)
+    resend.value = true
+    toast.add({
+      color: 'success',
+      title: 'Correo enviado',
+      message: 'Correo de recuperación de contraseña enviado.'
+    })
+  } catch (error) {
+    toast.add({
+      color: 'danger',
+      title: 'Error',
+      message: 'Error al enviar el correo de recuperación.'
+    })
+  } finally {
+    loading.value = false
+  }
+}
+</script>

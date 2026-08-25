@@ -1,16 +1,26 @@
-export interface AuthUser {
-  id: number
-  fullName: string | null
-  email: string
-  documentType: string
-  document: string | null
-  role: string
-  phone: string | null
-  createdAt: string
-  updatedAt: string | null
+export interface AuthResponse {
+  user: AuthUser;
+  enrollments: EnrollmentsItem[];
+  token: string;
 }
 
-export interface AuthResponse {
-  user: AuthUser
-  token: string
+export interface EnrollmentsItem {
+  id: number;
+  userId: number;
+  unitId: number;
+  role: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AuthUser {
+  id: number;
+  fullName: string;
+  email: string;
+  documentType: string;
+  document: string;
+  role: string;
+  phone: string;
+  createdAt: string;
+  updatedAt: string;
 }

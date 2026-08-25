@@ -1,0 +1,31 @@
+<!-- resources/views/emails/layouts/main.edge -->
+<!DOCTYPE html>
+<html>
+<head lang="es">
+  <meta charset="utf-8">
+  <style>
+    /* Tus estilos generales para el correo */
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+    .container { background-color: #ffffff; padding: 20px; border-radius: 5px; }
+    .footer { margin-top: 20px; font-size: 12px; color: #888; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logotipo o Header general -->
+    <h2>Fontibon Reservado</h2>
+    <hr>
+
+    <!-- Aquí se inyectará el contenido de cada correo individual -->
+    {{{ await $slots.main() }}}
+
+    <!-- Footer general -->
+    <hr>
+    <div class="footer">
+      <p>
+        © {{ new Date().getFullYear() }} ApartaDock. Realizado con ❤️ y mucho café por el equipo de <a href="https://droni.co" target="_blank">Droni.co</a>.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

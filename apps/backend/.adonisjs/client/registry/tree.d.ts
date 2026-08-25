@@ -6,6 +6,10 @@ export interface ApiDefinition {
     auth: {
       login: typeof routes['auth.auth.login']
     }
+    password: {
+      reset: typeof routes['auth.password.reset']
+      update: typeof routes['auth.password.update']
+    }
   }
   profile: {
     profile: {

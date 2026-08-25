@@ -12,6 +12,18 @@ const routes = {
     tokens: [{"old":"/auth/login","type":0,"val":"auth","end":""},{"old":"/auth/login","type":0,"val":"login","end":""}],
     types: placeholder as Registry['auth.auth.login']['types'],
   },
+  'auth.password.reset': {
+    methods: ["POST"],
+    pattern: '/auth/password/reset',
+    tokens: [{"old":"/auth/password/reset","type":0,"val":"auth","end":""},{"old":"/auth/password/reset","type":0,"val":"password","end":""},{"old":"/auth/password/reset","type":0,"val":"reset","end":""}],
+    types: placeholder as Registry['auth.password.reset']['types'],
+  },
+  'auth.password.update': {
+    methods: ["POST"],
+    pattern: '/auth/password/update',
+    tokens: [{"old":"/auth/password/update","type":0,"val":"auth","end":""},{"old":"/auth/password/update","type":0,"val":"password","end":""},{"old":"/auth/password/update","type":0,"val":"update","end":""}],
+    types: placeholder as Registry['auth.password.update']['types'],
+  },
   'profile.profile.show': {
     methods: ["GET","HEAD"],
     pattern: '/account/profile',
