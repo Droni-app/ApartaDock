@@ -5,8 +5,6 @@
     Lista de solicitudes de parqueo registradas en el sistema.
   </small>
 
-  <ParkingRequestsDashboard />
-
   <DuiAlert v-if="error" color="danger" variant="outline">
     {{ error }}
   </DuiAlert>
@@ -72,7 +70,6 @@ import { DuiAlert, DuiBadge, DuiButton, DuiCheckbox, DuiInput, DuiLabel, DuiSele
 import { api } from '../../../services/api'
 import type { ApiErrorResponse, PaginatedResponse } from '../../../types/api'
 import type { ParkingRequest } from '../../../types/parking_requests'
-import ParkingRequestsDashboard from '../../../components/board/parking-requests/Dashboard.vue'
 
 const parkingRequests = ref<ParkingRequest[]>([])
 const loading = ref(false)

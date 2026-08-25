@@ -93,7 +93,7 @@ const navItems = computed(() => [
         {
           label: 'Seguridad',
           icon: 'mdi mdi-shield-lock-outline',
-          to: '/security',
+          to: '#',
           children: [
             { label: 'Visitantes', to: '/security/visitors' },
             { label: 'Vehículos', to: '/security/vehicles' },
