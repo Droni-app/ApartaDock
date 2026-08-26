@@ -26,6 +26,7 @@
         </DuiButton>
       </template>
     </DuiNavbar>
+    <ConsentPolicy />
   </header>
 </template>
 <script setup lang="ts">
@@ -34,6 +35,7 @@ import { DuiButton, DuiNavbar } from '@dronico/droni-kit'
 import { computed } from 'vue'
 import { getAuthUser, useAuth } from '../composables/useAuth'
 import { useTheme } from '../composables/useTheme'
+import ConsentPolicy from './ConsentPlicy.vue'
 
 const router = useRouter()
 const { logout } = useAuth()

@@ -24,7 +24,7 @@ router.beforeEach((to) => {
     const currentUser = getAuthUser()
 
     if (currentUser?.role !== 'admin') {
-      return { path: '/units' }
+      return { path: '/' }
     }
   }
 
@@ -32,7 +32,7 @@ router.beforeEach((to) => {
     const currentUser = getAuthUser()
 
     if (!['board', 'admin'].includes(currentUser?.role ?? '')) {
-      return { path: '/units' }
+      return { path: '/' }
     }
   }
 
@@ -40,12 +40,12 @@ router.beforeEach((to) => {
     const currentUser = getAuthUser()
     
     if (!['security', 'admin'].includes(currentUser?.role ?? '')) {
-      return { path: '/units' }
+      return { path: '/' }
     }
   }
 
   if (isAuthenticated && isPublic) {
-    return { path: '/units' }
+    return { path: '/' }
   }
 
   return true

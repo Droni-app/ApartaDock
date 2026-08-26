@@ -73,7 +73,7 @@ export function useAuth() {
   api.get(`/auth/google/callback?code=${code}`)
     .then(response => {
       saveSession(response.data)
-      router.push('/auth/login')
+      router.push('/')
     })
     .catch(error => {
       console.error('Error during Google callback:', error)
