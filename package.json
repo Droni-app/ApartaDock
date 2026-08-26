@@ -15,7 +15,8 @@
     "test": "npm run test --workspace backend"
   },
   "workspaces": [
-    "apps/*"
+    "apps/backend",
+    "apps/frontend"
   ],
   "devDependencies": {
     "turbo": "^2.10.5"
