@@ -59,11 +59,10 @@ function updatePassword() {
       router.push('/auth/login')
     })
     .catch((error) => {
-      console.error(error.response?.data)
       toast.add({
         color: 'danger',
         title: 'Error',
-        message: 'Error al actualizar la contraseña.',
+        message: error.response?.data?.errors[0]?.message ?? error.message ?? 'Error al actualizar la contraseña.',
       })
     })
     .finally(() => {

@@ -54,9 +54,6 @@ export default class AuthController {
             .subject('Recuperar contraseña')
             .htmlView('emails/reset_password', { user, signature })
         })
-        .then(() => {
-          console.log('Password reset email sent successfully')
-        })
         .catch((error) => {
           console.error('Error sending password reset email:', error)
         })
