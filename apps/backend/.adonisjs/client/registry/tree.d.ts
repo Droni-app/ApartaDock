@@ -5,6 +5,10 @@ export interface ApiDefinition {
   auth: {
     auth: {
       login: typeof routes['auth.auth.login']
+      redirect: typeof routes['auth.auth.redirect']
+    }
+    google: {
+      callback: typeof routes['auth.google.callback']
     }
     password: {
       reset: typeof routes['auth.password.reset']

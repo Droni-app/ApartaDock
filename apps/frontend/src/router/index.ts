@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import routes from '~pages'
 import { getAuthUser, hasToken } from '../composables/useAuth'
 
-const publicPaths = new Set(['/auth/login', '/auth/password/update'])
+const publicPaths = new Set(['/auth/login', '/auth/password/update', '/auth/google/callback'])
 
 const router = createRouter({
   history: createWebHistory(),

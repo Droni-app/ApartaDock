@@ -77,4 +77,33 @@ export default class AuthController {
       message: 'Password updated successfully',
     }
   }
+  async redirect({ ally }: HttpContext) {
+    // return await ally.use('google').getRedirectUrl()
+    await ally.use('google').redirect()
+  }
+  async callback({ ally, response }: HttpContext) {
+    const google = ally.use('google')
+
+    try {
+      const googleUser = await google.user()
+      const email = googleUser.email
+      const user = await User.findBy('email', email)
+
+      if (!user) {
+        return response.unauthorized({ message: 'User not found' })
+      }
+
+      const token = await User.accessTokens.create(user)
+      const enrollments = await Enrollment.query().where('user_id', user.id)
+
+      return {
+        user,
+        enrollments,
+        token: token.value!.release(),
+      }
+    } catch (error) {
+      console.error('Error during Google OAuth callback:', error)
+      return response.unauthorized({ message: 'Authentication failed' })
+    }
+  }
 }

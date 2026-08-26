@@ -5,6 +5,8 @@ type ParamValue = string | number | bigint | boolean
 export type ScannedRoutes = {
   ALL: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
+    'auth.auth.redirect': { paramsTuple?: []; params?: {} }
+    'auth.google.callback': { paramsTuple?: []; params?: {} }
     'auth.password.reset': { paramsTuple?: []; params?: {} }
     'auth.password.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -50,6 +52,8 @@ export type ScannedRoutes = {
     'user.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
+    'auth.auth.redirect': { paramsTuple?: []; params?: {} }
+    'auth.google.callback': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'admin.users.index': { paramsTuple?: []; params?: {} }
     'admin.users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -72,6 +76,8 @@ export type ScannedRoutes = {
     'user.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
+    'auth.auth.redirect': { paramsTuple?: []; params?: {} }
+    'auth.google.callback': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'admin.users.index': { paramsTuple?: []; params?: {} }
     'admin.users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

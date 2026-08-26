@@ -18,6 +18,8 @@ router.get('/', () => {
 router
   .group(() => {
     router.post('login', [controllers.Auth, 'login'])
+    router.get('redirect', [controllers.Auth, 'redirect'])
+    router.get('google/callback', [controllers.Auth, 'callback']).as('google.callback')
     router.post('password/reset', [controllers.Auth, 'resetPassword']).as('password.reset')
     router.post('password/update/:id', [controllers.Auth, 'updatePassword']).as('password.update')
   })

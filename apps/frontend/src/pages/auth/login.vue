@@ -6,6 +6,10 @@
       </div>
 
       <DuiCard v-if="showCard === 'login'" class="w-full" size="l" title="Iniciar sesion" subtitle="Accede para consultar toda la información sobre tu conjunto residencial.">
+        <DuiButton variant="outline" color="danger" block class="my-4" @click="googleLogin">
+          <i class="mdi mdi-google mr-2"></i>
+          Ingresar con Google
+        </DuiButton>
         <form class="space-y-4" @submit.prevent="login">
           <DuiLabel title="Correo" required>
             <DuiInput v-model="form.email" type="email" size="lg" block />
@@ -106,5 +110,9 @@ async function sendReset() {
   } finally {
     loading.value = false
   }
+}
+
+function googleLogin() {
+  window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/redirect`
 }
 </script>

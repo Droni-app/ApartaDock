@@ -12,6 +12,18 @@ const routes = {
     tokens: [{"old":"/auth/login","type":0,"val":"auth","end":""},{"old":"/auth/login","type":0,"val":"login","end":""}],
     types: placeholder as Registry['auth.auth.login']['types'],
   },
+  'auth.auth.redirect': {
+    methods: ["GET","HEAD"],
+    pattern: '/auth/redirect',
+    tokens: [{"old":"/auth/redirect","type":0,"val":"auth","end":""},{"old":"/auth/redirect","type":0,"val":"redirect","end":""}],
+    types: placeholder as Registry['auth.auth.redirect']['types'],
+  },
+  'auth.google.callback': {
+    methods: ["GET","HEAD"],
+    pattern: '/auth/google/callback',
+    tokens: [{"old":"/auth/google/callback","type":0,"val":"auth","end":""},{"old":"/auth/google/callback","type":0,"val":"google","end":""},{"old":"/auth/google/callback","type":0,"val":"callback","end":""}],
+    types: placeholder as Registry['auth.google.callback']['types'],
+  },
   'auth.password.reset': {
     methods: ["POST"],
     pattern: '/auth/password/reset',

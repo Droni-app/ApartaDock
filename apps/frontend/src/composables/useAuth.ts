@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { api } from '../services/api'
 import type { AuthResponse, AuthUser } from '../types/auth'
+import router from '../router'
 
 interface LoginPayload {
   email: string
@@ -68,6 +69,18 @@ export function useAuth() {
     })
   }
 
+  async function getUserFromCallback(code: string) {
+  api.get(`/auth/google/callback?code=${code}`)
+    .then(response => {
+      saveSession(response.data)
+      router.push('/auth/login')
+    })
+    .catch(error => {
+      console.error('Error during Google callback:', error)
+      router.push('/auth/login')
+    })
+}
+
   function logout() {
     localStorage.removeItem(TOKEN_KEY)
     localStorage.removeItem(USER_KEY)
@@ -88,6 +101,7 @@ export function useAuth() {
   return {
     user,
     login,
+    getUserFromCallback,
     logout,
     sendPasswordReset,
   }
