@@ -1,9 +1,9 @@
 <template>
   <div class="mx-auto max-w-2xl space-y-6">
-    <div>
-      <h1 class="text-2xl">Mi perfil</h1>
-      <small class="text-gray-500 dark:text-slate-400 block">Informacion de tu cuenta.</small>
-    </div>
+    <UiTitlePage
+      title="Mi perfil"
+      description="Información de tu cuenta."
+    />
 
     <DuiAlert v-if="error" color="danger" variant="outline">
       {{ error }}
@@ -11,10 +11,10 @@
 
     <p v-if="loading" class="text-gray-500 dark:text-slate-400">Cargando...</p>
 
-    <DuiCard v-else-if="profile" title="Informacion de la cuenta">
+    <DuiCard v-else-if="profile" title="Información de la cuenta">
       <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
-          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Nombre</dt>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Nombre completo</dt>
           <dd class="text-slate-900 dark:text-slate-100">{{ profile.fullName ?? '-' }}</dd>
         </div>
         <div>
@@ -30,45 +30,38 @@
           <dd class="text-slate-900 dark:text-slate-100">{{ profile.document ?? '-' }}</dd>
         </div>
         <div>
-          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Telefono</dt>
+          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Teléfono</dt>
           <dd class="text-slate-900 dark:text-slate-100">{{ profile.phone ?? '-' }}</dd>
-        </div>
-        <div>
-          <dt class="text-xs uppercase text-gray-500 dark:text-slate-400">Rol</dt>
-          <dd class="text-slate-900 dark:text-slate-100">{{ profile.role }}</dd>
         </div>
       </dl>
     </DuiCard>
 
-    <DuiCard title="Cambiar contrasena">
+    <DuiCard title="Cambiar contraseña">
       <form class="space-y-4" autocomplete="off" @submit.prevent="handleChangePassword">
-        <DuiLabel title="Contrasena actual" required>
+        <DuiLabel class="block mb-3" title="Contraseña actual" required>
           <DuiInput
             v-model="passwordForm.currentPassword"
             type="password"
-            size="lg"
-            block
             autocomplete="current-password"
+            required
           />
         </DuiLabel>
 
-        <DuiLabel title="Nueva contrasena" required help-text="Minimo 8 caracteres.">
+        <DuiLabel class="block mb-3" title="Nueva contraseña" required help-text="Minimo 8 caracteres.">
           <DuiInput
             v-model="passwordForm.password"
             type="password"
-            size="lg"
-            block
             autocomplete="new-password"
+            required
           />
         </DuiLabel>
 
-        <DuiLabel title="Confirmar nueva contrasena" required>
+        <DuiLabel class="block mb-3" title="Confirmar nueva contraseña" required>
           <DuiInput
             v-model="passwordForm.passwordConfirmation"
             type="password"
-            size="lg"
-            block
             autocomplete="new-password"
+            required
           />
         </DuiLabel>
 
@@ -96,6 +89,7 @@ import { DuiAlert, DuiButton, DuiCard, DuiInput, DuiLabel } from '@dronico/droni
 import { api } from '../services/api'
 import type { ApiErrorResponse } from '../types/api'
 import type { AuthUser } from '../types/auth'
+import UiTitlePage from '../components/Ui/TitlePage.vue'
 
 const profile = ref<AuthUser | null>(null)
 const loading = ref(false)
