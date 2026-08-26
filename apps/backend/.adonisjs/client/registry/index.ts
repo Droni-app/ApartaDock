@@ -48,6 +48,18 @@ const routes = {
     tokens: [{"old":"/account/profile/password","type":0,"val":"account","end":""},{"old":"/account/profile/password","type":0,"val":"profile","end":""},{"old":"/account/profile/password","type":0,"val":"password","end":""}],
     types: placeholder as Registry['profile.profile.update_password']['types'],
   },
+  'profile.profile.up_data': {
+    methods: ["PUT"],
+    pattern: '/account/profile/updata',
+    tokens: [{"old":"/account/profile/updata","type":0,"val":"account","end":""},{"old":"/account/profile/updata","type":0,"val":"profile","end":""},{"old":"/account/profile/updata","type":0,"val":"updata","end":""}],
+    types: placeholder as Registry['profile.profile.up_data']['types'],
+  },
+  'profile.auth.me': {
+    methods: ["GET","HEAD"],
+    pattern: '/account/me',
+    tokens: [{"old":"/account/me","type":0,"val":"account","end":""},{"old":"/account/me","type":0,"val":"me","end":""}],
+    types: placeholder as Registry['profile.auth.me']['types'],
+  },
   'profile.auth.logout': {
     methods: ["POST"],
     pattern: '/account/logout',

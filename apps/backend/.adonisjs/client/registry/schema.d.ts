@@ -91,6 +91,30 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['updatePassword']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'profile.profile.up_data': {
+    methods: ["PUT"]
+    pattern: '/account/profile/updata'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/user').upDataValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/user').upDataValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['upData']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile_controller').default['upData']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'profile.auth.me': {
+    methods: ["GET","HEAD"]
+    pattern: '/account/me'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['me']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['me']>>>
+    }
+  }
   'profile.auth.logout': {
     methods: ["POST"]
     pattern: '/account/logout'

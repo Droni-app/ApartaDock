@@ -79,7 +79,7 @@ export function useAuth() {
       console.error('Error during Google callback:', error)
       router.push('/auth/login')
     })
-}
+  }
 
   function logout() {
     localStorage.removeItem(TOKEN_KEY)
@@ -98,11 +98,23 @@ export function useAuth() {
     })
   }
 
+  async function me() {
+    await api.get<AuthResponse>('/account/me').then((response) => {
+      const data = response.data
+      localStorage.setItem(USER_KEY, JSON.stringify(data.user))
+      return data
+    }).catch((error) => {
+      console.error('Login error:', error)
+      throw error
+    })
+  }
+
   return {
     user,
     login,
     getUserFromCallback,
     logout,
     sendPasswordReset,
+    me
   }
 }

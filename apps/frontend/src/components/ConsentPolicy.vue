@@ -4,7 +4,7 @@
       <p>
         Hay cambios en nuestra <strong>política de privacidad, términos y condiciones</strong>, es necesario que realice una validación y acepte los nuevos términos para continuar utilizando nuestros servicios.
       </p>
-      <DuiButton size="sm" color="warning" variant="outline" class="mt-2">
+      <DuiButton to="/users/updata" size="sm" color="warning" variant="outline" class="mt-2 inline-block">
         <i class="mdi mdi-file-document-outline"></i>
         Actualizar datos y aceptar términos
       </DuiButton>
@@ -19,10 +19,9 @@ const user = getAuthUser()
 
 // is current Date greater than lastConsentDate
 function isConsentExpired() {
+  if(!user?.consentDate) return true
   const lastConsentDate = new Date(config.lastConsentDate)
-  const userLastConsentDate = new Date(user!.updatedAt)
+  const userLastConsentDate = new Date(user.updatedAt)
   return userLastConsentDate < lastConsentDate
 }
-
 </script>
-

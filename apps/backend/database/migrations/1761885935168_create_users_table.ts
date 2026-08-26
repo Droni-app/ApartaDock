@@ -14,6 +14,7 @@ export default class extends BaseSchema {
       table.unique(['document_type', 'document'])
       table.string('role', 10).defaultTo('user').notNullable()
       table.string('phone', 10).nullable()
+      table.timestamp('consent_date').nullable()
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
     })

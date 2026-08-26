@@ -35,7 +35,7 @@ import { DuiButton, DuiNavbar } from '@dronico/droni-kit'
 import { computed } from 'vue'
 import { getAuthUser, useAuth } from '../composables/useAuth'
 import { useTheme } from '../composables/useTheme'
-import ConsentPolicy from './ConsentPlicy.vue'
+import ConsentPolicy from './ConsentPolicy.vue'
 
 const router = useRouter()
 const { logout } = useAuth()

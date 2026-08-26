@@ -257,6 +257,7 @@ export class UnitSchema extends BaseModel {
 
 export class UserSchema extends BaseModel {
   static $columns = [
+    'consentDate',
     'createdAt',
     'document',
     'documentType',
@@ -269,6 +270,8 @@ export class UserSchema extends BaseModel {
     'updatedAt',
   ] as const
   $columns = UserSchema.$columns
+  @column.dateTime()
+  declare consentDate: DateTime | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
   @column()

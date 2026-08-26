@@ -11,6 +11,8 @@ export type ScannedRoutes = {
     'auth.password.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'profile.profile.update_password': { paramsTuple?: []; params?: {} }
+    'profile.profile.up_data': { paramsTuple?: []; params?: {} }
+    'profile.auth.me': { paramsTuple?: []; params?: {} }
     'profile.auth.logout': { paramsTuple?: []; params?: {} }
     'admin.users.index': { paramsTuple?: []; params?: {} }
     'admin.users.store': { paramsTuple?: []; params?: {} }
@@ -55,6 +57,7 @@ export type ScannedRoutes = {
     'auth.auth.redirect': { paramsTuple?: []; params?: {} }
     'auth.google.callback': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'profile.auth.me': { paramsTuple?: []; params?: {} }
     'admin.users.index': { paramsTuple?: []; params?: {} }
     'admin.users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.index': { paramsTuple?: []; params?: {} }
@@ -79,6 +82,7 @@ export type ScannedRoutes = {
     'auth.auth.redirect': { paramsTuple?: []; params?: {} }
     'auth.google.callback': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'profile.auth.me': { paramsTuple?: []; params?: {} }
     'admin.users.index': { paramsTuple?: []; params?: {} }
     'admin.users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.index': { paramsTuple?: []; params?: {} }
@@ -114,6 +118,7 @@ export type ScannedRoutes = {
   }
   PUT: {
     'profile.profile.update_password': { paramsTuple?: []; params?: {} }
+    'profile.profile.up_data': { paramsTuple?: []; params?: {} }
     'admin.users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.units.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

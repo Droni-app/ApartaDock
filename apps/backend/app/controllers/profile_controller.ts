@@ -1,6 +1,8 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import hash from '@adonisjs/core/services/hash'
-import { updatePasswordValidator } from '#validators/user'
+import { updatePasswordValidator, upDataValidator } from '#validators/user'
+import { DateTime } from 'luxon'
+import User from '#models/user'
 
 export default class ProfileController {
   async show({ auth }: HttpContext) {
@@ -23,5 +25,27 @@ export default class ProfileController {
     await user.save()
 
     return response.ok({ message: 'Contrasena actualizada correctamente.' })
+  }
+
+  async upData({ auth, request, response }: HttpContext) {
+    const user = await User.findOrFail(auth.getUserOrFail().id)
+    const payload = await request.validateUsing(upDataValidator)
+
+    const existDocument = await User.query()
+      .where('documentType', payload.documentType)
+      .andWhere('document', payload.document)
+      .andWhereNot('id', user.id)
+      .first()
+
+    if (existDocument) {
+      return response.badRequest({ message: 'El número de documento ya esta en uso.' })
+    }
+
+    user.fullName = payload.fullName
+    user.documentType = payload.documentType
+    user.document = payload.document
+    user.phone = payload.phone
+    user.consentDate = DateTime.now()
+    await user.save()
   }
 }

@@ -20,6 +20,14 @@ export default class AuthController {
       token: token.value!.release(),
     }
   }
+  async me({ auth }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const enrollments = await Enrollment.query().where('user_id', user.id)
+    return {
+      user,
+      enrollments,
+    }
+  }
   async logout({ auth }: HttpContext) {
     const user = auth.getUserOrFail()
     if (user.currentAccessToken) {

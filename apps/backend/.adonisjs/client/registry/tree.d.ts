@@ -19,8 +19,10 @@ export interface ApiDefinition {
     profile: {
       show: typeof routes['profile.profile.show']
       updatePassword: typeof routes['profile.profile.update_password']
+      upData: typeof routes['profile.profile.up_data']
     }
     auth: {
+      me: typeof routes['profile.auth.me']
       logout: typeof routes['profile.auth.logout']
     }
   }

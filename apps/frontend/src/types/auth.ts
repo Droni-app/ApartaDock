@@ -21,6 +21,7 @@ export interface AuthUser {
   document: string;
   role: string;
   phone: string;
+  consentDate: string | null;
   createdAt: string;
   updatedAt: string;
 }
