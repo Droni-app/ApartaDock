@@ -80,6 +80,7 @@ const roleOptions = [
   { value: 'user', label: 'Usuario' },
   { value: 'admin', label: 'Administrador' },
   { value: 'board', label: 'Consejo' },
+  { value: 'security', label: 'Seguridad' },
 ]
 
 const form = reactive({
