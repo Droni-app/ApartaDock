@@ -1,5 +1,9 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Authorization from '#models/authorization'
+import {
+  createAuthorizationValidator,
+  editAuthorizationValidator,
+} from '#validators/user/authorization'
 
 export default class AuthorizationsController {
   /**
@@ -20,22 +24,48 @@ export default class AuthorizationsController {
    */
   async store({ auth, request }: HttpContext) {
     const user = auth.getUserOrFail()
-
-
+    const payload = request.validateUsing(createAuthorizationValidator)
+    return await Authorization.create({
+      userId: user.id,
+      ...payload,
+    })
   }
 
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({ auth, params }: HttpContext) {
+    const user = auth.getUserOrFail()
+    return await Authorization.query()
+      .where('user_id', user.id)
+      .andWhere('id', params.id)
+      .firstOrFail()
+  }
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({ auth, params, request }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const payload = await request.validateUsing(editAuthorizationValidator)
+    const authorization = await Authorization.query()
+      .where('user_id', user.id)
+      .andWhere('id', params.id)
+      .firstOrFail()
+
+    return await authorization.fill(payload).save()
+  }
 
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ auth, params }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const authorization = await Authorization.query()
+      .where('user_id', user.id)
+      .andWhere('id', params.id)
+      .firstOrFail()
+    await authorization.delete()
+    return authorization
+  }
 }

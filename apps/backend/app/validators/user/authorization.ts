@@ -6,3 +6,10 @@ export const createAuthorizationValidator = vine.create({
   plate: vine.string().trim().maxLength(20).optional(),
   authorizedDate: vine.date().optional(),
 })
+
+export const editAuthorizationValidator = vine.create({
+  fullName: vine.string().trim(),
+  document: vine.string().trim().optional(),
+  plate: vine.string().trim().maxLength(20).optional(),
+  authorizedDate: vine.date().optional(),
+})

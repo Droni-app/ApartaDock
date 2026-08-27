@@ -74,6 +74,7 @@ router
       .post('attachments/download', [controllers.user.Attachments, 'download'])
       .as('attachments.download')
     router.resource('documents', controllers.user.Documents).only(['index', 'show'])
+    router.resource('authorizations', controllers.user.Authorizations).apiOnly()
   })
   .prefix('user')
   .as('user')
