@@ -26,19 +26,31 @@ export class AttachmentSchema extends BaseModel {
   declare userId: number
 }
 
+export class AuthorizationSchema extends BaseModel {
+  static $columns = ['authorizedDate', 'createdAt', 'document', 'fullName', 'id', 'plate', 'unitId', 'updatedAt', 'userId'] as const
+  $columns = AuthorizationSchema.$columns
+  @column.date()
+  declare authorizedDate: DateTime | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare document: string | null
+  @column()
+  declare fullName: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare plate: string | null
+  @column()
+  declare unitId: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+}
+
 export class AuthAccessTokenSchema extends BaseModel {
-  static $columns = [
-    'abilities',
-    'createdAt',
-    'expiresAt',
-    'hash',
-    'id',
-    'lastUsedAt',
-    'name',
-    'tokenableId',
-    'type',
-    'updatedAt',
-  ] as const
+  static $columns = ['abilities', 'createdAt', 'expiresAt', 'hash', 'id', 'lastUsedAt', 'name', 'tokenableId', 'type', 'updatedAt'] as const
   $columns = AuthAccessTokenSchema.$columns
   @column()
   declare abilities: string
@@ -63,18 +75,7 @@ export class AuthAccessTokenSchema extends BaseModel {
 }
 
 export class DocumentSchema extends BaseModel {
-  static $columns = [
-    'active',
-    'category',
-    'content',
-    'createdAt',
-    'document',
-    'id',
-    'name',
-    'picture',
-    'updatedAt',
-    'userId',
-  ] as const
+  static $columns = ['active', 'category', 'content', 'createdAt', 'document', 'id', 'name', 'picture', 'updatedAt', 'userId'] as const
   $columns = DocumentSchema.$columns
   @column()
   declare active: boolean | null
@@ -133,17 +134,7 @@ export class LogSchema extends BaseModel {
 }
 
 export class MinuteSchema extends BaseModel {
-  static $columns = [
-    'active',
-    'content',
-    'createdAt',
-    'description',
-    'document',
-    'id',
-    'name',
-    'updatedAt',
-    'userId',
-  ] as const
+  static $columns = ['active', 'content', 'createdAt', 'description', 'document', 'id', 'name', 'updatedAt', 'userId'] as const
   $columns = MinuteSchema.$columns
   @column()
   declare active: boolean | null
@@ -166,21 +157,7 @@ export class MinuteSchema extends BaseModel {
 }
 
 export class ParkingRequestSchema extends BaseModel {
-  static $columns = [
-    'authorization',
-    'createdAt',
-    'id',
-    'insurancePolicy',
-    'notes',
-    'period',
-    'periodYear',
-    'status',
-    'technicalReview',
-    'unitId',
-    'updatedAt',
-    'userId',
-    'vehicleId',
-  ] as const
+  static $columns = ['authorization', 'createdAt', 'id', 'insurancePolicy', 'notes', 'period', 'periodYear', 'status', 'technicalReview', 'unitId', 'updatedAt', 'userId', 'vehicleId'] as const
   $columns = ParkingRequestSchema.$columns
   @column()
   declare authorization: string | null
@@ -211,21 +188,7 @@ export class ParkingRequestSchema extends BaseModel {
 }
 
 export class UnitSchema extends BaseModel {
-  static $columns = [
-    'apto',
-    'buildArea',
-    'coefficient',
-    'createdAt',
-    'floor',
-    'id',
-    'name',
-    'notes',
-    'privateArea',
-    'status',
-    'tower',
-    'typology',
-    'updatedAt',
-  ] as const
+  static $columns = ['apto', 'buildArea', 'coefficient', 'createdAt', 'floor', 'id', 'name', 'notes', 'privateArea', 'status', 'tower', 'typology', 'updatedAt'] as const
   $columns = UnitSchema.$columns
   @column()
   declare apto: number
@@ -256,19 +219,7 @@ export class UnitSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = [
-    'consentDate',
-    'createdAt',
-    'document',
-    'documentType',
-    'email',
-    'fullName',
-    'id',
-    'password',
-    'phone',
-    'role',
-    'updatedAt',
-  ] as const
+  static $columns = ['consentDate', 'createdAt', 'document', 'documentType', 'email', 'fullName', 'id', 'password', 'phone', 'role', 'updatedAt'] as const
   $columns = UserSchema.$columns
   @column.dateTime()
   declare consentDate: DateTime | null
@@ -295,22 +246,7 @@ export class UserSchema extends BaseModel {
 }
 
 export class VehicleSchema extends BaseModel {
-  static $columns = [
-    'brand',
-    'color',
-    'createdAt',
-    'driverLicense',
-    'id',
-    'isOwner',
-    'model',
-    'ownerCard',
-    'ownerDocument',
-    'ownerName',
-    'plate',
-    'userId',
-    'vehicleType',
-    'year',
-  ] as const
+  static $columns = ['brand', 'color', 'createdAt', 'driverLicense', 'id', 'isOwner', 'model', 'ownerCard', 'ownerDocument', 'ownerName', 'plate', 'userId', 'vehicleType', 'year'] as const
   $columns = VehicleSchema.$columns
   @column()
   declare brand: string | null
