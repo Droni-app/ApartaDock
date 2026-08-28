@@ -2,7 +2,7 @@
   <div>
     <UiTitlePage
       title="Actualización de datos"
-      description="Ayudanos a mantener actualizada la ifnromación de la coopropiedad."
+      description="Ayudanos a mantener actualizada la ifnromación de la copropiedad."
     />
     <div class="md:grid grid-cols-2 gap-4 justify-items-stretch my-4">
       <DuiCard>

@@ -91,5 +91,12 @@ export interface ApiDefinition {
       index: typeof routes['user.documents.index']
       show: typeof routes['user.documents.show']
     }
+    authorizations: {
+      index: typeof routes['user.authorizations.index']
+      store: typeof routes['user.authorizations.store']
+      show: typeof routes['user.authorizations.show']
+      update: typeof routes['user.authorizations.update']
+      destroy: typeof routes['user.authorizations.destroy']
+    }
   }
 }

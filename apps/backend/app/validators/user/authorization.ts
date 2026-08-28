@@ -1,6 +1,7 @@
 import vine from '@vinejs/vine'
 
 export const createAuthorizationValidator = vine.create({
+  unitId: vine.number(),
   fullName: vine.string().trim(),
   document: vine.string().trim().optional(),
   plate: vine.string().trim().maxLength(20).optional(),
@@ -8,6 +9,7 @@ export const createAuthorizationValidator = vine.create({
 })
 
 export const editAuthorizationValidator = vine.create({
+  unitId: vine.number(),
   fullName: vine.string().trim(),
   document: vine.string().trim().optional(),
   plate: vine.string().trim().maxLength(20).optional(),

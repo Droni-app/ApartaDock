@@ -52,6 +52,11 @@ export type ScannedRoutes = {
     'user.attachments.download': { paramsTuple?: []; params?: {} }
     'user.documents.index': { paramsTuple?: []; params?: {} }
     'user.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.authorizations.index': { paramsTuple?: []; params?: {} }
+    'user.authorizations.store': { paramsTuple?: []; params?: {} }
+    'user.authorizations.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.authorizations.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.authorizations.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'auth.auth.redirect': { paramsTuple?: []; params?: {} }
@@ -77,6 +82,8 @@ export type ScannedRoutes = {
     'user.attachments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.documents.index': { paramsTuple?: []; params?: {} }
     'user.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.authorizations.index': { paramsTuple?: []; params?: {} }
+    'user.authorizations.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'auth.auth.redirect': { paramsTuple?: []; params?: {} }
@@ -102,6 +109,8 @@ export type ScannedRoutes = {
     'user.attachments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.documents.index': { paramsTuple?: []; params?: {} }
     'user.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.authorizations.index': { paramsTuple?: []; params?: {} }
+    'user.authorizations.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
@@ -115,6 +124,7 @@ export type ScannedRoutes = {
     'user.vehicles.store': { paramsTuple?: []; params?: {} }
     'user.attachments.store': { paramsTuple?: []; params?: {} }
     'user.attachments.download': { paramsTuple?: []; params?: {} }
+    'user.authorizations.store': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'profile.profile.update_password': { paramsTuple?: []; params?: {} }
@@ -126,6 +136,7 @@ export type ScannedRoutes = {
     'board.documents.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.vehicles.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.attachments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.authorizations.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PATCH: {
     'admin.users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -135,6 +146,7 @@ export type ScannedRoutes = {
     'board.documents.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.vehicles.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.attachments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.authorizations.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'admin.users.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -142,6 +154,7 @@ export type ScannedRoutes = {
     'board.documents.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.vehicles.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.attachments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'user.authorizations.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

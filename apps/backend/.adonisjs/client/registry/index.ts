@@ -294,6 +294,36 @@ const routes = {
     tokens: [{"old":"/user/documents/:id","type":0,"val":"user","end":""},{"old":"/user/documents/:id","type":0,"val":"documents","end":""},{"old":"/user/documents/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['user.documents.show']['types'],
   },
+  'user.authorizations.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/authorizations',
+    tokens: [{"old":"/user/authorizations","type":0,"val":"user","end":""},{"old":"/user/authorizations","type":0,"val":"authorizations","end":""}],
+    types: placeholder as Registry['user.authorizations.index']['types'],
+  },
+  'user.authorizations.store': {
+    methods: ["POST"],
+    pattern: '/user/authorizations',
+    tokens: [{"old":"/user/authorizations","type":0,"val":"user","end":""},{"old":"/user/authorizations","type":0,"val":"authorizations","end":""}],
+    types: placeholder as Registry['user.authorizations.store']['types'],
+  },
+  'user.authorizations.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/authorizations/:id',
+    tokens: [{"old":"/user/authorizations/:id","type":0,"val":"user","end":""},{"old":"/user/authorizations/:id","type":0,"val":"authorizations","end":""},{"old":"/user/authorizations/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.authorizations.show']['types'],
+  },
+  'user.authorizations.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/user/authorizations/:id',
+    tokens: [{"old":"/user/authorizations/:id","type":0,"val":"user","end":""},{"old":"/user/authorizations/:id","type":0,"val":"authorizations","end":""},{"old":"/user/authorizations/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.authorizations.update']['types'],
+  },
+  'user.authorizations.destroy': {
+    methods: ["DELETE"],
+    pattern: '/user/authorizations/:id',
+    tokens: [{"old":"/user/authorizations/:id","type":0,"val":"user","end":""},{"old":"/user/authorizations/:id","type":0,"val":"authorizations","end":""},{"old":"/user/authorizations/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.authorizations.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

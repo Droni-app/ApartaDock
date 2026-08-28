@@ -583,4 +583,64 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/documents_controller').default['show']>>>
     }
   }
+  'user.authorizations.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/authorizations'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['index']>>>
+    }
+  }
+  'user.authorizations.store': {
+    methods: ["POST"]
+    pattern: '/user/authorizations'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/user/authorization').createAuthorizationValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/user/authorization').createAuthorizationValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'user.authorizations.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/authorizations/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['show']>>>
+    }
+  }
+  'user.authorizations.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/user/authorizations/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/user/authorization').editAuthorizationValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/user/authorization').editAuthorizationValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'user.authorizations.destroy': {
+    methods: ["DELETE"]
+    pattern: '/user/authorizations/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['destroy']>>>
+    }
+  }
 }
