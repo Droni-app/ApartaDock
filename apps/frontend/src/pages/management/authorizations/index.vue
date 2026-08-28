@@ -46,13 +46,13 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import UiTitlePage from '../../../components/Ui/TitlePage.vue'
+import UiTitlePage from '@components/Ui/TitlePage.vue'
 import { DuiButton, DuiDrawer, DuiLabel, DuiInput, DuiSelect, useToast } from '@dronico/droni-kit';
-import { api } from '../../../services/api'
+import { api } from '@services/api'
 import type { AxiosError } from 'axios';
-import type { PaginatedResponse, ValidationErrors } from '../../../types/api.ts';
-import type { Enrollment } from '../../../types/enrollments.ts';
-import type { Authorization, AuthorizationNew } from '../../../types/user/authorization';
+import type { PaginatedResponse, ValidationErrors } from '@appTypes/api.ts';
+import type { Enrollment } from '@appTypes/enrollments.ts';
+import type { Authorization, AuthorizationNew } from '@appTypes/user/authorization';
 import UiAuthorizationsCard from '@components/management/Authorizations/Card.vue'
 
 const toast = useToast()
