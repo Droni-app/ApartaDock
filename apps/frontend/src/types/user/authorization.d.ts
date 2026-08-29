@@ -8,6 +8,22 @@ export interface Authorization {
   authorizedDate: string | null;
   createdAt: string;
   updatedAt: string;
+  unit: Unit
+}
+export interface Unit {
+  id: number
+  name: string
+  tower: number
+  apto: number
+  floor: number
+  typology: number
+  buildArea: string
+  privateArea: string
+  coefficient: string
+  status: string
+  notes: any
+  createdAt: string
+  updatedAt: string
 }
 export interface AuthorizationNew {
   unitId: number | null;
@@ -16,3 +32,4 @@ export interface AuthorizationNew {
   plate: string | null;
   authorizedDate: string | null;
 }
+

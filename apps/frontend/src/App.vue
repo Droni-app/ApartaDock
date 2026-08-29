@@ -2,7 +2,7 @@
   <main class="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors dark:bg-slate-950 dark:text-slate-100">
     <DuiToast position="bottom-right" :z-index="70" />
     <MainHeader v-if="isAuthenticated" />
-    <RouterView class="py-3 container mx-auto" />
+    <RouterView class="py-3 px-2 container mx-auto" />
     <p class="text-center text-sm text-gray-500 dark:text-slate-400 py-4">
       Política de privacidad y términos de uso: <a href="/legal/policy.html" target="_blank" class="text-primary hover:underline">Consulta aquí</a>.<br />
       &copy; 2026 ApartaDock. Realizado con ❤️ y mucho café por el equipo de <a href="https://droni.co" target="_blank" class="text-primary hover:underline">Droni.co</a>.

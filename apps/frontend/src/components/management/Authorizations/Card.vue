@@ -1,8 +1,18 @@
 <template>
-  <DuiCard class="flex">
-    <i class="mdi mdi-account-key" />
-    <div>
-      {{ authorization }}
+  <DuiCard>
+    <div class="flex">
+      <div class="text-6xl shrink pe-3">
+        <i class="mdi mdi-account-key" />
+      </div>
+      <div>
+        <h3 class="text-xl">
+          {{ authorization.fullName }} | {{ authorization.unit.name }}
+        </h3>
+        <p class="text-sm">
+          Documento: {{ authorization.document }}<br />
+          Fecha de la autorización: {{ authorization.authorizedDate }}
+        </p>
+      </div>
     </div>
   </DuiCard>
 </template>

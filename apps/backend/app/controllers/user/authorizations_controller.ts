@@ -17,6 +17,7 @@ export default class AuthorizationsController {
     const user = auth.getUserOrFail()
     const authorizations = await Authorization.query()
       .where('userId', user.id)
+      .preload('unit')
       .if(q, (query) => {
         query.where('fullName', 'like', `%${q}%`)
       })
@@ -51,6 +52,7 @@ export default class AuthorizationsController {
     return await Authorization.query()
       .where('user_id', user.id)
       .andWhere('id', params.id)
+      .preload('unit')
       .firstOrFail()
   }
 
