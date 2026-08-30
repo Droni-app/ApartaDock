@@ -5,7 +5,7 @@
     <RouterView class="py-3 px-2 container mx-auto" />
     <p class="text-center text-sm text-gray-500 dark:text-slate-400 py-4">
       Política de privacidad y términos de uso: <a href="/legal/policy.html" target="_blank" class="text-primary hover:underline">Consulta aquí</a>.<br />
-      &copy; 2026 ApartaDock. Realizado con ❤️ y mucho café por el equipo de <a href="https://droni.co" target="_blank" class="text-primary hover:underline">Droni.co</a>.
+      &copy; 2026 ApartaDock. Realizado con ❤️ y mucho café por el equipo de <a href="https://droni.co" target="_blank" class="text-primary hover:underline">Droni.co</a> | v {{ version }}.
     </p>
   </main>
 </template>
@@ -15,6 +15,7 @@ import MainHeader from './components/MainHeader.vue'
 import { useAuth } from './composables/useAuth'
 import { useTheme } from './composables/useTheme'
 import { DuiToast } from '@dronico/droni-kit'
+import { version } from '../package.json'
 
 const { user } = useAuth()
 useTheme()
