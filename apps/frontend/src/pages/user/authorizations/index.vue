@@ -56,7 +56,7 @@ import type { AxiosError } from 'axios';
 import type { PaginatedResponse, ValidationErrors } from '@/types/api.ts';
 import type { Enrollment } from '@/types/enrollments.ts';
 import type { Authorization, AuthorizationNew } from '@/types/user/authorization';
-import UiAuthorizationsCard from '@/components/management/Authorizations/Card.vue'
+import UiAuthorizationsCard from '@/components/user/Authorizations/Card.vue'
 
 const toast = useToast()
 

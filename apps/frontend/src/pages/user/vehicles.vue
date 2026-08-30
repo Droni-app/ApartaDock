@@ -113,7 +113,7 @@ import { api } from '../../services/api.ts'
 import type { ApiErrorResponse } from '../../types/api.ts'
 import type { Vehicle } from '../../types/vehicles.ts'
 import Drawer from '../../components/admin/Drawer.vue'
-import VehicleForm from '../../components/management/vehicles/Form.vue'
+import VehicleForm from '../../components/user/vehicles/Form.vue'
 
 const vehicles = ref<Vehicle[]>([])
 const loading = ref(false)

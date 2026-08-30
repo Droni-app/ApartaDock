@@ -65,8 +65,8 @@
 <script setup lang="ts">
 import { reactive, watch } from 'vue'
 import { DuiAlert, DuiButton, DuiInput, DuiLabel, DuiSelect, DuiSwitch } from '@dronico/droni-kit'
-import { getAuthUser } from '../../../composables/useAuth'
-import type { Vehicle } from '../../../types/vehicles'
+import { getAuthUser } from '../../../composables/useAuth.ts'
+import type { Vehicle } from '../../../types/vehicles.ts'
 import AttachmentUrlInput from '../../AttachmentUrlInput.vue'
 
 const props = withDefaults(

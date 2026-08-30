@@ -21,7 +21,7 @@ Dentro de `apps/frontend`: `npm run build` corre `vue-tsc -b` antes de `vite bui
 
 El sistema tiene roles de usuario en `users.role` (string libre, default `user`), validados por middleware de backend y por el router de Vue en el frontend:
 
-- `user` — Residente. Rol por defecto. Acceso a `/user/*` (backend) y `/management/*` (frontend): unidades, estado de cuenta, reservas, vehículos, autorizaciones.
+- `user` — Residente. Rol por defecto. Acceso a `/user/*` (backend) y `/user/*` (frontend): unidades, estado de cuenta, reservas, vehículos, autorizaciones.
 - `board` — Consejo de administración. Acceso adicional a `/board/*`: solicitudes de parqueo, minutas/actas. Backend: `board_middleware.ts` permite `board` y `admin`.
 - `admin` — Administrador del sistema. Acceso total, incluye `/admin/*`: usuarios, unidades, imports, logs/auditoría. Backend: `admin_middleware.ts` exige exactamente `admin`.
 - `security` — **Aún no existe.** Rol planeado para el personal de vigilancia; cuando se agregue habrá que sumarlo a los middlewares del backend y a los mapas de rol del frontend (ver `apps/frontend/src/utils/roles.ts` y `apps/frontend/src/components/dashboard/RoleDashboard.vue`).
@@ -52,7 +52,7 @@ En el frontend, `apps/frontend/src/router/index.ts` hace el guard de rutas (`bef
 
 Módulos con datos reales conectados al backend: administración de usuarios, administración de unidades, auditoría/logs, solicitudes de parqueo (consejo), minutas/actas (consejo), gestión de vehículos (residente).
 
-Módulos que aún son maqueta/dummy (marcados en la UI con `DummyPageInfo`): gestión general del residente (`/management`), estado de cuenta, reservas de zonas comunes, autorizaciones de visitantes, comunicaciones, participación (asambleas/encuestas), social. No usar estos como fuente de datos reales al construir features nuevas — o hay que conectarlos primero.
+Módulos que aún son maqueta/dummy (marcados en la UI con `DummyPageInfo`): gestión general del residente (`/user`), estado de cuenta, reservas de zonas comunes, autorizaciones de visitantes, comunicaciones, participación (asambleas/encuestas), social. No usar estos como fuente de datos reales al construir features nuevas — o hay que conectarlos primero.
 
 ## Convenciones de trabajo
 
