@@ -52,7 +52,7 @@
             <i class="mdi mdi-information-outline"></i>
             Estado: {{ enrollment.unit?.status ?? '-' }}
           </div>
-          <DuiButton size="sm" variant="outline" color="primary" :to="`/management/units/${enrollment.id}`">
+          <DuiButton size="sm" variant="outline" color="primary" :to="`/user/units/${enrollment.id}`">
             Ver detalle
           </DuiButton>
         </div>

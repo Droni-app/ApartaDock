@@ -6,10 +6,6 @@
         <p class="text-sm text-gray-500 dark:text-slate-400">Vehículos registrados a tu nombre.</p>
       </div>
       <div class="flex gap-2">
-        <DuiButton variant="outline" color="neutral" to="/management">
-          <i class="mdi mdi-arrow-left mr-1"></i>
-          Gestión
-        </DuiButton>
         <DuiButton color="primary" @click="openCreateDrawer">
           <i class="mdi mdi-plus mr-1"></i>
           Registrar vehículo
