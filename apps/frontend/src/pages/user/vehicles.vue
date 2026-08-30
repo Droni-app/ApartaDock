@@ -113,9 +113,9 @@
 import { onMounted, ref } from 'vue'
 import { AxiosError } from 'axios'
 import { DuiAlert, DuiBadge, DuiButton, DuiCard, DuiModal } from '@dronico/droni-kit'
-import { api } from '../../services/api'
-import type { ApiErrorResponse } from '../../types/api'
-import type { Vehicle } from '../../types/vehicles'
+import { api } from '../../services/api.ts'
+import type { ApiErrorResponse } from '../../types/api.ts'
+import type { Vehicle } from '../../types/vehicles.ts'
 import Drawer from '../../components/admin/Drawer.vue'
 import VehicleForm from '../../components/management/vehicles/Form.vue'
 

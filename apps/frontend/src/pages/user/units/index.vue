@@ -65,9 +65,9 @@
 import { onMounted, ref } from 'vue'
 import { AxiosError } from 'axios'
 import { DuiAlert, DuiBadge, DuiButton, DuiCard } from '@dronico/droni-kit'
-import { api } from '../../../services/api'
-import type { ApiErrorResponse } from '../../../types/api'
-import type { Enrollment } from '../../../types/enrollments'
+import { api } from '../../../services/api.ts'
+import type { ApiErrorResponse } from '../../../types/api.ts'
+import type { Enrollment } from '../../../types/enrollments.ts'
 import UiTitlePage from '../../../components/Ui/TitlePage.vue'
 
 const enrollments = ref<Enrollment[]>([])

@@ -91,7 +91,7 @@ import { AxiosError } from 'axios'
 import { DuiAlert, DuiBadge, DuiCard } from '@dronico/droni-kit'
 import { api } from '@/services/api'
 import type { ApiErrorResponse } from '@/types/api'
-import type { EnrollmentDetail } from '../../../types/enrollments'
+import type { EnrollmentDetail } from '../../../types/enrollments.ts'
 import UiTitlePage from '../../../components/Ui/TitlePage.vue'
 
 const route = useRoute()

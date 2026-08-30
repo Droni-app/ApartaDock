@@ -4,7 +4,7 @@
       <p>
         Hay cambios en nuestra <strong>política de privacidad, términos y condiciones</strong>, es necesario que realice una validación y acepte los nuevos términos para continuar utilizando nuestros servicios.
       </p>
-      <DuiButton to="/users/updata" size="sm" color="warning" variant="outline" class="mt-2 inline-block">
+      <DuiButton to="/user/updata" size="sm" color="warning" variant="outline" class="mt-2 inline-block">
         <i class="mdi mdi-file-document-outline"></i>
         Actualizar datos y aceptar términos
       </DuiButton>

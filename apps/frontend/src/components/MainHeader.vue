@@ -43,18 +43,9 @@ const { isDark, toggleTheme } = useTheme()
 const isAdmin = computed(() => getAuthUser()?.role === 'admin')
 const isBoard = computed(() => ['board', 'admin'].includes(getAuthUser()?.role ?? ''))
 const isSecurity = computed(() => ['security', 'admin'].includes(getAuthUser()?.role ?? ''))
+const isUser = computed(() => ['user', 'board', 'admin'].includes(getAuthUser()?.role ?? ''))
 
 const navItems = computed(() => [
-  {
-    label: 'Gestión',
-    icon: 'mdi mdi-office-building-cog-outline',
-    to: '#',
-    children: [
-      { label: 'Unidades', to: '/management/units' },
-      { label: 'Autorizaciones', to: '/management/authorizations' },
-      { label: 'Vehículos', to: '/management/vehicles' },
-    ],
-  },
   {
     label: 'Comunicaciones',
     icon: 'mdi mdi-message-text',
@@ -63,6 +54,20 @@ const navItems = computed(() => [
       { label: 'Documentos', to: '/communications/documents' },
     ],
   },
+  ...(isUser.value
+    ? [
+        {
+          label: 'Gestión',
+          icon: 'mdi mdi-office-building-cog-outline',
+          to: '#',
+          children: [
+            { label: 'Unidades', to: '/user/units' },
+            { label: 'Autorizaciones', to: '/user/authorizations' },
+            { label: 'Vehículos', to: '/user/vehicles' },
+          ],
+        },
+      ]
+    : []),
   ...(isBoard.value
     ? [
         {
