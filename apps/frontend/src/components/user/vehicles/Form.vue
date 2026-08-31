@@ -51,21 +51,32 @@
       {{ errorMessage }}
     </DuiAlert>
 
-    <div class="flex justify-end gap-2 pt-2">
-      <DuiButton type="button" variant="outline" color="neutral" :disabled="loading" @click="emit('cancel')">
-        Cancelar
-      </DuiButton>
-      <DuiButton type="submit" color="primary" :loading="loading">
-        {{ mode === 'create' ? 'Registrar vehiculo' : 'Guardar cambios' }}
-      </DuiButton>
+    <div class="flex items-center justify-between gap-2 pt-2">
+      <DuiConfirmation
+        v-if="mode === 'edit'"
+        label="Eliminar"
+        check-label="Confirmar eliminación"
+        confirm-label="Eliminar"
+        color="danger"
+        @confirmed="emit('delete')"
+      />
+      <div class="flex flex-1 justify-end gap-2">
+        <DuiButton type="button" variant="outline" color="neutral" :disabled="loading" @click="emit('cancel')">
+          Cancelar
+        </DuiButton>
+        <DuiButton type="submit" color="primary" :loading="loading">
+          {{ mode === 'create' ? 'Registrar vehiculo' : 'Guardar cambios' }}
+        </DuiButton>
+      </div>
     </div>
   </form>
 </template>
 
 <script setup lang="ts">
 import { reactive, watch } from 'vue'
-import { DuiAlert, DuiButton, DuiInput, DuiLabel, DuiSelect, DuiSwitch } from '@dronico/droni-kit'
+import { DuiAlert, DuiButton, DuiConfirmation, DuiInput, DuiLabel, DuiSelect, DuiSwitch } from '@dronico/droni-kit'
 import { getAuthUser } from '../../../composables/useAuth.ts'
+import { vehicleTypeOptions } from '../../../utils/vehicles.ts'
 import type { Vehicle } from '../../../types/vehicles.ts'
 import AttachmentUrlInput from '../../AttachmentUrlInput.vue'
 
@@ -87,15 +98,8 @@ const props = withDefaults(
 const emit = defineEmits<{
   submit: [payload: Record<string, unknown>]
   cancel: []
+  delete: []
 }>()
-
-const vehicleTypeOptions = [
-  { value: 'car', label: 'Carro' },
-  { value: 'motorcycle', label: 'Moto' },
-  { value: 'bicycle', label: 'Bicicleta' },
-  { value: 'truck', label: 'Camion' },
-  { value: 'other', label: 'Otro' },
-]
 
 const form = reactive({
   plate: '',
