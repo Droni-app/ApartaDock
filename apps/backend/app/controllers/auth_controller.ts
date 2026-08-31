@@ -15,7 +15,7 @@ export default class AuthController {
     const enrollments = await Enrollment.query().where('user_id', user.id)
 
     return {
-      user,
+      user: User.reveal(user),
       enrollments,
       token: token.value!.release(),
     }
@@ -24,7 +24,7 @@ export default class AuthController {
     const user = auth.getUserOrFail()
     const enrollments = await Enrollment.query().where('user_id', user.id)
     return {
-      user,
+      user: User.reveal(user),
       enrollments,
     }
   }
@@ -105,7 +105,7 @@ export default class AuthController {
       const enrollments = await Enrollment.query().where('user_id', user.id)
 
       return {
-        user,
+        user: User.reveal(user),
         enrollments,
         token: token.value!.release(),
       }

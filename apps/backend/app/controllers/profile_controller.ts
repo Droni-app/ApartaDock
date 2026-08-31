@@ -6,7 +6,7 @@ import User from '#models/user'
 
 export default class ProfileController {
   async show({ auth }: HttpContext) {
-    return auth.getUserOrFail()
+    return User.reveal(auth.getUserOrFail())
   }
 
   /**

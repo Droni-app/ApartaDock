@@ -23,6 +23,7 @@ export default class UsersController {
     }
 
     const users = await query.paginate(page, limit)
+    User.reveal(users.all())
     return users
   }
 
@@ -45,7 +46,7 @@ export default class UsersController {
     }
 
     const user = await User.create(payload)
-    return response.created(user)
+    return response.created(User.reveal(user))
   }
 
   /**
@@ -58,7 +59,7 @@ export default class UsersController {
       })
       .where('id', params.id)
       .firstOrFail()
-    return user
+    return User.reveal(user)
   }
 
   /**
@@ -93,7 +94,7 @@ export default class UsersController {
     user.merge(payload)
     await user.save()
 
-    return user
+    return User.reveal(user)
   }
 
   /**
