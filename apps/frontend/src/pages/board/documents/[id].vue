@@ -66,7 +66,15 @@
       </DuiCard>
       
       <DuiCard>
-        <div v-html="document.content"></div>
+        <div class="lg:grid lg:grid-cols-2 gap-4">
+          <div v-if="document.picture" class="mb-4 lg:mb-0">
+            <img
+            :src="document.picture"
+            :alt="document.name"
+            class="w-full h-auto mb-4 rounded-md shadow p-4" />
+          </div>
+          <article class="prose dark:prose-invert lg:prose-xl" v-html="document.content"></article>
+        </div>
       </DuiCard>
     </div>
   </div>
