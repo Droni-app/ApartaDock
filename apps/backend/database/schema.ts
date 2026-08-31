@@ -277,3 +277,32 @@ export class VehicleSchema extends BaseModel {
   @column()
   declare year: number
 }
+
+export class VisitorSchema extends BaseModel {
+  static $columns = ['authorizationId', 'checkinDate', 'checkoutDate', 'createdAt', 'document', 'fullName', 'id', 'plate', 'unitId', 'updatedAt', 'userId', 'vehicleType'] as const
+  $columns = VisitorSchema.$columns
+  @column()
+  declare authorizationId: number | null
+  @column.dateTime()
+  declare checkinDate: DateTime | null
+  @column.dateTime()
+  declare checkoutDate: DateTime | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare document: string | null
+  @column()
+  declare fullName: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare plate: string | null
+  @column()
+  declare unitId: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+  @column()
+  declare vehicleType: string | null
+}

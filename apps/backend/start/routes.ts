@@ -64,6 +64,15 @@ router
   .as('board')
   .use([middleware.auth(), middleware.board()])
 
+// Security routes
+router
+  .group(() => {
+    router.resource('visitors', controllers.security.Visitors).apiOnly().except(['destroy'])
+  })
+  .prefix('security')
+  .as('security')
+  .use([middleware.auth(), middleware.security()])
+
 // User routes
 router
   .group(() => {

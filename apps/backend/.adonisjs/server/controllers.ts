@@ -17,6 +17,9 @@ export const controllers = {
     ParkingRequests: () => import('#controllers/board/parking_requests_controller'),
   },
   Profile: () => import('#controllers/profile_controller'),
+  security: {
+    Visitors: () => import('#controllers/security/visitors_controller'),
+  },
   user: {
     Attachments: () => import('#controllers/user/attachments_controller'),
     Authorizations: () => import('#controllers/user/authorizations_controller'),

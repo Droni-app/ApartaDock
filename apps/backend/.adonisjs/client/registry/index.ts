@@ -204,6 +204,30 @@ const routes = {
     tokens: [{"old":"/board/documents/:id","type":0,"val":"board","end":""},{"old":"/board/documents/:id","type":0,"val":"documents","end":""},{"old":"/board/documents/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['board.documents.destroy']['types'],
   },
+  'security.visitors.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/security/visitors',
+    tokens: [{"old":"/security/visitors","type":0,"val":"security","end":""},{"old":"/security/visitors","type":0,"val":"visitors","end":""}],
+    types: placeholder as Registry['security.visitors.index']['types'],
+  },
+  'security.visitors.store': {
+    methods: ["POST"],
+    pattern: '/security/visitors',
+    tokens: [{"old":"/security/visitors","type":0,"val":"security","end":""},{"old":"/security/visitors","type":0,"val":"visitors","end":""}],
+    types: placeholder as Registry['security.visitors.store']['types'],
+  },
+  'security.visitors.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/security/visitors/:id',
+    tokens: [{"old":"/security/visitors/:id","type":0,"val":"security","end":""},{"old":"/security/visitors/:id","type":0,"val":"visitors","end":""},{"old":"/security/visitors/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['security.visitors.show']['types'],
+  },
+  'security.visitors.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/security/visitors/:id',
+    tokens: [{"old":"/security/visitors/:id","type":0,"val":"security","end":""},{"old":"/security/visitors/:id","type":0,"val":"visitors","end":""},{"old":"/security/visitors/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['security.visitors.update']['types'],
+  },
   'user.enrollments.index': {
     methods: ["GET","HEAD"],
     pattern: '/user/enrollments',

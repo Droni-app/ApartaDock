@@ -67,6 +67,14 @@ export interface ApiDefinition {
       destroy: typeof routes['board.documents.destroy']
     }
   }
+  security: {
+    visitors: {
+      index: typeof routes['security.visitors.index']
+      store: typeof routes['security.visitors.store']
+      show: typeof routes['security.visitors.show']
+      update: typeof routes['security.visitors.update']
+    }
+  }
   user: {
     enrollments: {
       index: typeof routes['user.enrollments.index']

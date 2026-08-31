@@ -403,6 +403,54 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/board/documents_controller').default['destroy']>>>
     }
   }
+  'security.visitors.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/security/visitors'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['index']>>>
+    }
+  }
+  'security.visitors.store': {
+    methods: ["POST"]
+    pattern: '/security/visitors'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/security/visitor_validator').createVisitorValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/security/visitor_validator').createVisitorValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'security.visitors.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/security/visitors/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['show']>>>
+    }
+  }
+  'security.visitors.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/security/visitors/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/security/visitor_validator').updateVisitorValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/security/visitor_validator').updateVisitorValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'user.enrollments.index': {
     methods: ["GET","HEAD"]
     pattern: '/user/enrollments'
