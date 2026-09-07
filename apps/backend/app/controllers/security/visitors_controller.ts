@@ -19,7 +19,7 @@ export default class VisitorsController {
   /**
    * Display a list of resource
    */
-  async index({ auth, request }: HttpContext) {
+  async index({ request }: HttpContext) {
     const page = Number(request.input('page', 1))
     const limit = Number(request.input('limit', 20))
     const q = request.input('q', '')
@@ -73,7 +73,7 @@ export default class VisitorsController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ auth, params, request }: HttpContext) {
+  async update({ params, request }: HttpContext) {
     const payload = await request.validateUsing(updateVisitorValidator)
     const visitor = await Visitor.query().where('id', params.id).firstOrFail()
     console.log(payload)

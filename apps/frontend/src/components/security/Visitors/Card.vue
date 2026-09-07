@@ -57,4 +57,6 @@ const props = defineProps<{
   visitor: Visitor
 }>()
 
+defineEmits(['checkout', 'checkin'])
+
 </script>
