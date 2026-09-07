@@ -74,6 +74,10 @@ export interface ApiDefinition {
       show: typeof routes['security.visitors.show']
       update: typeof routes['security.visitors.update']
     }
+    units: {
+      index: typeof routes['security.units.index']
+      show: typeof routes['security.units.show']
+    }
   }
   user: {
     enrollments: {

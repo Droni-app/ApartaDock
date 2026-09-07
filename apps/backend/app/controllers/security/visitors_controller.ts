@@ -1,7 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Visitor from '#models/visitor'
 import Authorization from '#models/authorization'
-import Enrollment from '#models/enrollment'
 import {
   createVisitorValidator,
   updateVisitorValidator,

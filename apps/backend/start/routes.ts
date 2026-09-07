@@ -68,6 +68,7 @@ router
 router
   .group(() => {
     router.resource('visitors', controllers.security.Visitors).apiOnly().except(['destroy'])
+    router.resource('units', controllers.security.Units).apiOnly().only(['index', 'show'])
   })
   .prefix('security')
   .as('security')

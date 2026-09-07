@@ -41,6 +41,8 @@ export type ScannedRoutes = {
     'security.visitors.store': { paramsTuple?: []; params?: {} }
     'security.visitors.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.visitors.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'security.units.index': { paramsTuple?: []; params?: {} }
+    'security.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.enrollments.index': { paramsTuple?: []; params?: {} }
     'user.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.vehicles.index': { paramsTuple?: []; params?: {} }
@@ -80,6 +82,8 @@ export type ScannedRoutes = {
     'board.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.visitors.index': { paramsTuple?: []; params?: {} }
     'security.visitors.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'security.units.index': { paramsTuple?: []; params?: {} }
+    'security.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.enrollments.index': { paramsTuple?: []; params?: {} }
     'user.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.vehicles.index': { paramsTuple?: []; params?: {} }
@@ -109,6 +113,8 @@ export type ScannedRoutes = {
     'board.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.visitors.index': { paramsTuple?: []; params?: {} }
     'security.visitors.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'security.units.index': { paramsTuple?: []; params?: {} }
+    'security.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.enrollments.index': { paramsTuple?: []; params?: {} }
     'user.enrollments.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.vehicles.index': { paramsTuple?: []; params?: {} }

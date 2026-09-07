@@ -1,4 +1,5 @@
 import type { Enrollment } from './enrollments'
+import type { Authorization } from './user/authorization'
 
 export interface Unit {
   id: number
@@ -13,4 +14,5 @@ export interface Unit {
   status: string
   notes: string | null
   enrollments: Enrollment[]
+  authorizations?: Authorization[]
 }

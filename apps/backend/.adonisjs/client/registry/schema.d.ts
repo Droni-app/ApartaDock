@@ -451,6 +451,30 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'security.units.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/security/units'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/security/units_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/units_controller').default['index']>>>
+    }
+  }
+  'security.units.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/security/units/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/security/units_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/units_controller').default['show']>>>
+    }
+  }
   'user.enrollments.index': {
     methods: ["GET","HEAD"]
     pattern: '/user/enrollments'

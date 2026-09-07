@@ -228,6 +228,18 @@ const routes = {
     tokens: [{"old":"/security/visitors/:id","type":0,"val":"security","end":""},{"old":"/security/visitors/:id","type":0,"val":"visitors","end":""},{"old":"/security/visitors/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['security.visitors.update']['types'],
   },
+  'security.units.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/security/units',
+    tokens: [{"old":"/security/units","type":0,"val":"security","end":""},{"old":"/security/units","type":0,"val":"units","end":""}],
+    types: placeholder as Registry['security.units.index']['types'],
+  },
+  'security.units.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/security/units/:id',
+    tokens: [{"old":"/security/units/:id","type":0,"val":"security","end":""},{"old":"/security/units/:id","type":0,"val":"units","end":""},{"old":"/security/units/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['security.units.show']['types'],
+  },
   'user.enrollments.index': {
     methods: ["GET","HEAD"],
     pattern: '/user/enrollments',

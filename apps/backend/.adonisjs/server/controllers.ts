@@ -18,6 +18,7 @@ export const controllers = {
   },
   Profile: () => import('#controllers/profile_controller'),
   security: {
+    Units: () => import('#controllers/security/units_controller'),
     Visitors: () => import('#controllers/security/visitors_controller'),
   },
   user: {
