@@ -10,7 +10,7 @@ export interface Visitor {
   plate: string | null
   vehicleType: VisitorVehicleType | null
   checkinDate: string | null
-  chockoutDate: string | null
+  checkoutDate: string | null
   createdAt: string
   updatedAt: string
   unit?: {
@@ -32,5 +32,5 @@ export interface VisitorForm {
   plate: string | null
   vehicleType: VisitorVehicleType | null
   checkinDate: string | null
-  chockoutDate: string | null
+  checkoutDate: string | null
 }

@@ -12,7 +12,7 @@
 
     <DuiDrawer v-model="showCreateForm" name="Ingreso de visitante">
       <!-- Step 1 -->
-       <template v-if="!newVisitor.unitId">
+       <template v-if="newVistorStape === 1">
         <DuiLabel title="Unidad" required>
           <div  class="flex">
             <DuiInput v-model="q" placeholder="62101" @keyup="fetchUnits" />
@@ -28,12 +28,45 @@
           variant="outline"
           color="secondary"
           rounded="none"
+          size="lg"
           @click="fetchAuthorizations(unit.id)"
           >
+          <i class="mdi mdi-office-building-plus-outline"></i>
           Torre: {{ unit.tower }} | {{ unit.apto }}
         </DuiButton>
       </template>
-      <form  v-else class="space-y-4" @submit.prevent="storeVisitor">
+      <template v-if="newVistorStape === 2">
+        <DuiButton
+          v-for="authorization of authorizations"
+          :key="authorization.id"
+          block
+          variant="outline"
+          color="secondary"
+          rounded="none"
+          size="lg"
+          @click="setAuthorization(authorization)"
+          >
+          <i class="mdi mdi-account-clock"></i> {{ authorization.fullName }} | {{ authorization.document }} 
+          <span v-if="authorization.plate">
+            <br />
+            <i class="mdi mdi-car-clock"></i> {{ authorization.plate }}
+          </span>
+        </DuiButton>
+        <DuiButton
+          block
+          variant="outline"
+          color="secondary"
+          rounded="none"
+          size="lg"
+          @click="newVistorStape = 3"
+          >
+          <i class="mdi mdi-plus"></i>
+          Nuevo visitante
+        </DuiButton>
+      </template>
+      <form v-if="newVistorStape === 3" class="space-y-4" @submit.prevent="storeVisitor">
+        
+
         <DuiLabel title="Nombre completo" required>
           <DuiInput v-model="newVisitor.fullName" placeholder="Juan Pérez" />
         </DuiLabel>
@@ -41,8 +74,6 @@
         <DuiLabel title="Documento">
           <DuiInput v-model="newVisitor.document" placeholder="12345678" />
         </DuiLabel>
-
-        <DuiRadio color="primary" :disabled="false" v-model="newVisitor.authorizationId" :options="authorizations" orientation="vertical" size="md" />
 
 
         <div class="grid grid-cols-2 gap-3">
@@ -59,80 +90,46 @@
           </DuiLabel>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
-          <DuiLabel title="Ingreso">
-            <DuiInput type="datetime-local" v-model="newVisitor.checkinDate" />
-          </DuiLabel>
-
-          <DuiLabel title="Salida">
-            <DuiInput type="datetime-local" v-model="newVisitor.chockoutDate" />
-          </DuiLabel>
+        <div class="flex justify-between gap-2">
+          <DuiButton type="submit" color="primary" :loading="loading">
+            <i class="mdi mdi-content-save-plus-outline"></i>
+            Guardar
+          </DuiButton>
+          <DuiButton type="button" color="warning" variant="outline" :loading="loading" @click="cancelCreateForm">
+            Cancelar
+          </DuiButton>
         </div>
-
-        <DuiButton type="submit" color="primary" :loading="loading">
-          <i class="mdi mdi-content-save-plus-outline"></i>
-          Guardar
-        </DuiButton>
       </form>
     </DuiDrawer>
 
-    <DuiAlert v-if="error" color="danger" variant="outline">
-      {{ error }}
-    </DuiAlert>
+    <DuiDrawer v-model="updateDrawer" name="Ingreso de visitante">
 
-    <DuiTable
-      :loading="loading"
-      :columns="columns"
-      :rows="tableRows"
-      :pagination="tablePagination"
-      @paginate="handlePageChange"
-    >
-      <template #fullName="row">
-        <span class="font-medium">{{ row.fullName }}</span>
-      </template>
+    </DuiDrawer>
 
-      <template #unit="row">
-        {{ row.unit?.name ?? '-' }}
-      </template>
-
-      <template #vehicle="row">
-        <div>
-          <div>{{ row.plate ?? '-' }}</div>
-          <small class="text-gray-500">{{ row.vehicleType ?? 'Sin vehículo' }}</small>
-        </div>
-      </template>
-
-      <template #dates="row">
-        <div class="text-sm">
-          <div>Ingreso: {{ row.checkinDate || '-' }}</div>
-          <div>Salida: {{ row.chockoutDate || '-' }}</div>
-        </div>
-      </template>
-
-      <template #actions="row">
-        <DuiButton size="sm" variant="outline" color="danger" @click="deleteVisitor(row.id)">
-          Eliminar
-        </DuiButton>
-      </template>
-    </DuiTable>
+    <SecurityVisitorsCard
+      v-for="visitor of visitors"
+      :key="visitor.id"
+      :visitor="visitor"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import type { AxiosError } from 'axios'
-import { DuiAlert, DuiButton, DuiDrawer, DuiInput, DuiLabel, DuiSelect, DuiTable, DuiRadio, useToast } from '@dronico/droni-kit'
+import { DuiButton, DuiDrawer, DuiInput, DuiLabel, DuiSelect, useToast } from '@dronico/droni-kit'
 import { api } from '@/services/api'
 import UiTitlePage from '@/components/Ui/TitlePage.vue'
 import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
 import type { Unit } from '@/types/units'
 import type { Visitor, VisitorForm } from '@/types/security/visitors'
 import type { Authorization } from '@/types/user/authorization'
+import SecurityVisitorsCard from '@/components/security/Visitors/Card.vue'
 
 const toast = useToast()
 const loading = ref(false)
-const error = ref('')
 const showCreateForm = ref(false)
+const updateDrawer = ref(false)
 const currentPage = ref(1)
 const perPage = ref(20)
 const total = ref(0)
@@ -147,7 +144,7 @@ const vehicleTypeOptions = [
   { value: 'car', label: 'Carro' },
   { value: 'motorcycle', label: 'Moto' },
 ]
-
+const newVistorStape = ref(1)
 const newVisitor = ref<VisitorForm>({
   unitId: null,
   authorizationId: null,
@@ -156,67 +153,26 @@ const newVisitor = ref<VisitorForm>({
   plate: '',
   vehicleType: null,
   checkinDate: null,
-  chockoutDate: null,
+  checkoutDate: null,
 })
-
-const columns = [
-  { name: 'fullName', label: 'Visitante' },
-  { name: 'unit', label: 'Unidad' },
-  { name: 'vehicle', label: 'Vehículo' },
-  { name: 'dates', label: 'Fechas' },
-  { name: 'actions', label: '' },
-]
-
-const tablePagination = computed(() => ({
-  page: currentPage.value,
-  perPage: perPage.value,
-  total: total.value || visitors.value.length,
-}))
-
-const tableRows = computed(() =>
-  visitors.value.map((visitor) => ({
-    ...visitor,
-    checkinDate: formatDate(visitor.checkinDate),
-    chockoutDate: formatDate(visitor.chockoutDate),
-    vehicleType: visitor.vehicleType ? (visitor.vehicleType === 'car' ? 'Carro' : 'Moto') : 'Sin vehículo',
-  }))
-)
-
-function formatDate(value: string | null) {
-  if (!value) return '-'
-  const date = new Date(value)
-  return Number.isNaN(date.getTime()) ? value : date.toLocaleString()
-}
 
 async function fetchVisitors(page = currentPage.value) {
   loading.value = true
-  error.value = ''
-
-  try {
-    const response = await api.get<PaginatedResponse<Visitor>>('/security/visitors', {
-      params: {
-        page,
-        limit: perPage.value,
-      },
-    })
-
-    const payload = response.data
-    visitors.value = Array.isArray(payload.data) ? payload.data : []
-    currentPage.value = payload.meta?.currentPage ?? page
-    perPage.value = payload.meta?.perPage ?? perPage.value
-    total.value = payload.meta?.total ?? visitors.value.length
-  } catch (err) {
-    visitors.value = []
-    total.value = 0
-    const axiosError = err as AxiosError<ApiErrorResponse>
-    const body = axiosError.response?.data
-    error.value =
-      body?.errors?.[0]?.message ??
-      body?.message ??
-      (err instanceof Error ? err.message : 'Error inesperado al cargar visitantes.')
-  } finally {
+  await api.get<PaginatedResponse<Visitor>>('/security/visitors', {
+    params: {
+      page,
+      limit: perPage.value,
+    },
+  }).then(res => {
+    visitors.value = res.data.data
+    currentPage.value = res.data.meta?.currentPage ?? page
+    perPage.value = res.data.meta?.perPage ?? perPage.value
+    total.value = res.data.meta?.total ?? visitors.value.length
+  }).catch(_e=> {
+    toast.error('No se pudo obtener la lista de visitantes.')
+  }).finally(() => {
     loading.value = false
-  }
+  })
 }
 
 async function fetchUnits() {
@@ -228,75 +184,66 @@ async function fetchAuthorizations(unitId:number) {
   const response = await api.get<Unit>(`/security/units/${unitId}`)
   authorizations.value = response.data.authorizations ?? []
   newVisitor.value.unitId = unitId
+  newVistorStape.value = 2
+}
+
+async function setAuthorization(authorization: Authorization) {
+  newVisitor.value.authorizationId = authorization.id
+  newVisitor.value.fullName = authorization.fullName
+  newVisitor.value.document = authorization.document
+  newVisitor.value.plate = authorization.plate
+  newVistorStape.value = 3
+}
+
+function cancelCreateForm() {
+  q.value = ''
+  units.value = { data: [] }
+  authorizations.value = []
+  showCreateForm.value = false
+  newVistorStape.value = 1
+  newVisitor.value = {
+    unitId: null,
+    authorizationId: null,
+    fullName: '',
+    document: '',
+    plate: '',
+    vehicleType: null,
+    checkinDate: null,
+    checkoutDate: null,
+  }
 }
 
 async function storeVisitor() {
   if (loading.value) return
-
   loading.value = true
-  error.value = ''
+  const payload = {
+    ...newVisitor.value,
+    document: newVisitor.value.document || null,
+    plate: newVisitor.value.plate || null,
+    authorizationId: newVisitor.value.authorizationId ?? null,
+    vehicleType: newVisitor.value.vehicleType ?? null,
+    checkinDate: newVisitor.value.checkinDate || null,
+    checkoutDate: newVisitor.value.checkoutDate || null,
+  }
 
-  try {
-    const payload = {
-      ...newVisitor.value,
-      document: newVisitor.value.document || null,
-      plate: newVisitor.value.plate || null,
-      authorizationId: newVisitor.value.authorizationId ?? null,
-      vehicleType: newVisitor.value.vehicleType ?? null,
-      checkinDate: newVisitor.value.checkinDate || null,
-      chockoutDate: newVisitor.value.chockoutDate || null,
-    }
-
-    await api.post('/security/visitors', payload)
+  await api.post('/security/visitors', payload).then(() => {
     toast.success('Ingreso de visitante guardado correctamente.')
-    showCreateForm.value = false
-    newVisitor.value = {
-      unitId: null,
-      authorizationId: null,
-      fullName: '',
-      document: '',
-      plate: '',
-      vehicleType: null,
-      checkinDate: null,
-      chockoutDate: null,
-    }
-    await fetchVisitors(1)
-  } catch (err) {
-    const axiosError = err as AxiosError<ApiErrorResponse>
-    const body = axiosError.response?.data
-    error.value =
+    cancelCreateForm()
+    fetchVisitors(1)
+  }).catch((err: AxiosError<ApiErrorResponse>) => {
+    const body = err.response?.data
+    const message =
       body?.errors?.[0]?.message ??
       body?.message ??
       'No se pudo guardar el ingreso del visitante.'
-  } finally {
+    toast.error(message)
+  }).finally(() => {
     loading.value = false
-  }
+  })
 }
 
-async function deleteVisitor(id: number) {
-  loading.value = true
-
-  try {
-    await api.delete(`/security/visitors/${id}`)
-    toast.success('Registro eliminado correctamente.')
-    await fetchVisitors(currentPage.value)
-  } catch (err) {
-    const axiosError = err as AxiosError<ApiErrorResponse>
-    const body = axiosError.response?.data
-    error.value =
-      body?.errors?.[0]?.message ??
-      body?.message ??
-      'No se pudo eliminar el registro.'
-  } finally {
-    loading.value = false
-  }
-}
-
-function handlePageChange(page: number) {
-  fetchVisitors(page)
-}
 
 onMounted(async () => {
-  await Promise.all([fetchAuthorizations(), fetchVisitors()])
+  fetchVisitors()
 })
 </script>
