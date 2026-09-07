@@ -104,8 +104,6 @@ const navItems = computed(() => [
           to: '#',
           children: [
             { label: 'Visitantes', to: '/security/visitors' },
-            { label: 'Vehículos', to: '/security/vehicles' },
-            { label: 'Paquetes', to: '/security/packages' },
           ],
         },
       ]
