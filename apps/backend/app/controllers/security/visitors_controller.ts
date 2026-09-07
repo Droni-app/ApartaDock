@@ -80,4 +80,34 @@ export default class VisitorsController {
     await visitor.save()
     return visitor
   }
+
+  async checkin({ params }: HttpContext) {
+    const visitor = await Visitor.query().where('id', params.id).firstOrFail()
+
+    if (visitor.checkinDate) {
+      throw new Error('Visitor is already checked in')
+    }
+
+    visitor.checkinDate = DateTime.now()
+    await visitor.save()
+
+    return visitor
+  }
+
+  async checkout({ params }: HttpContext) {
+    const visitor = await Visitor.query().where('id', params.id).firstOrFail()
+
+    if (!visitor.checkinDate) {
+      throw new Error('Visitor is not checked in')
+    }
+
+    if (visitor.checkoutDate) {
+      throw new Error('Visitor is already checked out')
+    }
+
+    visitor.checkoutDate = DateTime.now()
+    await visitor.save()
+
+    return visitor
+  }
 }

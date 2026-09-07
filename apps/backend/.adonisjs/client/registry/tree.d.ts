@@ -69,6 +69,8 @@ export interface ApiDefinition {
   }
   security: {
     visitors: {
+      checkin: typeof routes['security.visitors.checkin']
+      checkout: typeof routes['security.visitors.checkout']
       index: typeof routes['security.visitors.index']
       store: typeof routes['security.visitors.store']
       show: typeof routes['security.visitors.show']

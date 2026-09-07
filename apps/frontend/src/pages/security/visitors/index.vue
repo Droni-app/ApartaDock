@@ -110,6 +110,8 @@
       v-for="visitor of visitors"
       :key="visitor.id"
       :visitor="visitor"
+      @checkin="checkinVisitor"
+      @checkout="checkoutVisitor"
     />
   </div>
 </template>
@@ -236,6 +238,42 @@ async function storeVisitor() {
       body?.errors?.[0]?.message ??
       body?.message ??
       'No se pudo guardar el ingreso del visitante.'
+    toast.error(message)
+  }).finally(() => {
+    loading.value = false
+  })
+}
+
+function checkinVisitor(visitor: Visitor) {
+  if (loading.value) return
+  loading.value = true
+  api.post(`/security/visitors/${visitor.id}/checkin`).then(() => {
+    toast.success('Ingreso de visitante registrado correctamente.')
+    fetchVisitors(currentPage.value)
+  }).catch((err: AxiosError<ApiErrorResponse>) => {
+    const body = err.response?.data
+    const message =
+      body?.errors?.[0]?.message ??
+      body?.message ??
+      'No se pudo registrar el ingreso del visitante.'
+    toast.error(message)
+  }).finally(() => {
+    loading.value = false
+  })
+}
+
+function checkoutVisitor(visitor: Visitor) {
+  if (loading.value) return
+  loading.value = true
+  api.post(`/security/visitors/${visitor.id}/checkout`).then(() => {
+    toast.success('Salida de visitante registrada correctamente.')
+    fetchVisitors(currentPage.value)
+  }).catch((err: AxiosError<ApiErrorResponse>) => {
+    const body = err.response?.data
+    const message =
+      body?.errors?.[0]?.message ??
+      body?.message ??
+      'No se pudo registrar la salida del visitante.'
     toast.error(message)
   }).finally(() => {
     loading.value = false

@@ -37,6 +37,8 @@ export type ScannedRoutes = {
     'board.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'security.visitors.checkin': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'security.visitors.checkout': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.visitors.index': { paramsTuple?: []; params?: {} }
     'security.visitors.store': { paramsTuple?: []; params?: {} }
     'security.visitors.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -135,6 +137,8 @@ export type ScannedRoutes = {
     'admin.enrollments.store': { paramsTuple?: []; params?: {} }
     'admin.imports.users': { paramsTuple?: []; params?: {} }
     'board.documents.store': { paramsTuple?: []; params?: {} }
+    'security.visitors.checkin': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'security.visitors.checkout': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.visitors.store': { paramsTuple?: []; params?: {} }
     'user.vehicles.store': { paramsTuple?: []; params?: {} }
     'user.attachments.store': { paramsTuple?: []; params?: {} }

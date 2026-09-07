@@ -403,6 +403,30 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/board/documents_controller').default['destroy']>>>
     }
   }
+  'security.visitors.checkin': {
+    methods: ["POST"]
+    pattern: '/security/visitors/:id/checkin'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['checkin']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['checkin']>>>
+    }
+  }
+  'security.visitors.checkout': {
+    methods: ["POST"]
+    pattern: '/security/visitors/:id/checkout'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['checkout']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['checkout']>>>
+    }
+  }
   'security.visitors.index': {
     methods: ["GET","HEAD"]
     pattern: '/security/visitors'

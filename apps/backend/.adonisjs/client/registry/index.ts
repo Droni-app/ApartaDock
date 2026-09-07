@@ -204,6 +204,18 @@ const routes = {
     tokens: [{"old":"/board/documents/:id","type":0,"val":"board","end":""},{"old":"/board/documents/:id","type":0,"val":"documents","end":""},{"old":"/board/documents/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['board.documents.destroy']['types'],
   },
+  'security.visitors.checkin': {
+    methods: ["POST"],
+    pattern: '/security/visitors/:id/checkin',
+    tokens: [{"old":"/security/visitors/:id/checkin","type":0,"val":"security","end":""},{"old":"/security/visitors/:id/checkin","type":0,"val":"visitors","end":""},{"old":"/security/visitors/:id/checkin","type":1,"val":"id","end":""},{"old":"/security/visitors/:id/checkin","type":0,"val":"checkin","end":""}],
+    types: placeholder as Registry['security.visitors.checkin']['types'],
+  },
+  'security.visitors.checkout': {
+    methods: ["POST"],
+    pattern: '/security/visitors/:id/checkout',
+    tokens: [{"old":"/security/visitors/:id/checkout","type":0,"val":"security","end":""},{"old":"/security/visitors/:id/checkout","type":0,"val":"visitors","end":""},{"old":"/security/visitors/:id/checkout","type":1,"val":"id","end":""},{"old":"/security/visitors/:id/checkout","type":0,"val":"checkout","end":""}],
+    types: placeholder as Registry['security.visitors.checkout']['types'],
+  },
   'security.visitors.index': {
     methods: ["GET","HEAD"],
     pattern: '/security/visitors',
