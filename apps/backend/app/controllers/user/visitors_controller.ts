@@ -2,7 +2,6 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Visitor from '#models/visitor'
 import Enrollment from '#models/enrollment'
 import Authorization from '#models/authorization'
-import { DateTime } from 'luxon'
 
 export default class VisitorsController {
   /**

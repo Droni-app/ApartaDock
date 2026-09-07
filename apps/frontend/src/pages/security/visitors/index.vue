@@ -15,7 +15,7 @@
        <template v-if="newVistorStape === 1">
         <DuiLabel title="Unidad" required>
           <div  class="flex">
-            <DuiInput v-model="q" placeholder="62101" @keyup="fetchUnits" />
+            <DuiInput v-model="unitQ" placeholder="62101" @keyup="fetchUnits" />
             <DuiButton @click="fetchUnits">
               <i class="mdi mdi-magnify" />
             </DuiButton>
@@ -101,10 +101,18 @@
         </div>
       </form>
     </DuiDrawer>
-
-    <DuiDrawer v-model="updateDrawer" name="Ingreso de visitante">
-
-    </DuiDrawer>
+    <!-- Search -->
+    <div class="flex justify-between items-center mb-3">
+      <DuiLabel class="w-full" title="Buscar visitante" help-text="Filtra por nombre, documento o placa de vehículo.">
+        <DuiInput v-model="filters.q" placeholder="Nombre, documento o placa"/>
+      </DuiLabel>
+      <div class="pt-7">
+        <DuiButton @click="fetchVisitors(1)">
+          <i class="mdi mdi-magnify" />
+          Buscar
+        </DuiButton>
+      </div>
+    </div>
 
     <SecurityVisitorsCard
       v-for="visitor of visitors"
@@ -113,6 +121,17 @@
       @checkin="checkinVisitor"
       @checkout="checkoutVisitor"
     />
+    <DuiPagination
+      color="primary"
+      v-model="filters.currentPage"
+      :perPage="filters.perPage"
+      rounded="md"
+      :showLabels="false"
+      :siblingCount="1"
+      size="md"
+      :total="filters.total"
+      variant="solid" />
+
   </div>
 </template>
 
@@ -131,16 +150,20 @@ import SecurityVisitorsCard from '@/components/security/Visitors/Card.vue'
 const toast = useToast()
 const loading = ref(false)
 const showCreateForm = ref(false)
-const updateDrawer = ref(false)
-const currentPage = ref(1)
-const perPage = ref(20)
-const total = ref(0)
+const filters = ref({
+  currentPage: 1,
+  perPage: 20,
+  total: 0,
+  q: '',
+})
+
 const visitors = ref<Visitor[]>([])
 const units = ref<PaginatedResponse<Unit>>({
   data: []
 })
+const unitQ = ref('')
 const authorizations = ref<Authorization[]>([])
-const q = ref('')
+
 
 const vehicleTypeOptions = [
   { value: 'car', label: 'Carro' },
@@ -158,18 +181,19 @@ const newVisitor = ref<VisitorForm>({
   checkoutDate: null,
 })
 
-async function fetchVisitors(page = currentPage.value) {
+async function fetchVisitors(page = filters.value.currentPage) {
   loading.value = true
   await api.get<PaginatedResponse<Visitor>>('/security/visitors', {
     params: {
       page,
-      limit: perPage.value,
+      limit: filters.value.perPage,
+      q: filters.value.q,
     },
   }).then(res => {
     visitors.value = res.data.data
-    currentPage.value = res.data.meta?.currentPage ?? page
-    perPage.value = res.data.meta?.perPage ?? perPage.value
-    total.value = res.data.meta?.total ?? visitors.value.length
+    filters.value.currentPage = res.data.meta?.currentPage ?? page
+    filters.value.perPage = res.data.meta?.perPage ?? filters.value.perPage
+    filters.value.total = res.data.meta?.total ?? visitors.value.length
   }).catch(_e=> {
     toast.error('No se pudo obtener la lista de visitantes.')
   }).finally(() => {
@@ -178,7 +202,7 @@ async function fetchVisitors(page = currentPage.value) {
 }
 
 async function fetchUnits() {
-  const response = await api.get<PaginatedResponse<Unit>>(`/security/units?q=${q.value}`)
+  const response = await api.get<PaginatedResponse<Unit>>(`/security/units?q=${unitQ.value}`)
   units.value = response.data
 }
 
@@ -198,7 +222,7 @@ async function setAuthorization(authorization: Authorization) {
 }
 
 function cancelCreateForm() {
-  q.value = ''
+  unitQ.value = ''
   units.value = { data: [] }
   authorizations.value = []
   showCreateForm.value = false
@@ -249,7 +273,7 @@ function checkinVisitor(visitor: Visitor) {
   loading.value = true
   api.post(`/security/visitors/${visitor.id}/checkin`).then(() => {
     toast.success('Ingreso de visitante registrado correctamente.')
-    fetchVisitors(currentPage.value)
+    fetchVisitors(filters.value.currentPage)
   }).catch((err: AxiosError<ApiErrorResponse>) => {
     const body = err.response?.data
     const message =
@@ -267,7 +291,7 @@ function checkoutVisitor(visitor: Visitor) {
   loading.value = true
   api.post(`/security/visitors/${visitor.id}/checkout`).then(() => {
     toast.success('Salida de visitante registrada correctamente.')
-    fetchVisitors(currentPage.value)
+    fetchVisitors(filters.value.currentPage)
   }).catch((err: AxiosError<ApiErrorResponse>) => {
     const body = err.response?.data
     const message =
