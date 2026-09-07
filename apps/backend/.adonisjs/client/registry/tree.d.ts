@@ -112,5 +112,10 @@ export interface ApiDefinition {
       update: typeof routes['user.authorizations.update']
       destroy: typeof routes['user.authorizations.destroy']
     }
+    visitors: {
+      index: typeof routes['user.visitors.index']
+      update: typeof routes['user.visitors.update']
+      destroy: typeof routes['user.visitors.destroy']
+    }
   }
 }

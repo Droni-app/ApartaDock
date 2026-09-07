@@ -739,4 +739,40 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/authorizations_controller').default['destroy']>>>
     }
   }
+  'user.visitors.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/visitors'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/visitors_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/visitors_controller').default['index']>>>
+    }
+  }
+  'user.visitors.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/user/visitors/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/visitors_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/visitors_controller').default['update']>>>
+    }
+  }
+  'user.visitors.destroy': {
+    methods: ["DELETE"]
+    pattern: '/user/visitors/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/visitors_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/visitors_controller').default['destroy']>>>
+    }
+  }
 }

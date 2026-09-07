@@ -372,6 +372,24 @@ const routes = {
     tokens: [{"old":"/user/authorizations/:id","type":0,"val":"user","end":""},{"old":"/user/authorizations/:id","type":0,"val":"authorizations","end":""},{"old":"/user/authorizations/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['user.authorizations.destroy']['types'],
   },
+  'user.visitors.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/visitors',
+    tokens: [{"old":"/user/visitors","type":0,"val":"user","end":""},{"old":"/user/visitors","type":0,"val":"visitors","end":""}],
+    types: placeholder as Registry['user.visitors.index']['types'],
+  },
+  'user.visitors.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/user/visitors/:id',
+    tokens: [{"old":"/user/visitors/:id","type":0,"val":"user","end":""},{"old":"/user/visitors/:id","type":0,"val":"visitors","end":""},{"old":"/user/visitors/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.visitors.update']['types'],
+  },
+  'user.visitors.destroy': {
+    methods: ["DELETE"],
+    pattern: '/user/visitors/:id',
+    tokens: [{"old":"/user/visitors/:id","type":0,"val":"user","end":""},{"old":"/user/visitors/:id","type":0,"val":"visitors","end":""},{"old":"/user/visitors/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.visitors.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

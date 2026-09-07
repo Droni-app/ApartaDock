@@ -87,6 +87,7 @@ router
       .as('attachments.download')
     router.resource('documents', controllers.user.Documents).only(['index', 'show'])
     router.resource('authorizations', controllers.user.Authorizations).apiOnly()
+    router.resource('visitors', controllers.user.Visitors).only(['index', 'update', 'destroy'])
   })
   .prefix('user')
   .as('user')

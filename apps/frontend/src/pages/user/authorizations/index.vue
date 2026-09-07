@@ -38,6 +38,12 @@
         </DuiButton>
       </form>
     </DuiDrawer>
+    <UserVisistorsCard
+      v-for="visitor of visitorRequest"
+      :key="visitor.id"
+      :visitor="visitor"
+      @accept="acceptVisitor"
+      @reject="rejectVisitor" />
     <div class="md:grid grid-cols-3 gap-3">
       <UiAuthorizationsCard
         v-for="authorization of authorizations.data"
@@ -57,6 +63,8 @@ import type { PaginatedResponse, ValidationErrors } from '@/types/api.ts';
 import type { Enrollment } from '@/types/enrollments.ts';
 import type { Authorization, AuthorizationNew } from '@/types/user/authorization';
 import UiAuthorizationsCard from '@/components/user/Authorizations/Card.vue'
+import type { Visitor } from '@/types/security/visitors';
+import UserVisistorsCard from '@/components/user/Visitors/Card.vue'
 
 const toast = useToast()
 
@@ -73,6 +81,8 @@ const newAuthorization =ref<AuthorizationNew>({
   plate: null,
   authorizedDate: null
 })
+
+const visitorRequest = ref<Visitor[]>([])
 
 function getAuthorizations() {
   api.get<PaginatedResponse<Authorization>>('/user/authorizations').then(res=>{
@@ -109,11 +119,43 @@ function storeAuthorization() {
   }).finally(() => {
     loading.value = false
   })
+}
 
+async function getVisitorRequest() {
+  api.get<Visitor[]>('/user/visitors').then(res=>{
+    visitorRequest.value = res.data
+  })
+}
+
+async function acceptVisitor(visitor: Visitor) {
+  api.put(`/user/visitors/${visitor.id}`).then(()=>{
+    toast.success('Se ha aceptado la solicitud de ingreso del visitante.')
+    getVisitorRequest()
+  }).catch((e:AxiosError<ValidationErrors>) => {
+    toast.error(
+      e.response?.data?.errors ? 
+        e.response?.data.errors[0]?.message :
+        'Se produjo un error al aceptar la solicitud de ingreso del visitante.'
+    )
+  })
+}
+
+async function rejectVisitor(visitor: Visitor) {
+  api.delete(`/user/visitors/${visitor.id}`).then(()=>{
+    toast.success('Se ha rechazado la solicitud de ingreso del visitante.')
+    getVisitorRequest()
+  }).catch((e:AxiosError<ValidationErrors>) => {
+    toast.error(
+      e.response?.data?.errors ? 
+        e.response?.data.errors[0]?.message :
+        'Se produjo un error al rechazar la solicitud de ingreso del visitante.'
+    )
+  })
 }
 
 onMounted(() => {
   getAuthorizations()
   getEnrollments()
+  getVisitorRequest()
 })
 </script>
