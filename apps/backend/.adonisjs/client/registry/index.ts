@@ -390,6 +390,24 @@ const routes = {
     tokens: [{"old":"/user/visitors/:id","type":0,"val":"user","end":""},{"old":"/user/visitors/:id","type":0,"val":"visitors","end":""},{"old":"/user/visitors/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['user.visitors.destroy']['types'],
   },
+  'user.tickets.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/tickets',
+    tokens: [{"old":"/user/tickets","type":0,"val":"user","end":""},{"old":"/user/tickets","type":0,"val":"tickets","end":""}],
+    types: placeholder as Registry['user.tickets.index']['types'],
+  },
+  'user.tickets.store': {
+    methods: ["POST"],
+    pattern: '/user/tickets',
+    tokens: [{"old":"/user/tickets","type":0,"val":"user","end":""},{"old":"/user/tickets","type":0,"val":"tickets","end":""}],
+    types: placeholder as Registry['user.tickets.store']['types'],
+  },
+  'user.tickets.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/user/tickets/:id',
+    tokens: [{"old":"/user/tickets/:id","type":0,"val":"user","end":""},{"old":"/user/tickets/:id","type":0,"val":"tickets","end":""},{"old":"/user/tickets/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['user.tickets.show']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

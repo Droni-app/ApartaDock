@@ -775,4 +775,40 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/visitors_controller').default['destroy']>>>
     }
   }
+  'user.tickets.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/tickets'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/tickets_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/tickets_controller').default['index']>>>
+    }
+  }
+  'user.tickets.store': {
+    methods: ["POST"]
+    pattern: '/user/tickets'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/user/ticket').createTicketValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/user/ticket').createTicketValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/tickets_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/tickets_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'user.tickets.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/user/tickets/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/user/tickets_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/user/tickets_controller').default['show']>>>
+    }
+  }
 }

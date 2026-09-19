@@ -22,7 +22,7 @@ export default class extends BaseSchema {
         .onDelete('CASCADE')
       table.string('name')
       table.json('owners').defaultTo(JSON.stringify([]))
-      table.enu('priority', ['low', 'medium', 'high', 'critical'])
+      table.enu('priority', ['low', 'medium', 'high', 'critical']).nullable()
       table.text('content')
       table.string('attachment').nullable()
       table

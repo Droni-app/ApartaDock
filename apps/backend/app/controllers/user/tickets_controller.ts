@@ -9,7 +9,7 @@ export default class TicketsController {
    */
   async index({ auth, request }: HttpContext) {
     const page = Number(request.input('page', 1))
-    const limit = Number(request.input('limit', 20))
+    const perPage = Number(request.input('perPage', 20))
     const q = request.input('q', '')
     const user = auth.getUserOrFail()
     const tickets = await Ticket.query()
@@ -19,7 +19,7 @@ export default class TicketsController {
       .where('userId', user.id)
       .preload('unit')
       .orderBy('updatedAt', 'desc')
-      .paginate(page, limit)
+      .paginate(page, perPage)
 
     return tickets
   }
@@ -38,7 +38,6 @@ export default class TicketsController {
     ticket.unitId = unit.id
     ticket.name = payload.name
     ticket.owners = JSON.stringify(payload.owners)
-    ticket.priority = payload.priority
     ticket.content = payload.content
     ticket.attachment = payload.attachment ?? null
 

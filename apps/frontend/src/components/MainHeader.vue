@@ -64,6 +64,7 @@ const navItems = computed(() => [
             { label: 'Unidades', to: '/user/units' },
             { label: 'Autorizaciones', to: '/user/authorizations' },
             { label: 'Vehículos', to: '/user/vehicles' },
+            { label: 'PQRs', to: '/user/tickets' },
           ],
         },
       ]
