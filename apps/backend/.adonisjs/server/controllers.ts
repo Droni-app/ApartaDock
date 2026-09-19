@@ -26,6 +26,7 @@ export const controllers = {
     Authorizations: () => import('#controllers/user/authorizations_controller'),
     Documents: () => import('#controllers/user/documents_controller'),
     Enrollments: () => import('#controllers/user/enrollments_controller'),
+    Tickets: () => import('#controllers/user/tickets_controller'),
     Vehicles: () => import('#controllers/user/vehicles_controller'),
     Visitors: () => import('#controllers/user/visitors_controller'),
   },

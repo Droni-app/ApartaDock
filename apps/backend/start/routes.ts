@@ -88,6 +88,7 @@ router
     router.resource('documents', controllers.user.Documents).only(['index', 'show'])
     router.resource('authorizations', controllers.user.Authorizations).apiOnly()
     router.resource('visitors', controllers.user.Visitors).only(['index', 'update', 'destroy'])
+    router.resource('tickets', controllers.user.Tickets).only(['index', 'store', 'show'])
   })
   .prefix('user')
   .as('user')

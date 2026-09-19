@@ -187,6 +187,52 @@ export class ParkingRequestSchema extends BaseModel {
   declare vehicleId: number | null
 }
 
+export class TicketSchema extends BaseModel {
+  static $columns = ['attachment', 'content', 'createdAt', 'id', 'name', 'owners', 'priority', 'status', 'unitId', 'updatedAt', 'userId'] as const
+  $columns = TicketSchema.$columns
+  @column()
+  declare attachment: string | null
+  @column()
+  declare content: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare name: string | null
+  @column()
+  declare owners: string | null
+  @column()
+  declare priority: string | null
+  @column()
+  declare status: string | null
+  @column()
+  declare unitId: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+}
+
+export class TicketReplySchema extends BaseModel {
+  static $columns = ['attachment', 'content', 'createdAt', 'id', 'ticketId', 'updatedAt', 'userId'] as const
+  $columns = TicketReplySchema.$columns
+  @column()
+  declare attachment: string | null
+  @column()
+  declare content: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare ticketId: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+}
+
 export class UnitSchema extends BaseModel {
   static $columns = ['apto', 'buildArea', 'coefficient', 'createdAt', 'floor', 'id', 'name', 'notes', 'privateArea', 'status', 'tower', 'typology', 'updatedAt'] as const
   $columns = UnitSchema.$columns
