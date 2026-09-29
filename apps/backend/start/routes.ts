@@ -18,6 +18,7 @@ router.get('/', () => {
 router
   .group(() => {
     router.post('login', [controllers.Auth, 'login'])
+    router.post('register', [controllers.Auth, 'register'])
     router.get('redirect', [controllers.Auth, 'redirect'])
     router.get('google/callback', [controllers.Auth, 'callback']).as('google.callback')
     router.post('password/reset', [controllers.Auth, 'resetPassword']).as('password.reset')

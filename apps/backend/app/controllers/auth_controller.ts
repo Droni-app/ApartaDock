@@ -1,10 +1,16 @@
 import User from '#models/user'
 import Enrollment from '#models/enrollment'
 import type { HttpContext } from '@adonisjs/core/http'
-import { loginValidator, updatePasswordValidator } from '#validators/auth_validator'
+import string from '@adonisjs/core/helpers/string'
+import {
+  loginValidator,
+  registerValidator,
+  updatePasswordValidator,
+} from '#validators/auth_validator'
 import mail from '@adonisjs/mail/services/main'
 import { signedUrlFor } from '@adonisjs/core/services/url_builder'
 import { appUrl } from '#config/app'
+import Unit from '#models/unit'
 
 export default class AuthController {
   async login({ request }: HttpContext) {
@@ -18,6 +24,51 @@ export default class AuthController {
       user: User.reveal(user),
       enrollments,
       token: token.value!.release(),
+    }
+  }
+  async register({ request, response }: HttpContext) {
+    const payload = await request.validateUsing(registerValidator)
+    const unit = await Unit.query()
+      .where('name', payload.unitName)
+      .doesntHave('enrollments')
+      .first()
+
+    if (!unit) {
+      return response.notFound({
+        message: 'No se encontro la unidad o ya tiene un usuario registrado.',
+      })
+    }
+
+    const userExists = await User.query()
+      .where('email', payload.email)
+      .orWhere('document', payload.document)
+      .first()
+
+    if (userExists) {
+      return response.notFound({
+        message: 'El correo o número de documento ya estan registrados.',
+      })
+    }
+
+    const user = new User()
+    user.fullName = payload.fullName
+    user.documentType = payload.documentType
+    user.document = payload.document
+    user.email = payload.email
+    user.phone = payload.phone
+    user.password = string.random(32)
+
+    await user.save()
+
+    const enrollment = new Enrollment()
+    enrollment.userId = user.id
+    enrollment.unitId = unit.id
+
+    await enrollment.save()
+
+    return {
+      user: User.reveal(user),
+      enrollments: [enrollment],
     }
   }
   async me({ auth }: HttpContext) {

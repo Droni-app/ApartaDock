@@ -5,6 +5,7 @@ type ParamValue = string | number | bigint | boolean
 export type ScannedRoutes = {
   ALL: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
+    'auth.auth.register': { paramsTuple?: []; params?: {} }
     'auth.auth.redirect': { paramsTuple?: []; params?: {} }
     'auth.google.callback': { paramsTuple?: []; params?: {} }
     'auth.password.reset': { paramsTuple?: []; params?: {} }
@@ -142,6 +143,7 @@ export type ScannedRoutes = {
   }
   POST: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
+    'auth.auth.register': { paramsTuple?: []; params?: {} }
     'auth.password.reset': { paramsTuple?: []; params?: {} }
     'auth.password.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.auth.logout': { paramsTuple?: []; params?: {} }

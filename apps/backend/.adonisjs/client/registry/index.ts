@@ -12,6 +12,12 @@ const routes = {
     tokens: [{"old":"/auth/login","type":0,"val":"auth","end":""},{"old":"/auth/login","type":0,"val":"login","end":""}],
     types: placeholder as Registry['auth.auth.login']['types'],
   },
+  'auth.auth.register': {
+    methods: ["POST"],
+    pattern: '/auth/register',
+    tokens: [{"old":"/auth/register","type":0,"val":"auth","end":""},{"old":"/auth/register","type":0,"val":"register","end":""}],
+    types: placeholder as Registry['auth.auth.register']['types'],
+  },
   'auth.auth.redirect': {
     methods: ["GET","HEAD"],
     pattern: '/auth/redirect',

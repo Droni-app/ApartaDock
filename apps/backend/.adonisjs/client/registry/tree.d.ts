@@ -5,6 +5,7 @@ export interface ApiDefinition {
   auth: {
     auth: {
       login: typeof routes['auth.auth.login']
+      register: typeof routes['auth.auth.register']
       redirect: typeof routes['auth.auth.redirect']
     }
     google: {
