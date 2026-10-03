@@ -15,7 +15,7 @@ export default defineConfig({
     }),
     tailwindcss(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt',
       workbox: {
         cleanupOutdatedCaches: true,
       },
