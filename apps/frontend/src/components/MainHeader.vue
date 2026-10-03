@@ -62,7 +62,7 @@ const navItems = computed(() => [
           to: '#',
           children: [
             { label: 'Unidades', to: '/user/units' },
-            { label: 'Autorizaciones', to: '/user/authorizations' },
+            { label: 'Visitantes', to: '/user/visitors' },
             { label: 'Vehículos', to: '/user/vehicles' },
             { label: 'PQRs', to: '/user/tickets' },
           ],

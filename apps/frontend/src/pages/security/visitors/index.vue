@@ -9,8 +9,8 @@
         Nuevo ingreso
       </DuiButton>
     </UiTitlePage>
-
     <DuiDrawer v-model="showCreateForm" name="Ingreso de visitante">
+      <div class="py-3">
       <!-- Step 1 -->
        <template v-if="newVistorStape === 1">
         <DuiLabel title="Unidad" required>
@@ -100,12 +100,16 @@
           </DuiButton>
         </div>
       </form>
+      </div>
     </DuiDrawer>
     <!-- Search -->
     <div class="flex justify-between items-center mb-3">
       <DuiLabel class="w-full" title="Buscar visitante" help-text="Filtra por nombre, documento o placa de vehículo.">
         <DuiInput v-model="filters.q" placeholder="Nombre, documento o placa"/>
       </DuiLabel>
+      <div class="pt-7 px-2">
+        <DuiCheckbox v-model="filters.checkout" label="Incluir salidas" />
+      </div>
       <div class="pt-7">
         <DuiButton @click="fetchVisitors(1)">
           <i class="mdi mdi-magnify" />
@@ -113,24 +117,74 @@
         </DuiButton>
       </div>
     </div>
-
-    <SecurityVisitorsCard
-      v-for="visitor of visitors"
-      :key="visitor.id"
-      :visitor="visitor"
-      @checkin="checkinVisitor"
-      @checkout="checkoutVisitor"
-    />
+    <DuiTable
+      :columns="[
+        { label: 'Visitante', name: 'visitor' },
+        { label: 'Vehiculo', name: 'vehicle' },
+        { label: 'Tiempo', name: 'time' },
+        { label: 'Acciones', name: 'actions' },
+      ]"
+      :rows="visitors.data"
+      :loading="loading"
+    >
+      <template #visitor="{ fullName, document, unit, authorization }">
+        <strong>T{{ unit.tower }} Apto {{ unit.apto }}</strong><br>
+        {{ fullName }}<br>
+        <small>{{ document }}</small><br>
+        <DuiBadge v-if="authorization?.user" color="success">
+          Autoriza: {{ authorization?.user?.fullName }}
+        </DuiBadge>
+      </template>
+      <template #vehicle="{ plate, vehicleType }">
+        <strong>{{ plate }}</strong><br>
+        <small>{{ vehicleTypeLabel(vehicleType) }}</small>
+      </template>
+      <template #time="{ checkinDate, checkoutDate, createdAt }">
+        Ingreso: {{ formatDate(checkinDate) }}<br>
+        Salida: {{ formatDate(checkoutDate) }}<br>
+        <small>Registrado: {{ formatDate(createdAt) }}</small>
+      </template>
+      <template #actions="row">
+        <div v-if="row.checkinDate && row.vehicleType">
+          <DuiBadge size="lg" rounded="none" variant="outline">
+            <i class="mdi mdi-clock-time-eight-outline"></i>
+            {{ vistorParkingCalc(row.checkinDate, row.checkoutDate, row.vehicleType).hours }} horas
+          </DuiBadge>
+          <DuiBadge size="lg" rounded="none" variant="outline">
+            <i class="mdi mdi-currency-usd"></i>
+            {{ vistorParkingCalc(row.checkinDate, row.checkoutDate, row.vehicleType).price }}
+          </DuiBadge>
+        </div>
+        <DuiButton
+          v-if="!row.checkinDate"
+          size="sm"
+          color="primary"
+          variant="outline"
+          @click="checkinVisitor(row)"
+        >
+          <i class="mdi mdi-login-variant"></i>
+          Registrar ingreso
+        </DuiButton>
+        <div v-else-if="!row.checkoutDate">
+          <DuiButton
+            size="sm"
+            color="warning"
+            variant="outline"
+            @click="checkoutVisitor(row)"
+          >
+            <i class="mdi mdi-logout-variant"></i>
+            Registrar salida
+          </DuiButton>
+        </div>
+        
+      </template>
+    </DuiTable>
     <DuiPagination
       color="primary"
       v-model="filters.currentPage"
       :perPage="filters.perPage"
-      rounded="md"
-      :showLabels="false"
-      :siblingCount="1"
-      size="md"
       :total="filters.total"
-      variant="solid" />
+      />
 
   </div>
 </template>
@@ -138,14 +192,26 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import type { AxiosError } from 'axios'
-import { DuiButton, DuiDrawer, DuiInput, DuiLabel, DuiSelect, useToast } from '@dronico/droni-kit'
+import {
+  DuiBadge,
+  DuiButton,
+  DuiCheckbox,
+  DuiDrawer,
+  DuiInput,
+  DuiLabel,
+  DuiPagination,
+  DuiSelect,
+  DuiTable,
+  useToast
+} from '@dronico/droni-kit'
 import { api } from '@/services/api'
 import UiTitlePage from '@/components/Ui/TitlePage.vue'
 import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
 import type { Unit } from '@/types/units'
 import type { Visitor, VisitorForm } from '@/types/security/visitors'
 import type { Authorization } from '@/types/user/authorization'
-import SecurityVisitorsCard from '@/components/security/Visitors/Card.vue'
+import { formatDate, vistorParkingCalc } from '@/services/utils'
+import { vehicleTypeLabel } from '@/utils/vehicles'
 
 const toast = useToast()
 const loading = ref(false)
@@ -155,9 +221,17 @@ const filters = ref({
   perPage: 20,
   total: 0,
   q: '',
+  checkout: false
 })
 
-const visitors = ref<Visitor[]>([])
+const visitors = ref<PaginatedResponse<Visitor>>({
+  meta: {
+    currentPage: 1,
+    perPage: 20,
+    total: 0,
+  },
+  data: []
+})
 const units = ref<PaginatedResponse<Unit>>({
   data: []
 })
@@ -188,12 +262,13 @@ async function fetchVisitors(page = filters.value.currentPage) {
       page,
       limit: filters.value.perPage,
       q: filters.value.q,
+      checkout: filters.value.checkout
     },
   }).then(res => {
-    visitors.value = res.data.data
+    visitors.value = res.data
     filters.value.currentPage = res.data.meta?.currentPage ?? page
-    filters.value.perPage = res.data.meta?.perPage ?? filters.value.perPage
-    filters.value.total = res.data.meta?.total ?? visitors.value.length
+    filters.value.perPage = res.data.meta?.perPage ?? 20
+    filters.value.total = res.data.meta?.total ?? 0
   }).catch(_e=> {
     toast.error('No se pudo obtener la lista de visitantes.')
   }).finally(() => {

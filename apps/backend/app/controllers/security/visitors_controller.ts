@@ -23,11 +23,18 @@ export default class VisitorsController {
     const page = Number(request.input('page', 1))
     const limit = Number(request.input('limit', 20))
     const q = request.input('q', '')
+    const checkout = request.input('checkout', null)
 
     const query = Visitor.query()
       .preload('unit')
-      .if(q, (builder) => {
-        builder.where('fullName', 'like', `%${q}%`).orWhere('plate', 'like', `%${q}%`)
+      .preload('authorization', async (builder) => {
+        await builder.preload('user')
+      })
+      .if(q, async (unitQuery) => {
+        await unitQuery.where('fullName', 'like', `%${q}%`).orWhere('plate', 'like', `%${q}%`)
+      })
+      .if(checkout !== 'true', async (builder) => {
+        await builder.whereNull('checkoutDate')
       })
       .orderBy('checkinDate', 'desc')
 

@@ -1,12 +1,12 @@
 <template>
   <div class="space-y-6">
     <UiTitlePage
-      title="Autorizaciones"
+      title="Autorizacion de visitantes"
       description="Autoriza la entrada de personas y uso de parqueaderos de visitantes."
     >
       <DuiButton @click="showCreateFrom = true">
         <i class="mdi mdi-plus" />
-        Nuevo autorizado
+        Nuevo visitante autorizado
       </DuiButton>
     </UiTitlePage>
     <DuiDrawer v-model="showCreateFrom" name="Agregar nuevo autorizado">
