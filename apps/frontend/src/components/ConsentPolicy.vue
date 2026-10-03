@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isConsentExpired()" class="container mx-auto p-4">
+  <div v-if="isConsentExpired() && user?.role === 'user'" class="container mx-auto p-4">
     <DuiAlert color="warning" rounded="all" variant="ghost">
       <p>
         Hay cambios en nuestra <strong>política de privacidad, términos y condiciones</strong>, es necesario que realice una validación y acepte los nuevos términos para continuar utilizando nuestros servicios.
