@@ -240,12 +240,6 @@ const routes = {
     tokens: [{"old":"/security/visitors/:id","type":0,"val":"security","end":""},{"old":"/security/visitors/:id","type":0,"val":"visitors","end":""},{"old":"/security/visitors/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['security.visitors.show']['types'],
   },
-  'security.visitors.update': {
-    methods: ["PUT","PATCH"],
-    pattern: '/security/visitors/:id',
-    tokens: [{"old":"/security/visitors/:id","type":0,"val":"security","end":""},{"old":"/security/visitors/:id","type":0,"val":"visitors","end":""},{"old":"/security/visitors/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['security.visitors.update']['types'],
-  },
   'security.units.index': {
     methods: ["GET","HEAD"],
     pattern: '/security/units',

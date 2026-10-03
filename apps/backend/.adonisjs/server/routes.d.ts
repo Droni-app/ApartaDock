@@ -43,7 +43,6 @@ export type ScannedRoutes = {
     'security.visitors.index': { paramsTuple?: []; params?: {} }
     'security.visitors.store': { paramsTuple?: []; params?: {} }
     'security.visitors.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'security.visitors.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.units.index': { paramsTuple?: []; params?: {} }
     'security.units.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.enrollments.index': { paramsTuple?: []; params?: {} }
@@ -168,7 +167,6 @@ export type ScannedRoutes = {
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.parking_requests.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'security.visitors.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.vehicles.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.attachments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.authorizations.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -180,7 +178,6 @@ export type ScannedRoutes = {
     'admin.enrollments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.parking_requests.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'security.visitors.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.vehicles.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.attachments.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'user.authorizations.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

@@ -29,7 +29,7 @@ export default class extends BaseSchema {
       table.string('full_name')
       table.string('document').nullable()
       table.string('plate', 20).nullable()
-      table.enu('vehicle_type', ['car', 'motorcycle']).nullable()
+      table.enu('vehicle_type', ['car', 'motorcycle', 'bicycle']).nullable()
       table.timestamp('checkin_date').nullable()
       table.timestamp('checkout_date').nullable()
       table.timestamp('created_at')

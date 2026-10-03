@@ -70,7 +70,10 @@ router
   .group(() => {
     router.post('visitors/:id/checkin', [controllers.security.Visitors, 'checkin'])
     router.post('visitors/:id/checkout', [controllers.security.Visitors, 'checkout'])
-    router.resource('visitors', controllers.security.Visitors).apiOnly().except(['destroy'])
+    router
+      .resource('visitors', controllers.security.Visitors)
+      .apiOnly()
+      .except(['destroy', 'update'])
     router.resource('units', controllers.security.Units).apiOnly().only(['index', 'show'])
   })
   .prefix('security')

@@ -70,31 +70,18 @@ export default class VisitorsController {
 
     return await Visitor.query()
       .where('id', params.id)
-      .if(user.role !== 'admin', (builder) => {
-        builder.where('userId', user.id)
+      .if(user.role !== 'admin', async (builder) => {
+        await builder.where('userId', user.id)
       })
       .preload('unit')
       .firstOrFail()
   }
 
-  /**
-   * Handle form submission for the edit action
-   */
-  async update({ params, request }: HttpContext) {
-    const payload = await request.validateUsing(updateVisitorValidator)
-    const visitor = await Visitor.query().where('id', params.id).firstOrFail()
-    console.log(payload)
-    await visitor.save()
-    return visitor
-  }
-
   async checkin({ params }: HttpContext) {
     const visitor = await Visitor.query().where('id', params.id).firstOrFail()
-
     if (visitor.checkinDate) {
       throw new Error('Visitor is already checked in')
     }
-
     visitor.checkinDate = DateTime.now()
     await visitor.save()
 

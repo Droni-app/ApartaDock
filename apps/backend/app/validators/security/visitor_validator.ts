@@ -6,7 +6,7 @@ export const createVisitorValidator = vine.create({
   fullName: vine.string().trim(),
   document: vine.string().trim().nullable().optional(),
   plate: vine.string().trim().maxLength(20).nullable().optional(),
-  vehicleType: vine.enum(['car', 'motorcycle']).nullable().optional(),
+  vehicleType: vine.enum(['car', 'motorcycle', 'bicycle']).nullable().optional(),
 })
 
 export const updateVisitorValidator = vine.create({

@@ -75,7 +75,6 @@ export interface ApiDefinition {
       index: typeof routes['security.visitors.index']
       store: typeof routes['security.visitors.store']
       show: typeof routes['security.visitors.show']
-      update: typeof routes['security.visitors.update']
     }
     units: {
       index: typeof routes['security.units.index']

@@ -4,6 +4,10 @@
       title="Control de visitantes"
       description="Registra ingresos y salidas de visitantes por unidad."
     >
+      <DuiButton to="/security/visitors/help" color="primary" variant="ghost">
+        <i class="mdi mdi-help"></i>
+        Ayuda
+      </DuiButton>
       <DuiButton @click="showCreateForm = true" color="primary">
         <i class="mdi mdi-plus"></i>
         Nuevo ingreso
@@ -242,6 +246,7 @@ const authorizations = ref<Authorization[]>([])
 const vehicleTypeOptions = [
   { value: 'car', label: 'Carro' },
   { value: 'motorcycle', label: 'Moto' },
+  { value: 'bicycle', label: 'Bicicleta' }
 ]
 const newVistorStape = ref(1)
 const newVisitor = ref<VisitorForm>({
