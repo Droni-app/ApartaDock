@@ -1,10 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Visitor from '#models/visitor'
 import Authorization from '#models/authorization'
-import {
-  createVisitorValidator,
-  updateVisitorValidator,
-} from '#validators/security/visitor_validator'
+import { createVisitorValidator } from '#validators/security/visitor_validator'
 import { DateTime } from 'luxon'
 
 function normalizePlate(plate: string | null | undefined): string | null {

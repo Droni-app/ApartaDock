@@ -8,9 +8,3 @@ export const createVisitorValidator = vine.create({
   plate: vine.string().trim().maxLength(20).nullable().optional(),
   vehicleType: vine.enum(['car', 'motorcycle', 'bicycle']).nullable().optional(),
 })
-
-export const updateVisitorValidator = vine.create({
-  authorizationId: vine.number().nullable().optional(),
-  checkinDate: vine.date().nullable().optional(),
-  checkoutDate: vine.date().nullable().optional(),
-})
