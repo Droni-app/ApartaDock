@@ -14,11 +14,12 @@ import { DuiCard } from '@dronico/droni-kit'
 import { useRoute } from 'vue-router'
 import { useAuth } from '../../../composables/useAuth'
 
-const code = useRoute().query.code as string
+const route = useRoute()
+const code = route.query.code as string
+const state = route.query.state as string
 
 const { getUserFromCallback } = useAuth()
 
-
-getUserFromCallback(code)
+getUserFromCallback(code, state)
 
 </script>

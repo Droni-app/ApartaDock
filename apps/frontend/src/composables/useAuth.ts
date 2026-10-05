@@ -69,16 +69,19 @@ export function useAuth() {
     })
   }
 
-  async function getUserFromCallback(code: string) {
-  api.get(`/auth/google/callback?code=${code}`)
-    .then(response => {
-      saveSession(response.data)
-      router.push('/')
+  function getUserFromCallback(code: string, state: string) {
+    api.get('/auth/google/callback', {
+      params: { code, state },
+      withCredentials: true,
     })
-    .catch(error => {
-      console.error('Error during Google callback:', error)
-      router.push('/auth/login')
-    })
+      .then((response) => {
+        saveSession(response.data)
+        void router.push('/')
+      })
+      .catch((error) => {
+        console.error('Error during Google callback:', error)
+        void router.push('/auth/login')
+      })
   }
 
   function logout() {
