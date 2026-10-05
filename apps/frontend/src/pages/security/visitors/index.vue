@@ -223,7 +223,7 @@ const loading = ref(false)
 const showCreateForm = ref(false)
 const filters = ref({
   currentPage: 1,
-  perPage: 2,
+  perPage: 20,
   total: 0,
   q: '',
   checkout: false
@@ -232,7 +232,7 @@ const filters = ref({
 const visitors = ref<PaginatedResponse<Visitor>>({
   meta: {
     currentPage: 1,
-    perPage: 2,
+    perPage: 20,
     total: 0,
   },
   data: []
