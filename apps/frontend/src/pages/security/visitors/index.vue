@@ -188,6 +188,7 @@
       v-model="filters.currentPage"
       :perPage="filters.perPage"
       :total="filters.total"
+      @change="fetchVisitors"
       />
 
   </div>
@@ -222,7 +223,7 @@ const loading = ref(false)
 const showCreateForm = ref(false)
 const filters = ref({
   currentPage: 1,
-  perPage: 20,
+  perPage: 2,
   total: 0,
   q: '',
   checkout: false
@@ -231,7 +232,7 @@ const filters = ref({
 const visitors = ref<PaginatedResponse<Visitor>>({
   meta: {
     currentPage: 1,
-    perPage: 20,
+    perPage: 2,
     total: 0,
   },
   data: []
