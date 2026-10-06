@@ -70,10 +70,7 @@ export default class AttachmentsController {
       return response.badRequest('Se requiere el parametro path')
     }
 
-    const attachment = await Attachment.query()
-      .where('user_id', auth.user!.id)
-      .where('path', attachmentPath)
-      .firstOrFail()
+    const attachment = await Attachment.query().where('path', attachmentPath).firstOrFail()
 
     const disk = drive.use()
     const url = await disk.getSignedUrl(attachment.path, {
