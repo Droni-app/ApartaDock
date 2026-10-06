@@ -63,7 +63,7 @@ export default class AttachmentsController {
     await attachment.delete()
     return attachment
   }
-  async download({ auth, request, response }: HttpContext) {
+  async download({ request, response }: HttpContext) {
     const attachmentPath = request.input('path')
 
     if (!attachmentPath) {
