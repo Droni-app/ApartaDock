@@ -302,7 +302,7 @@ export class VehicleSchema extends BaseModel {
 }
 
 export class VisitorSchema extends BaseModel {
-  static $columns = ['authorizationId', 'checkinDate', 'checkoutDate', 'createdAt', 'document', 'fullName', 'id', 'plate', 'unitId', 'updatedAt', 'userId', 'vehicleType'] as const
+  static $columns = ['authorizationId', 'checkinDate', 'checkoutDate', 'createdAt', 'document', 'fullName', 'hours', 'id', 'plate', 'total', 'unitId', 'updatedAt', 'userId', 'vehicleType'] as const
   $columns = VisitorSchema.$columns
   @column()
   declare authorizationId: number | null
@@ -316,10 +316,14 @@ export class VisitorSchema extends BaseModel {
   declare document: string | null
   @column()
   declare fullName: string | null
+  @column()
+  declare hours: number | null
   @column({ isPrimary: true })
   declare id: number
   @column()
   declare plate: string | null
+  @column()
+  declare total: number | null
   @column()
   declare unitId: number
   @column.dateTime({ autoCreate: true, autoUpdate: true })

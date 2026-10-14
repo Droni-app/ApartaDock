@@ -8,6 +8,10 @@
         <i class="mdi mdi-help"></i>
         Ayuda
       </DuiButton>
+      <DuiButton to="/security/visitors/report" color="primary" variant="ghost">
+        <i class="mdi mdi-chart-box-outline"></i>
+        Reporte
+      </DuiButton>
       <DuiButton @click="showCreateForm = true" color="primary">
         <i class="mdi mdi-plus"></i>
         Nuevo ingreso

@@ -38,6 +38,7 @@ export type ScannedRoutes = {
     'board.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'security.visitors.report': { paramsTuple?: []; params?: {} }
     'security.visitors.checkin': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.visitors.checkout': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.visitors.index': { paramsTuple?: []; params?: {} }
@@ -88,6 +89,7 @@ export type ScannedRoutes = {
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.index': { paramsTuple?: []; params?: {} }
     'board.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'security.visitors.report': { paramsTuple?: []; params?: {} }
     'security.visitors.index': { paramsTuple?: []; params?: {} }
     'security.visitors.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.units.index': { paramsTuple?: []; params?: {} }
@@ -122,6 +124,7 @@ export type ScannedRoutes = {
     'board.parking_requests.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'board.documents.index': { paramsTuple?: []; params?: {} }
     'board.documents.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'security.visitors.report': { paramsTuple?: []; params?: {} }
     'security.visitors.index': { paramsTuple?: []; params?: {} }
     'security.visitors.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'security.units.index': { paramsTuple?: []; params?: {} }

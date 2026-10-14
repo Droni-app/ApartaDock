@@ -68,6 +68,7 @@ router
 // Security routes
 router
   .group(() => {
+    router.get('visitors/report', [controllers.security.Visitors, 'report'])
     router.post('visitors/:id/checkin', [controllers.security.Visitors, 'checkin'])
     router.post('visitors/:id/checkout', [controllers.security.Visitors, 'checkout'])
     router

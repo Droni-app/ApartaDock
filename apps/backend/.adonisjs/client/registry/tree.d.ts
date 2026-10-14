@@ -70,6 +70,7 @@ export interface ApiDefinition {
   }
   security: {
     visitors: {
+      report: typeof routes['security.visitors.report']
       checkin: typeof routes['security.visitors.checkin']
       checkout: typeof routes['security.visitors.checkout']
       index: typeof routes['security.visitors.index']

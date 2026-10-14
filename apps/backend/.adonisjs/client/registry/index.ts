@@ -210,6 +210,12 @@ const routes = {
     tokens: [{"old":"/board/documents/:id","type":0,"val":"board","end":""},{"old":"/board/documents/:id","type":0,"val":"documents","end":""},{"old":"/board/documents/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['board.documents.destroy']['types'],
   },
+  'security.visitors.report': {
+    methods: ["GET","HEAD"],
+    pattern: '/security/visitors/report',
+    tokens: [{"old":"/security/visitors/report","type":0,"val":"security","end":""},{"old":"/security/visitors/report","type":0,"val":"visitors","end":""},{"old":"/security/visitors/report","type":0,"val":"report","end":""}],
+    types: placeholder as Registry['security.visitors.report']['types'],
+  },
   'security.visitors.checkin': {
     methods: ["POST"],
     pattern: '/security/visitors/:id/checkin',

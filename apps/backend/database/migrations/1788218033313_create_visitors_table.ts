@@ -32,6 +32,8 @@ export default class extends BaseSchema {
       table.enu('vehicle_type', ['car', 'motorcycle', 'bicycle']).nullable()
       table.timestamp('checkin_date').nullable()
       table.timestamp('checkout_date').nullable()
+      table.integer('hours').unsigned().nullable()
+      table.integer('total').unsigned().nullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

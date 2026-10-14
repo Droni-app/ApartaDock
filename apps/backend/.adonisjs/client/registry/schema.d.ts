@@ -415,6 +415,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/board/documents_controller').default['destroy']>>>
     }
   }
+  'security.visitors.report': {
+    methods: ["GET","HEAD"]
+    pattern: '/security/visitors/report'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['report']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/security/visitors_controller').default['report']>>>
+    }
+  }
   'security.visitors.checkin': {
     methods: ["POST"]
     pattern: '/security/visitors/:id/checkin'

@@ -3,6 +3,12 @@ import Visitor from '#models/visitor'
 import Authorization from '#models/authorization'
 import { createVisitorValidator } from '#validators/security/visitor_validator'
 import { DateTime } from 'luxon'
+import { vistorParkingCalc } from '#services/visitors'
+
+interface VisitorAggregateRow {
+  total?: number | string | null
+  totalHours?: number | string | null
+}
 
 function normalizePlate(plate: string | null | undefined): string | null {
   if (!plate) {
@@ -62,16 +68,20 @@ export default class VisitorsController {
   /**
    * Show individual record
    */
-  async show({ auth, params }: HttpContext) {
-    const user = auth.getUserOrFail()
+  async show({ params }: HttpContext) {
+    const visitor = await Visitor.query().where('id', params.id).preload('unit').firstOrFail()
 
-    return await Visitor.query()
-      .where('id', params.id)
-      .if(user.role !== 'admin', async (builder) => {
-        await builder.where('userId', user.id)
-      })
-      .preload('unit')
-      .firstOrFail()
+    if (visitor.checkinDate && visitor.checkoutDate && visitor.hours === null) {
+      const visitorCalc = vistorParkingCalc(
+        visitor.checkinDate.toISO()!,
+        visitor.checkoutDate.toISO(),
+        visitor.vehicleType!
+      )
+      visitor.hours = visitorCalc.hours
+      visitor.total = visitorCalc.price
+      await visitor.save()
+    }
+    return visitor
   }
 
   async checkin({ params }: HttpContext) {
@@ -97,8 +107,52 @@ export default class VisitorsController {
     }
 
     visitor.checkoutDate = DateTime.now()
+    const visitorCalc = vistorParkingCalc(
+      visitor.checkinDate.toISO()!,
+      visitor.checkoutDate.toISO(),
+      visitor.vehicleType!
+    )
+    visitor.hours = visitorCalc.hours
+    visitor.total = visitorCalc.price
     await visitor.save()
 
     return visitor
+  }
+
+  async report({ request }: HttpContext) {
+    const page = Number(request.input('page', 1))
+    const limit = Number(request.input('limit', 20))
+    const now = DateTime.now()
+    const fromDateInput = request.input('fromDate')
+    const toDateInput = request.input('toDate')
+    const fromDate = fromDateInput
+      ? DateTime.fromISO(String(fromDateInput)).startOf('day')
+      : now.minus({ days: 30 })
+    const toDate = toDateInput ? DateTime.fromISO(String(toDateInput)).endOf('day') : now
+    const vehicleType = request.input('vehicleType', request.input('vehicle_type', ''))
+
+    const query = Visitor.query()
+      .whereBetween('checkinDate', [fromDate.toSQL()!, toDate.toSQL()!])
+      .andWhereNotNull('checkoutDate')
+      .if(vehicleType, (builder) => builder.where('vehicleType', vehicleType))
+
+    const [visitors, totalResult, totalHoursResult] = await Promise.all([
+      query
+        .clone()
+        .preload('unit')
+        .preload('authorization')
+        .orderBy('checkinDate', 'desc')
+        .paginate(page, limit),
+      query.clone().pojo().sum('total as total'),
+      query.clone().pojo().sum('hours as totalHours'),
+    ])
+    const totalAmount = (totalResult[0] as VisitorAggregateRow | undefined)?.total
+    const totalHours = (totalHoursResult[0] as VisitorAggregateRow | undefined)?.totalHours
+
+    return {
+      ...visitors.toJSON(),
+      total: Number(totalAmount ?? 0),
+      totalHours: Number(totalHours ?? 0),
+    }
   }
 }
