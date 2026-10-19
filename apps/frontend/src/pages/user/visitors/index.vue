@@ -15,7 +15,7 @@
       </p>
       <form @submit.prevent="storeAuthorization">
         <DuiLabel class="block mb-3" title="Unidad" help-text="Unidad a la que se autoriza el ingreso del visitante." required>
-          <DuiSelect v-model="newAuthorization.unitId" :options="enrollments" item-value="unitId" item-label="unit.name" placeholder="Selecciona..." required />
+          <DuiSelect :model-value="newAuthorization.unitId ?? undefined" :options="enrollments" item-value="unitId" item-label="unit.name" placeholder="Selecciona..." required @update:model-value="newAuthorization.unitId = Number($event)" />
         </DuiLabel>
         <DuiLabel class="block mb-3" title="Nombre completo" help-text="Nombre completo de la persona que se autoriza para el ingreso. ej Pedro Perez" required>
           <DuiInput v-model="newAuthorization.fullName" placeholder="Pedro Perez" required />
@@ -24,10 +24,10 @@
           <DuiInput v-model="newAuthorization.document" placeholder="00000000" required />
         </DuiLabel>
         <DuiLabel class="block mb-3" title="Placa de vehículo" help-text="Número de placa del vehiculo para ingresar a parqueadero de visitantes.">
-          <DuiInput v-model="newAuthorization.plate" placeholder="ABC123" />
+          <DuiInput :model-value="newAuthorization.plate ?? undefined" placeholder="ABC123" @update:model-value="newAuthorization.plate = $event" />
         </DuiLabel>
         <DuiLabel class="block mb-3" title="Fecha máxima de autorización" help-text="Sí desea autorizar al visitante solo hasta una fecha específica puede definirla en este campo.">
-          <DuiInput type="date" v-model="newAuthorization.authorizedDate" placeholder="ABC123" />
+          <DuiInput type="date" :model-value="newAuthorization.authorizedDate ?? undefined" placeholder="ABC123" @update:model-value="newAuthorization.authorizedDate = $event" />
         </DuiLabel>
         <p class="text-sm mb-3">
           Al agregar una persona autorizada, acepta la responsabilidad respecto a la copropiedad y el cargo por concepto de cobro de parqueadero de visitantes (cuando aplique).

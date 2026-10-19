@@ -86,14 +86,15 @@
 
         <div class="grid grid-cols-2 gap-3">
           <DuiLabel title="Placa">
-            <DuiInput v-model="newVisitor.plate" placeholder="ABC123" />
+            <DuiInput :model-value="newVisitor.plate ?? undefined" placeholder="ABC123" @update:model-value="newVisitor.plate = $event" />
           </DuiLabel>
 
           <DuiLabel title="Tipo de vehículo">
             <DuiSelect
-              v-model="newVisitor.vehicleType"
+              :model-value="newVisitor.vehicleType ?? undefined"
               :options="vehicleTypeOptions"
               placeholder="Selecciona"
+              @update:model-value="newVisitor.vehicleType = $event as VisitorForm['vehicleType']"
             />
           </DuiLabel>
         </div>

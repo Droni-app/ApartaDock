@@ -1,5 +1,5 @@
 <template>
-  <header class="z-1 sticky top-0 bg-slate-100 dark:bg-slate-950 shadow-sm transition-colors dark:bg-slate-950">
+  <header class="z-10 sticky top-0 border-b border-slate-200/80 bg-slate-100/80 backdrop-blur-md transition-colors dark:border-white/10 dark:bg-slate-950/80">
     <DuiNavbar :items="navItems"
     underline-color="primary">
       <template #brand>
@@ -7,9 +7,9 @@
           <img
             src="/logo.webp"
             alt="ApartaDock logo"
-            class="h-8 w-8 rounded object-contain"
+            class="h-9 w-9 rounded-lg object-contain shadow-sm ring-1 ring-black/5 dark:ring-white/10"
           />
-          <span class="text-xs leading-tight text-slate-900 dark:text-slate-100">Fontibón<br />Reservado</span>
+          <span class="text-xs font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-100">Fontibón<br /><span class="font-normal text-slate-500 dark:text-slate-400">Reservado</span></span>
         </RouterLink>
       </template>
 

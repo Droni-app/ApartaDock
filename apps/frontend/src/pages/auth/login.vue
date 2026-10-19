@@ -1,8 +1,8 @@
 <template>
-  <main class="min-h-screen bg-slate-100 dark:bg-slate-950 p-4 grid place-items-center">
+  <main class="min-h-[80vh] p-4 grid place-items-center">
     <section class="w-full max-w-md">
       <div class="mb-5 flex justify-center">
-        <img src="/logo.webp" alt="Fontibon Reservado" class="h-20 w-20 rounded-xl object-contain shadow-sm" />
+        <img src="/logo.webp" alt="Fontibon Reservado" class="h-20 w-20 rounded-2xl object-contain shadow-lg ring-1 ring-black/5 dark:ring-white/10" />
       </div>
 
       <DuiCard v-if="showCard === 'login'" class="w-full" size="l" title="Iniciar sesion" subtitle="Accede para consultar toda la información sobre tu conjunto residencial.">
@@ -20,15 +20,15 @@
           </DuiLabel>
 
           <p class="text-xs text-gray-500 dark:text-slate-400 mt-4">
-            Al iniciar sesión, estás aceptando nuestra <a href="/legal/policy.html" target="_blank" class="text-pink-500 hover:underline">política de privacidad y términos de uso</a>.
+            Al iniciar sesión, estás aceptando nuestra <a href="/legal/policy.html" target="_blank" class="font-medium text-primary dark:text-primary-400 hover:underline">política de privacidad y términos de uso</a>.
           </p>
 
-          <DuiButton type="submit" :loading="loading" block size="lg">
+          <DuiButton type="submit" color="primary" :loading="loading" block size="lg">
             Entrar
           </DuiButton>
 
           <div class="flex justify-end mt-2">
-            <DuiButton type="button" size="sm" @click="showCard = 'sendReset'">
+            <DuiButton type="button" size="sm" variant="ghost" @click="showCard = 'sendReset'">
               ¿Olvidaste tu contraseña?
             </DuiButton>
           </div>
@@ -41,7 +41,7 @@
             <DuiInput v-model="form.email" type="email" size="lg" block />
           </DuiLabel>
 
-          <DuiButton type="submit" :loading="loading" block size="lg" class="mt-4">
+          <DuiButton type="submit" color="primary" :loading="loading" block size="lg" class="mt-4">
             Enviar correo de recuperación
           </DuiButton>
         </form>

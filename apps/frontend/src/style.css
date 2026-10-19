@@ -3,9 +3,31 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Colores de marca tomados de los tokens de droni-kit v2 (habilita text-primary, bg-primary-500/10, etc.) */
+@theme inline {
+	--font-sans: var(--dk-font-sans);
+	--color-primary: var(--dk-color-primary-600);
+	--color-primary-50: var(--dk-color-primary-50);
+	--color-primary-100: var(--dk-color-primary-100);
+	--color-primary-200: var(--dk-color-primary-200);
+	--color-primary-300: var(--dk-color-primary-300);
+	--color-primary-400: var(--dk-color-primary-400);
+	--color-primary-500: var(--dk-color-primary-500);
+	--color-primary-600: var(--dk-color-primary-600);
+	--color-primary-700: var(--dk-color-primary-700);
+	--color-primary-800: var(--dk-color-primary-800);
+	--color-primary-900: var(--dk-color-primary-900);
+	--color-secondary-500: var(--dk-color-secondary-500);
+	--color-secondary-600: var(--dk-color-secondary-600);
+}
+
 @layer base {
 	html,
 	body {
-		@apply transition-colors duration-200;
+		@apply font-sans antialiased transition-colors duration-200;
+	}
+
+	h1 {
+		@apply font-semibold tracking-tight;
 	}
 }

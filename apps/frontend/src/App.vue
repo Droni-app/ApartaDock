@@ -1,5 +1,6 @@
 <template>
-  <main class="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors dark:bg-slate-950 dark:text-slate-100">
+  <main class="relative isolate min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-96 bg-linear-to-b from-primary-500/10 to-transparent dark:from-primary-500/15"></div>
     <DuiToast position="bottom-right" :z-index="70" />
     <DuiAlert v-if="needRefresh" color="warning" variant="outline" rounded="all">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -20,11 +21,13 @@
       </div>
     </DuiAlert>
     <MainHeader v-if="isAuthenticated" />
-    <RouterView class="py-3 px-2 container mx-auto" />
-    <p class="text-center text-sm text-gray-500 dark:text-slate-400 py-4">
-      Política de privacidad y términos de uso: <a href="/legal/policy.html" target="_blank" class="text-primary hover:underline">Consulta aquí</a>.<br />
-      &copy; 2026 ApartaDock. Realizado con ❤️ y mucho café por el equipo de <a href="https://droni.co" target="_blank" class="text-primary hover:underline">Droni.co</a> | v {{ version }}.
-    </p>
+    <RouterView class="py-6 px-4 container mx-auto" />
+    <footer class="mt-6 border-t border-slate-200 dark:border-white/10">
+      <p class="container mx-auto px-4 py-6 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+        Política de privacidad y términos de uso: <a href="/legal/policy.html" target="_blank" class="font-medium text-primary dark:text-primary-400 hover:underline">Consulta aquí</a>.<br />
+        &copy; 2026 ApartaDock. Realizado con ❤️ y mucho café por el equipo de <a href="https://droni.co" target="_blank" class="font-medium text-primary dark:text-primary-400 hover:underline">Droni.co</a> | v {{ version }}.
+      </p>
+    </footer>
   </main>
 </template>
 <script setup lang="ts">

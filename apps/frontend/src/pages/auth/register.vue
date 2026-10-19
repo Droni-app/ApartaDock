@@ -59,7 +59,7 @@
           </DuiLabel>
 
           <p class="text-xs text-gray-500 dark:text-slate-400 mt-4">
-            Al registrarse, estás aceptando nuestra <a href="/legal/policy.html" target="_blank" class="text-pink-500 hover:underline">política de privacidad y términos de uso</a>.
+            Al registrarse, estás aceptando nuestra <a href="/legal/policy.html" target="_blank" class="font-medium text-primary dark:text-primary-400 hover:underline">política de privacidad y términos de uso</a>.
           </p>
 
           <DuiButton type="submit" :loading="loading" block size="lg">
