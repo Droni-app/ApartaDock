@@ -25,7 +25,10 @@
     <footer class="mt-6 border-t border-slate-200 dark:border-white/10">
       <p class="container mx-auto px-4 py-6 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400">
         Política de privacidad y términos de uso: <a href="/legal/policy.html" target="_blank" class="font-medium text-primary dark:text-primary-400 hover:underline">Consulta aquí</a>.<br />
-        &copy; 2026 ApartaDock. Realizado con ❤️ y mucho café por el equipo de <a href="https://droni.co" target="_blank" class="font-medium text-primary dark:text-primary-400 hover:underline">Droni.co</a> | v {{ version }}.
+        &copy; 2026 ApartaDock. Realizado con ❤️ y mucho café por el equipo de <a href="https://droni.co" target="_blank" class="font-medium text-primary dark:text-primary-400 hover:underline">Droni.co</a> | v {{ version }} ·
+        <button type="button" class="underline-offset-2 hover:text-primary hover:underline disabled:cursor-wait disabled:opacity-60 dark:hover:text-primary-400" :disabled="isCleaning" @click="forceCleanAndUpdate">
+          {{ isCleaning ? 'Actualizando…' : 'Actualizar versión' }}
+        </button>
       </p>
     </footer>
   </main>
