@@ -5,17 +5,23 @@
       description="Consulta ingresos, horas y cobros por periodo."
     />
 
-    <form class="grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-5" @submit.prevent="handleSearch">
-      <DuiLabel title="Desde">
-        <DuiInput v-model="filters.fromDate" type="date" block />
+    <form class="grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-6" @submit.prevent="handleSearch">
+      <DuiLabel title="Desde" class="lg:col-span-2">
+        <div class="flex gap-2">
+          <DuiInput v-model="filters.fromDate" type="date" block />
+          <DuiInput v-model="filters.fromTime" type="time" block />
+        </div>
       </DuiLabel>
-      <DuiLabel title="Hasta">
-        <DuiInput v-model="filters.toDate" type="date" block />
+      <DuiLabel title="Hasta" class="lg:col-span-2">
+        <div class="flex gap-2">
+          <DuiInput v-model="filters.toDate" type="date" block />
+          <DuiInput v-model="filters.toTime" type="time" block />
+        </div>
       </DuiLabel>
       <DuiLabel title="Tipo de vehículo">
         <DuiSelect v-model="filters.vehicleType" :options="vehicleTypeOptions" block />
       </DuiLabel>
-      <div class="flex gap-2 lg:col-span-2">
+      <div class="flex gap-2">
         <DuiButton type="submit" color="primary" :loading="loading">
           <i class="mdi mdi-magnify mr-1"></i>
           Filtrar
@@ -146,7 +152,12 @@ function defaultDates() {
   const to = new Date()
   const from = new Date(to)
   from.setDate(from.getDate() - 30)
-  return { fromDate: dateInputValue(from), toDate: dateInputValue(to) }
+  return { fromDate: dateInputValue(from), fromTime: '00:00', toDate: dateInputValue(to), toTime: '23:59' }
+}
+
+function dateTimeParam(date: string, time: string) {
+  if (!date) return undefined
+  return time ? `${date}T${time}` : date
 }
 
 const filters = reactive({
@@ -212,8 +223,8 @@ async function fetchReport(page = currentPage.value) {
       params: {
         page,
         limit: perPage.value,
-        fromDate: filters.fromDate || undefined,
-        toDate: filters.toDate || undefined,
+        fromDate: dateTimeParam(filters.fromDate, filters.fromTime),
+        toDate: dateTimeParam(filters.toDate, filters.toTime),
         vehicleType: filters.vehicleType || undefined,
       },
     })

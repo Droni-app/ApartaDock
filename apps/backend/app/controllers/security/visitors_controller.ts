@@ -18,6 +18,17 @@ function normalizePlate(plate: string | null | undefined): string | null {
   return plate.toUpperCase().replace(/\s+/g, '')
 }
 
+/**
+ * Parses a report filter date. Accepts a date (`2026-10-20`), covering the
+ * whole day, or a date with time (`2026-10-20T14:30`), covering that minute.
+ */
+function parseReportDate(value: string, edge: 'start' | 'end'): DateTime {
+  const date = DateTime.fromISO(value)
+  const unit = value.includes('T') ? 'minute' : 'day'
+
+  return edge === 'start' ? date.startOf(unit) : date.endOf(unit)
+}
+
 export default class VisitorsController {
   /**
    * Display a list of resource
@@ -126,13 +137,13 @@ export default class VisitorsController {
     const fromDateInput = request.input('fromDate')
     const toDateInput = request.input('toDate')
     const fromDate = fromDateInput
-      ? DateTime.fromISO(String(fromDateInput)).startOf('day')
+      ? parseReportDate(String(fromDateInput), 'start')
       : now.minus({ days: 30 })
-    const toDate = toDateInput ? DateTime.fromISO(String(toDateInput)).endOf('day') : now
+    const toDate = toDateInput ? parseReportDate(String(toDateInput), 'end') : now
     const vehicleType = request.input('vehicleType', request.input('vehicle_type', ''))
 
     const query = Visitor.query()
-      .whereBetween('checkinDate', [fromDate.toSQL()!, toDate.toSQL()!])
+      .whereBetween('checkoutDate', [fromDate.toSQL()!, toDate.toSQL()!])
       .andWhereNotNull('checkoutDate')
       .if(vehicleType, (builder) => builder.where('vehicleType', vehicleType))
 
