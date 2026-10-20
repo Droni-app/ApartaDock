@@ -1,4 +1,4 @@
-import type { Enrollment } from './enrollments'
+import type { Enrollment } from '@/types/admin/enrollments'
 
 export interface User {
   id: number

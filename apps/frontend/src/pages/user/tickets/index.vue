@@ -62,9 +62,9 @@ import WysiwygEditor from '../../../components/WysiwygEditor.vue'
 import AttachmentUrlInput from '../../../components/AttachmentUrlInput.vue'
 import UserTicketsCard from '@/components/user/Tickets/Card.vue' 
 import { api } from '../../../services/api.ts'
-import type { Enrollment } from '@/types/enrollments.ts';
-import type { Ticket, NewTicket } from '@/types/user/tickets.js'
-import type { PaginatedResponse } from '@/types/api.ts'
+import type { Enrollment } from '@/types/admin/enrollments'
+import type { Ticket, NewTicket } from '@/types/user/tickets'
+import type { PaginatedResponse } from '@/types/api'
 const toast = useToast()
 const filters = ref({
   q: '',

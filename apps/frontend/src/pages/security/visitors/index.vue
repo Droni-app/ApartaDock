@@ -217,9 +217,9 @@ import {
 import { api } from '@/services/api'
 import UiTitlePage from '@/components/Ui/TitlePage.vue'
 import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
-import type { Unit } from '@/types/units'
+import type { Unit } from '@/types/admin/units'
 import type { Visitor, VisitorForm } from '@/types/security/visitors'
-import type { Authorization } from '@/types/user/authorization'
+import type { Authorization } from '@/types/user/authorizations'
 import { formatDate } from '@/services/utils'
 import { vehicleTypeLabel } from '@/utils/vehicles'
 

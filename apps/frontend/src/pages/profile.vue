@@ -87,8 +87,8 @@ import { onMounted, reactive, ref } from 'vue'
 import { AxiosError } from 'axios'
 import { DuiAlert, DuiButton, DuiCard, DuiInput, DuiLabel } from '@dronico/droni-kit'
 import { api } from '../services/api'
-import type { ApiErrorResponse } from '../types/api'
-import type { AuthUser } from '../types/auth'
+import type { ApiErrorResponse } from '@/types/api'
+import type { AuthUser } from '@/types/account/profile'
 import UiTitlePage from '../components/Ui/TitlePage.vue'
 
 const profile = ref<AuthUser | null>(null)

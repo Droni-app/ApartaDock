@@ -65,8 +65,8 @@ import { computed, onMounted, reactive, ref } from 'vue'
 import { AxiosError } from 'axios'
 import { DuiAlert, DuiBadge, DuiButton, DuiCheckbox, DuiInput, DuiLabel, DuiSelect, DuiTable } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
-import type { ApiErrorResponse, PaginatedResponse } from '../../../types/api'
-import type { ParkingRequest } from '../../../types/parking_requests'
+import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
+import type { ParkingRequest } from '@/types/board/parking-requests'
 
 const parkingRequests = ref<ParkingRequest[]>([])
 const loading = ref(false)

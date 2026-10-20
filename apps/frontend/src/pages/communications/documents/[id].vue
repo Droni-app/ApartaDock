@@ -66,7 +66,7 @@
 <script setup lang="ts">
 import { api } from '../../../services/api'
 import { ref, onMounted } from 'vue'
-import type { Document } from '../../../types/document' 
+import type { Document } from '@/types/board/documents' 
 import { useRoute } from 'vue-router'
 import { DuiCard, DuiBadge, useToast } from '@dronico/droni-kit'
 import { formatDate } from '../../../utils/helpers'

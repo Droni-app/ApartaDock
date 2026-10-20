@@ -47,7 +47,7 @@
 <script setup lang="ts">
 import { reactive, watch } from 'vue'
 import { DuiAlert, DuiButton, DuiInput, DuiLabel, DuiSelect } from '@dronico/droni-kit'
-import type { User } from '../../../types/users'
+import type { User } from '@/types/admin/users'
 
 const props = withDefaults(
   defineProps<{

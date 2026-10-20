@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { DuiBadge, DuiButton, DuiCard } from '@dronico/droni-kit';
 import { vehicleTypeIcon, vehicleTypeLabel } from '../../../utils/vehicles.ts';
-import type { Vehicle } from '../../../types/vehicles.ts';
+import type { Vehicle } from '@/types/user/vehicles'
 
 defineProps<{
   vehicle: Vehicle

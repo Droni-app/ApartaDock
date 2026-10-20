@@ -80,19 +80,12 @@
       <template #authorization="{ authorization }">
         {{ authorization?.fullName || 'Sin autorización' }}
       </template>
-      <template #actions="{ id, hours, checkoutDate }">
-        <DuiButton
-          v-if="hours === null && checkoutDate"
-          size="sm"
-          color="primary"
-          variant="outline"
-          :loading="recalculatingId === id"
-          :disabled="recalculatingId !== null"
-          @click="recalculateVisitor(id)"
-        >
-          <i class="mdi mdi-calculator-variant-outline mr-1"></i>
-          Recalcular
-        </DuiButton>
+      <template #user="{ user }">
+        <template v-if="user">
+          <strong>{{ user.fullName || 'Sin nombre' }}</strong><br />
+          <small>{{ user.email }}</small>
+        </template>
+        <span v-else>-</span>
       </template>
     </DuiTable>
 
@@ -120,26 +113,8 @@ import {
 } from '@dronico/droni-kit'
 import { api } from '@/services/api'
 import UiTitlePage from '@/components/Ui/TitlePage.vue'
-import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
-
-interface VisitorReportRow {
-  id: number
-  fullName: string | null
-  document: string | null
-  plate: string | null
-  vehicleType: string | null
-  checkinDate: string | null
-  checkoutDate: string | null
-  hours: number | null
-  total: number | null
-  unit: { name: string; tower: number; apto: number } | null
-  authorization: { fullName: string | null } | null
-}
-
-interface VisitorReportResponse extends PaginatedResponse<VisitorReportRow> {
-  total?: number
-  totalHours?: number
-}
+import type { ApiErrorResponse } from '@/types/api'
+import type { VisitorReportResponse, VisitorReportRow } from '@/types/security/visitors'
 
 function dateInputValue(date: Date) {
   const year = date.getFullYear()
@@ -178,7 +153,7 @@ const columns = [
   { name: 'hours', label: 'Horas' },
   { name: 'amount', label: 'Total' },
   { name: 'authorization', label: 'Autorización' },
-  { name: 'actions', label: 'Acciones' },
+  { name: 'user', label: 'Salida registrada por' },
 ]
 
 const visitors = ref<VisitorReportRow[]>([])
@@ -189,7 +164,6 @@ const perPage = ref(20)
 const recordCount = ref(0)
 const totalAmount = ref(0)
 const totalHours = ref(0)
-const recalculatingId = ref<number | null>(null)
 
 function vehicleTypeLabel(vehicleType: string | null) {
   return vehicleTypeOptions.find((option) => option.value === vehicleType)?.label ?? '-'
@@ -262,25 +236,6 @@ function handleClear() {
 
 function handlePageChange(page: number) {
   fetchReport(page)
-}
-
-async function recalculateVisitor(id: number) {
-  recalculatingId.value = id
-  error.value = ''
-
-  try {
-    await api.get(`/security/visitors/${id}`)
-    await fetchReport(currentPage.value)
-  } catch (err) {
-    const axiosError = err as AxiosError<ApiErrorResponse>
-    const body = axiosError.response?.data
-    error.value =
-      body?.errors?.[0]?.message ??
-      body?.message ??
-      (err instanceof Error ? err.message : 'No se pudieron recalcular las horas del visitante.')
-  } finally {
-    recalculatingId.value = null
-  }
 }
 
 onMounted(() => fetchReport())

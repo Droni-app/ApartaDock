@@ -59,8 +59,8 @@ import { computed, ref } from 'vue'
 import { AxiosError } from 'axios'
 import { DuiAlert, DuiButton, DuiModal, DuiTable, DuiFile } from '@dronico/droni-kit'
 import { api } from '../services/api'
-import type { ApiErrorResponse, PaginatedResponse } from '../types/api'
-import type { Attachment } from '../types/attachments'
+import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
+import type { Attachment } from '@/types/user/attachments'
 
 const props = withDefaults(
   defineProps<{

@@ -38,8 +38,8 @@ import UiTitlePage from '@/components/Ui/TitlePage.vue'
 import { DuiButton, DuiDrawer, useToast } from '@dronico/droni-kit';
 import { api } from '@/services/api'
 import type { AxiosError } from 'axios';
-import type { ValidationErrors } from '@/types/api.ts';
-import type { Vehicle } from '@/types/vehicles.ts';
+import type { ValidationErrors } from '@/types/api'
+import type { Vehicle } from '@/types/user/vehicles'
 import UiVehiclesCard from '@/components/user/vehicles/Card.vue'
 import VehicleForm from '@/components/user/vehicles/Form.vue'
 

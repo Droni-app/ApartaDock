@@ -1,6 +1,6 @@
-import type { User } from './users'
-import type { Unit } from './units'
-import type { Vehicle } from './vehicles'
+import type { User } from '@/types/admin/users'
+import type { Unit } from '@/types/admin/units'
+import type { Vehicle } from '@/types/user/vehicles'
 
 export type ParkingRequestPeriod = 'h1' | 'h2'
 export type ParkingRequestStatus = 'pending' | 'approved' | 'rejected' | 'cancelled'

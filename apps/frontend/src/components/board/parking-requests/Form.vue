@@ -47,7 +47,7 @@
 <script setup lang="ts">
 import { reactive, watch } from 'vue'
 import { DuiAlert, DuiButton, DuiInput, DuiLabel, DuiSelect, DuiTextarea } from '@dronico/droni-kit'
-import type { ParkingRequest } from '../../../types/parking_requests'
+import type { ParkingRequest } from '@/types/board/parking-requests'
 
 const props = withDefaults(
   defineProps<{

@@ -1,4 +1,4 @@
-import type { User } from './users'
+import type { User } from '@/types/admin/users'
 
 export interface Document {
   id: number

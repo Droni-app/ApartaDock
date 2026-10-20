@@ -1,3 +1,10 @@
+import type { AuthUser } from '@/types/account/profile'
+
+export interface LoginPayload {
+  email: string
+  password: string
+}
+
 export interface AuthResponse {
   user: AuthUser;
   enrollments: EnrollmentsItem[];
@@ -9,19 +16,6 @@ export interface EnrollmentsItem {
   userId: number;
   unitId: number;
   role: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface AuthUser {
-  id: number;
-  fullName: string;
-  email: string;
-  documentType: string;
-  document: string;
-  role: string;
-  phone: string;
-  consentDate: string | null;
   createdAt: string;
   updatedAt: string;
 }

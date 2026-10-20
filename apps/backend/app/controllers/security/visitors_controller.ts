@@ -110,7 +110,8 @@ export default class VisitorsController {
     return visitor
   }
 
-  async checkout({ params }: HttpContext) {
+  async checkout({ auth, params }: HttpContext) {
+    const user = auth.getUserOrFail()
     const visitor = await Visitor.query().where('id', params.id).firstOrFail()
 
     if (!visitor.checkinDate) {
@@ -125,6 +126,7 @@ export default class VisitorsController {
     const parking = await visitorParking(visitor)
     visitor.hours = parking?.hours ?? 0
     visitor.total = parking?.price ?? 0
+    visitor.userId = user.id
     await visitor.save()
 
     return visitor
@@ -152,6 +154,7 @@ export default class VisitorsController {
         .clone()
         .preload('unit')
         .preload('authorization')
+        .preload('user')
         .orderBy('checkinDate', 'desc')
         .paginate(page, limit),
       query.clone().pojo().sum('total as total'),

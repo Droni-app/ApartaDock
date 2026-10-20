@@ -73,8 +73,8 @@ import { useRoute } from 'vue-router'
 import { AxiosError } from 'axios'
 import { DuiAlert, DuiButton, DuiCard } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
-import type { ApiErrorResponse } from '../../../types/api'
-import type { Unit } from '../../../types/units'
+import type { ApiErrorResponse } from '@/types/api'
+import type { Unit } from '@/types/admin/units'
 import UnitEnrollments from '../../../components/admin/units/Enrollments.vue'
 
 const route = useRoute()

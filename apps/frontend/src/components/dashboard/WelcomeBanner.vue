@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { DuiBadge, DuiCard } from '@dronico/droni-kit'
-import type { AuthUser } from '../../types/auth'
+import type { AuthUser } from '@/types/account/profile'
 import { getRoleMeta } from '../../utils/roles'
 
 const props = defineProps<{ user: AuthUser }>()

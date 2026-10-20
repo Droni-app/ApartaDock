@@ -53,8 +53,8 @@ import { computed, onMounted, reactive, ref } from 'vue'
 import { AxiosError } from 'axios'
 import { DuiAlert, DuiBadge, DuiButton, DuiInput, DuiLabel, DuiSelect, DuiTable } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
-import type { ApiErrorResponse, PaginatedResponse } from '../../../types/api'
-import type { Log } from '../../../types/logs'
+import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
+import type { Log } from '@/types/admin/logs'
 
 const logs = ref<Log[]>([])
 const loading = ref(false)

@@ -1,6 +1,5 @@
-import type { User } from './users'
-import type { Unit } from './units'
-import type { ParkingRequest } from './parking_requests'
+import type { User } from '@/types/admin/users'
+import type { Unit } from '@/types/admin/units'
 
 export type EnrollmentRole = 'tenant' | 'owner' | 'resident'
 
@@ -11,8 +10,4 @@ export interface Enrollment {
   userId: number | null
   user?: User | null
   unit?: Unit | null
-}
-
-export interface EnrollmentDetail extends Enrollment {
-  parkingRequests: ParkingRequest[]
 }

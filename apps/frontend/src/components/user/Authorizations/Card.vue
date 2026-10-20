@@ -18,7 +18,7 @@
 </template>
 <script setup lang="ts">
 import { DuiCard } from '@dronico/droni-kit';
-import type { Authorization } from '../../../types/user/authorization';
+import type { Authorization } from '@/types/user/authorizations'
 
 const props = defineProps<{
   authorization: Authorization

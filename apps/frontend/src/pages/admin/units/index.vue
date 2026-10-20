@@ -43,8 +43,8 @@ import { computed, onMounted, ref } from 'vue'
 import { AxiosError } from 'axios'
 import { DuiAlert, DuiButton, DuiInput, DuiTable } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
-import type { ApiErrorResponse, PaginatedResponse } from '../../../types/api'
-import type { Unit } from '../../../types/units'
+import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
+import type { Unit } from '@/types/admin/units'
 
 const units = ref<Unit[]>([])
 const loading = ref(false)

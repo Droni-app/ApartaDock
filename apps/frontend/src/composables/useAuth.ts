@@ -1,12 +1,8 @@
 import { ref } from 'vue'
 import { api } from '../services/api'
-import type { AuthResponse, AuthUser } from '../types/auth'
+import type { AuthResponse, LoginPayload } from '@/types/auth/login'
+import type { AuthUser } from '@/types/account/profile'
 import router from '../router'
-
-interface LoginPayload {
-  email: string
-  password: string
-}
 
 const TOKEN_KEY = 'apartadock_token'
 const USER_KEY = 'apartadock_user'

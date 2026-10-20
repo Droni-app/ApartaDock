@@ -59,11 +59,11 @@ import UiTitlePage from '@/components/Ui/TitlePage.vue'
 import { DuiButton, DuiDrawer, DuiLabel, DuiInput, DuiSelect, useToast } from '@dronico/droni-kit';
 import { api } from '@/services/api'
 import type { AxiosError } from 'axios';
-import type { PaginatedResponse, ValidationErrors } from '@/types/api.ts';
-import type { Enrollment } from '@/types/enrollments.ts';
-import type { Authorization, AuthorizationNew } from '@/types/user/authorization';
+import type { PaginatedResponse, ValidationErrors } from '@/types/api'
+import type { Enrollment } from '@/types/admin/enrollments'
+import type { Authorization, AuthorizationNew } from '@/types/user/authorizations'
 import UiAuthorizationsCard from '@/components/user/Authorizations/Card.vue'
-import type { Visitor } from '@/types/security/visitors';
+import type { Visitor } from '@/types/security/visitors'
 import UserVisistorsCard from '@/components/user/Visitors/Card.vue'
 
 const toast = useToast()

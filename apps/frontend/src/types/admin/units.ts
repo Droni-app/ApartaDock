@@ -1,5 +1,5 @@
-import type { Enrollment } from './enrollments'
-import type { Authorization } from './user/authorization'
+import type { Enrollment } from '@/types/admin/enrollments'
+import type { Authorization } from '@/types/user/authorizations'
 
 export interface Unit {
   id: number

@@ -30,7 +30,7 @@
 </template>
 <script setup lang="ts">
 import { DuiInput, DuiLabel, DuiSelect, DuiSwitch } from '@dronico/droni-kit'
-import type { Document } from '../../../types/document'
+import type { Document } from '@/types/board/documents'
 import AttachmentUrlInput from '../../AttachmentUrlInput.vue'
 import WysiwygEditor from '../../WysiwygEditor.vue'
 

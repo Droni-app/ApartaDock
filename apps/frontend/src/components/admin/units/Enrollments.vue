@@ -165,9 +165,9 @@ import {
   DuiSelect,
 } from '@dronico/droni-kit'
 import { api } from '../../../services/api'
-import type { ApiErrorResponse, PaginatedResponse } from '../../../types/api'
-import type { Enrollment, EnrollmentRole } from '../../../types/enrollments'
-import type { User } from '../../../types/users'
+import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
+import type { Enrollment, EnrollmentRole } from '@/types/admin/enrollments'
+import type { User } from '@/types/admin/users'
 import Drawer from '../Drawer.vue'
 
 const props = withDefaults(

@@ -35,7 +35,7 @@
   </DuiAlert>
 </template>
 <script setup lang="ts">
-import type { Visitor } from '@/types/security/visitors';
+import type { Visitor } from '@/types/security/visitors'
 import { DuiAlert, DuiButton, DuiConfirmation } from '@dronico/droni-kit';
 
 const props = defineProps<{
