@@ -3,7 +3,7 @@ import Visitor from '#models/visitor'
 import Authorization from '#models/authorization'
 import { createVisitorValidator } from '#validators/security/visitor_validator'
 import { DateTime } from 'luxon'
-import { vistorParkingCalc } from '#services/visitors'
+import { visitorParking } from '#services/visitors'
 
 interface VisitorAggregateRow {
   total?: number | string | null
@@ -41,7 +41,15 @@ export default class VisitorsController {
       })
       .orderBy('checkinDate', 'desc')
 
-    return await query.paginate(page, limit)
+    const visitors = await query.paginate(page, limit)
+    const data = await Promise.all(
+      visitors.all().map(async (visitor) => ({
+        ...visitor.serialize(),
+        parking: await visitorParking(visitor),
+      }))
+    )
+
+    return { ...visitors.toJSON(), data }
   }
 
   /**
@@ -72,13 +80,9 @@ export default class VisitorsController {
     const visitor = await Visitor.query().where('id', params.id).preload('unit').firstOrFail()
 
     if (visitor.checkinDate && visitor.checkoutDate && visitor.hours === null) {
-      const visitorCalc = vistorParkingCalc(
-        visitor.checkinDate.toISO()!,
-        visitor.checkoutDate.toISO(),
-        visitor.vehicleType!
-      )
-      visitor.hours = visitorCalc.hours
-      visitor.total = visitorCalc.price
+      const parking = await visitorParking(visitor)
+      visitor.hours = parking?.hours ?? 0
+      visitor.total = parking?.price ?? 0
       await visitor.save()
     }
     return visitor
@@ -107,13 +111,9 @@ export default class VisitorsController {
     }
 
     visitor.checkoutDate = DateTime.now()
-    const visitorCalc = vistorParkingCalc(
-      visitor.checkinDate.toISO()!,
-      visitor.checkoutDate.toISO(),
-      visitor.vehicleType!
-    )
-    visitor.hours = visitorCalc.hours
-    visitor.total = visitorCalc.price
+    const parking = await visitorParking(visitor)
+    visitor.hours = parking?.hours ?? 0
+    visitor.total = parking?.price ?? 0
     await visitor.save()
 
     return visitor

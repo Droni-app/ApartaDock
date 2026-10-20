@@ -154,14 +154,14 @@
         <small>Registrado: {{ formatDate(createdAt) }}</small>
       </template>
       <template #actions="row">
-        <div v-if="row.checkinDate && row.vehicleType">
+        <div v-if="row.parking">
           <DuiBadge size="lg" rounded="none" variant="outline">
             <i class="mdi mdi-clock-time-eight-outline"></i>
-            {{ vistorParkingCalc(row.checkinDate, row.checkoutDate, row.vehicleType).hours }} horas
+            {{ row.parking.hours }} horas
           </DuiBadge>
           <DuiBadge size="lg" rounded="none" variant="outline">
             <i class="mdi mdi-currency-usd"></i>
-            {{ vistorParkingCalc(row.checkinDate, row.checkoutDate, row.vehicleType).price }}
+            {{ row.parking.price }}
           </DuiBadge>
         </div>
         <DuiButton
@@ -220,7 +220,7 @@ import type { ApiErrorResponse, PaginatedResponse } from '@/types/api'
 import type { Unit } from '@/types/units'
 import type { Visitor, VisitorForm } from '@/types/security/visitors'
 import type { Authorization } from '@/types/user/authorization'
-import { formatDate, vistorParkingCalc } from '@/services/utils'
+import { formatDate } from '@/services/utils'
 import { vehicleTypeLabel } from '@/utils/vehicles'
 
 const toast = useToast()

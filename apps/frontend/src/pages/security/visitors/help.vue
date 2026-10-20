@@ -146,9 +146,10 @@
         check-out, usa la hora de salida guardada.
       </p>
       <ul class="list-disc space-y-2 pl-6">
-        <li>Las primeras 2 horas no generan cobro según la configuración actual.</li>
-        <li>Después de ese tiempo, el sistema redondea la duración hacia arriba a horas completas.</li>
-        <li>La tarifa configurada es 2.000 por hora para carro, 1.000 por hora para moto y 500 por hora para bicicleta, luego de las primeras 2 horas.</li>
+        <li>Cada vehículo (por placa) tiene 2 horas gratis por día. Si ingresa varias veces el mismo día, esas 2 horas se comparten entre todos sus ingresos.</li>
+        <li>Si el vehículo pasa la noche, las 2 horas gratis se aplican una sola vez, al día en que ingresó.</li>
+        <li>El tiempo a cobrar se redondea hacia arriba a horas completas.</li>
+        <li>La tarifa configurada es 2.000 por hora para carro, 1.000 por hora para moto y 500 por hora para bicicleta, luego de las horas gratis.</li>
       </ul>
       <aside aria-label="Importante sobre el cálculo de precios" class="border-l-4 border-amber-500 bg-amber-50 p-4 text-sm text-amber-950">
         El valor es un cálculo informativo de la aplicación: no registra el pago ni reemplaza la tarifa oficial.

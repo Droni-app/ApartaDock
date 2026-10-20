@@ -11,6 +11,9 @@ export interface Visitor {
   vehicleType: VisitorVehicleType | null
   checkinDate: string | null
   checkoutDate: string | null
+  hours: number | null
+  total: number | null
+  parking: { hours: number, price: number } | null
   createdAt: string
   updatedAt: string
   unit?: {
