@@ -18,6 +18,13 @@ export default defineConfig({
       registerType: 'prompt',
       workbox: {
         cleanupOutdatedCaches: true,
+        // Versión de rescate (temporal): activa el service worker nuevo sin esperar
+        // el aviso y recarga las ventanas abiertas para sacar a los usuarios de
+        // versiones viejas. Retirar estas tres opciones (y public/sw-rescue.js)
+        // cuando la mayoría haya actualizado, para volver al aviso de actualización.
+        skipWaiting: true,
+        clientsClaim: true,
+        importScripts: ['sw-rescue.js'],
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {

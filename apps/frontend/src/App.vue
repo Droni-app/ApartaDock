@@ -36,12 +36,12 @@ import MainHeader from './components/MainHeader.vue'
 import { useAuth } from './composables/useAuth'
 import { useTheme } from './composables/useTheme'
 import { DuiAlert, DuiButton, DuiToast } from '@dronico/droni-kit'
-import { useRegisterSW } from 'virtual:pwa-register/vue'
+import { usePwaUpdate } from './composables/usePwaUpdate'
 import { version } from '../package.json'
 
 const { user } = useAuth()
 useTheme()
-const { needRefresh, updateServiceWorker } = useRegisterSW({ immediate: true })
+const { needRefresh, updateServiceWorker } = usePwaUpdate()
 const isUpdating = ref(false)
 const isCleaning = ref(false)
 
